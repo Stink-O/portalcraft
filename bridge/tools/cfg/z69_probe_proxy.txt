@@ -1,0 +1,36 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 300
+pcb_log Z69P before
+pcb_ent_field point_viewproxy * m_state i
+pcb_ent_field point_viewcontrol * m_state i
+ent_fire @debug_relay_wakeup_setup Trigger
+wait 5
+pcb_log Z69P +0.1
+pcb_ent_field point_viewproxy * m_state i
+pcb_ent_field point_viewcontrol * m_state i
+wait 30
+pcb_log Z69P +0.6
+pcb_ent_field point_viewproxy * m_state i
+pcb_ent_field point_viewcontrol * m_state i
+wait 90
+pcb_log Z69P +2
+pcb_ent_field point_viewproxy * m_state i
+pcb_ent_field point_viewcontrol * m_state i
+wait 200
+pcb_log Z69P +5
+pcb_ent_field point_viewproxy * m_state i
+pcb_ent_field point_viewcontrol * m_state i
+wait 300
+pcb_log Z69P +10
+pcb_ent_field point_viewproxy * m_state i
+pcb_ent_field point_viewcontrol * m_state i
+wait 600
+pcb_log Z69P +20
+pcb_ent_field point_viewproxy * m_state i
+pcb_ent_field point_viewcontrol * m_state i
+pcb_run_summary
+quit

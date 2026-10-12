@@ -1,0 +1,53 @@
+# z69: sp_a5_credits as the Minecraft player
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+pcb_log Z69 credits start
+pcb_glhud_shot z69i_00
+pcb_where
+wait 180
+pcb_glhud_shot z69i_01
+pcb_where
+wait 180
+pcb_glhud_shot z69i_02
+pcb_where
+wait 180
+pcb_glhud_shot z69i_03
+pcb_where
+wait 180
+pcb_glhud_shot z69i_04
+pcb_where
+wait 180
+pcb_glhud_shot z69i_05
+pcb_where
+wait 180
+pcb_log Z69 J to chell
+bridge_mode toggle
+pcb_glhud_shot z69i_06
+pcb_where
+wait 180
+pcb_glhud_shot z69i_07
+pcb_where
+wait 180
+pcb_log Z69 J back
+bridge_mode toggle
+pcb_glhud_shot z69i_08
+pcb_where
+wait 180
+pcb_glhud_shot z69i_09
+pcb_where
+wait 180
+pcb_glhud_shot z69i_10
+pcb_where
+wait 180
+pcb_glhud_shot z69i_11
+pcb_where
+wait 180
+pcb_mckey 26 1
+wait 90
+pcb_where
+pcb_mckey 26 0
+pcb_glhud_shot z69i_walk
+pcb_run_summary
+quit

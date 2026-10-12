@@ -1,0 +1,13 @@
+# laser21b: which server rays does the laser fire (diagnostic)
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+ent_fire laser turnon
+wait 120
+pcb_ray_dump 60
+wait 40
+pcb_run_summary
+quit

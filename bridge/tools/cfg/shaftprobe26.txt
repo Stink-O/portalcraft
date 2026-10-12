@@ -1,0 +1,55 @@
+# shaftprobe26 (bridge #26, diagnostic): the static field in the arrival elevator shaft's column (what blocked a rider's carry near z -650)
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+bridge_mode mc
+waituntil mcleads 2400
+wait 200
+pcb_colfield_block 64 -1792 -300
+pcb_colfield_block 64 -1792 -320
+pcb_colfield_block 64 -1792 -340
+pcb_colfield_block 64 -1792 -360
+pcb_colfield_block 64 -1792 -380
+pcb_colfield_block 64 -1792 -400
+pcb_colfield_block 64 -1792 -420
+pcb_colfield_block 64 -1792 -440
+pcb_colfield_block 64 -1792 -460
+pcb_colfield_block 64 -1792 -480
+pcb_colfield_block 64 -1792 -500
+pcb_colfield_block 64 -1792 -520
+pcb_colfield_block 64 -1792 -540
+pcb_colfield_block 64 -1792 -560
+pcb_colfield_block 64 -1792 -580
+pcb_colfield_block 64 -1792 -600
+pcb_colfield_block 64 -1792 -620
+pcb_colfield_block 64 -1792 -640
+pcb_colfield_block 64 -1792 -660
+pcb_colfield_block 64 -1792 -680
+pcb_colfield_block 64 -1792 -700
+pcb_colfield_block 64 -1792 -720
+pcb_colfield_block 64 -1792 -740
+pcb_colfield_block 64 -1792 -760
+pcb_colfield_block 64 -1792 -780
+pcb_colfield_block 64 -1792 -800
+pcb_colfield_block 64 -1792 -820
+pcb_colfield_block 64 -1792 -840
+pcb_colfield_block 64 -1792 -860
+pcb_colfield_block 64 -1792 -880
+pcb_colfield_block 64 -1792 -900
+pcb_contents 64 -1792 -560
+pcb_collision_probe 64 -1792 -560
+pcb_contents 64 -1792 -600
+pcb_collision_probe 64 -1792 -600
+pcb_contents 64 -1792 -620
+pcb_collision_probe 64 -1792 -620
+pcb_contents 64 -1792 -640
+pcb_collision_probe 64 -1792 -640
+pcb_contents 64 -1792 -650
+pcb_collision_probe 64 -1792 -650
+pcb_contents 64 -1792 -660
+pcb_collision_probe 64 -1792 -660
+pcb_contents 64 -1792 -680
+pcb_collision_probe 64 -1792 -680
+pcb_contents 64 -1792 -700
+pcb_collision_probe 64 -1792 -700
+quit

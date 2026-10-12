@@ -1,0 +1,36 @@
+# d3d9_hud2: the Direct3D 9 HUD backend against a CPU model of the GL overlay shader, without Minecraft (hud_d3d9.cpp, d3d9hudtest.cpp).
+# Cases: bottom-up and top-down rows, with and without the screen fade, cursor arrow, crosshair invert rectangle.
+# Run: PCB_GAME_ARGS=-vulkan PCB_SO=<abs>/d3d9-x.so tools/locked_run.sh terrain tools/cfg/d3d9_hud2.txt pc_pit_flings 300 d3d9_hud2
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+wait 60
+pcb_d3d9_hudtest 1 0 1 1 a_topdown
+wait 20
+pcb_assert_d3d9_hudtest
+pcb_d3d9_hudtest 0 0 1 1 b_bottomup
+wait 20
+pcb_assert_d3d9_hudtest
+pcb_d3d9_hudtest 1 0.4 1 1 c_fade
+wait 20
+pcb_assert_d3d9_hudtest
+pcb_d3d9_hudtest 1 0 0 0 d_plain
+wait 20
+pcb_assert_d3d9_hudtest
+pcb_d3d9_hudtest 1 1.0 1 0 e_fadefull
+wait 20
+pcb_assert_d3d9_hudtest
+# device Reset (anti-aliasing change): the default-pool HUD texture and the state block must be released and recreated
+mat_antialias 0
+wait 180
+pcb_d3d9_stats
+pcb_d3d9_hudtest 1 0.2 1 1 f_after_reset_aa0
+wait 20
+pcb_assert_d3d9_hudtest
+mat_antialias 4
+wait 180
+pcb_d3d9_hudtest 1 0 1 1 g_back_to_aa4
+wait 20
+pcb_assert_d3d9_hudtest
+pcb_d3d9_stats
+quit

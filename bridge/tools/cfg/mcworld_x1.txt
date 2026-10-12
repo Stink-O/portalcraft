@@ -1,0 +1,37 @@
+# mcworld_x1: the Chell-proxy case of mcworld1 (generated subset)
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_noclip_set 1
+sv_noclipspeed 1
+cl_yawspeed 180
+pcb_chell_proxy 0
+pcb_assert_mc_alive reset
+pcb_composite_lag
+wait 120
+pcb_log CASE X1: Chell proxy on: a zombie at night hits her
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_chell_proxy 1 1
+wait 120
+pcb_mc_cmd time set midnight
+pcb_mc_cmd kill @e[type=!player,type=!portalcraft:skyrim_actor]
+wait 60
+pcb_assert_chell_hit reset
+pcb_mc_summon_near zombie 5 0
+wait 900
+pcb_chell_proxy
+pcb_assert_chell_hit 1
+pcb_mc_cmd kill @e[type=zombie]
+pcb_mc_cmd time set day
+pcb_chell_proxy 0
+wait 30
+pcb_run_summary
+quit

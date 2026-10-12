@@ -1,0 +1,42 @@
+# exitledge23 (bridge #23): the user's "invisible blocks by the exit door ledge": a full-width playerclip slab across the
+# corridor to room_2's exit (VMF brush x -968..-824, y 456..472, z 0..116). The export now drops playerclip except floors
+# over nothing. Probes the contents there, then the Minecraft player walks and jumps up the ledge (lead's exitledge1).
+# Also removes chamber23's leftover block (-338 440 435).
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+pcb_mc_cmd setblock -338 440 435 minecraft:air
+pcb_noclip_set 1
+setpos -896 250 120
+setang 0 90 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 120
+pcb_where
+bridge_mode mc
+waituntil mcmode 1200
+ent_fire room_2_exit_door-door_player_clip enable
+wait 180
+pcb_where
+pcb_colfield_playerclip
+pcb_dyn_probe -896 464 60 4
+pcb_contents -896 464 60
+pcb_colfield_block -896 464 60
+pcb_glhud_shot xl23_a_before
+wait 10
+pcb_mckey 26 1
+pcb_mckey 44 1
+wait 200
+pcb_mckey 44 0
+pcb_mckey 26 0
+wait 30
+pcb_where
+pcb_colfield_playerclip
+pcb_assert_body_clear
+pcb_glhud_shot xl23_b_after
+wait 10
+pcb_run_summary
+quit

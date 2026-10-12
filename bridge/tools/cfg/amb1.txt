@@ -1,0 +1,49 @@
+# amb1 (bridge #11): Portal 2's chamber ambience is silent while Chell is in Minecraft and comes back in the chamber
+# (the user heard the chamber's soundscape in Minecraft). pcb_assert_ambience reads the engine's own mixer back
+# (snd_getmixer Ambient, its reply captured from the console) and dsp_room: Ambient 0 and no room reverb in
+# Minecraft; 0.6 and the chamber's preset again in the chamber. setpos both ways, then a real transit (a fall
+# through the pit portal and out of the cliff portal).
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+wait 120
+pc_mc_ambience
+pcb_assert_ambience 0
+wait 30
+pcb_log AMB to Minecraft by setpos
+pcb_noclip_set 1
+pcb_light_goto_mc -372 66 430.8 90 15
+pcb_stop
+wait 150
+pc_mc_ambience
+pcb_assert_ambience 1
+wait 30
+pcb_log AMB back to the chamber by setpos
+setpos 128 -384 -500
+pcb_stop
+wait 150
+pc_mc_ambience
+pcb_assert_ambience 0
+wait 30
+pcb_log AMB fall through the pit portal
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_redirect
+setpos 128 -384 -650
+setang 89 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 240
+pcb_where
+pc_mc_ambience
+pcb_assert_ambience 1
+wait 30
+pcb_run_summary
+quit

@@ -1,0 +1,73 @@
+# stairs1 (bridge #14): the Minecraft player on pc_pit_flings's entry stairs (a prop_static, hanging_stair_128 at
+# 64 -1408 -828) against Chell on the same path: up and down, the floor at the base, body watch every tick.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_audio_test_mute 1
+pcb_log Chell up the stairs (control)
+pcb_noclip_set 1
+setpos 64 -1560 -860
+setang 0 90 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_where
++forward
+wait 150
+-forward
+wait 30
+pcb_where
+pcb_log Minecraft up the stairs
+pcb_colfield_block 64 -1557 -910
+pcb_colfield_block 64 -1557 -880
+pcb_colfield_block 64 -1557 -850
+pcb_colfield_block 64 -1530 -910
+pcb_colfield_block 64 -1530 -880
+pcb_colfield_block 64 -1530 -850
+pcb_colfield_block 64 -1500 -910
+pcb_colfield_block 64 -1500 -880
+pcb_colfield_block 64 -1500 -850
+pcb_dyn_probe 64 -1408 -850 4
+pcb_dyn_probe 64 -1440 -880 4
+pcb_dyn_probe 64 -1380 -820 4
+pcb_noclip_set 1
+setpos 64 -1560 -860
+setang 0 90 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_where
+bridge_mode mc
+waituntil mcleads 1200
+wait 60
+pcb_colfield
+pcb_body_watch 1
+pcb_mckey 26 1
+wait 150
+pcb_mckey 26 0
+wait 30
+pcb_where
+pcb_assert_body_z -770 -755
+pcb_glhud_shot st_up
+wait 20
+pcb_log Minecraft down the stairs
+setang 0 -90 0
+wait 10
+pcb_mckey 26 1
+wait 150
+pcb_mckey 26 0
+wait 30
+pcb_where
+pcb_assert_body_z -920 -865
+pcb_glhud_shot st_down
+wait 20
+pcb_body_watch assert 10
+pcb_colfield
+bridge_mode chell
+waituntil chellmode 300
+pcb_run_summary
+quit

@@ -1,0 +1,26 @@
+# Phase 0 report shots (sp_a2_bridge_intro): blocks in the chamber, and seen through a portal
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 120
+noclip
+pcb_block -40 300 0 0
+pcb_block 0 300 0 1
+pcb_block -20 300 40 2
+pcb_block 60 330 0 0
+setpos -30 150 10
+setang 14 80 0
+wait 40
+pcb_views 12
+screenshot pcb_final_chamber
+wait 30
+pcb_portal_wall 0 0 250 56 0
+pcb_portal_wall 1 0 250 56 180
+wait 60
+pcb_portal_check
+pcb_view_portal 0 150
+wait 40
+pcb_views 12
+screenshot pcb_final_through_portal
+wait 30
+pcb_status
+quit

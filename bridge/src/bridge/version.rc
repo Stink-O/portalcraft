@@ -1,0 +1,27 @@
+// Portalcraft bridge: the DLL's version information (Explorer's Properties > Details; antivirus heuristics read it too).
+// PCB_VER ("0.2.0") and PCB_VERNUM (0,2,0,0) come from Makefile.win (the mod's version in fabric/gradle.properties).
+1 VERSIONINFO
+FILEVERSION PCB_VERNUM
+PRODUCTVERSION PCB_VERNUM
+FILEOS 0x40004
+FILETYPE 0x2
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "CompanyName", "Portalcraft contributors"
+      VALUE "FileDescription", "Portalcraft plugin for Portal 2"
+      VALUE "FileVersion", PCB_VER
+      VALUE "InternalName", "portalcraft_bridge"
+      VALUE "LegalCopyright", "MIT License. https://github.com/Stink-O/portalcraft"
+      VALUE "OriginalFilename", "portalcraft_bridge.dll"
+      VALUE "ProductName", "Portalcraft"
+      VALUE "ProductVersion", PCB_VER
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END

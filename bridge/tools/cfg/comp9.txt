@@ -1,0 +1,277 @@
+# comp9: jump on P2 floor / chamber block / terrain after the CheckJumpButton fix; water
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 720
+noclip
+setpos -560 -60 0
+setang 0 0 0
+noclip
+wait 60
+pcb_track 90 1
+pcb_log jump A: Portal 2 floor
++jump
+wait 3
+-jump
+wait 90
+pcb_block -620 -80 0 0
+pcb_block -620 -40 0 0
+pcb_block -660 -80 0 0
+pcb_block -660 -40 0 0
+noclip
+setpos -620 -40 45
+noclip
+wait 90
+pcb_where
+pcb_track 90 1
+pcb_log jump B: chamber block
++jump
+wait 3
+-jump
+wait 90
+pcb_where
+pcb_clear
+noclip
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 4
+wait 8
+wait 18
+wait 30
+wait 60
+setang 89 0 0
+wait 1
+setang 89 4 0
+wait 1
+setang 89 8 0
+wait 1
+setang 89 12 0
+wait 1
+setang 89 16 0
+wait 1
+setang 89 20 0
+wait 1
+setang 89 24 0
+wait 1
+setang 89 28 0
+wait 1
+setang 89 32 0
+wait 1
+setang 89 36 0
+wait 1
+setang 89 40 0
+wait 1
+setang 89 44 0
+wait 1
+setang 89 48 0
+wait 1
+setang 89 52 0
+wait 1
+setang 89 56 0
+wait 1
+setang 89 60 0
+wait 1
+setang 89 64 0
+wait 1
+setang 89 68 0
+wait 1
+setang 89 72 0
+wait 1
+setang 89 76 0
+wait 1
+setang 89 80 0
+wait 1
+setang 89 84 0
+wait 1
+setang 89 88 0
+wait 1
+setang 89 92 0
+wait 1
+setang 89 96 0
+wait 1
+setang 89 100 0
+wait 1
+setang 89 104 0
+wait 1
+setang 89 108 0
+wait 1
+setang 89 112 0
+wait 1
+setang 89 116 0
+wait 1
+setang 89 120 0
+wait 1
+setang 89 124 0
+wait 1
+setang 89 128 0
+wait 1
+setang 89 132 0
+wait 1
+setang 89 136 0
+wait 1
+setang 89 140 0
+wait 1
+setang 89 144 0
+wait 1
+setang 89 148 0
+wait 1
+setang 89 152 0
+wait 1
+setang 89 156 0
+wait 1
+setang 89 160 0
+wait 1
+setang 89 164 0
+wait 1
+setang 89 168 0
+wait 1
+setang 89 172 0
+wait 1
+setang 89 176 0
+wait 1
+setang 89 180 0
+wait 1
+setang 89 184 0
+wait 1
+setang 89 188 0
+wait 1
+setang 89 192 0
+wait 1
+setang 89 196 0
+wait 1
+setpos 128 -384 -100
+setang 10 0 0
+noclip
+wait 300
+pcb_where
+pcb_track 90 1
+pcb_log jump C: terrain
++jump
+wait 3
+-jump
+wait 90
+pcb_where
+pcb_collide
+setang -10 180 0
+wait 1
+setang -10 184 0
+wait 1
+setang -10 188 0
+wait 1
+setang -10 192 0
+wait 1
+setang -10 196 0
+wait 1
+setang -9 200 0
+wait 1
+setang -9 204 0
+wait 1
+setang -9 208 0
+wait 1
+setang -9 212 0
+wait 1
+setang -9 216 0
+wait 1
+setang -8 220 0
+wait 1
+setang -8 224 0
+wait 1
+setang -8 228 0
+wait 1
+setang -8 232 0
+wait 1
+setang -8 236 0
+wait 1
+setang -7 240 0
+wait 1
+setang -7 244 0
+wait 1
+setang -7 248 0
+wait 1
+setang -7 252 0
+wait 1
+setang -7 256 0
+wait 1
+setang -6 260 0
+wait 1
+setang -6 264 0
+wait 1
+setang -6 268 0
+wait 1
+setang -6 272 0
+wait 1
+setang -6 276 0
+wait 1
+setang -5 280 0
+wait 1
+setang -5 284 0
+wait 1
+setang -5 288 0
+wait 1
+setang -5 292 0
+wait 1
+setang -5 296 0
+wait 1
+setang -4 300 0
+wait 1
+setang -4 304 0
+wait 1
+setang -4 308 0
+wait 1
+setang -4 312 0
+wait 1
+setang -4 316 0
+wait 1
+setang -3 320 0
+wait 1
+setang -3 324 0
+wait 1
+setang -3 328 0
+wait 1
+setang -3 332 0
+wait 1
+setang -3 336 0
+wait 1
+setang -2 340 0
+wait 1
+setang -2 344 0
+wait 1
+setang -2 348 0
+wait 1
+setang -2 352 0
+wait 1
+setang -2 356 0
+wait 1
+setang -1 360 0
+wait 1
+setang -1 364 0
+wait 1
+setang -1 368 0
+wait 1
+setang -1 372 0
+wait 1
+setang -1 376 0
+wait 1
+pcb_composite_lag
+setang 0 180 0
+wait 60
+pcb_find_water 96 1
+pcb_track 600 6
+wait 240
+pcb_fluid
+screenshot pcb_g_water
++jump
+wait 120
+-jump
+pcb_fluid
+quit

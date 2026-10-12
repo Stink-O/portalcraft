@@ -1,0 +1,72 @@
+# d3d9_v4b_gl: the composite background depth sweep again on -vulkan with long settles and the default tested first and last (the first sweep showed no Minecraft picture at the default depth under DXVK, GL does).
+# Run: PCB_GAME_ARGS=-vulkan PCB_SO=<abs>/d3d9c-x.so tools/locked_run.sh terrain tools/cfg/d3d9_v4b.txt pc_pit_flings 900 d3d9_v4b
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+setang -30 0 0
+pcb_setview -30 0
+wait 300
+pcb_composite_mask
+pcb_glhud_shot g4b_default_first
+wait 20
+pcb_composite_farz 0.99999
+wait 90
+pcb_glhud_shot g4b_z99999
+wait 10
+pcb_composite_farz 0.99995
+wait 90
+pcb_glhud_shot g4b_z99995
+wait 10
+pcb_composite_farz 0.9999
+wait 90
+pcb_glhud_shot g4b_z9999
+wait 10
+pcb_composite_farz 0.99985
+wait 90
+pcb_glhud_shot g4b_z99985
+wait 10
+pcb_composite_farz 0.9998
+wait 90
+pcb_glhud_shot g4b_z9998
+wait 10
+pcb_composite_farz 0.99975
+wait 90
+pcb_glhud_shot g4b_z99975
+wait 10
+pcb_composite_farz 0.9997
+wait 90
+pcb_glhud_shot g4b_z9997
+wait 10
+pcb_composite_farz 0.9995
+wait 90
+pcb_glhud_shot g4b_z9995
+wait 10
+pcb_composite_farz 0.9990
+wait 90
+pcb_glhud_shot g4b_z9990
+wait 10
+pcb_composite_farz 0.9980
+wait 90
+pcb_glhud_shot g4b_z9980
+wait 10
+pcb_composite_farz 0.9900
+wait 90
+pcb_glhud_shot g4b_z9900
+wait 10
+pcb_composite_farz 0
+wait 90
+pcb_glhud_shot g4b_default_last
+wait 10
+pcb_composite_mask
+quit

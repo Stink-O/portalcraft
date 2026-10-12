@@ -1,0 +1,220 @@
+# floorloop2 (bridge #12): the user's "collision breaks low down" session: after two transits through a pair of floor
+# portals on Minecraft blocks Chell sank under the opening into the rock (40 UNSTUCK lines, 12 blocks down). Here:
+# slow drops into a floor portal on blocks with Chell's centre offset towards the opening's edge (long and short
+# axis), and a fast loop whose exit portal is under a 3-block ceiling (bounce back in). Asserts: never more than
+# 48 u behind a portal plane (pcb_assert_behind_portal), never stuck in a block. SUNK cases start Chell where the
+# user's log had her (behind a floor portal's plane, no transit due): she must be back in front of the portal (the
+# old 500 u hole let her sink 464 u into the rock: shots/floorloop2c, pcb_collide_hole_depth 500 + pcb_unstick_portal 0).
+pcb_assert_soft 1
+sv_cheats 1
+pcb_audio_test_mute 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_noclip_set 1
+pcb_mc_cmd fill -362 85 478 -348 99 494 stone
+pcb_mc_cmd fill -362 100 478 -348 106 494 air
+pcb_light_goto_mc -355 106 486 90 0
+pcb_stop
+wait 60
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_light_goto_mc -351.5 104 482.5 0 89
+pcb_stop
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_light_goto_mc -357.5 104 489.5 -115 89
+pcb_stop
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_log EDGE drop into portal 0, centre offset 0 u along the long axis, 0 u along the short
+pcb_noclip_set 1
+pcb_goto_portal 0 40 0 0
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_behind_portal 48
+pcb_assert_stuck
+pcb_log EDGE drop into portal 0, centre offset 30 u along the long axis, 0 u along the short
+pcb_noclip_set 1
+pcb_goto_portal 0 40 30 0
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_behind_portal 48
+pcb_assert_stuck
+pcb_log EDGE drop into portal 0, centre offset 45 u along the long axis, 0 u along the short
+pcb_noclip_set 1
+pcb_goto_portal 0 40 45 0
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_behind_portal 48
+pcb_assert_stuck
+pcb_log EDGE drop into portal 0, centre offset 52 u along the long axis, 0 u along the short
+pcb_noclip_set 1
+pcb_goto_portal 0 40 52 0
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_behind_portal 48
+pcb_assert_stuck
+pcb_log EDGE drop into portal 0, centre offset 58 u along the long axis, 0 u along the short
+pcb_noclip_set 1
+pcb_goto_portal 0 40 58 0
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_behind_portal 48
+pcb_assert_stuck
+pcb_log EDGE drop into portal 0, centre offset 66 u along the long axis, 0 u along the short
+pcb_noclip_set 1
+pcb_goto_portal 0 40 66 0
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_behind_portal 48
+pcb_assert_stuck
+pcb_log EDGE drop into portal 0, centre offset 0 u along the long axis, 20 u along the short
+pcb_noclip_set 1
+pcb_goto_portal 0 40 0 20
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_behind_portal 48
+pcb_assert_stuck
+pcb_log EDGE drop into portal 0, centre offset 0 u along the long axis, 28 u along the short
+pcb_noclip_set 1
+pcb_goto_portal 0 40 0 28
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_behind_portal 48
+pcb_assert_stuck
+pcb_log EDGE drop into portal 0, centre offset 0 u along the long axis, 34 u along the short
+pcb_noclip_set 1
+pcb_goto_portal 0 40 0 34
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_behind_portal 48
+pcb_assert_stuck
+pcb_log EDGE drop into portal 0, centre offset 0 u along the long axis, 40 u along the short
+pcb_noclip_set 1
+pcb_goto_portal 0 40 0 40
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_behind_portal 48
+pcb_assert_stuck
+pcb_log EDGE drop into portal 0, centre offset 40 u along the long axis, 24 u along the short
+pcb_noclip_set 1
+pcb_goto_portal 0 40 40 24
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_behind_portal 48
+pcb_assert_stuck
+pcb_log SUNK: the state of the user's log: feet 100 u below portal 0's plane over its centre, falling
+pcb_noclip_set 1
+pcb_goto_portal 0 -100 0 0
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+pcb_track 300 3
+wait 150
+pcb_where
+pcb_assert_behind_portal now
+pcb_assert_stuck 3
+pcb_unstick
+pcb_log SUNK deeper: feet 400 u below portal 1's plane (past the 128 u hole), falling
+pcb_noclip_set 1
+pcb_goto_portal 1 -400 0 0
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_behind_portal now
+pcb_assert_stuck 3
+pcb_unstick
+pcb_log CEILING: portal 1 under a 3-block ceiling, Chell falls into portal 0 from 4 blocks, 6 s of bouncing
+pcb_noclip_set 1
+pcb_mc_cmd fill -362 103 485 -354 103 493 stone
+wait 60
+waituntil terrain_idle 600
+pcb_goto_portal 0 160 0 0
+pcb_stop
+wait 20
+pcb_assert_behind_portal reset
+pcb_assert_stuck reset
+pcb_assert_transits reset
+pcb_track 600 3
+pcb_noclip_set 0
+wait 360
+pcb_where
+pcb_assert_transits 2
+pcb_assert_behind_portal 48
+pcb_assert_stuck
+pcb_noclip_set 1
+pcb_mc_cmd fill -362 85 478 -348 106 494 air
+pcb_run_summary
+quit

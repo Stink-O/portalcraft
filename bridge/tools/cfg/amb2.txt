@@ -1,0 +1,62 @@
+# amb2 (bridge #12): the chamber ambience fades in Minecraft, the portals' hum does not (the user heard no hum from
+# portals in Minecraft: bridge #11 faded the mix group "Ambient", which also holds weapon_ambient/... the hum).
+# pcb_assert_hum reads the loudest hum channel's speaker gains (snd_print_channels): a chamber reference 64 u in front
+# of a wall portal, then 64 u in front of the cliff portal in Minecraft (>= 60% of the reference) with every
+# soundscape channel (ambient/...) silent; pcb_assert_ambience reads the Music mix group, dsp_room and the soundscape
+# channels: Music 0, no room reverb, soundscape silent in Minecraft; back in the chamber 0.6 and the reverb.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_noclip_set 1
+wait 120
+pcb_assert_ambience 0
+wait 30
+pcb_log HUM chamber reference: 64 u in front of a wall portal
+pcb_portal 1 -560 -60 64 0 0 0
+wait 60
+pcb_goto_portal 1 64
+pcb_stop
+pcb_aim -560 -60 64
+wait 90
+pcb_assert_hum ref
+wait 40
+pcb_log HUM the pit pair: portal 1 goes to the cliff; 64 u in front of it in Minecraft
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_redirect
+pcb_goto_portal 1 64
+pcb_stop
+wait 150
+pc_mc_ambience
+pcb_assert_hum region 0.6
+wait 40
+pcb_assert_ambience 1
+wait 30
+pcb_log AMB back to the chamber by setpos
+setpos 128 -300 -500
+pcb_stop
+wait 150
+pcb_assert_ambience 0
+wait 30
+pcb_log AMB fall through the pit portal
+setpos 128 -384 -650
+setang 89 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 240
+pcb_where
+pcb_assert_ambience 1
+wait 30
+pcb_noclip_set 1
+pcb_goto_portal 1 64
+pcb_stop
+wait 60
+pcb_assert_hum region 0.6
+wait 40
+pcb_run_summary
+quit

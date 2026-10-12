@@ -1,0 +1,31 @@
+# exitledge1 (lead): the Minecraft player walks and jumps up the ledge to room_2's exit door (the user's "invisible blocks")
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+pcb_noclip_set 1
+setpos -896 250 120
+setang 0 90 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 120
+pcb_where
+bridge_mode mc
+waituntil mcmode 1200
+wait 120
+pcb_where
+pcb_glhud_shot xl_a_before
+wait 10
+pcb_mckey 26 1
+pcb_mckey 44 1
+wait 200
+pcb_mckey 44 0
+pcb_mckey 26 0
+wait 30
+pcb_where
+pcb_glhud_shot xl_b_after
+wait 10
+pcb_run_summary
+quit

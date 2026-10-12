@@ -1,0 +1,47 @@
+# win_walk1 (Proton): hitches while walking. The Minecraft player walks one way for 10 s (new things come into view), then walks back
+# over the same ground for 10 s (already seen). Each leg is measured on its own: if only the first leg hitches, it is first-use work.
+# PCB_MC=1 PCB_LINK_FILE=Z:/dev/shm/Portalcraft_v1 PCB_WIN_UNVERIFIED=all PCB_PRE="pc_start_mode mc;pc_world unified" tools/run_game_proton.sh tools/cfg/win_walk1.txt sp_a1_intro3 900 <label>
+pcb_assert_soft 1
+sv_cheats 1
+fps_max 0
+waituntil spawned 900
+waituntil link 9000
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 600
+pcb_where
+pcb_setview 0 0
+wait 60
+pcb_d3d9_stats reset
+pcb_prof reset 200
+pcb_mckey 26 1
+wait 600
+pcb_mckey 26 0
+wait 30
+pcb_where
+pcb_d3d9_stats
+pcb_prof print
+pcb_setview 0 180
+wait 60
+pcb_d3d9_stats reset
+pcb_prof reset 200
+pcb_mckey 26 1
+wait 600
+pcb_mckey 26 0
+wait 30
+pcb_where
+pcb_d3d9_stats
+pcb_prof print
+pcb_setview 0 90
+wait 60
+pcb_d3d9_stats reset
+pcb_prof reset 200
+pcb_mckey 26 1
+wait 600
+pcb_mckey 26 0
+wait 30
+pcb_where
+pcb_d3d9_stats
+pcb_prof print
+pcb_run_summary
+quit

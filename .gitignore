@@ -1,0 +1,40 @@
+# Build output
+/target/
+/target-*/
+/bridge/build/
+/maps/build/
+/bridge/fabric/build/
+/bridge/fabric/.gradle/
+/bridge/fabric/run/
+/bridge/fabric/logs/
+/bridge/fabric/bin/
+/bridge/tools/colharvest/colharvest
+*.so
+*.o
+*.d
+*.dll
+*.exe
+*.log
+*.pyc
+__pycache__/
+
+# Local state written by play sessions (the plugin and the scripts write under cache/)
+/cache/
+/dist/
+/bugmarks/
+/bridge/**/screenshots/
+/bridge/**/user_shots/
+/bridge/tools/cfg/*.local.txt
+
+# Editors and OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+*.swp
+*~
+
+# Captures
+*.mp4
+*.mkv
+*.webm

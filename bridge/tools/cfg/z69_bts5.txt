@@ -1,0 +1,103 @@
+# z69: sp_a2_bts5 tube ride (point_viewproxy) as the Minecraft player: relay fired from the pod room
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 400
+pcb_mc_place 2380 600 4415 180 40
+waituntil mcplaced 900
+wait 120
+pcb_log Z69 bts5 pre
+pcb_where
+pcb_glhud_shot z69f_pre
+ent_fire tube_ride_start_relay Trigger
+wait 150
+pcb_glhud_shot z69f_00
+pcb_where
+wait 150
+pcb_glhud_shot z69f_01
+pcb_where
+wait 150
+pcb_glhud_shot z69f_02
+pcb_where
+wait 150
+pcb_glhud_shot z69f_03
+pcb_where
+wait 150
+pcb_glhud_shot z69f_04
+pcb_where
+wait 150
+pcb_glhud_shot z69f_05
+pcb_where
+wait 150
+pcb_glhud_shot z69f_06
+pcb_where
+pcb_log Z69 J to chell
+bridge_mode toggle
+wait 150
+pcb_glhud_shot z69f_07
+pcb_where
+wait 150
+pcb_glhud_shot z69f_08
+pcb_where
+pcb_log Z69 J back
+bridge_mode toggle
+wait 150
+pcb_glhud_shot z69f_09
+pcb_where
+wait 150
+pcb_glhud_shot z69f_10
+pcb_where
+wait 150
+pcb_glhud_shot z69f_11
+pcb_where
+wait 150
+pcb_glhud_shot z69f_12
+pcb_where
+wait 150
+pcb_glhud_shot z69f_13
+pcb_where
+wait 150
+pcb_glhud_shot z69f_14
+pcb_where
+wait 150
+pcb_glhud_shot z69f_15
+pcb_where
+wait 150
+pcb_glhud_shot z69f_16
+pcb_where
+wait 150
+pcb_glhud_shot z69f_17
+pcb_where
+wait 150
+pcb_glhud_shot z69f_18
+pcb_where
+wait 150
+pcb_glhud_shot z69f_19
+pcb_where
+wait 150
+pcb_glhud_shot z69f_20
+pcb_where
+wait 150
+pcb_glhud_shot z69f_21
+pcb_where
+wait 150
+pcb_glhud_shot z69f_22
+pcb_where
+wait 150
+pcb_glhud_shot z69f_23
+pcb_where
+wait 150
+pcb_glhud_shot z69f_24
+pcb_where
+wait 150
+pcb_glhud_shot z69f_25
+pcb_where
+pcb_mckey 26 1
+wait 120
+pcb_where
+pcb_mckey 26 0
+pcb_glhud_shot z69f_walk
+pcb_run_summary
+quit

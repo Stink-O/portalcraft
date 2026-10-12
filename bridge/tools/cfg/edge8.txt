@@ -1,0 +1,406 @@
+# edge8 (edge7 + colour-aware classes, controls BIG 32x56 / SMALL 24x42 that must fail): same-frame gate of Minecraft's opening against Portal 2's (pcb_measure_gap, tint mode 5 + flat magenta):
+# OLD (build/dev: 27 x 47, centred, measured curve) and candidate A (29.1 x 50.3, +1.36 up, smoothstep^2, 2 frames
+# predicted), both colours, straight on at 1/3/6 blocks and 45 deg at 3, and through the open animation; close-ups.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_log CAND OLD: 27 47 centre 0 curve 1 0
+pcb_mc_portals_centre 0
+pcb_mc_portals_curve 1 0
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 27 47 0 0
+pcb_view_portal 0 40 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_OLD_0_s1_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 27 47 0 5
+wait 30
+pcb_measure_gap 0 30 OLD_0_s1 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 27 47 0 0
+pcb_view_portal 0 120 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_OLD_0_s3_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 27 47 0 5
+wait 30
+pcb_measure_gap 0 30 OLD_0_s3 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 27 47 0 0
+pcb_view_portal 0 120 45 1
+pcb_stop
+wait 40
+screenshot pcb_E8_OLD_0_a45_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 27 47 0 5
+wait 30
+pcb_measure_gap 0 30 OLD_0_a45 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 27 47 0 0
+pcb_view_portal 0 240 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_OLD_0_s6_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 27 47 0 5
+wait 30
+pcb_measure_gap 0 30 OLD_0_s6 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 27 47 0 0
+pcb_view_portal 1 40 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_OLD_1_s1_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 27 47 0 5
+wait 30
+pcb_measure_gap 1 30 OLD_1_s1 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 27 47 0 0
+pcb_view_portal 1 120 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_OLD_1_s3_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 27 47 0 5
+wait 30
+pcb_measure_gap 1 30 OLD_1_s3 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 27 47 0 0
+pcb_view_portal 1 120 45 1
+pcb_stop
+wait 40
+screenshot pcb_E8_OLD_1_a45_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 27 47 0 5
+wait 30
+pcb_measure_gap 1 30 OLD_1_a45 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 27 47 0 0
+pcb_view_portal 1 240 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_OLD_1_s6_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 27 47 0 5
+wait 30
+pcb_measure_gap 1 30 OLD_1_s6 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 27 47 0 5
+pcb_view_portal 1 200 0 1
+pcb_stop
+wait 40
+pcb_corridor_aim 1 0.6
+wait 20
++attack2
+wait 2
+-attack2
+pcb_view_portal 1 200 0 1
+pcb_measure_gap 1 50 OLD_open1_0.6 1
+waituntil probes_idle 1200
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 27 47 0 5
+pcb_view_portal 1 200 0 1
+pcb_stop
+wait 40
+pcb_corridor_aim 1 -0.6
+wait 20
++attack2
+wait 2
+-attack2
+pcb_view_portal 1 200 0 1
+pcb_measure_gap 1 50 OLD_open1_-0.6 1
+waituntil probes_idle 1200
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 27 47 0 5
+pcb_view_portal 0 200 0 1
+pcb_stop
+wait 40
+pcb_corridor_aim 0 0.6
+wait 20
++attack
+wait 2
+-attack
+pcb_view_portal 0 200 0 1
+pcb_measure_gap 0 50 OLD_open0_0.6 1
+waituntil probes_idle 1200
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 27 47 0 5
+pcb_view_portal 0 200 0 1
+pcb_stop
+wait 40
+pcb_corridor_aim 0 -0.6
+wait 20
++attack
+wait 2
+-attack
+pcb_view_portal 0 200 0 1
+pcb_measure_gap 0 50 OLD_open0_-0.6 1
+waituntil probes_idle 1200
+wait 30
+pcb_log CAND A: 29.1 50.3 centre 1.36 curve 0 2
+pcb_mc_portals_centre 1.36
+pcb_mc_portals_curve 0 2
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 29.1 50.3 0 0
+pcb_view_portal 0 40 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_A_0_s1_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 29.1 50.3 0 5
+wait 30
+pcb_measure_gap 0 30 A_0_s1 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 29.1 50.3 0 0
+pcb_view_portal 0 120 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_A_0_s3_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 29.1 50.3 0 5
+wait 30
+pcb_measure_gap 0 30 A_0_s3 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 29.1 50.3 0 0
+pcb_view_portal 0 120 45 1
+pcb_stop
+wait 40
+screenshot pcb_E8_A_0_a45_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 29.1 50.3 0 5
+wait 30
+pcb_measure_gap 0 30 A_0_a45 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 29.1 50.3 0 0
+pcb_view_portal 0 240 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_A_0_s6_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 29.1 50.3 0 5
+wait 30
+pcb_measure_gap 0 30 A_0_s6 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 29.1 50.3 0 0
+pcb_view_portal 1 40 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_A_1_s1_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 29.1 50.3 0 5
+wait 30
+pcb_measure_gap 1 30 A_1_s1 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 29.1 50.3 0 0
+pcb_view_portal 1 120 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_A_1_s3_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 29.1 50.3 0 5
+wait 30
+pcb_measure_gap 1 30 A_1_s3 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 29.1 50.3 0 0
+pcb_view_portal 1 120 45 1
+pcb_stop
+wait 40
+screenshot pcb_E8_A_1_a45_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 29.1 50.3 0 5
+wait 30
+pcb_measure_gap 1 30 A_1_a45 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 29.1 50.3 0 0
+pcb_view_portal 1 240 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_A_1_s6_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 29.1 50.3 0 5
+wait 30
+pcb_measure_gap 1 30 A_1_s6 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 29.1 50.3 0 5
+pcb_view_portal 1 200 0 1
+pcb_stop
+wait 40
+pcb_corridor_aim 1 0.6
+wait 20
++attack2
+wait 2
+-attack2
+pcb_view_portal 1 200 0 1
+pcb_measure_gap 1 50 A_open1_0.6 1
+waituntil probes_idle 1200
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 29.1 50.3 0 5
+pcb_view_portal 1 200 0 1
+pcb_stop
+wait 40
+pcb_corridor_aim 1 -0.6
+wait 20
++attack2
+wait 2
+-attack2
+pcb_view_portal 1 200 0 1
+pcb_measure_gap 1 50 A_open1_-0.6 1
+waituntil probes_idle 1200
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 29.1 50.3 0 5
+pcb_view_portal 0 200 0 1
+pcb_stop
+wait 40
+pcb_corridor_aim 0 0.6
+wait 20
++attack
+wait 2
+-attack
+pcb_view_portal 0 200 0 1
+pcb_measure_gap 0 50 A_open0_0.6 1
+waituntil probes_idle 1200
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 29.1 50.3 0 5
+pcb_view_portal 0 200 0 1
+pcb_stop
+wait 40
+pcb_corridor_aim 0 -0.6
+wait 20
++attack
+wait 2
+-attack
+pcb_view_portal 0 200 0 1
+pcb_measure_gap 0 50 A_open0_-0.6 1
+waituntil probes_idle 1200
+wait 30
+pcb_log CONTROL CTLBIG: 32 56 centre 0 (must FAIL)
+pcb_mc_portals_centre 0
+pcb_mc_portals_curve 0 2
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 32 56 0 0
+pcb_view_portal 0 120 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_CTLBIG_0_s3_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 32 56 0 5
+wait 30
+pcb_measure_gap 0 30 CTLBIG_0_s3 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 32 56 0 0
+pcb_view_portal 1 120 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_CTLBIG_1_s3_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 32 56 0 5
+wait 30
+pcb_measure_gap 1 30 CTLBIG_1_s3 1
+waituntil probes_idle 1200
+pcb_log CONTROL CTLSMALL: 24 42 centre 0 (must FAIL)
+pcb_mc_portals_centre 0
+pcb_mc_portals_curve 0 2
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 24 42 0 0
+pcb_view_portal 0 120 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_CTLSMALL_0_s3_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 24 42 0 5
+wait 30
+pcb_measure_gap 0 30 CTLSMALL_0_s3 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 24 42 0 0
+pcb_view_portal 1 120 0 1
+pcb_stop
+wait 40
+screenshot pcb_E8_CTLSMALL_1_s3_normal
+wait 30
+pcb_mc_portals_flat 1
+pcb_mc_portals_shape 24 42 0 5
+wait 30
+pcb_measure_gap 1 30 CTLSMALL_1_s3 1
+waituntil probes_idle 1200
+pcb_mc_portals_flat 0
+pcb_mc_portals_shape 29.1 50.3 0 0
+pcb_mc_portals_centre 1.36
+pcb_mc_portals_curve 0 2
+pcb_build_corridor remove
+wait 30
+pcb_run_summary
+quit

@@ -1,0 +1,35 @@
+# win_walk2 (Proton): hitches while Chell walks (no Minecraft): three 10 s legs, each measured on its own (see win_walk1).
+pcb_assert_soft 1
+sv_cheats 1
+fps_max 0
+waituntil spawned 900
+wait 300
+setang 0 0 0
+wait 30
+pcb_d3d9_stats reset
+pcb_prof reset 200
++forward
+wait 600
+-forward
+pcb_d3d9_stats
+pcb_prof print
+setang 0 180 0
+wait 30
+pcb_d3d9_stats reset
+pcb_prof reset 200
++forward
+wait 600
+-forward
+pcb_d3d9_stats
+pcb_prof print
+setang 0 90 0
+wait 30
+pcb_d3d9_stats reset
+pcb_prof reset 200
++forward
+wait 600
+-forward
+pcb_d3d9_stats
+pcb_prof print
+pcb_run_summary
+quit

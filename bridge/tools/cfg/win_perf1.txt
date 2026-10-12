@@ -1,0 +1,23 @@
+# win_perf1 (Proton): where the frame goes with the linked Minecraft player standing still. Two 60 s windows: dig render on (default 2), then 0.
+pcb_assert_soft 1
+sv_cheats 1
+fps_max 0
+waituntil spawned 900
+waituntil link 9000
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 900
+pcb_d3d9_stats reset
+pcb_prof reset
+wait 3700
+pcb_d3d9_stats
+pcb_prof print
+pc_dig_render 0
+wait 300
+pcb_d3d9_stats reset
+pcb_prof reset
+wait 3700
+pcb_d3d9_stats
+pcb_prof print
+pcb_run_summary
+quit

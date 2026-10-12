@@ -1,0 +1,48 @@
+Portalcraft bridge (bridge/)
+============================
+
+Third-party code in bridge/
+---------------------------
+
+src/sar/  (Hook.hpp, Interface.*, Offsets.*, Offsets/, Utils/Memory.*,
+          Utils/Platform.hpp, Utils/SDK/*, Modules/* adapted, LoadOffsets.cpp)
+  A trimmed fork of SourceAutoRecord's plugin framework: interface lookup,
+  signature scanning, inline and vtable hooks, the Portal 2 offset and
+  signature tables ("Portal 2 10090"), ConCommand registration, KeyValues,
+  material/texture creation and the dynamic-mesh builder.
+  SourceAutoRecord, https://github.com/p2sr/SourceAutoRecord (commit d454d4e),
+  Copyright (c) 2021 The SAR authors, MIT License; full text in
+  src/sar/LICENSE-SourceAutoRecord. Files under src/sar/Modules/ and
+  Utils/SDK.hpp are rewritten reductions of SAR's modules and are marked so.
+
+src/sar/Utils/lodepng.*
+  LodePNG 20120729 (as carried in SourceAutoRecord), Copyright (c) 2005-2012
+  Lode Vandevenne, zlib licence (text in the file header).
+
+SkyCraft (fabric/)
+------------------
+The Fabric mod in fabric/ is derived from SkyCraft by chasmlol,
+https://github.com/chasmlol/SkyCraft, MIT License, Copyright (c) 2026 chasmlol:
+its skeleton, the shared-memory link (protocol/skycraft_protocol.h, SkyLink),
+the dig and wall code (SkyDig, DigWalls, DigMath, SkyDigClient and their mixins)
+and the combat stand-ins. Full licence text: fabric/LICENSE-SkyCraft. Portalcraft
+renamed the mod id (portalcraft), the shared-memory file (/dev/shm/Portalcraft_v1)
+and removed SkyCraft's Discord application id, so it can run next to a real
+SkyCraft. The Java package name dev.skycraft is kept from upstream.
+
+Design reference
+----------------
+Immersive Portals (qouteall, Apache-2.0): the approach to carrying a player through
+a portal, no code copied.
+
+No game files from Valve or Mojang are included. Minecraft's textures are unpacked
+at setup time from the user's own Minecraft 26.3 client jar (tools/extract_mc_assets.py)
+into cache/minecraft-26.3, which is never committed.
+
+fabric/src/main/java/dev/skycraft/world/SkyMovers.java (bridge #26)
+  The movers' collision (an entity's box in a moving structure's own frame, a
+  swept separating-axis test against its boxes, contact-point carry) is adapted
+  from Create's ContraptionCollider / ContinuousOBBCollider,
+  https://github.com/Creators-of-Create/Create (mc1.20.1/dev), Copyright (c)
+  The Create Team / The Creators of Create, MIT License (code); full text in
+  fabric/LICENSE-Create. No Create assets are used.

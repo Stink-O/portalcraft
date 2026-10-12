@@ -1,0 +1,68 @@
+# bridge #78: pit flings unchanged in a unified session (its own region mapping, the pinned cliff), then the next map (btg_intro) in the same
+# session: the unified chamber mapping, G onto the same cliff.
+#   PORTALCRAFT_JVM_ARGS=-Dskycraft.worldName=Portalcraft78_test PCB_SO=<abs .so> tools/locked_run.sh terrain tools/cfg/u78_pit.txt pc_pit_flings 900 u78_pit
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 9000
+wait 300
+pcb_assert_world legacy
+pc_world
+pcb_where
+pcb_mc_cmd pcchambers
+pc_pit_redirect_mode 2
+pcb_portal_floor 0 224 -64 200
+wait 120
+pcb_portal_check
+noclip
+setpos 224 -64 100
+setang 89 90 0
+wait 120
+screenshot pcb_u78p_look_down
+noclip
+setpos 224 -64 200
+pcb_assert_transits reset
+waituntil transit 600 abort
+wait 300
+screenshot pcb_u78p_arrival
+pcb_face_portal 1
+pcb_stop
+wait 90
+screenshot pcb_u78p_cliff_portal
+pc_pit_redirect_mode 1
+map sp_a2_bridge_the_gap
+wait 120
+waituntil mapsp_a2_bridge_the_gap 7200
+wait 900
+pcb_assert_world unified
+pcb_where
+pcb_mc_cmd pcchambers
+bridge_mode chell
+waituntil chellmode 1800
+pcb_noclip_set 0
+setpos -495 -640 1150
+setang 0 90 0
+wait 60
+pcb_key_hold arm 25
+waituntil haveexit 1200 abort
++attack
+wait 9
+-attack
+waituntil gpair 600 abort
+wait 60
+pcb_face_portal 0
+pcb_stop
+wait 90
+screenshot pcb_u78p_btg_portal
+pcb_assert_transits reset
++forward
+waituntil transit 600 abort
+-forward
+wait 300
+screenshot pcb_u78p_btg_arrival
+pcb_face_portal 1
+pcb_stop
+wait 90
+screenshot pcb_u78p_btg_cliff_portal
+wait 60

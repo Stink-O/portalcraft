@@ -1,0 +1,78 @@
+# quiet1 (bridge #13): recording cleanliness. The chamber-ambience fade's sound commands (snd_print_channels,
+# snd_set_master_volume, snd_setmixer) used to be console text, and snd_report_start_sound printed a line per sound:
+# with developer >= 1 they show in the top-left notify area even with the console closed. Now they run silently
+# (ConRunSilent). developer 1 here is the worst case (play_clip.sh leaves it at the game's default, 0): screenshots
+# while falling through the pit portal into Minecraft (the fade starts), in Minecraft, and on the way back must show
+# no console text. Then the fade is checked functionally (the asserts set developer themselves, so they come last).
+# Run on the old build for the control: PCB_SO=build/dev-mcportal/c12.so.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+developer 1
+con_drawnotify 1
+pcb_noclip_set 1
+pcb_portal 1 -560 -60 64 0 0 0
+wait 60
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_redirect
+pcb_log QUIET chamber, before (reference: the chamber's own notify text, if any)
+setpos 128 -300 -500
+setang 30 -90 0
+pcb_stop
+wait 120
+screenshot pcb_q0_chamber
+wait 30
+pcb_log QUIET fall through the pit portal into Minecraft
+setpos 128 -384 -650
+setang 89 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 20
+screenshot pcb_q1_fall
+wait 25
+screenshot pcb_q2_entered
+wait 25
+screenshot pcb_q3_fading
+wait 40
+screenshot pcb_q4_faded
+wait 120
+pcb_where
+screenshot pcb_q5_minecraft
+wait 60
+pcb_log QUIET back to the chamber (the fade comes back)
+pcb_noclip_set 1
+setpos 128 -300 -500
+setang 30 -90 0
+pcb_stop
+wait 20
+screenshot pcb_q6_back
+wait 40
+screenshot pcb_q7_back
+wait 60
+pc_mc_ambience
+pcb_log QUIET functional check (asserts set developer 1 themselves)
+setpos 128 -384 -650
+setang 89 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 240
+pcb_where
+pcb_assert_ambience 1
+wait 40
+pcb_noclip_set 1
+setpos 128 -300 -500
+pcb_stop
+wait 150
+pcb_assert_ambience 0
+wait 40
+pc_mc_ambience
+pcb_run_summary
+quit

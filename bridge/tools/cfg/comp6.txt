@@ -1,0 +1,565 @@
+# comp6: jump on terrain; in-view composite colour variants vs Minecraft; lag in a scripted yaw sweep
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 720
+noclip
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 150
+pcb_composite_opts 1 1
+wait 30
+pcb_mcshot
+wait 40
+screenshot pcb_e_down_a_srgb1_tm1
+wait 20
+pcb_composite_opts 0 1
+wait 30
+pcb_mcshot
+wait 40
+screenshot pcb_e_down_b_srgb0_tm1
+wait 20
+pcb_composite_opts 1 0
+wait 30
+pcb_mcshot
+wait 40
+screenshot pcb_e_down_c_srgb1_tm0
+wait 20
+pcb_composite_opts 1 1
+pcb_composite_opts 1 1 1.25 0
+wait 20
+pcb_composite_lag
+setang 89 0 0
+wait 1
+setang 89 3 0
+wait 1
+setang 89 6 0
+wait 1
+setang 89 9 0
+wait 1
+setang 89 12 0
+wait 1
+setang 89 15 0
+wait 1
+setang 89 18 0
+wait 1
+setang 89 21 0
+wait 1
+setang 89 24 0
+wait 1
+setang 89 27 0
+wait 1
+setang 89 30 0
+wait 1
+setang 89 33 0
+wait 1
+setang 89 36 0
+wait 1
+setang 89 39 0
+wait 1
+setang 89 42 0
+wait 1
+setang 89 45 0
+wait 1
+setang 89 48 0
+wait 1
+setang 89 51 0
+wait 1
+setang 89 54 0
+wait 1
+setang 89 57 0
+wait 1
+setang 89 60 0
+wait 1
+setang 89 63 0
+wait 1
+setang 89 66 0
+wait 1
+setang 89 69 0
+wait 1
+setang 89 72 0
+wait 1
+setang 89 75 0
+wait 1
+setang 89 78 0
+wait 1
+setang 89 81 0
+wait 1
+setang 89 84 0
+wait 1
+setang 89 87 0
+wait 1
+setang 89 90 0
+wait 1
+setang 89 93 0
+wait 1
+setang 89 96 0
+wait 1
+setang 89 99 0
+wait 1
+setang 89 102 0
+wait 1
+setang 89 105 0
+wait 1
+setang 89 108 0
+wait 1
+setang 89 111 0
+wait 1
+setang 89 114 0
+wait 1
+setang 89 117 0
+wait 1
+setang 89 120 0
+wait 1
+screenshot pcb_e_down_sweep_reproj0
+setang 89 123 0
+wait 1
+setang 89 126 0
+wait 1
+setang 89 129 0
+wait 1
+setang 89 132 0
+wait 1
+setang 89 135 0
+wait 1
+setang 89 138 0
+wait 1
+setang 89 141 0
+wait 1
+setang 89 144 0
+wait 1
+setang 89 147 0
+wait 1
+setang 89 150 0
+wait 1
+setang 89 153 0
+wait 1
+setang 89 156 0
+wait 1
+setang 89 159 0
+wait 1
+setang 89 162 0
+wait 1
+setang 89 165 0
+wait 1
+setang 89 168 0
+wait 1
+setang 89 171 0
+wait 1
+setang 89 174 0
+wait 1
+setang 89 177 0
+wait 1
+pcb_composite_lag
+wait 30
+pcb_composite_opts 1 1 1.25 1
+wait 20
+pcb_composite_lag
+setang 89 0 0
+wait 1
+setang 89 3 0
+wait 1
+setang 89 6 0
+wait 1
+setang 89 9 0
+wait 1
+setang 89 12 0
+wait 1
+setang 89 15 0
+wait 1
+setang 89 18 0
+wait 1
+setang 89 21 0
+wait 1
+setang 89 24 0
+wait 1
+setang 89 27 0
+wait 1
+setang 89 30 0
+wait 1
+setang 89 33 0
+wait 1
+setang 89 36 0
+wait 1
+setang 89 39 0
+wait 1
+setang 89 42 0
+wait 1
+setang 89 45 0
+wait 1
+setang 89 48 0
+wait 1
+setang 89 51 0
+wait 1
+setang 89 54 0
+wait 1
+setang 89 57 0
+wait 1
+setang 89 60 0
+wait 1
+setang 89 63 0
+wait 1
+setang 89 66 0
+wait 1
+setang 89 69 0
+wait 1
+setang 89 72 0
+wait 1
+setang 89 75 0
+wait 1
+setang 89 78 0
+wait 1
+setang 89 81 0
+wait 1
+setang 89 84 0
+wait 1
+setang 89 87 0
+wait 1
+setang 89 90 0
+wait 1
+setang 89 93 0
+wait 1
+setang 89 96 0
+wait 1
+setang 89 99 0
+wait 1
+setang 89 102 0
+wait 1
+setang 89 105 0
+wait 1
+setang 89 108 0
+wait 1
+setang 89 111 0
+wait 1
+setang 89 114 0
+wait 1
+setang 89 117 0
+wait 1
+setang 89 120 0
+wait 1
+screenshot pcb_e_down_sweep_reproj1
+setang 89 123 0
+wait 1
+setang 89 126 0
+wait 1
+setang 89 129 0
+wait 1
+setang 89 132 0
+wait 1
+setang 89 135 0
+wait 1
+setang 89 138 0
+wait 1
+setang 89 141 0
+wait 1
+setang 89 144 0
+wait 1
+setang 89 147 0
+wait 1
+setang 89 150 0
+wait 1
+setang 89 153 0
+wait 1
+setang 89 156 0
+wait 1
+setang 89 159 0
+wait 1
+setang 89 162 0
+wait 1
+setang 89 165 0
+wait 1
+setang 89 168 0
+wait 1
+setang 89 171 0
+wait 1
+setang 89 174 0
+wait 1
+setang 89 177 0
+wait 1
+pcb_composite_lag
+wait 30
+setpos 128 -384 -100
+setang 10 0 0
+noclip
+pcb_track 900
+wait 280
+pcb_where
+pcb_log jump test
++jump
+wait 4
+-jump
+wait 15
+pcb_where
+wait 60
+pcb_where
+pcb_collide
+pcb_composite_opts 1 1 1.25 0
+setang 0 0 0
+wait 30
+pcb_composite_lag
+setang 0 0 0
+wait 1
+setang 0 3 0
+wait 1
+setang 0 6 0
+wait 1
+setang 0 9 0
+wait 1
+setang 0 12 0
+wait 1
+setang 0 15 0
+wait 1
+setang 0 18 0
+wait 1
+setang 0 21 0
+wait 1
+setang 0 24 0
+wait 1
+setang 0 27 0
+wait 1
+setang 0 30 0
+wait 1
+setang 0 33 0
+wait 1
+setang 0 36 0
+wait 1
+setang 0 39 0
+wait 1
+setang 0 42 0
+wait 1
+setang 0 45 0
+wait 1
+setang 0 48 0
+wait 1
+setang 0 51 0
+wait 1
+setang 0 54 0
+wait 1
+setang 0 57 0
+wait 1
+setang 0 60 0
+wait 1
+setang 0 63 0
+wait 1
+setang 0 66 0
+wait 1
+setang 0 69 0
+wait 1
+setang 0 72 0
+wait 1
+setang 0 75 0
+wait 1
+setang 0 78 0
+wait 1
+setang 0 81 0
+wait 1
+setang 0 84 0
+wait 1
+setang 0 87 0
+wait 1
+setang 0 90 0
+wait 1
+setang 0 93 0
+wait 1
+setang 0 96 0
+wait 1
+setang 0 99 0
+wait 1
+setang 0 102 0
+wait 1
+setang 0 105 0
+wait 1
+setang 0 108 0
+wait 1
+setang 0 111 0
+wait 1
+setang 0 114 0
+wait 1
+setang 0 117 0
+wait 1
+setang 0 120 0
+wait 1
+screenshot pcb_e_region_sweep_reproj0
+setang 0 123 0
+wait 1
+setang 0 126 0
+wait 1
+setang 0 129 0
+wait 1
+setang 0 132 0
+wait 1
+setang 0 135 0
+wait 1
+setang 0 138 0
+wait 1
+setang 0 141 0
+wait 1
+setang 0 144 0
+wait 1
+setang 0 147 0
+wait 1
+setang 0 150 0
+wait 1
+setang 0 153 0
+wait 1
+setang 0 156 0
+wait 1
+setang 0 159 0
+wait 1
+setang 0 162 0
+wait 1
+setang 0 165 0
+wait 1
+setang 0 168 0
+wait 1
+setang 0 171 0
+wait 1
+setang 0 174 0
+wait 1
+setang 0 177 0
+wait 1
+pcb_composite_lag
+wait 30
+pcb_composite_opts 1 1 1.25 1
+setang 0 0 0
+wait 30
+pcb_composite_lag
+setang 0 0 0
+wait 1
+setang 0 3 0
+wait 1
+setang 0 6 0
+wait 1
+setang 0 9 0
+wait 1
+setang 0 12 0
+wait 1
+setang 0 15 0
+wait 1
+setang 0 18 0
+wait 1
+setang 0 21 0
+wait 1
+setang 0 24 0
+wait 1
+setang 0 27 0
+wait 1
+setang 0 30 0
+wait 1
+setang 0 33 0
+wait 1
+setang 0 36 0
+wait 1
+setang 0 39 0
+wait 1
+setang 0 42 0
+wait 1
+setang 0 45 0
+wait 1
+setang 0 48 0
+wait 1
+setang 0 51 0
+wait 1
+setang 0 54 0
+wait 1
+setang 0 57 0
+wait 1
+setang 0 60 0
+wait 1
+setang 0 63 0
+wait 1
+setang 0 66 0
+wait 1
+setang 0 69 0
+wait 1
+setang 0 72 0
+wait 1
+setang 0 75 0
+wait 1
+setang 0 78 0
+wait 1
+setang 0 81 0
+wait 1
+setang 0 84 0
+wait 1
+setang 0 87 0
+wait 1
+setang 0 90 0
+wait 1
+setang 0 93 0
+wait 1
+setang 0 96 0
+wait 1
+setang 0 99 0
+wait 1
+setang 0 102 0
+wait 1
+setang 0 105 0
+wait 1
+setang 0 108 0
+wait 1
+setang 0 111 0
+wait 1
+setang 0 114 0
+wait 1
+setang 0 117 0
+wait 1
+setang 0 120 0
+wait 1
+screenshot pcb_e_region_sweep_reproj1
+setang 0 123 0
+wait 1
+setang 0 126 0
+wait 1
+setang 0 129 0
+wait 1
+setang 0 132 0
+wait 1
+setang 0 135 0
+wait 1
+setang 0 138 0
+wait 1
+setang 0 141 0
+wait 1
+setang 0 144 0
+wait 1
+setang 0 147 0
+wait 1
+setang 0 150 0
+wait 1
+setang 0 153 0
+wait 1
+setang 0 156 0
+wait 1
+setang 0 159 0
+wait 1
+setang 0 162 0
+wait 1
+setang 0 165 0
+wait 1
+setang 0 168 0
+wait 1
+setang 0 171 0
+wait 1
+setang 0 174 0
+wait 1
+setang 0 177 0
+wait 1
+pcb_composite_lag
+wait 30
+setang 0 180 0
+wait 60
+pcb_mcshot
+wait 60
+screenshot pcb_e_region_still
+quit

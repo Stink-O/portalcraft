@@ -1,0 +1,22 @@
+# reset19b (bridge #19): a test that starts on a dead save starts alive (the mod's TestReset, SKYCRAFT_TEST=1 from
+# locked_run.sh); then the explicit pcb_mc_reset_player after a death; the run ends alive.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+pcb_assert_mc_living 1
+bridge_mode mc
+waituntil mcmode 1200
+wait 60
+pcb_assert_mc_living 1
+pcb_glhud_shot rs_b_alive
+pcb_mc_cmd kill @p
+waituntil mcdead 600
+pcb_assert_mc_living 0
+pcb_mc_reset_player
+wait 180
+pcb_assert_mc_living 1
+pcb_glhud_shot rs_b_reset
+pcb_run_summary
+quit

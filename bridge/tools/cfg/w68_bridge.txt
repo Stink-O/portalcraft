@@ -1,0 +1,21 @@
+# w68: walk on a light bridge (sp_a2_bridge_intro projector1 at -800 -768 16, beam along +x)
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 600
+pcb_mc_place -500 -768 20 0 12
+waituntil mcplaced 900
+wait 480
+pcb_where
+pcb_setview 0 0
+pcb_mckey 26 1
+wait 120
+pcb_where
+wait 120
+pcb_mckey 26 0
+pcb_where
+pcb_assert_mc_flag ground 1
+pcb_run_summary
+quit

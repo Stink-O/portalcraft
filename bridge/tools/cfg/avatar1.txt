@@ -1,0 +1,176 @@
+# avatar1 (bridge #16): F5 third person and the Minecraft player's body, pc_pit_flings (terrain Minecraft).
+# A  chamber: J; first person (no body in the main view); F5 = third person behind (body drawn by Portal 2, walk, sneak,
+#    swing); F5 = in front; F5 = first person again.
+# B  back to a chamber wall: Minecraft's own zoom (its clip against the exported Portal 2 collision; Portal 2's trace off)
+#    keeps the camera out of the wall.
+# C  first person looking into a portal beside its partner on the same wall: the body seen through the portal.
+# D  the terrain: third person behind, Minecraft draws its own player (Portal 2 draws nothing there).
+# Run (inside the game lock): tools/run_mc.sh --terrain && PCB_SO=build/dev-mcportal/<a16>.so tools/run_game.sh tools/cfg/avatar1.txt pc_pit_flings 600 a16_avatar1
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd item replace entity @p armor.chest with minecraft:iron_chestplate
+pcb_mc_cmd item replace entity @p armor.feet with minecraft:golden_boots
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:diamond_sword
+pcb_log A chamber third person
+pcb_noclip_set 1
+setpos -298 -416 -60
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_av_wall 220 face
+wait 40
+pcb_where
+pcb_assert_body_clear
+wait 30
+bridge_mode mc
+waituntil mcmode 1200
+wait 60
+pcb_assert_mc_mode 1
+pcb_assert_tp 0
+pcb_assert_body reset
+wait 30
+pcb_assert_body nomain
+pcb_avatar_status 1
+screenshot pcb_av_a_first
+pcb_mckey 62 1
+wait 4
+pcb_mckey 62 0
+wait 40
+pcb_assert_tp 1 40 170
+pcb_assert_tp_clear
+pcb_assert_body reset
+wait 20
+pcb_assert_body main 5
+pcb_avatar_status
+screenshot pcb_av_a_back
+pcb_mckey 26 1
+wait 25
+screenshot pcb_av_a_walk
+pcb_mckey 26 0
+pcb_mckey 225 1
+wait 25
+screenshot pcb_av_a_sneak
+pcb_mckey 225 0
+wait 10
+pcb_mckey lmb 1
+wait 3
+screenshot pcb_av_a_swing
+pcb_mckey lmb 0
+wait 20
+pcb_mckey 62 1
+wait 4
+pcb_mckey 62 0
+wait 40
+pcb_assert_tp 2 40 170
+pcb_assert_tp_clear
+pcb_avatar_status
+screenshot pcb_av_a_front
+pcb_mckey 62 1
+wait 4
+pcb_mckey 62 0
+wait 40
+pcb_assert_tp 0
+pcb_log B back to a wall
+bridge_mode chell
+waituntil chellmode 120
+wait 20
+pcb_av_wall 30 away
+wait 40
+pcb_where
+pcb_assert_body_clear
+wait 30
+bridge_mode mc
+waituntil mcmode 1200
+wait 30
+pc_mc_thirdperson_trace 0
+pcb_mckey 62 1
+wait 4
+pcb_mckey 62 0
+wait 40
+pcb_avatar_status
+pcb_assert_tp 1 0 70
+pcb_assert_tp_clear
+screenshot pcb_av_b_wall
+pc_mc_thirdperson_trace 1
+pcb_mckey 62 1
+wait 4
+pcb_mckey 62 0
+wait 4
+pcb_mckey 62 1
+wait 4
+pcb_mckey 62 0
+wait 30
+pcb_assert_tp 0
+pcb_log C first person through a portal
+bridge_mode chell
+waituntil chellmode 120
+wait 20
+pcb_av_wall 150 face
+wait 40
+pcb_where
+pcb_assert_body_clear
+wait 20
+pcb_av_portals 130
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+wait 60
+pcb_assert_tp 0
+pcb_assert_body reset
+wait 30
+pcb_assert_body portal 5
+pcb_assert_body nomain
+pcb_avatar_status
+screenshot pcb_av_c_portal
+pcb_log D terrain third person
+bridge_mode chell
+waituntil chellmode 120
+pcb_mc_cmd fill -337 93 423 -332 93 427 stone
+pcb_mc_cmd fill -337 94 423 -332 97 427 air
+pcb_noclip_set 1
+pcb_light_goto_mc -335.5 94 425.0 90 10
+pcb_stop
+wait 60
+waituntil solid-334,93,425 900
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+wait 30
+pcb_mckey 62 1
+wait 4
+pcb_mckey 62 0
+wait 60
+pcb_assert_tp 1 20 170
+pcb_assert_body reset
+wait 30
+pcb_assert_body region 5
+pcb_avatar_status
+screenshot pcb_av_d_terrain
+pcb_mckey 62 1
+wait 4
+pcb_mckey 62 0
+wait 40
+screenshot pcb_av_d_front
+pcb_mckey 62 1
+wait 4
+pcb_mckey 62 0
+wait 20
+bridge_mode chell
+waituntil chellmode 120
+pcb_mc_cmd fill -337 93 423 -332 93 427 air
+pcb_mc_cmd item replace entity @p armor.chest with minecraft:air
+pcb_mc_cmd item replace entity @p armor.feet with minecraft:air
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:air
+pcb_assert_mc_alive 30
+pcb_run_summary
+quit

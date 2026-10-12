@@ -1,0 +1,9 @@
+# colprebuild (lead): voxelise pc_pit_flings's whole chamber band into cache/bridge/colcache once.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+wait 60
+pcb_colfield_prebuild -2600 -2100 -4650 880 1960 800
+pcb_colfield_cache
+quit

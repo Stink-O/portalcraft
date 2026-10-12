@@ -1,0 +1,46 @@
+# startmc25b (bridge #25): as startmc25, but the arrival car stops 1 s into the ride for 3 s (its platform settles and is
+# dropped) and then goes on down: Minecraft must pick it up again and ride it the rest of the way (no fall guard catch).
+#   PCB_PRE="pc_start_mode mc" PCB_SO=<abs .so> tools/locked_run.sh mirror tools/cfg/startmc25b.txt pc_pit_flings 300 <run>
+sv_cheats 1
+pcb_assert_soft 1
+pcb_assert_mc_feet_above reset
+pcb_assert_mc_rode reset
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+pcb_assert_mc_mode 1
+wait 60
+pcb_log S1 the car stops
+ent_fire arrival_elevator-elevator_1 Stop
+wait 180
+pcb_where
+pcb_movers near 300
+pc_mc_fall_guard
+pcb_setview 50 90
+wait 2
+pcb_glhud_shot s25b_stopped
+pcb_assert_mc_rode reset
+pcb_log S2 the car goes on down
+ent_fire arrival_elevator-elevator_1 MoveToPathNode @elevator_1_bottom_path_1
+wait 60
+pcb_where
+pcb_movers near 300
+pcb_glhud_shot s25b_moving_down
+pcb_setview 0 90
+wait 30
+pcb_glhud_shot s25b_moving
+waituntil mcleads 3600
+wait 300
+pcb_where
+pc_mc_fall_guard
+pcb_assert_mc_rode 12 0
+pcb_assert_body_z -925 -905
+pcb_assert_mc_feet_above -920
+pcb_assert_mc_mode 1
+pcb_assert_body_clear
+pcb_setview 10 90
+wait 2
+pcb_glhud_shot s25b_bottom
+wait 20
+pcb_run_summary
+quit

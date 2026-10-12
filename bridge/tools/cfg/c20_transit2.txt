@@ -1,0 +1,102 @@
+# c20_transit2 (bridge #20): the user's "the world goes white" through a portal as the Minecraft player.
+#legacy-cliff-shift (bridge #81: the Minecraft coordinates below are the original cliff's; pcb_script moves them to the world.conf cliff, see worldconf.hpp)
+# A: only portal 1 open (y=-512 pit wall, no partner): the Minecraft player walks into it: a wall, no hole (was: 128 u
+#    into the wall, eye in Portal 2's void = white, run c20_transit2 #2).
+# B: portal 0 on a placed cobblestone patch (face -x at P2 x 280, the user's setup): walk into it, out of portal 1.
+# C: back into portal 1 (P2 wall), out of the block portal.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd fill -321 424 431 -321 426 434 minecraft:cobblestone
+waituntil solid-321,426,434 600
+pcb_portal_wall 1 210 -416 -712 270
+wait 30
+pcb_portal_check
+pcb_log A lone portal 1: a wall for the Minecraft player
+pcb_noclip_set 1
+pcb_stand_before 1 120
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+wait 60
+pcb_assert_transits reset
+pcb_eye_watch reset
+pcb_glhud_burst c20_t2a 30
+pcb_mckey 26 1
+wait 150
+pcb_mckey 26 0
+wait 30
+pcb_where
+pcb_eye_watch assert 0
+pcb_assert_body_clear
+pcb_assert_transits 0
+pcb_glhud_shot c20_t2a_after
+wait 30
+pcb_log B portal 0 on the cobblestone patch, walk into it as the Minecraft player
+bridge_mode chell
+waituntil chellmode 300
+pcb_portal 0 279 -363.5 -712 0 180 0
+wait 30
+pcb_portal_check
+pcb_noclip_set 1
+pcb_stand_before 0 120
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+wait 60
+pcb_assert_transits reset
+pcb_assert_mc_transits reset
+pcb_eye_watch reset
+pcb_eye_watch trace 150
+pcb_glhud_burst c20_t2b 50
+pcb_mckey 26 1
+waituntil transit 600
+wait 40
+pcb_mckey 26 0
+wait 120
+pcb_where
+pcb_assert_mc_transits 1
+pcb_eye_watch assert 0
+pcb_assert_body_clear
+pcb_glhud_shot c20_t2b_after
+wait 30
+pcb_log C into portal 1 (P2 wall), out of the block portal
+bridge_mode chell
+waituntil chellmode 300
+pcb_noclip_set 1
+pcb_stand_before 1 120
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+wait 60
+pcb_assert_transits reset
+pcb_assert_mc_transits reset
+pcb_eye_watch reset
+pcb_eye_watch trace 150
+pcb_glhud_burst c20_t2c 50
+pcb_mckey 26 1
+waituntil transit 600
+wait 40
+pcb_mckey 26 0
+wait 120
+pcb_where
+pcb_assert_mc_transits 1
+pcb_eye_watch assert 0
+pcb_assert_body_clear
+pcb_assert_portal_held 0
+pcb_glhud_shot c20_t2c_after
+wait 30
+pcb_run_summary
+quit

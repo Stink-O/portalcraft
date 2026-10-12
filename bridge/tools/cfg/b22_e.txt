@@ -1,0 +1,243 @@
+# b22_e (bridge #22: c20_place1 re-run; the saved copy at y 480 is cleared after the restore) (bridge #20, Owner C): placeables on Portal 2's chamber floor and walls, as the Minecraft player, with real
+#legacy-cliff-shift (bridge #81: the Minecraft coordinates below are the original cliff's; pcb_script moves them to the world.conf cliff, see worldconf.hpp)
+# clicks where a player would click: door, trapdoor, lever -> redstone -> lamp, piston, ladder (placed on the P2 wall,
+# climbed), chest / crafting table / furnace (their screens), bed (slept in). pc_pit_flings pit, floor MC y 424.
+# The area (MC x -328..-314, z 429..438) is saved to y 480 first and restored at the end.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd gamemode creative
+pcb_mc_cmd clone -328 424 429 -314 431 438 -328 480 429 replace
+wait 20
+pcb_mc_cmd fill -320 424 431 -316 428 436 minecraft:air
+pcb_noclip_set 1
+setpos 420 -460 -760
+setang 10 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd gamemode creative
+wait 60
+pcb_where
+pcb_log D door and trapdoor placed on the Portal 2 floor, opened by right clicks
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:oak_door
+wait 20
+pcb_aim_mc -319.5 424.0 432.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 30
+pcb_mc_check d_door_placed block -320 424 432 minecraft:oak_door[open=false]
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:oak_trapdoor
+wait 20
+pcb_aim_mc -318.5 424.0 433.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 30
+pcb_mc_check d_trap_placed block -319 424 433 minecraft:oak_trapdoor[open=false]
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:air
+wait 20
+pcb_aim_mc -319.5 424.8 432.5
+wait 20
+pcb_glhud_shot c20_p_door_closed
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 30
+pcb_mc_check d_door_open block -320 424 432 minecraft:oak_door[open=true]
+pcb_aim_mc -318.5 424.1 433.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 30
+pcb_mc_check d_trap_open block -319 424 433 minecraft:oak_trapdoor[open=true]
+pcb_aim_mc -319.5 424.6 432.5
+wait 20
+pcb_glhud_shot c20_p_door_open
+pcb_mc_native c20_p_door_open
+pcb_log R lever -> redstone dust -> lamp, on the Portal 2 floor, a piston pushes a block up
+pcb_mc_cmd fill -320 424 431 -316 428 436 minecraft:air
+pcb_mc_cmd setblock -318 424 431 minecraft:redstone_wire
+pcb_mc_cmd setblock -319 424 431 minecraft:redstone_wire
+pcb_mc_cmd setblock -320 424 431 minecraft:redstone_lamp
+pcb_mc_cmd setblock -318 424 432 minecraft:lever[face=floor,facing=west]
+pcb_mc_cmd setblock -319 424 434 minecraft:piston[facing=up]
+pcb_mc_cmd setblock -319 425 434 minecraft:stone
+wait 40
+pcb_mc_check r_wire_stays block -319 424 431 minecraft:redstone_wire
+pcb_mc_check r_lamp_off block -320 424 431 minecraft:redstone_lamp[lit=false]
+pcb_aim_mc -317.5 424.2 432.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 30
+pcb_mc_check r_lever_on block -318 424 432 minecraft:lever[powered=true]
+pcb_mc_check r_lamp_lit block -320 424 431 minecraft:redstone_lamp[lit=true]
+pcb_mc_cmd setblock -318 424 434 minecraft:redstone_block
+wait 40
+pcb_mc_check r_piston_pushed block -319 426 434 minecraft:stone
+pcb_aim_mc -318.5 424.5 432.5
+wait 20
+pcb_glhud_shot c20_p_redstone
+pcb_mc_native c20_p_redstone
+pcb_log L ladder on the Portal 2 wall (y=-512 = MC z 436.8): placed by a click, then a column, climbed
+pcb_mc_cmd fill -320 424 431 -316 428 436 minecraft:air
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:ladder
+wait 20
+pcb_aim_mc -319.5 424.5 436.8
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 30
+pcb_mc_check l_ladder_click block -320 424 436 minecraft:ladder
+pcb_mc_cmd fill -318 424 436 -318 428 436 minecraft:ladder[facing=north]
+wait 20
+pcb_mc_cmd setblock -318 429 436 minecraft:ladder[facing=north]
+wait 20
+pcb_mc_check l_ladder_stays block -318 424 436 minecraft:ladder
+pcb_mc_cmd tp @p -317.5 424 435.6
+wait 30
+setang 0 -90 0
+wait 20
+pcb_mckey 26 1
+wait 150
+pcb_glhud_shot c20_p_ladder_climb
+pcb_mc_native c20_p_ladder_climb
+pcb_mc_check l_climbed entity @p[x=-319,y=426.5,z=434,dx=3,dy=10,dz=3]
+pcb_mckey 26 0
+wait 10
+pcb_mc_cmd tp @p -317.5 424 435.5
+wait 30
+pcb_log C chest, crafting table, furnace placed on the Portal 2 floor, their screens
+pcb_mc_cmd fill -320 424 431 -316 428 436 minecraft:air
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:chest
+wait 20
+pcb_aim_mc -319.5 424.0 433.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 20
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:crafting_table
+wait 20
+pcb_aim_mc -319.5 424.0 431.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 20
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:furnace
+wait 20
+pcb_aim_mc -317.5 424.0 432.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 20
+pcb_mc_check c_chest block -320 424 433 minecraft:chest
+pcb_mc_check c_table block -320 424 431 minecraft:crafting_table
+pcb_mc_check c_furnace block -318 424 432 minecraft:furnace
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:air
+pcb_mc_cmd item replace block -320 424 433 container.0 with minecraft:diamond 5
+wait 20
+pcb_aim_mc -319.5 424.5 433.5
+wait 20
+pcb_glhud_shot c20_p_containers
+pcb_mc_native c20_p_containers
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 40
+pcb_assert_mc_flag screen 1
+pcb_glhud_shot c20_p_chest_ui
+pcb_sdl_event key 41
+wait 30
+pcb_assert_mc_flag screen 0
+pcb_aim_mc -319.5 424.5 431.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 40
+pcb_assert_mc_flag screen 1
+pcb_glhud_shot c20_p_craft_ui
+pcb_sdl_event key 41
+wait 30
+pcb_assert_mc_flag screen 0
+pcb_aim_mc -317.5 424.5 432.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 40
+pcb_assert_mc_flag screen 1
+pcb_glhud_shot c20_p_furnace_ui
+pcb_sdl_event key 41
+wait 30
+pcb_assert_mc_flag screen 0
+pcb_log B a bed on the Portal 2 floor, slept in at night
+pcb_mc_cmd fill -320 424 431 -316 428 436 minecraft:air
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:red_bed
+wait 20
+pcb_aim_mc -319.5 424.0 433.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 30
+pcb_mc_check bed_placed block -320 424 433 #minecraft:beds
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:air
+pcb_mc_cmd time set 18000
+wait 30
+pcb_aim_mc -319.5 424.4 433.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 40
+pcb_mc_check bed_sleeping data entity @p SleepingX
+pcb_glhud_shot c20_p_bed_sleep
+pcb_mc_native c20_p_bed_sleep
+wait 400
+pcb_mc_cmd time set noon
+pcb_log restore the area
+pcb_mc_cmd clone -328 480 429 -314 487 438 -328 424 429 replace
+wait 10
+pcb_mc_cmd fill -328 480 429 -314 487 438 minecraft:air
+pcb_mc_cmd kill @e[type=minecraft:item,x=-330,y=420,z=427,dx=18,dy=14,dz=14]
+wait 30
+pcb_assert_mc_say d_door_placed
+pcb_assert_mc_say d_trap_placed
+pcb_assert_mc_say d_door_open
+pcb_assert_mc_say d_trap_open
+pcb_assert_mc_say r_wire_stays
+pcb_assert_mc_say r_lamp_off
+pcb_assert_mc_say r_lever_on
+pcb_assert_mc_say r_lamp_lit
+pcb_assert_mc_say r_piston_pushed
+pcb_assert_mc_say l_ladder_click
+pcb_assert_mc_say l_ladder_stays
+pcb_assert_mc_say l_climbed
+pcb_assert_mc_say c_chest
+pcb_assert_mc_say c_table
+pcb_assert_mc_say c_furnace
+pcb_assert_mc_say bed_placed
+pcb_assert_mc_say bed_sleeping
+pcb_run_summary
+quit

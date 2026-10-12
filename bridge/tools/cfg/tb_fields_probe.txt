@@ -1,0 +1,27 @@
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+pcb_dump_fields prop_tractor_beam nabl
+pcb_dump_fields prop_tractor_beam ctive
+pcb_dump_fields prop_wall_projector nabl
+pcb_dump_fields prop_wall_projector ctive
+pcb_dump_fields npc_portal_turret_floor nabl
+pcb_dump_fields npc_portal_turret_floor ctive
+pcb_dump_fields npc_portal_turret_floor tate
+pcb_dump_fields trigger_catapult nabl
+pcb_dump_fields trigger_catapult isabled
+pcb_dump_fields env_portal_laser tate
+pcb_dump_fields env_portal_laser ower
+pcb_dump_fields trigger_portal_cleanser isabled
+pcb_dump_fields prop_laser_catcher ower
+pcb_dump_fields prop_portal ctiv
+pcb_dump_fields math_counter Val
+pcb_dump_fields prop_floor_button ress
+pcb_dump_fields prop_button ress
+pcb_dump_fields func_door oving
+pcb_dump_fields func_door osition
+pcb_dump_fields trigger_hurt isabled
+pcb_dump_fields prop_testchamber_door pen
+pcb_run_summary
+quit

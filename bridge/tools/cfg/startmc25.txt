@@ -1,0 +1,83 @@
+# startmc25 (bridge #25): the level starts as the Minecraft player, set before the map loads as play_clip.sh --start mc does:
+# (bridge #26) pcb_assert_mc_rode counts ticks carried by a MOVING mover; the whole descent is ~45 Minecraft ticks, so >= 25 after the hand-over
+#   PCB_PRE="pc_start_mode mc" PCB_SO=<abs .so> tools/locked_run.sh mirror tools/cfg/startmc25.txt pc_pit_flings 300 <run>
+# It rides the arrival elevator down (car floor about -250 -> -913) and must never fall through it (the user's b23-f run fell
+# down the shaft: no platform was found). Asserts: Minecraft rode the live platform itself (>= 20 ticks, no fall guard catch),
+# feet never below the car's bottom floor, Minecraft mode, body clear. Shots during the descent (frame by frame, ~0.4 s apart).
+pcb_assert_soft 1
+pcb_assert_mc_feet_above reset
+pcb_assert_mc_rode reset
+pcb_movers near 300
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+pcb_ride_track reset
+pcb_assert_mc_mode 1
+pcb_where
+pcb_setview 0 90
+wait 2
+pcb_glhud_shot s25_d0
+pcb_where
+wait 22
+pcb_glhud_shot s25_d1
+pcb_where
+pcb_movers near 300
+wait 22
+pc_movers_lerp
+pcb_setview 55 90
+wait 2
+pcb_glhud_shot s25_d2_down
+wait 3
+pcb_glhud_shot s26_seq1
+wait 3
+pcb_glhud_shot s26_seq2
+wait 3
+pcb_glhud_shot s26_seq3
+wait 3
+pcb_glhud_shot s26_seq4
+pcb_where
+wait 22
+pcb_setview 0 90
+wait 2
+pcb_glhud_shot s25_d3
+pcb_where
+wait 22
+pcb_glhud_shot s25_d4
+pcb_where
+pcb_movers near 300
+waituntil mcleads 3600
+wait 300
+pcb_where
+pc_mc_fall_guard
+pcb_movers near 300
+pcb_assert_mc_rode 25 0
+pcb_ride_track assert 0.5 30
+pcb_assert_body_z -925 -905
+pcb_assert_mc_feet_above -920
+pcb_assert_mc_mode 1
+pcb_assert_body_clear
+pcb_setview 10 90
+wait 2
+pcb_glhud_shot s25_bottom
+wait 20
+pcb_log X out of the car: walk and jump out of the door (yaw 90) onto the arrival floor
+pcb_assert_mc_feet_above reset
+pcb_mckey 26 1
+pcb_mckey 44 1
+wait 90
+pcb_mckey 44 0
+wait 30
+pcb_mckey 26 0
+wait 60
+pcb_where
+pcb_assert_mc_feet_above -930 0
+pcb_assert_body_z -925 -700
+pcb_assert_mc_flag ground 1
+pcb_assert_body_clear
+pcb_setview 30 90
+wait 2
+pcb_glhud_shot s25_out
+pcb_collision_shot s25_out_col
+wait 20
+pcb_run_summary
+quit

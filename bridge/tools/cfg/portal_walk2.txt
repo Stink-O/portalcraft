@@ -1,0 +1,87 @@
+# Portals on Minecraft block walls: (a) low shot -> floor-snapped walk-in, (b) mid-wall shot -> lip, needs a jump.
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 120
+# wall A, 3 wide x 3 high, face +X at x=-80 (y 260..380, z 0..120)
+pcb_block -120 260 0 1
+pcb_block -120 300 0 1
+pcb_block -120 340 0 1
+pcb_block -120 260 40 1
+pcb_block -120 300 40 1
+pcb_block -120 340 40 1
+pcb_block -120 260 80 0
+pcb_block -120 300 80 0
+pcb_block -120 340 80 0
+# wall B, 3 wide x 4 high, face -X at x=120 (y 260..380, z 0..160)
+pcb_block 120 260 0 2
+pcb_block 120 300 0 2
+pcb_block 120 340 0 2
+pcb_block 120 260 40 2
+pcb_block 120 300 40 2
+pcb_block 120 340 40 2
+pcb_block 120 260 80 2
+pcb_block 120 300 80 2
+pcb_block 120 340 80 2
+pcb_block 120 260 120 2
+pcb_block 120 300 120 2
+pcb_block 120 340 120 2
+# (a) low, off-centre shot at A: expect y kept at 310, bottom snapped onto the floor
+pcb_portal_blocks 0 0 310 20 180
+# (b) mid-wall shot at B: expect centre kept at z 90, bottom edge 34 u up (a lip)
+pcb_portal_blocks 1 0 320 90 0
+wait 30
+pcb_portal_check
+noclip
+setpos 0 300 20
+setang 5 180 0
+wait 30
+screenshot pcb_w2_1_wallA
+wait 20
+setang 5 0 0
+wait 20
+screenshot pcb_w2_2_wallB
+wait 20
+noclip
+# (a) walk straight into A's portal (no jump)
+pcb_log (a) walk into the floor-level portal on wall A
+setpos 40 310 0
+setang 5 180 0
+wait 40
+pcb_where
++forward
+wait 20
+pcb_where
+wait 20
+pcb_where
+wait 20
+pcb_where
+wait 20
+-forward
+pcb_where
+wait 60
+pcb_where
+screenshot pcb_w2_3_after_a
+wait 30
+# (b) walk into B's raised portal: blocked by the lip...
+pcb_log (b) walk into the raised portal on wall B without jumping
+setpos 40 320 0
+setang 5 0 0
+wait 40
++forward
+wait 60
+pcb_where
+# ...then jump in
+pcb_log (b) jump
++jump
+wait 10
+-jump
+wait 30
+pcb_where
+wait 20
+pcb_where
+-forward
+wait 60
+pcb_where
+screenshot pcb_w2_4_after_b
+wait 30
+quit

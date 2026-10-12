@@ -1,0 +1,49 @@
+# win_dig4 (Proton): the hole's picture against the cut light modes: stone filled behind the persisted hole (win_dig2/3), face trace, pc_cut_light 0/2/1 and pc_cut_light_faces 0.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 900
+waituntil link 9000
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 600
+pcb_mc_cmd gamemode creative
+pc_dig_render 2
+pcb_mc_cmd tp @p -120.5 752.76 -91.0
+wait 200
+pcb_mc_cmd fill -122 752 -89 -118 755 -88 minecraft:stone
+wait 200
+pcb_setview 0 -90
+wait 60
+pcb_where
+pc_dig_caps_trace -120 753 -90 3
+wait 60
+pc_cut_light
+pc_dig_caps
+screenshot pcb_h1_default
+wait 5
+pc_cut_light 0
+wait 90
+pcb_setview 0 -90
+wait 20
+screenshot pcb_h2_light0
+wait 5
+pc_cut_light 2
+wait 90
+pcb_setview 0 -90
+wait 20
+screenshot pcb_h3_light2
+wait 5
+pc_cut_light 1
+pc_cut_light_faces 0
+wait 90
+pcb_setview 0 -90
+wait 20
+screenshot pcb_h4_faces0
+wait 5
+pc_cut_light_faces 1
+pcb_mc_cmd fill -122 752 -89 -118 755 -88 minecraft:air
+wait 60
+pcb_d3d9_cutstats
+pcb_d3d9_stats
+pcb_run_summary
+quit

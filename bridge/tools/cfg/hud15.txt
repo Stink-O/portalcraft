@@ -1,0 +1,99 @@
+# hud15 (bridge #15, DESIGN-mcplayer M2): Minecraft's own hand, held item and GUI over Portal 2 (direct GL), and
+# SkyCraft's input for it. pc_pit_flings, terrain Minecraft. Shots are the presented frames (pcb_glhud_shot).
+# A chamber: J; survival; hand + hotbar; wheel (real SDL events, through the filter) moves the slot; key 5 holds a
+#   block; console open hides the overlay; E opens the inventory; cursor moved by real SDL motion with Portal 2's view
+#   frozen; a click picks up the sword; Escape closes the screen; J back (burst: no overlay after the switch).
+# B terrain: J on the terrain, hand + hotbar.
+# Run: flock ... tools/run_mc.sh --terrain && PCB_SO=build/dev-mcportal/a15-<x>.so tools/run_game.sh tools/cfg/hud15.txt pc_pit_flings 600 b15_hud<N>
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd gamemode survival
+pcb_log A chamber
+pcb_noclip_set 1
+setpos -298 -416 -60
+setang 5 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 90
+bridge_mode mc
+waituntil mcmode 1200
+pcb_glhud_stats reset
+wait 120
+pcb_assert_mc_mode 1
+pcb_assert_glhud 30
+pcb_glhud_shot a_hud
+wait 30
+pcb_sdl_event wheel -2
+wait 60
+pcb_glhud_shot a_wheel
+wait 20
+pcb_sdl_event key 34
+pcb_mckey 34 1
+wait 5
+pcb_mckey 34 0
+wait 60
+pcb_glhud_shot a_block
+wait 20
+showconsole
+wait 30
+pcb_glhud_shot a_console
+wait 10
+hideconsole
+wait 30
+pcb_mckey 8 1
+wait 5
+pcb_mckey 8 0
+wait 60
+pcb_screen_cursor
+pcb_glhud_shot a_inv
+wait 20
+pcb_sdl_event motion -100 100
+pcb_sdl_event motion -116 101
+wait 30
+pcb_screen_cursor
+pcb_glhud_shot a_inv_cursor
+wait 10
+pcb_mckey lmb 1
+wait 5
+pcb_mckey lmb 0
+wait 40
+pcb_glhud_shot a_inv_pick
+wait 20
+pcb_sdl_event key 41
+wait 60
+pcb_screen_cursor
+pcb_glhud_shot a_closed
+wait 30
+pcb_glhud_burst a_back 12
+bridge_mode chell
+waituntil chellmode 300
+wait 60
+pcb_log B terrain
+pcb_noclip_set 1
+setpos -200 -40 -13880
+setang 8 180 0
+pcb_stop
+waituntil near 1800
+wait 60
+pcb_noclip_set 0
+wait 120
+bridge_mode mc
+waituntil mcmode 1200
+wait 120
+pcb_glhud_shot b_hud
+wait 30
+bridge_mode chell
+waituntil chellmode 300
+wait 30
+pcb_mc_cmd gamemode creative
+pcb_glhud_stats
+pcb_run_summary
+quit

@@ -1,0 +1,52 @@
+# bridge #78: per-map chamber blocks in the unified (terrain) world. Starts on map A as the Minecraft player, builds four gold pillars round it,
+# loads map B (none of them may be there: ChamberSlots stores them under A), loads A again (they are back).
+#   PCB_PRE="pc_start_mode mc" PORTALCRAFT_JVM_ARGS=-Dskycraft.worldName=Portalcraft78_test PCB_SO=<abs .so> tools/locked_run.sh terrain tools/cfg/u78_leak.txt sp_a2_bridge_the_gap 900 u78_leak
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 600
+pcb_assert_world unified
+pc_world
+pcb_where
+pcb_mc_cmd execute as @p at @s run fill ~3 ~ ~-1 ~3 ~2 ~1 minecraft:gold_block
+pcb_mc_cmd execute as @p at @s run fill ~-3 ~ ~-1 ~-3 ~2 ~1 minecraft:gold_block
+pcb_mc_cmd execute as @p at @s run fill ~-1 ~ ~3 ~1 ~2 ~3 minecraft:gold_block
+pcb_mc_cmd execute as @p at @s run fill ~-1 ~ ~-3 ~1 ~2 ~-3 minecraft:gold_block
+wait 180
+pcb_mc_cmd pcchambers
+pcb_setview 10 0
+wait 60
+screenshot pcb_u78_A1_e
+pcb_setview 10 90
+wait 60
+screenshot pcb_u78_A1_n
+map sp_a2_laser_intro
+wait 120
+waituntil mapsp_a2_laser_intro 7200
+waituntil mcleads 3600
+wait 600
+pcb_assert_world unified
+pcb_where
+pcb_mc_cmd pcchambers
+pcb_setview 10 0
+wait 60
+screenshot pcb_u78_B1_e
+pcb_setview 10 90
+wait 60
+screenshot pcb_u78_B1_n
+map sp_a2_bridge_the_gap
+wait 120
+waituntil mapsp_a2_bridge_the_gap 7200
+waituntil mcleads 3600
+wait 600
+pcb_where
+pcb_mc_cmd pcchambers
+pcb_setview 10 0
+wait 60
+screenshot pcb_u78_A2_e
+pcb_setview 10 90
+wait 60
+screenshot pcb_u78_A2_n
+wait 60

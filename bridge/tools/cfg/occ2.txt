@@ -1,0 +1,137 @@
+sv_cheats 1
+pc_pit_redirect_mode 2
+fps_max 0
+pcb_assert_soft 1
+# --- prelude: deterministic portal pair in pc_pit_flings (portal_place, verified), redirect checked
+waituntil spawned 600
+waituntil link 1800
+waituntil exit 1800
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_portals
+pcb_assert_portal 0 128 -384 -767.5 4
+pcb_assert_redirect
+noclip
+setpos 128 -384 -500
+setang 89 0 0
+wait 120
+pcb_assert_frames
+# --- end prelude
+pcb_log CHECK 6 occlusion per pixel (portal behind a terrain ridge), edge alignment against Minecraft's own screenshot
+pcb_noclip_set 1
+wait 6
+pcb_view_occluded
+wait 90
+pcb_composite_occlusion 0
+wait 40
+screenshot pcb_o_occlusion_off
+wait 10
+pcb_composite_occlusion 1
+pcb_composite_occlusion
+wait 40
+screenshot pcb_o_occlusion_on
+pcb_assert_occluded
+wait 8
+pcb_mcshot
+wait 30
+screenshot pcb_e_edge
+wait 20
+pcb_composite_occlusion
+pcb_log CHECK 3/4 masks with occlusion on (the portal on its own rock must stay visible)
+pcb_view_portal r 80 0 1
+wait 75
+pcb_assert_mask o_d2
+wait 8
+screenshot pcb_m3_d2
+pcb_view_portal r 400 0 1
+wait 75
+pcb_assert_mask o_d10
+wait 8
+pcb_view_portal r 1200 0 1
+wait 75
+pcb_assert_mask o_d30
+wait 8
+screenshot pcb_m3_d30
+pcb_view_portal r 2400 0 1
+wait 75
+pcb_assert_mask o_d60
+wait 8
+screenshot pcb_m3_d60
+pcb_view_portal r 400 70 1
+wait 75
+pcb_assert_mask o_d10a70
+wait 8
+screenshot pcb_m3_d10a70
+pcb_view_portal r 1200 -60 1
+wait 75
+pcb_assert_mask o_d30a60
+wait 8
+pcb_view_portal r 8 80
+wait 60
+pcb_assert_mask o_n8a80
+wait 8
+pcb_composite_occlusion
+pcb_log PROF3 all features on (in-view composite, occlusion, position prediction, RD 24)
+pcb_composite_depth 0 1
+pcb_log PROF3 phase 1: chamber look-down into the floor portal (portal stream)
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PROF3 result look-down
+pcb_composite_lag
+pcb_composite_occlusion
+pcb_log PROF3 phase 2: region, looking at the cliff portal from behind the ridge (occlusion layers)
+pcb_view_occluded
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PROF3 result occluded view
+pcb_composite_lag
+pcb_composite_occlusion
+pcb_log PROF3 phase 3: region, near the cliff portal, turning
+pcb_view_portal r 300 20 1
+wait 30
+pcb_composite_lag
++left
+wait 150
+-left
++right
+wait 150
+-right
+pcb_log PROF3 result turning
+pcb_composite_lag
+pcb_composite_occlusion
+pcb_log PROF3 phase 4: region, walking and strafing on the ledge
+pcb_noclip_set 0
+setpos -200 -40 -14080
+wait 30
+pcb_aim -120.8 -40 -13908
+wait 10
+pcb_composite_lag
+pcb_drift
++moveleft
+wait 40
+-moveleft
++moveright
+wait 80
+-moveright
++moveleft
+wait 40
+-moveleft
++back
+wait 20
+-back
++forward
+wait 20
+-forward
+wait 20
+pcb_log PROF3 result walking
+pcb_composite_lag
+pcb_drift
+pcb_composite_occlusion
+pcb_run_summary
+quit

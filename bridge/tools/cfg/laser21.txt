@@ -1,0 +1,75 @@
+# laser21 (bridge #21): placed Minecraft blocks stop Portal 2's laser (env_portal_laser "laser" at (-208 -352 -736) firing +x at the
+# prop_laser_catcher at (464 -352 -736) in pc_pit_flings). Blocks across the beam: the beam ends on them, the catcher unpowers; removed:
+# it powers again. Traces: pcb_trace_probe along the beam. Shots of the beam with and without the blocks.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+ent_fire prop_laser_catcher addoutput "OnPowered !self:AddOutput:targetname pcb_catch_on:0:1"
+ent_fire prop_laser_catcher addoutput "OnUnpowered !self:AddOutput:targetname pcb_catch_off:0:1"
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+ent_fire laser turnon
+waituntil entpcb_catch_on 900
+pcb_log A the beam, no blocks
+pcb_noclip_set 1
+setpos 20 -300 -700
+setang 5 0 0
+pcb_stop
+wait 120
+wait 60
+pcb_long_trace
+pcb_trace_probe -200 -352 -736 1 0 0 800
+pcb_ents_near 464 -352 -736 80
+pcb_glhud_shot l_a_beam
+screenshot pcb_l_a_beam
+setpos 260 -300 -700
+setang 5 180 0
+wait 30
+pcb_glhud_shot l_a_beam_side
+screenshot pcb_l_a_beam_side
+setpos 20 -300 -700
+setang 5 0 0
+wait 20
+wait 20
+ent_fire prop_laser_catcher addoutput "OnPowered !self:AddOutput:targetname pcb_catch_on2:0:1"
+pcb_log B blocks across the beam
+pcb_src_block 60 -392 -776 glowstone 140 -312 -696
+wait 150
+pcb_trace_probe -200 -352 -736 1 0 0 800
+pcb_long_trace
+waituntil entpcb_catch_off 600
+pcb_glhud_shot l_b_blocked
+screenshot pcb_l_b_blocked
+setpos 260 -300 -700
+setang 5 180 0
+wait 30
+pcb_glhud_shot l_b_blocked_side
+screenshot pcb_l_b_blocked_side
+setpos 20 -300 -700
+setang 5 0 0
+wait 20
+wait 60
+pcb_log C blocks removed
+pcb_src_block 60 -392 -776 air 140 -312 -696
+wait 150
+pcb_trace_probe -200 -352 -736 1 0 0 800
+waituntil entpcb_catch_on2 600
+pcb_glhud_shot l_c_open
+screenshot pcb_l_c_open
+setpos 260 -300 -700
+setang 5 180 0
+wait 30
+pcb_glhud_shot l_c_open_side
+screenshot pcb_l_c_open_side
+setpos 20 -300 -700
+setang 5 0 0
+wait 20
+pcb_long_trace
+wait 30
+pcb_run_summary
+quit

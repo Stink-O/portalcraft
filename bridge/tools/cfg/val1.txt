@@ -1,0 +1,137 @@
+# val1: validation pass for promotion: portals + redirect, look-down composite, fling, landing, terrain jump, water float, then the prof2 phases
+sv_cheats 1
+pc_pit_redirect_mode 2
+fps_max 0
+# --- prelude: deterministic portal pair in pc_pit_flings (portal_place, verified), redirect checked
+waituntil spawned 600
+waituntil link 1800
+waituntil exit 1800
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_portals
+pcb_assert_portal 0 128 -384 -767.5 4
+pcb_assert_redirect
+noclip
+setpos 128 -384 -500
+setang 89 0 0
+wait 120
+pcb_assert_frames
+# --- end prelude
+setang 89 180 0
+wait 90
+screenshot pcb_v_down_aligned
+pcb_log CHECK sky up (view aligned with the floor portal's up)
+pcb_assert_sky_up 1
+wait 10
+setang 89 0 0
+wait 90
+screenshot pcb_v_down_opposite
+pcb_log CHECK sky still towards the portal's up edge from the opposite side (inverted on screen)
+pcb_assert_sky_up 1
+wait 10
+wait 30
+pcb_log CHECK look-down composite
+pcb_assert_frames
+setpos 128 -384 -100
+setang 10 0 0
+pcb_assert_no_flash reset
+noclip
+pcb_log CHECK fling
+wait 300
+pcb_assert_no_flash
+pcb_assert_player_below -13500
+pcb_where
+wait 90
+pcb_log CHECK terrain jump
+pcb_apex_begin
++jump
+wait 3
+-jump
+wait 70
+pcb_apex_note
+wait 30
+pcb_apex_begin
++jump
+wait 3
+-jump
+wait 70
+pcb_apex_note
+wait 30
+pcb_apex_begin
++jump
+wait 3
+-jump
+wait 70
+pcb_apex_note
+wait 30
+pcb_assert_apex 38 60
+pcb_log CHECK water
+pcb_find_water 96 1
+wait 180
+pcb_log (Source swimming sinks without input: hold jump to swim to the surface)
++jump
+wait 150
+pcb_where
+pcb_assert_float
+-jump
+screenshot pcb_v_water
+noclip
+pcb_view_portal 1 300
+wait 90
+screenshot pcb_v_cliff_portal
+pcb_log CHECK cliff portal shows the chamber
+pcb_assert_portal_view
+wait 10
+pcb_log CHECK walk back through the cliff portal (region to chamber)
+pcb_assert_no_flash reset
+setpos -165 -40 -13950
+setang 0 0 0
+noclip
+pcb_track 120 2
++forward
+wait 40
+-forward
+wait 30
+pcb_where
+pcb_assert_no_flash
+noclip
+setpos 128 -384 -500
+setang 89 0 0
+wait 90
+pcb_composite 0
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE down composite off
+pcb_assert_counting
+pcb_composite_lag
+pcb_composite 1
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE down composite on
+pcb_assert_counting
+pcb_assert_frames
+pcb_composite_lag
+setpos -1700 -40 -15000
+setang 0 120 0
+wait 60
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE region composite on
+pcb_assert_counting
+pcb_assert_frames
+pcb_composite_lag
+pcb_composite 0
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE region composite off
+pcb_assert_counting
+pcb_composite_lag
+pcb_composite 1
+pcb_run_summary
+quit

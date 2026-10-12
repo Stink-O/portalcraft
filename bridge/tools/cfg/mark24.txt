@@ -1,0 +1,26 @@
+# mark24 (bridge #24): a bug mark through the real key path (pcb_bugmark press) as the Minecraft player next to button_1,
+# after a short walk and a turn. Then run the bundle's replay.txt (pcb_bugmark last prints it).
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_goto button_1-button 96
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+waituntil mcleads 600
+wait 60
+pcb_mckey 26 1
+wait 40
+pcb_mckey 26 0
+wait 30
+pcb_setview 10 45
+wait 20
+pcb_bugmark press m24
+wait 60
+pcb_bugmark last
+pcb_run_summary
+quit

@@ -1,0 +1,63 @@
+# first9: first shot on a Minecraft floor (surface trace on), frame by frame: the main region view composited before Portal 2's portals while a lone portal opens, off / on, vs the chamber pit floor.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_noclip_set 1
+setpos 128 -384 -400
+setang 89 0 0
+pcb_stop
+wait 120
+pcb_frame_dump 200 f9_chamber 500 225 1100 675
++attack
+wait 6
+-attack
+wait 240
+waituntil probes_idle 1200
+ent_fire prop_portal Fizzle
+wait 60
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_log FIRST early0
+pcb_early_opening 0
+pcb_light_goto_mc -376 96.6 441 0 89
+pcb_stop
+wait 90
+pcb_frame_dump 120 f9_early0 500 225 1100 675
++attack
+wait 6
+-attack
+wait 240
+waituntil probes_idle 1200
+pcb_early_opening
+ent_fire prop_portal Fizzle
+wait 90
+pcb_early_opening 1
+pcb_log FIRST early1
+pcb_light_goto_mc -376 96.6 441 0 89
+pcb_stop
+wait 90
+pcb_frame_dump 120 f9_early1 500 225 1100 675
++attack
+wait 6
+-attack
+wait 240
+waituntil probes_idle 1200
+pcb_early_opening
+ent_fire prop_portal Fizzle
+wait 90
+pcb_build_corridor remove
+wait 30
+pcb_run_summary
+quit

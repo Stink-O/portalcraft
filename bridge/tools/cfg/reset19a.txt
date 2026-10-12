@@ -1,0 +1,16 @@
+# reset19a (bridge #19): leave the shared save with a dead Minecraft player (then reset19b checks the automatic test reset)
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+bridge_mode mc
+waituntil mcmode 1200
+wait 60
+pcb_mc_cmd kill @p
+waituntil mcdead 600
+pcb_assert_mc_living 0
+pcb_glhud_shot rs_a_dead
+wait 60
+pcb_run_summary
+quit

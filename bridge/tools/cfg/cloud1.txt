@@ -1,0 +1,214 @@
+# cloud1: (placements validated: pcb_assert_portal_face; the facing pair is a corridor built in open air) preview stability through portals in Minecraft with a still camera (clouds must not twitch)
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_noclip_set 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd weather clear
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+wait 60
+pcb_log PAIR groundcliff
+pcb_find_surface ground 24 -1
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_assert_gun_shot 0 placed floor
+pcb_find_surface wall 64 -1
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_gun_shot 1 placed wall
+pcb_assert_portals
+waituntil terrain_idle 1200
+pcb_assert_portal_face
+pcb_view_from 0 3
+wait 60
+pcb_frame_watch 2000 groundcliff_p0_d3 mcworld
+pcb_assert_still_stable reset
+pcb_assert_image_age reset
+wait 240
+pcb_assert_still_stable 1.0 6
+pcb_assert_image_age 3 6
+pcb_frame_watch 0
+wait 5
+screenshot pcb_groundcliff_p0_d3
+pcb_view_from 0 8
+wait 60
+pcb_frame_watch 2000 groundcliff_p0_d8 mcworld
+pcb_assert_still_stable reset
+pcb_assert_image_age reset
+wait 240
+pcb_assert_still_stable 1.0 6
+pcb_assert_image_age 3 6
+pcb_frame_watch 0
+wait 5
+screenshot pcb_groundcliff_p0_d8
+pcb_view_from 1 3
+wait 60
+pcb_frame_watch 2000 groundcliff_p1_d3 mcworld
+pcb_assert_still_stable reset
+pcb_assert_image_age reset
+wait 240
+pcb_assert_still_stable 1.0 6
+pcb_assert_image_age 3 6
+pcb_frame_watch 0
+wait 5
+screenshot pcb_groundcliff_p1_d3
+pcb_view_from 1 8
+wait 60
+pcb_frame_watch 2000 groundcliff_p1_d8 mcworld
+pcb_assert_still_stable reset
+pcb_assert_image_age reset
+wait 240
+pcb_assert_still_stable 1.0 6
+pcb_assert_image_age 3 6
+pcb_frame_watch 0
+wait 5
+screenshot pcb_groundcliff_p1_d8
+pcb_log PAIR cliffcliff
+pcb_find_surface wall 64 -1
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_assert_gun_shot 0 placed wall
+pcb_find_surface wall 64 0
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_gun_shot 1 placed wall
+pcb_assert_portals
+waituntil terrain_idle 1200
+pcb_assert_portal_face
+pcb_view_from 0 3
+wait 60
+pcb_frame_watch 2000 cliffcliff_p0_d3 mcworld
+pcb_assert_still_stable reset
+pcb_assert_image_age reset
+wait 240
+pcb_assert_still_stable 1.0 6
+pcb_assert_image_age 3 6
+pcb_frame_watch 0
+wait 5
+screenshot pcb_cliffcliff_p0_d3
+pcb_view_from 0 8
+wait 60
+pcb_frame_watch 2000 cliffcliff_p0_d8 mcworld
+pcb_assert_still_stable reset
+pcb_assert_image_age reset
+wait 240
+pcb_assert_still_stable 1.0 6
+pcb_assert_image_age 3 6
+pcb_frame_watch 0
+wait 5
+screenshot pcb_cliffcliff_p0_d8
+pcb_view_from 1 3
+wait 60
+pcb_frame_watch 2000 cliffcliff_p1_d3 mcworld
+pcb_assert_still_stable reset
+pcb_assert_image_age reset
+wait 240
+pcb_assert_still_stable 1.0 6
+pcb_assert_image_age 3 6
+pcb_frame_watch 0
+wait 5
+screenshot pcb_cliffcliff_p1_d3
+pcb_view_from 1 8
+wait 60
+pcb_frame_watch 2000 cliffcliff_p1_d8 mcworld
+pcb_assert_still_stable reset
+pcb_assert_image_age reset
+wait 240
+pcb_assert_still_stable 1.0 6
+pcb_assert_image_age 3 6
+pcb_frame_watch 0
+wait 5
+screenshot pcb_cliffcliff_p1_d8
+pcb_log PAIR facing
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_assert_gun_shot 0 placed wall
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_gun_shot 1 placed wall
+pcb_assert_portal_face
+pcb_view_from 0 3
+wait 60
+pcb_frame_watch 2000 facing_p0_d3 mcworld
+pcb_assert_still_stable reset
+pcb_assert_image_age reset
+wait 240
+pcb_assert_still_stable 1.0 6
+pcb_assert_image_age 3 6
+pcb_frame_watch 0
+wait 5
+screenshot pcb_facing_p0_d3
+pcb_view_from 0 8
+wait 60
+pcb_frame_watch 2000 facing_p0_d8 mcworld
+pcb_assert_still_stable reset
+pcb_assert_image_age reset
+wait 240
+pcb_assert_still_stable 1.0 6
+pcb_assert_image_age 3 6
+pcb_frame_watch 0
+wait 5
+screenshot pcb_facing_p0_d8
+pcb_view_from 1 3
+wait 60
+pcb_frame_watch 2000 facing_p1_d3 mcworld
+pcb_assert_still_stable reset
+pcb_assert_image_age reset
+wait 240
+pcb_assert_still_stable 1.0 6
+pcb_assert_image_age 3 6
+pcb_frame_watch 0
+wait 5
+screenshot pcb_facing_p1_d3
+pcb_view_from 1 8
+wait 60
+pcb_frame_watch 2000 facing_p1_d8 mcworld
+pcb_assert_still_stable reset
+pcb_assert_image_age reset
+wait 240
+pcb_assert_still_stable 1.0 6
+pcb_assert_image_age 3 6
+pcb_frame_watch 0
+wait 5
+screenshot pcb_facing_p1_d8
+pcb_build_corridor remove
+wait 30
+pcb_run_summary
+quit

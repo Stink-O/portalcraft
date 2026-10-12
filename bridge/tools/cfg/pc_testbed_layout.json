@@ -1,0 +1,3444 @@
+{
+ "map": "pc_testbed",
+ "units": "Source units; z=0 is every floor top (except pits); u runs along each bay's width, v into the bay",
+ "hall": {
+  "min": [
+   -1120,
+   -1120,
+   0
+  ],
+  "max": [
+   1120,
+   1120,
+   384
+  ]
+ },
+ "start": {
+  "note": "info_player_start is inside the arrival car at the bottom of its shaft; the car rises and opens (Valve's arrival logic)",
+  "origin": [
+   0.0,
+   -1824,
+   -650
+  ]
+ },
+ "region": {
+  "min": [
+   -16128,
+   -16128,
+   -16128
+  ],
+  "max": [
+   16128,
+   16128,
+   -5632
+  ]
+ },
+ "order": [
+  "portals",
+  "fling",
+  "arrival",
+  "mc",
+  "dark",
+  "bright",
+  "lift",
+  "doorh",
+  "mlinear",
+  "departure",
+  "train",
+  "rotate",
+  "tilt",
+  "doorpanel",
+  "arm",
+  "cubes",
+  "laser",
+  "bridge",
+  "funnel",
+  "faith",
+  "fizzler",
+  "turret",
+  "goo",
+  "doors",
+  "gel"
+ ],
+ "bays": {
+  "portals": {
+   "name": "portals",
+   "entities": {
+    "tb_panel_wall_a": {
+     "classname": "info_target",
+     "origin": [
+      -1088.0,
+      -1440.0,
+      64.0
+     ],
+     "mins": [
+      -1088.0,
+      -1504.0,
+      0
+     ],
+     "maxs": [
+      -1088.0,
+      -1376.0,
+      128
+     ],
+     "size": [
+      0.0,
+      128.0,
+      128
+     ],
+     "top": 128,
+     "center": [
+      -1088.0,
+      -1440.0,
+      64.0
+     ],
+     "panel": "left",
+     "portalable": true,
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "note": ""
+    },
+    "tb_panel_wall_b": {
+     "classname": "info_target",
+     "origin": [
+      -512.0,
+      -1440.0,
+      64.0
+     ],
+     "mins": [
+      -512.0,
+      -1504.0,
+      0
+     ],
+     "maxs": [
+      -512.0,
+      -1376.0,
+      128
+     ],
+     "size": [
+      0.0,
+      128.0,
+      128
+     ],
+     "top": 128,
+     "center": [
+      -512.0,
+      -1440.0,
+      64.0
+     ],
+     "panel": "right",
+     "portalable": true,
+     "normal": [
+      -1,
+      0,
+      0
+     ],
+     "note": ""
+    },
+    "tb_panel_wall_back": {
+     "classname": "info_target",
+     "origin": [
+      -800.0,
+      -1696.0,
+      96.0
+     ],
+     "mins": [
+      -864.0,
+      -1696,
+      32
+     ],
+     "maxs": [
+      -736.0,
+      -1696,
+      160
+     ],
+     "size": [
+      128.0,
+      0,
+      128
+     ],
+     "top": 160,
+     "center": [
+      -800.0,
+      -1696.0,
+      96.0
+     ],
+     "panel": "back",
+     "portalable": true,
+     "normal": [
+      0,
+      1,
+      0
+     ],
+     "note": ""
+    },
+    "tb_nop_wall_back": {
+     "classname": "info_target",
+     "origin": [
+      -672.0,
+      -1696.0,
+      96.0
+     ],
+     "mins": [
+      -736.0,
+      -1696,
+      32
+     ],
+     "maxs": [
+      -608.0,
+      -1696,
+      160
+     ],
+     "size": [
+      128.0,
+      0,
+      128
+     ],
+     "top": 160,
+     "center": [
+      -672.0,
+      -1696.0,
+      96.0
+     ],
+     "panel": "back",
+     "portalable": false,
+     "normal": [
+      0,
+      1,
+      0
+     ],
+     "note": "black metal next to the white back panel"
+    },
+    "tb_panel_floor": {
+     "classname": "info_target",
+     "origin": [
+      -800.0,
+      -1376.0,
+      0.0
+     ],
+     "mins": [
+      -864.0,
+      -1440,
+      0
+     ],
+     "maxs": [
+      -736.0,
+      -1312,
+      0
+     ],
+     "size": [
+      128.0,
+      128,
+      0
+     ],
+     "top": 0,
+     "center": [
+      -800.0,
+      -1376.0,
+      0.0
+     ],
+     "panel": "floor",
+     "portalable": true,
+     "normal": [
+      0,
+      0,
+      1
+     ],
+     "note": ""
+    },
+    "tb_nop_floor": {
+     "classname": "info_target",
+     "origin": [
+      -800.0,
+      -1504.0,
+      0.0
+     ],
+     "mins": [
+      -864.0,
+      -1568,
+      0
+     ],
+     "maxs": [
+      -736.0,
+      -1440,
+      0
+     ],
+     "size": [
+      128.0,
+      128,
+      0
+     ],
+     "top": 0,
+     "center": [
+      -800.0,
+      -1504.0,
+      0.0
+     ],
+     "panel": "floor",
+     "portalable": false,
+     "normal": [
+      0,
+      0,
+      1
+     ],
+     "note": "black metal floor behind the white floor panel"
+    },
+    "tb_panel_ceiling": {
+     "classname": "info_target",
+     "origin": [
+      -800.0,
+      -1376.0,
+      320.0
+     ],
+     "mins": [
+      -864.0,
+      -1440,
+      320
+     ],
+     "maxs": [
+      -736.0,
+      -1312,
+      320
+     ],
+     "size": [
+      128.0,
+      128,
+      0
+     ],
+     "top": 320,
+     "center": [
+      -800.0,
+      -1376.0,
+      320.0
+     ],
+     "panel": "ceil",
+     "portalable": true,
+     "normal": [
+      0,
+      0,
+      -1
+     ],
+     "note": ""
+    },
+    "tb_pair_a": {
+     "classname": "prop_portal",
+     "linkage": 1,
+     "origin": [
+      -1087.0,
+      -1440.0,
+      64
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "note": "left wall (u=-288) at v=256, z=64 (bottom on the floor: walk into it), faces +u"
+    },
+    "tb_pair_b": {
+     "classname": "prop_portal",
+     "linkage": 1,
+     "origin": [
+      -513.0,
+      -1440.0,
+      64
+     ],
+     "normal": [
+      -1,
+      0,
+      0
+     ],
+     "note": "right wall (u=+288), faces -u"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_portals",
+     "fires": [
+      "tb_pair_a SetActivatedState 1",
+      "tb_pair_b SetActivatedState 1"
+     ],
+     "expect": "both wall portals open: walking into tb_pair_a comes out of tb_pair_b (and back), 2*hw = 576 u apart"
+    },
+    "reset": {
+     "name": "tb_reset_portals",
+     "fires": [
+      "tb_pair_a SetActivatedState 0",
+      "tb_pair_b SetActivatedState 0"
+     ],
+     "expect": "both portals closed"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "S",
+   "slot": 0,
+   "nslots": 2,
+   "depth": 512,
+   "height": 320,
+   "main": "tb_panel_wall_back",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     -1088.0,
+     -1696.0,
+     0
+    ],
+    "max": [
+     -512.0,
+     -1184.0,
+     320
+    ]
+   },
+   "bounds": {
+    "min": [
+     -1152.0,
+     -1760.0,
+     -64
+    ],
+    "max": [
+     -448.0,
+     -1120.0,
+     384
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_portals",
+    "origin": [
+     -800.0,
+     -1024,
+     8
+    ],
+    "yaw": 270
+   },
+   "inside": {
+    "origin": [
+     -800.0,
+     -1280,
+     8
+    ],
+    "yaw": 270
+   },
+   "u_dir": [
+    1,
+    0
+   ],
+   "into_dir": [
+    0,
+    -1
+   ]
+  },
+  "fling": {
+   "name": "fling",
+   "entities": {
+    "tb_fling_ledge": {
+     "classname": "brush",
+     "top": 640,
+     "mins": [
+      -448.0,
+      -1824,
+      0
+     ],
+     "maxs": [
+      -192.0,
+      -1664,
+      640
+     ],
+     "note": "standing surface z=640, 160 deep; tb_spot_fling_high is on it"
+    },
+    "tb_panel_floor_fling": {
+     "classname": "info_target",
+     "origin": [
+      -320.0,
+      -1376.0,
+      0.0
+     ],
+     "mins": [
+      -384.0,
+      -1440,
+      0
+     ],
+     "maxs": [
+      -256.0,
+      -1312,
+      0
+     ],
+     "size": [
+      128.0,
+      128,
+      0
+     ],
+     "top": 0,
+     "center": [
+      -320.0,
+      -1376.0,
+      0.0
+     ],
+     "panel": "floor",
+     "portalable": true,
+     "normal": [
+      0,
+      0,
+      1
+     ],
+     "note": ""
+    },
+    "tb_panel_wall_fling": {
+     "classname": "info_target",
+     "origin": [
+      -448.0,
+      -1504.0,
+      64.0
+     ],
+     "mins": [
+      -448.0,
+      -1568.0,
+      0
+     ],
+     "maxs": [
+      -448.0,
+      -1440.0,
+      128
+     ],
+     "size": [
+      0.0,
+      128.0,
+      128
+     ],
+     "top": 128,
+     "center": [
+      -448.0,
+      -1504.0,
+      64.0
+     ],
+     "panel": "left",
+     "portalable": true,
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "note": ""
+    },
+    "tb_fling_floor_portal": {
+     "classname": "prop_portal",
+     "linkage": 2,
+     "origin": [
+      -320.0,
+      -1376,
+      0
+     ],
+     "normal": [
+      0,
+      0,
+      1
+     ]
+    },
+    "tb_fling_wall_portal": {
+     "classname": "prop_portal",
+     "linkage": 2,
+     "origin": [
+      -448.0,
+      -1504,
+      64
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ]
+    },
+    "tb_spot_fling_high": {
+     "classname": "info_target",
+     "origin": [
+      -320.0,
+      -1744,
+      648
+     ],
+     "note": "top of the ledge, 640 u above the floor panel"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_fling",
+     "fires": [
+      "tb_fling_wall_portal SetActivatedState 1",
+      "tb_fling_floor_portal SetActivatedState 1",
+      "tb_fling_wall_portal NewLocation -447.00 -1504.00 64.00 0 0.0 0",
+      "tb_fling_floor_portal NewLocation -320.00 -1376.00 0.50 -90 0 0",
+      "tb_fling_wall_portal SetActivatedState 1",
+      "tb_fling_floor_portal SetActivatedState 1"
+     ],
+     "expect": "floor portal on tb_panel_floor_fling and wall portal on tb_panel_wall_fling open; dropping from tb_spot_fling_high (640 u up, ~877 u/s) flings out of the wall portal across the bay"
+    },
+    "reset": {
+     "name": "tb_reset_fling",
+     "fires": [
+      "tb_fling_floor_portal SetActivatedState 0",
+      "tb_fling_wall_portal SetActivatedState 0"
+     ],
+     "expect": "both closed"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "S",
+   "slot": 2,
+   "nslots": 1,
+   "depth": 640,
+   "height": 832,
+   "main": "tb_panel_floor_fling",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     -448.0,
+     -1824.0,
+     0
+    ],
+    "max": [
+     -192.0,
+     -1184.0,
+     832
+    ]
+   },
+   "bounds": {
+    "min": [
+     -512.0,
+     -1888.0,
+     -64
+    ],
+    "max": [
+     -128.0,
+     -1120.0,
+     896
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_fling",
+    "origin": [
+     -320.0,
+     -1024,
+     8
+    ],
+    "yaw": 270
+   },
+   "inside": {
+    "origin": [
+     -320.0,
+     -1280,
+     8
+    ],
+    "yaw": 270
+   },
+   "u_dir": [
+    1,
+    0
+   ],
+   "into_dir": [
+    0,
+    -1
+   ]
+  },
+  "arrival": {
+   "name": "arrival",
+   "entities": {
+    "arrival_elevator": {
+     "classname": "func_instance",
+     "origin": [
+      0.0,
+      -1824,
+      -2
+     ],
+     "note": "Valve's arrival logic instance; the car is arrival-elevator-elevator_1"
+    },
+    "@entry_door": {
+     "classname": "prop_testchamber_door",
+     "origin": [
+      0.0,
+      -1152,
+      0
+     ],
+     "note": "elevator door in the hall wall (opened by the arrival logic, closed by the departure logic)"
+    },
+    "tb_entry_hall_trigger": {
+     "classname": "trigger_once",
+     "mins": [
+      -64.0,
+      -976,
+      0
+     ],
+     "maxs": [
+      64.0,
+      -912,
+      128
+     ],
+     "size": [
+      128.0,
+      64,
+      128
+     ],
+     "top": 128,
+     "center": [
+      0.0,
+      -944.0,
+      64.0
+     ],
+     "note": "in the hall, 208..272 u from the arrival doorway: opens @entry_door for a player coming from the hall"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_arrival",
+     "fires": [
+      "arrival_elevator-open Trigger ",
+      "arrival_elevator-signs_on Trigger "
+     ],
+     "expect": "arrival car door opens (open relay), signs on"
+    },
+    "reset": {
+     "name": "tb_reset_arrival",
+     "fires": [
+      "arrival_elevator-close Trigger ",
+      "arrival_elevator-signs_off Trigger "
+     ],
+     "expect": "car door closes"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "S",
+   "slot": 3,
+   "nslots": 1,
+   "depth": 784,
+   "height": 256,
+   "main": "arrival_elevator-elevator_1",
+   "settle_s": 4,
+   "ride": true,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     -128.0,
+     -1968.0,
+     0
+    ],
+    "max": [
+     128.0,
+     -1184.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     -192.0,
+     -2032.0,
+     -64
+    ],
+    "max": [
+     192.0,
+     -1120.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_arrival",
+    "origin": [
+     0.0,
+     -1024,
+     8
+    ],
+    "yaw": 270
+   },
+   "inside": {
+    "origin": [
+     0.0,
+     -1280,
+     8
+    ],
+    "yaw": 270
+   },
+   "u_dir": [
+    1,
+    0
+   ],
+   "into_dir": [
+    0,
+    -1
+   ],
+   "car": {
+    "origin": [
+     0.0,
+     -1824,
+     -2
+    ],
+    "yaw": 180,
+    "floor_z": 0
+   }
+  },
+  "mc": {
+   "name": "mc",
+   "entities": {
+    "tb_panel_wall_mc": {
+     "classname": "info_target",
+     "origin": [
+      320.0,
+      -1696.0,
+      96.0
+     ],
+     "mins": [
+      224.0,
+      -1696,
+      0
+     ],
+     "maxs": [
+      416.0,
+      -1696,
+      192
+     ],
+     "size": [
+      192.0,
+      0,
+      192
+     ],
+     "top": 192,
+     "center": [
+      320.0,
+      -1696.0,
+      96.0
+     ],
+     "panel": "back",
+     "portalable": true,
+     "normal": [
+      0,
+      1,
+      0
+     ],
+     "note": "big wall for the G-portal / region portal"
+    },
+    "tb_panel_floor_mc": {
+     "classname": "info_target",
+     "origin": [
+      320.0,
+      -1472.0,
+      0.0
+     ],
+     "mins": [
+      224.0,
+      -1568,
+      0
+     ],
+     "maxs": [
+      416.0,
+      -1376,
+      0
+     ],
+     "size": [
+      192.0,
+      192,
+      0
+     ],
+     "top": 0,
+     "center": [
+      320.0,
+      -1472.0,
+      0.0
+     ],
+     "panel": "floor",
+     "portalable": true,
+     "normal": [
+      0,
+      0,
+      1
+     ],
+     "note": "floor portal into Minecraft"
+    },
+    "tb_panel_wall_mc2": {
+     "classname": "info_target",
+     "origin": [
+      192.0,
+      -1344.0,
+      64.0
+     ],
+     "mins": [
+      192.0,
+      -1408.0,
+      0
+     ],
+     "maxs": [
+      192.0,
+      -1280.0,
+      128
+     ],
+     "size": [
+      0.0,
+      128.0,
+      128
+     ],
+     "top": 128,
+     "center": [
+      192.0,
+      -1344.0,
+      64.0
+     ],
+     "panel": "left",
+     "portalable": true,
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "note": ""
+    },
+    "tb_mc_lamp": {
+     "classname": "light",
+     "origin": [
+      320.0,
+      -1312,
+      296
+     ]
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_mc",
+     "fires": [
+      "tb_mc_lamp TurnOn "
+     ],
+     "expect": "extra lamp tb_mc_lamp lights the bay (nothing region related moves: portals are player placed)"
+    },
+    "reset": {
+     "name": "tb_reset_mc",
+     "fires": [
+      "tb_mc_lamp TurnOff "
+     ],
+     "expect": "lamp off"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "S",
+   "slot": 4,
+   "nslots": 1,
+   "depth": 512,
+   "height": 320,
+   "main": "tb_panel_wall_mc",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     192.0,
+     -1696.0,
+     0
+    ],
+    "max": [
+     448.0,
+     -1184.0,
+     320
+    ]
+   },
+   "bounds": {
+    "min": [
+     128.0,
+     -1760.0,
+     -64
+    ],
+    "max": [
+     512.0,
+     -1120.0,
+     384
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_mc",
+    "origin": [
+     320.0,
+     -1024,
+     8
+    ],
+    "yaw": 270
+   },
+   "inside": {
+    "origin": [
+     320.0,
+     -1280,
+     8
+    ],
+    "yaw": 270
+   },
+   "u_dir": [
+    1,
+    0
+   ],
+   "into_dir": [
+    0,
+    -1
+   ]
+  },
+  "dark": {
+   "name": "dark",
+   "entities": {
+    "tb_dark_lamp": {
+     "classname": "light",
+     "origin": [
+      640.0,
+      -1584,
+      240
+     ]
+    },
+    "tb_dark_wall": {
+     "classname": "info_target",
+     "origin": [
+      640.0,
+      -1696.0,
+      96.0
+     ],
+     "mins": [
+      544.0,
+      -1696,
+      32
+     ],
+     "maxs": [
+      736.0,
+      -1696,
+      160
+     ],
+     "size": [
+      192.0,
+      0,
+      128
+     ],
+     "top": 160,
+     "center": [
+      640.0,
+      -1696.0,
+      96.0
+     ],
+     "panel": "back",
+     "portalable": false,
+     "normal": [
+      0,
+      1,
+      0
+     ],
+     "note": "dark bay back wall; no lights at all until tb_go_dark"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_dark",
+     "fires": [
+      "tb_dark_lamp TurnOn "
+     ],
+     "expect": "a weak lamp at the far end (v=400 z=240) comes on; before, the bay is lit only by hall light spilling in"
+    },
+    "reset": {
+     "name": "tb_reset_dark",
+     "fires": [
+      "tb_dark_lamp TurnOff "
+     ],
+     "expect": "lamp off (dark again)"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "S",
+   "slot": 5,
+   "nslots": 1,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_dark_wall",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     512.0,
+     -1696.0,
+     0
+    ],
+    "max": [
+     768.0,
+     -1184.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     448.0,
+     -1760.0,
+     -64
+    ],
+    "max": [
+     832.0,
+     -1120.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_dark",
+    "origin": [
+     640.0,
+     -1024,
+     8
+    ],
+    "yaw": 270
+   },
+   "inside": {
+    "origin": [
+     640.0,
+     -1280,
+     8
+    ],
+    "yaw": 270
+   },
+   "u_dir": [
+    1,
+    0
+   ],
+   "into_dir": [
+    0,
+    -1
+   ]
+  },
+  "bright": {
+   "name": "bright",
+   "entities": {
+    "tb_bright_lamp": {
+     "classname": "light",
+     "origin": [
+      960.0,
+      -1434,
+      40
+     ]
+    },
+    "tb_bright_wall": {
+     "classname": "info_target",
+     "origin": [
+      960.0,
+      -1696.0,
+      96.0
+     ],
+     "mins": [
+      864.0,
+      -1696,
+      32
+     ],
+     "maxs": [
+      1056.0,
+      -1696,
+      160
+     ],
+     "size": [
+      192.0,
+      0,
+      128
+     ],
+     "top": 160,
+     "center": [
+      960.0,
+      -1696.0,
+      96.0
+     ],
+     "panel": "back",
+     "portalable": true,
+     "normal": [
+      0,
+      1,
+      0
+     ],
+     "note": "bright bay: white walls, three strong ceiling lights"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_bright",
+     "fires": [
+      "tb_bright_lamp TurnOn "
+     ],
+     "expect": "a floor-level extra lamp lights the bay even brighter"
+    },
+    "reset": {
+     "name": "tb_reset_bright",
+     "fires": [
+      "tb_bright_lamp TurnOff "
+     ],
+     "expect": "extra lamp off"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "S",
+   "slot": 6,
+   "nslots": 1,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_bright_wall",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     832.0,
+     -1696.0,
+     0
+    ],
+    "max": [
+     1088.0,
+     -1184.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     768.0,
+     -1760.0,
+     -64
+    ],
+    "max": [
+     1152.0,
+     -1120.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_bright",
+    "origin": [
+     960.0,
+     -1024,
+     8
+    ],
+    "yaw": 270
+   },
+   "inside": {
+    "origin": [
+     960.0,
+     -1280,
+     8
+    ],
+    "yaw": 270
+   },
+   "u_dir": [
+    1,
+    0
+   ],
+   "into_dir": [
+    0,
+    -1
+   ]
+  },
+  "lift": {
+   "name": "lift",
+   "entities": {
+    "tb_lift": {
+     "classname": "func_door",
+     "mins": [
+      -1040.0,
+      1360,
+      0
+     ],
+     "maxs": [
+      -880.0,
+      1520,
+      16
+     ],
+     "size": [
+      160.0,
+      160,
+      16
+     ],
+     "top": 16,
+     "center": [
+      -960.0,
+      1440.0,
+      8.0
+     ],
+     "movedir": "up",
+     "travel": 192,
+     "speed": 64
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_lift",
+     "fires": [
+      "tb_lift Open "
+     ],
+     "expect": "platform top goes z 16 -> 208 (192 u) at 64 u/s (3 s); ceiling is 384"
+    },
+    "reset": {
+     "name": "tb_reset_lift",
+     "fires": [
+      "tb_lift Close "
+     ],
+     "expect": "platform back to z 16"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "N",
+   "slot": 0,
+   "nslots": 1,
+   "depth": 512,
+   "height": 384,
+   "main": "tb_lift",
+   "settle_s": 5,
+   "ride": true,
+   "ride_moves": true,
+   "interior": {
+    "min": [
+     -1088.0,
+     1184.0,
+     0
+    ],
+    "max": [
+     -832.0,
+     1696.0,
+     384
+    ]
+   },
+   "bounds": {
+    "min": [
+     -1152.0,
+     1120.0,
+     -64
+    ],
+    "max": [
+     -768.0,
+     1760.0,
+     448
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_lift",
+    "origin": [
+     -960.0,
+     1024,
+     8
+    ],
+    "yaw": 90
+   },
+   "inside": {
+    "origin": [
+     -960.0,
+     1280,
+     8
+    ],
+    "yaw": 90
+   },
+   "u_dir": [
+    -1,
+    0
+   ],
+   "into_dir": [
+    0,
+    1
+   ]
+  },
+  "doorh": {
+   "name": "doorh",
+   "entities": {
+    "tb_door_h": {
+     "classname": "func_door",
+     "mins": [
+      -704.0,
+      1424,
+      0
+     ],
+     "maxs": [
+      -576.0,
+      1440,
+      128
+     ],
+     "size": [
+      128.0,
+      16,
+      128
+     ],
+     "top": 128,
+     "center": [
+      -640.0,
+      1432.0,
+      64.0
+     ],
+     "movedir": "+u",
+     "travel": 128,
+     "speed": 64
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_doorh",
+     "fires": [
+      "tb_door_h Open "
+     ],
+     "expect": "sliding slab moves +u by 128 u (2 s), opening the 128 x 128 doorway in the partition at v=256..288"
+    },
+    "reset": {
+     "name": "tb_reset_doorh",
+     "fires": [
+      "tb_door_h Close "
+     ],
+     "expect": "slab back across the doorway"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "N",
+   "slot": 1,
+   "nslots": 1,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_door_h",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     -768.0,
+     1184.0,
+     0
+    ],
+    "max": [
+     -512.0,
+     1696.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     -832.0,
+     1120.0,
+     -64
+    ],
+    "max": [
+     -448.0,
+     1760.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_doorh",
+    "origin": [
+     -640.0,
+     1024,
+     8
+    ],
+    "yaw": 90
+   },
+   "inside": {
+    "origin": [
+     -640.0,
+     1280,
+     8
+    ],
+    "yaw": 90
+   },
+   "u_dir": [
+    -1,
+    0
+   ],
+   "into_dir": [
+    0,
+    1
+   ]
+  },
+  "mlinear": {
+   "name": "mlinear",
+   "entities": {
+    "tb_movelinear": {
+     "classname": "func_movelinear",
+     "mins": [
+      -384.0,
+      1248,
+      0
+     ],
+     "maxs": [
+      -256.0,
+      1376,
+      16
+     ],
+     "size": [
+      128.0,
+      128,
+      16
+     ],
+     "top": 16,
+     "center": [
+      -320.0,
+      1312.0,
+      8.0
+     ],
+     "movedir": "+v (into the bay)",
+     "travel": 192,
+     "speed": 64
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_mlinear",
+     "fires": [
+      "tb_movelinear Open "
+     ],
+     "expect": "128 x 128 platform slides 192 u deeper into the bay (3 s)"
+    },
+    "reset": {
+     "name": "tb_reset_mlinear",
+     "fires": [
+      "tb_movelinear Close "
+     ],
+     "expect": "back to v 64..192"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "N",
+   "slot": 2,
+   "nslots": 1,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_movelinear",
+   "settle_s": 5,
+   "ride": true,
+   "ride_moves": true,
+   "interior": {
+    "min": [
+     -448.0,
+     1184.0,
+     0
+    ],
+    "max": [
+     -192.0,
+     1696.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     -512.0,
+     1120.0,
+     -64
+    ],
+    "max": [
+     -128.0,
+     1760.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_mlinear",
+    "origin": [
+     -320.0,
+     1024,
+     8
+    ],
+    "yaw": 90
+   },
+   "inside": {
+    "origin": [
+     -320.0,
+     1280,
+     8
+    ],
+    "yaw": 90
+   },
+   "u_dir": [
+    -1,
+    0
+   ],
+   "into_dir": [
+    0,
+    1
+   ]
+  },
+  "departure": {
+   "name": "departure",
+   "entities": {
+    "departure_elevator": {
+     "classname": "func_instance",
+     "origin": [
+      0.0,
+      1360,
+      -2
+     ],
+     "note": "Valve's departure logic instance; the car is departure-elevator-elevator_1"
+    },
+    "@exit_door": {
+     "classname": "prop_testchamber_door",
+     "origin": [
+      0.0,
+      1152,
+      0
+     ],
+     "note": "elevator door in the hall wall (opened by the arrival logic, closed by the departure logic)"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_departure",
+     "fires": [
+      "departure_elevator-elevator_doorclose_playerclip Enable ",
+      "departure_elevator-close Trigger ",
+      "departure_elevator-floor_clip Disable ",
+      "departure_elevator-elevator_1 RunScriptCode StartMoving()"
+     ],
+     "expect": "departure car door closes, then the car rises up the 4500 u shaft"
+    },
+    "reset": {
+     "name": "tb_reset_departure",
+     "fires": [
+      "departure_elevator-elevator_1 SetSpeedReal 0",
+      "departure_elevator-elevator_1 Stop ",
+      "departure_elevator-elevator_1 TeleportToPathNode departure_elevator-elevator_1_path_0",
+      "departure_elevator-floor_clip Enable ",
+      "departure_elevator-elevator_doorclose_playerclip Disable ",
+      "departure_elevator-elevator_1 SetSpeedReal 0",
+      "departure_elevator-elevator_1 Stop ",
+      "departure_elevator-logic_source_elevator_door_open Trigger "
+     ],
+     "expect": "car stopped and back at the floor with its door open"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "N",
+   "slot": 3,
+   "nslots": 1,
+   "depth": 320,
+   "height": 256,
+   "main": "@exit_door",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     -128.0,
+     1184.0,
+     0
+    ],
+    "max": [
+     128.0,
+     1504.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     -192.0,
+     1120.0,
+     -64
+    ],
+    "max": [
+     192.0,
+     1568.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_departure",
+    "origin": [
+     0.0,
+     1024,
+     8
+    ],
+    "yaw": 90
+   },
+   "inside": {
+    "origin": [
+     0.0,
+     1280,
+     8
+    ],
+    "yaw": 90
+   },
+   "u_dir": [
+    -1,
+    0
+   ],
+   "into_dir": [
+    0,
+    1
+   ],
+   "car": {
+    "origin": [
+     0.0,
+     1360,
+     -2
+    ],
+    "yaw": 0,
+    "floor_z": 0
+   }
+  },
+  "train": {
+   "name": "train",
+   "entities": {
+    "tb_train_p1": {
+     "classname": "path_track",
+     "origin": [
+      320.0,
+      1280,
+      8
+     ]
+    },
+    "tb_train_p2": {
+     "classname": "path_track",
+     "origin": [
+      320.0,
+      1472,
+      8
+     ]
+    },
+    "tb_train_p3": {
+     "classname": "path_track",
+     "origin": [
+      320.0,
+      1664,
+      8
+     ]
+    },
+    "tb_train": {
+     "classname": "func_tracktrain",
+     "mins": [
+      256.0,
+      1216,
+      0
+     ],
+     "maxs": [
+      384.0,
+      1344,
+      16
+     ],
+     "size": [
+      128.0,
+      128,
+      16
+     ],
+     "top": 16,
+     "center": [
+      320.0,
+      1280.0,
+      8.0
+     ],
+     "speed": 100,
+     "stops": "tb_train_p2 (2 s wait), tb_train_p3 (end)"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_train",
+     "fires": [
+      "tb_train StartForward "
+     ],
+     "expect": "train (initial speed 0, max speed 100) rides p1 (v=96) -> p2 (v=288, pauses 2 s) -> p3 (v=480, ends), 100 u/s"
+    },
+    "reset": {
+     "name": "tb_reset_train",
+     "fires": [
+      "tb_train Stop ",
+      "tb_train TeleportToPathNode tb_train_p1"
+     ],
+     "expect": "train stopped and teleported back to p1"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "N",
+   "slot": 4,
+   "nslots": 1,
+   "depth": 576,
+   "height": 256,
+   "main": "tb_train",
+   "settle_s": 14,
+   "ride": true,
+   "ride_moves": true,
+   "interior": {
+    "min": [
+     192.0,
+     1184.0,
+     0
+    ],
+    "max": [
+     448.0,
+     1760.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     128.0,
+     1120.0,
+     -64
+    ],
+    "max": [
+     512.0,
+     1824.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_train",
+    "origin": [
+     320.0,
+     1024,
+     8
+    ],
+    "yaw": 90
+   },
+   "inside": {
+    "origin": [
+     320.0,
+     1280,
+     8
+    ],
+    "yaw": 90
+   },
+   "u_dir": [
+    -1,
+    0
+   ],
+   "into_dir": [
+    0,
+    1
+   ]
+  },
+  "rotate": {
+   "name": "rotate",
+   "entities": {
+    "tb_turntable": {
+     "classname": "func_rotating",
+     "mins": [
+      544.0,
+      1344,
+      0
+     ],
+     "maxs": [
+      736.0,
+      1536,
+      16
+     ],
+     "size": [
+      192.0,
+      192,
+      16
+     ],
+     "top": 16,
+     "center": [
+      640.0,
+      1440.0,
+      8.0
+     ],
+     "maxspeed": "20 deg/s about z",
+     "pivot": [
+      640.0,
+      1440,
+      8
+     ]
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_rotate",
+     "fires": [
+      "tb_turntable Start "
+     ],
+     "expect": "192 x 192 disc spins at 20 deg/s about z (accelerates over ~2 s)"
+    },
+    "reset": {
+     "name": "tb_reset_rotate",
+     "fires": [
+      "tb_turntable Stop "
+     ],
+     "expect": "disc stops (stays at whatever angle it reached)"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "N",
+   "slot": 5,
+   "nslots": 1,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_turntable",
+   "settle_s": 6,
+   "ride": true,
+   "ride_moves": true,
+   "ride_at": [
+    576.0,
+    1440,
+    16
+   ],
+   "interior": {
+    "min": [
+     512.0,
+     1184.0,
+     0
+    ],
+    "max": [
+     768.0,
+     1696.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     448.0,
+     1120.0,
+     -64
+    ],
+    "max": [
+     832.0,
+     1760.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_rotate",
+    "origin": [
+     640.0,
+     1024,
+     8
+    ],
+    "yaw": 90
+   },
+   "inside": {
+    "origin": [
+     640.0,
+     1280,
+     8
+    ],
+    "yaw": 90
+   },
+   "u_dir": [
+    -1,
+    0
+   ],
+   "into_dir": [
+    0,
+    1
+   ]
+  },
+  "tilt": {
+   "name": "tilt",
+   "entities": {
+    "tb_tilt": {
+     "classname": "func_door_rotating",
+     "mins": [
+      864.0,
+      1312,
+      0
+     ],
+     "maxs": [
+      1056.0,
+      1504,
+      16
+     ],
+     "size": [
+      192.0,
+      192,
+      16
+     ],
+     "top": 16,
+     "center": [
+      960.0,
+      1408.0,
+      8.0
+     ],
+     "hinge": [
+      960.0,
+      1312,
+      8
+     ],
+     "tilt": "20 deg about the u axis at v=128, 10 deg/s",
+     "note": "(bridge #39) passable root (it only turns) carrying tb_tilt_panel, a 192 x 192 x 16 solid func_brush (top z 16); the lattice plates are gone"
+    },
+    "tb_tilt_panel": {
+     "classname": "func_brush",
+     "mins": [
+      864.0,
+      1312,
+      0
+     ],
+     "maxs": [
+      1056.0,
+      1504,
+      16
+     ],
+     "size": [
+      192.0,
+      192,
+      16
+     ],
+     "top": 16,
+     "center": [
+      960.0,
+      1408.0,
+      8.0
+     ],
+     "parent": "tb_tilt",
+     "note": "(bridge #39) the solid walking surface, parented to tb_tilt"
+    },
+    "tb_ramp_arm": {
+     "classname": "prop_dynamic",
+     "origin": [
+      960.0,
+      1612,
+      16
+     ],
+     "angles": [
+      -90,
+      270.0,
+      0
+     ],
+     "note": "(bridge #39) Valve's arm64x64_interior_rusty (solid 6), animated by SetAnimation rampa_stair01_up / _down"
+    },
+    "tb_ramp": {
+     "classname": "func_brush",
+     "mins": [
+      912.0,
+      1564,
+      8
+     ],
+     "maxs": [
+      1008.0,
+      1660,
+      16
+     ],
+     "size": [
+      96.0,
+      96,
+      8
+     ],
+     "top": 16,
+     "center": [
+      960.0,
+      1612.0,
+      12.0
+     ],
+     "parent": "tb_ramp_arm",
+     "tilt": "15 deg and about +23 u along +v, +5 u up over 1.7 s (rampa_stair01_up)",
+     "note": "(bridge #39) 96 x 96 x 8 solid panel (rest top z 16) attached to the arm's panel_attach: Valve's moving-panel pattern, no Source pusher"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_tilt",
+     "fires": [
+      "tb_tilt Open ",
+      "tb_ramp_arm SetAnimation rampa_stair01_up",
+      "tb_ramp_arm SetDefaultAnimation rampa_stair01_up_idleend"
+     ],
+     "expect": "192 x 192 panel (tb_tilt_panel) tilts 20 degrees about its v=128 edge in 2 s; at the back of the bay the arm panel tb_ramp slides 23 u, rises 5 u and tips 15 degrees in 1.7 s"
+    },
+    "reset": {
+     "name": "tb_reset_tilt",
+     "fires": [
+      "tb_tilt Close ",
+      "tb_ramp_arm SetAnimation rampa_stair01_down",
+      "tb_ramp_arm SetDefaultAnimation rampa_stair01_down_idleend"
+     ],
+     "expect": "both back to level"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "N",
+   "slot": 6,
+   "nslots": 1,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_tilt",
+   "settle_s": 4,
+   "ride": true,
+   "ride_moves": true,
+   "interior": {
+    "min": [
+     832.0,
+     1184.0,
+     0
+    ],
+    "max": [
+     1088.0,
+     1696.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     768.0,
+     1120.0,
+     -64
+    ],
+    "max": [
+     1152.0,
+     1760.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_tilt",
+    "origin": [
+     960.0,
+     1024,
+     8
+    ],
+    "yaw": 90
+   },
+   "inside": {
+    "origin": [
+     960.0,
+     1280,
+     8
+    ],
+    "yaw": 90
+   },
+   "u_dir": [
+    -1,
+    0
+   ],
+   "into_dir": [
+    0,
+    1
+   ]
+  },
+  "doorpanel": {
+   "name": "doorpanel",
+   "entities": {
+    "tb_doorpanel_lift": {
+     "classname": "func_door",
+     "mins": [
+      -1472,
+      -1024.0,
+      -128
+     ],
+     "maxs": [
+      -1344,
+      -896.0,
+      0
+     ],
+     "size": [
+      128,
+      128.0,
+      128
+     ],
+     "top": 0,
+     "center": [
+      -1408.0,
+      -960.0,
+      -64.0
+     ],
+     "movedir": "up",
+     "travel": 128,
+     "speed": 48,
+     "child": "tb_doorpanel_model",
+     "top0": 0
+    },
+    "tb_doorpanel_model": {
+     "classname": "prop_dynamic",
+     "origin": [
+      -1376,
+      -928.0,
+      0
+     ],
+     "parent": "tb_doorpanel_lift",
+     "note": "arm_64x64_justtop (solid 6) x4 parented to the nodraw door cube, top flush with the floor (the first is this one)"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_doorpanel",
+     "fires": [
+      "tb_doorpanel_lift Open "
+     ],
+     "expect": "nodraw func_door cube (z -128..0) rises 128 u at 48 u/s carrying four parented arm_64x64_justtop plates; the walkable top goes z 0 -> 128"
+    },
+    "reset": {
+     "name": "tb_reset_doorpanel",
+     "fires": [
+      "tb_doorpanel_lift Close "
+     ],
+     "expect": "back down"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "W",
+   "slot": 0,
+   "nslots": 1,
+   "depth": 512,
+   "height": 384,
+   "main": "tb_doorpanel_lift",
+   "settle_s": 5,
+   "ride": true,
+   "ride_moves": true,
+   "interior": {
+    "min": [
+     -1696.0,
+     -1088.0,
+     0
+    ],
+    "max": [
+     -1184.0,
+     -832.0,
+     384
+    ]
+   },
+   "bounds": {
+    "min": [
+     -1760.0,
+     -1152.0,
+     -64
+    ],
+    "max": [
+     -1120.0,
+     -768.0,
+     448
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_doorpanel",
+    "origin": [
+     -1024,
+     -960.0,
+     8
+    ],
+    "yaw": 180
+   },
+   "inside": {
+    "origin": [
+     -1280,
+     -960.0,
+     8
+    ],
+    "yaw": 180
+   },
+   "u_dir": [
+    0,
+    -1
+   ],
+   "into_dir": [
+    -1,
+    0
+   ]
+  },
+  "arm": {
+   "name": "arm",
+   "entities": {
+    "tb_arm": {
+     "classname": "func_instance",
+     "origin": [
+      -1344,
+      -544.0,
+      64
+     ],
+     "note": "stairs.vmf: arm_8panel ramp, 4 func_brush steps on it; inner names tb_arm-*"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_arm",
+     "fires": [
+      "tb_arm-counter Add 1"
+     ],
+     "expect": "tb_arm-model_arms animates (SetPlaybackRate/animation): the 8-panel arm unfolds into a stair ramp along +v"
+    },
+    "reset": {
+     "name": "tb_reset_arm",
+     "fires": [
+      "tb_arm-counter Subtract 1"
+     ],
+     "expect": "arm folds back down"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "W",
+   "slot": 1,
+   "nslots": 1,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_arm-model_arms",
+   "settle_s": 5,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     -1696.0,
+     -768.0,
+     0
+    ],
+    "max": [
+     -1184.0,
+     -512.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     -1760.0,
+     -832.0,
+     -64
+    ],
+    "max": [
+     -1120.0,
+     -448.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_arm",
+    "origin": [
+     -1024,
+     -640.0,
+     8
+    ],
+    "yaw": 180
+   },
+   "inside": {
+    "origin": [
+     -1280,
+     -640.0,
+     8
+    ],
+    "yaw": 180
+   },
+   "u_dir": [
+    0,
+    -1
+   ],
+   "into_dir": [
+    -1,
+    0
+   ]
+  },
+  "cubes": {
+   "name": "cubes",
+   "entities": {
+    "tb_cube": {
+     "classname": "prop_weighted_cube",
+     "origin": [
+      -1440,
+      -320.0,
+      224
+     ],
+     "note": "starts 224 u up and falls; ForceSpawn of tb_cube_template drops another"
+    },
+    "tb_cube_template": {
+     "classname": "point_template",
+     "origin": [
+      -1440,
+      -320.0,
+      224
+     ]
+    },
+    "tb_btn_floor": {
+     "classname": "prop_floor_button",
+     "origin": [
+      -1344,
+      -224.0,
+      0
+     ],
+     "note": "pressed by the cube or a player; lights tb_btn_lamp"
+    },
+    "tb_btn_pedestal": {
+     "classname": "prop_button",
+     "origin": [
+      -1344,
+      -416.0,
+      0
+     ],
+     "note": "timer button, 2 s"
+    },
+    "tb_btn_lamp": {
+     "classname": "light",
+     "origin": [
+      -1344,
+      -224.0,
+      200
+     ]
+    },
+    "tb_btn_lamp2": {
+     "classname": "light",
+     "origin": [
+      -1344,
+      -416.0,
+      200
+     ]
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_cubes",
+     "fires": [
+      "tb_cube_template ForceSpawn ",
+      "tb_btn_floor PressIn ",
+      "tb_btn_pedestal Press "
+     ],
+     "expect": "a new cube appears at tb_cube's start spot and falls 224 u to the floor; both buttons are pressed, their lamps come on"
+    },
+    "reset": {
+     "name": "tb_reset_cubes",
+     "fires": [
+      "tb_cube Dissolve ",
+      "tb_btn_floor PressOut "
+     ],
+     "expect": "every cube dissolves, floor button released"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "W",
+   "slot": 2,
+   "nslots": 1,
+   "depth": 512,
+   "height": 320,
+   "main": "tb_btn_floor",
+   "settle_s": 4,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     -1696.0,
+     -448.0,
+     0
+    ],
+    "max": [
+     -1184.0,
+     -192.0,
+     320
+    ]
+   },
+   "bounds": {
+    "min": [
+     -1760.0,
+     -512.0,
+     -64
+    ],
+    "max": [
+     -1120.0,
+     -128.0,
+     384
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_cubes",
+    "origin": [
+     -1024,
+     -320.0,
+     8
+    ],
+    "yaw": 180
+   },
+   "inside": {
+    "origin": [
+     -1280,
+     -320.0,
+     8
+    ],
+    "yaw": 180
+   },
+   "u_dir": [
+    0,
+    -1
+   ],
+   "into_dir": [
+    -1,
+    0
+   ]
+  },
+  "laser": {
+   "name": "laser",
+   "entities": {
+    "tb_laser_emitter": {
+     "classname": "env_portal_laser",
+     "origin": [
+      -1440.0,
+      464.0,
+      64
+     ],
+     "beam": "+u across the bay at z=64, v=256"
+    },
+    "tb_laser_catcher": {
+     "classname": "prop_laser_catcher",
+     "origin": [
+      -1440.0,
+      -144.0,
+      64
+     ],
+     "note": "receives the emitter's beam; lights tb_laser_lamp"
+    },
+    "tb_laser_relay": {
+     "classname": "prop_laser_relay",
+     "origin": [
+      -1695,
+      160.0,
+      63
+     ],
+     "note": "on the back wall; powered by a redirected beam"
+    },
+    "tb_laser_cube": {
+     "classname": "prop_weighted_cube",
+     "origin": [
+      -1312,
+      224.0,
+      32
+     ],
+     "note": "reflective cube (CubeType 1): pick up and put in the beam"
+    },
+    "tb_laser_lamp": {
+     "classname": "light",
+     "origin": [
+      -1484,
+      160.0,
+      240
+     ]
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_laser",
+     "fires": [
+      "tb_laser_emitter TurnOn "
+     ],
+     "expect": "beam from tb_laser_emitter (left wall) crosses 576 u to tb_laser_catcher; the catcher powers and tb_laser_lamp lights"
+    },
+    "reset": {
+     "name": "tb_reset_laser",
+     "fires": [
+      "tb_laser_emitter TurnOff "
+     ],
+     "expect": "beam off, catcher unpowered, lamp off"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "W",
+   "slot": 3,
+   "nslots": 2,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_laser_emitter",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     -1696.0,
+     -128.0,
+     0
+    ],
+    "max": [
+     -1184.0,
+     448.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     -1760.0,
+     -192.0,
+     -64
+    ],
+    "max": [
+     -1120.0,
+     512.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_laser",
+    "origin": [
+     -1024,
+     160.0,
+     8
+    ],
+    "yaw": 180
+   },
+   "inside": {
+    "origin": [
+     -1280,
+     160.0,
+     8
+    ],
+    "yaw": 180
+   },
+   "u_dir": [
+    0,
+    -1
+   ],
+   "into_dir": [
+    -1,
+    0
+   ]
+  },
+  "bridge": {
+   "name": "bridge",
+   "entities": {
+    "tb_bridge": {
+     "classname": "prop_wall_projector",
+     "origin": [
+      -1440.0,
+      760.0,
+      40
+     ],
+     "note": "left wall, projects +u across a 128 u wide, 192 deep pit"
+    },
+    "tb_bridge_pit": {
+     "classname": "info_target",
+     "origin": [
+      -1440,
+      640.0,
+      -190
+     ],
+     "note": "bottom of the pit the bridge spans"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_bridge",
+     "fires": [
+      "tb_bridge Enable "
+     ],
+     "expect": "a light bridge crosses the pit (v 192..320, 192 deep) along the u axis at z=40 from the left wall to the right wall"
+    },
+    "reset": {
+     "name": "tb_reset_bridge",
+     "fires": [
+      "tb_bridge Disable "
+     ],
+     "expect": "bridge off"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "W",
+   "slot": 5,
+   "nslots": 1,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_bridge",
+   "settle_s": 4,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     -1696.0,
+     512.0,
+     0
+    ],
+    "max": [
+     -1184.0,
+     768.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     -1760.0,
+     448.0,
+     -64
+    ],
+    "max": [
+     -1120.0,
+     832.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_bridge",
+    "origin": [
+     -1324,
+     640.0,
+     8
+    ],
+    "yaw": 180
+   },
+   "inside": {
+    "origin": [
+     -1280,
+     640.0,
+     8
+    ],
+    "yaw": 180
+   },
+   "u_dir": [
+    0,
+    -1
+   ],
+   "into_dir": [
+    -1,
+    0
+   ]
+  },
+  "funnel": {
+   "name": "funnel",
+   "entities": {
+    "tb_funnel": {
+     "classname": "prop_tractor_beam",
+     "origin": [
+      -1440,
+      960.0,
+      0
+     ],
+     "note": "floor emitter, beam up to the ceiling at z=384"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_funnel",
+     "fires": [
+      "tb_funnel Enable "
+     ],
+     "expect": "excursion funnel rises from the floor at u=0, v=256 to the ceiling; entering it lifts a player or cube at 250 u/s"
+    },
+    "reset": {
+     "name": "tb_reset_funnel",
+     "fires": [
+      "tb_funnel Disable "
+     ],
+     "expect": "funnel off"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "W",
+   "slot": 6,
+   "nslots": 1,
+   "depth": 512,
+   "height": 384,
+   "main": "tb_funnel",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     -1696.0,
+     832.0,
+     0
+    ],
+    "max": [
+     -1184.0,
+     1088.0,
+     384
+    ]
+   },
+   "bounds": {
+    "min": [
+     -1760.0,
+     768.0,
+     -64
+    ],
+    "max": [
+     -1120.0,
+     1152.0,
+     448
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_funnel",
+    "origin": [
+     -1024,
+     960.0,
+     8
+    ],
+    "yaw": 180
+   },
+   "inside": {
+    "origin": [
+     -1280,
+     960.0,
+     8
+    ],
+    "yaw": 180
+   },
+   "u_dir": [
+    0,
+    -1
+   ],
+   "into_dir": [
+    -1,
+    0
+   ]
+  },
+  "faith": {
+   "name": "faith",
+   "entities": {
+    "tb_faith": {
+     "classname": "trigger_catapult",
+     "mins": [
+      1248,
+      -1024.0,
+      0
+     ],
+     "maxs": [
+      1376,
+      -896.0,
+      64
+     ],
+     "size": [
+      128,
+      128.0,
+      64
+     ],
+     "top": 64,
+     "center": [
+      1312.0,
+      -960.0,
+      32.0
+     ],
+     "speed": 350,
+     "target": "tb_faith_target",
+     "note": "(bridge #32) speed 350 and no threshold check: a standing player is launched along a 75 u high arc; Valve's maps use 600 and useThresholdCheck 1"
+    },
+    "tb_faith_arm": {
+     "classname": "prop_dynamic",
+     "origin": [
+      1312,
+      -960.0,
+      -64
+     ]
+    },
+    "tb_faith_target": {
+     "classname": "info_target",
+     "origin": [
+      1696,
+      -960.0,
+      0
+     ],
+     "note": "landing spot, 384 u from the plate along +v"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_faith",
+     "fires": [
+      "tb_faith Enable ",
+      "tb_faith_arm SetAnimation angled"
+     ],
+     "expect": "plate arm animates and the catapult trigger is armed: stepping on the plate launches a player or cube at 350 u/s to tb_faith_target (an arc about 75 u high)"
+    },
+    "reset": {
+     "name": "tb_reset_faith",
+     "fires": [
+      "tb_faith Disable ",
+      "tb_faith_arm SetAnimation straightup"
+     ],
+     "expect": "catapult disabled"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "E",
+   "slot": 0,
+   "nslots": 1,
+   "depth": 640,
+   "height": 384,
+   "main": "tb_faith_arm",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     1184.0,
+     -1088.0,
+     0
+    ],
+    "max": [
+     1824.0,
+     -832.0,
+     384
+    ]
+   },
+   "bounds": {
+    "min": [
+     1120.0,
+     -1152.0,
+     -64
+    ],
+    "max": [
+     1888.0,
+     -768.0,
+     448
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_faith",
+    "origin": [
+     1024,
+     -960.0,
+     8
+    ],
+    "yaw": 0
+   },
+   "inside": {
+    "origin": [
+     1280,
+     -960.0,
+     8
+    ],
+    "yaw": 0
+   },
+   "u_dir": [
+    0,
+    1
+   ],
+   "into_dir": [
+    1,
+    0
+   ]
+  },
+  "fizzler": {
+   "name": "fizzler",
+   "entities": {
+    "tb_fizzler": {
+     "classname": "trigger_portal_cleanser",
+     "mins": [
+      1455.5,
+      -704.0,
+      0
+     ],
+     "maxs": [
+      1456.5,
+      -576.0,
+      128
+     ],
+     "size": [
+      1.0,
+      128.0,
+      128
+     ],
+     "top": 128,
+     "center": [
+      1456.0,
+      -640.0,
+      64.0
+     ],
+     "note": "128 x 128 emancipation grid in the partition doorway at v=272"
+    },
+    "tb_fizzler_model": {
+     "classname": "prop_dynamic",
+     "origin": [
+      1456,
+      -640.0,
+      64
+     ]
+    },
+    "tb_fizz_cube": {
+     "classname": "prop_weighted_cube",
+     "origin": [
+      1334,
+      -640.0,
+      32
+     ],
+     "note": "carry it into the grid to see it dissolve"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_fizzler",
+     "fires": [
+      "tb_fizzler Disable ",
+      "tb_fizzler_model Disable "
+     ],
+     "expect": "grid turns OFF (it starts on): the doorway at v=272 can be crossed by a cube or a portal"
+    },
+    "reset": {
+     "name": "tb_reset_fizzler",
+     "fires": [
+      "tb_fizzler Enable ",
+      "tb_fizzler_model Enable ",
+      "tb_fizz_cube Kill ",
+      "tb_fizz_cube_template ForceSpawn "
+     ],
+     "expect": "grid on again: anything crossing it is fizzled"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "E",
+   "slot": 1,
+   "nslots": 1,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_fizzler_model",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     1184.0,
+     -768.0,
+     0
+    ],
+    "max": [
+     1696.0,
+     -512.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     1120.0,
+     -832.0,
+     -64
+    ],
+    "max": [
+     1760.0,
+     -448.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_fizzler",
+    "origin": [
+     1024,
+     -640.0,
+     8
+    ],
+    "yaw": 0
+   },
+   "inside": {
+    "origin": [
+     1280,
+     -640.0,
+     8
+    ],
+    "yaw": 0
+   },
+   "u_dir": [
+    0,
+    1
+   ],
+   "into_dir": [
+    1,
+    0
+   ]
+  },
+  "turret": {
+   "name": "turret",
+   "entities": {
+    "tb_turret": {
+     "classname": "npc_portal_turret_floor",
+     "origin": [
+      1404,
+      -320.0,
+      0
+     ],
+     "note": "faces the bay opening, range 1024, starts inactive"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_turret",
+     "fires": [
+      "tb_turret Enable "
+     ],
+     "expect": "turret wakes and tracks/fires at anything in its 1024 u range along its facing (toward the hall)"
+    },
+    "reset": {
+     "name": "tb_reset_turret",
+     "fires": [
+      "tb_turret Disable "
+     ],
+     "expect": "turret sleeps"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "E",
+   "slot": 2,
+   "nslots": 1,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_turret",
+   "settle_s": 4,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     1184.0,
+     -448.0,
+     0
+    ],
+    "max": [
+     1696.0,
+     -192.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     1120.0,
+     -512.0,
+     -64
+    ],
+    "max": [
+     1760.0,
+     -128.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_turret",
+    "origin": [
+     1024,
+     -320.0,
+     8
+    ],
+    "yaw": 0
+   },
+   "inside": {
+    "origin": [
+     1280,
+     -320.0,
+     8
+    ],
+    "yaw": 0
+   },
+   "u_dir": [
+    0,
+    1
+   ],
+   "into_dir": [
+    1,
+    0
+   ]
+  },
+  "goo": {
+   "name": "goo",
+   "entities": {
+    "tb_goo_hurt": {
+     "classname": "trigger_hurt",
+     "mins": [
+      1344.0,
+      -128.0,
+      -96
+     ],
+     "maxs": [
+      1584.0,
+      128.0,
+      -16
+     ],
+     "size": [
+      240.0,
+      256.0,
+      80
+     ],
+     "top": -16,
+     "center": [
+      1464.0,
+      0.0,
+      -56.0
+     ],
+     "note": "kills on contact; goo surface z=-32, pit v 160..400 across the whole bay width"
+    },
+    "tb_goo_surface": {
+     "classname": "info_target",
+     "origin": [
+      1464,
+      0.0,
+      -32
+     ]
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_goo",
+     "fires": [
+      "tb_goo_hurt Disable "
+     ],
+     "expect": "goo stops hurting (go = harmless), reset = deadly again; the pit is 240 u deep in v, 96 u deep"
+    },
+    "reset": {
+     "name": "tb_reset_goo",
+     "fires": [
+      "tb_goo_hurt Enable "
+     ],
+     "expect": "goo hurts again"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "E",
+   "slot": 3,
+   "nslots": 1,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_goo_surface",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     1184.0,
+     -128.0,
+     0
+    ],
+    "max": [
+     1696.0,
+     128.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     1120.0,
+     -192.0,
+     -64
+    ],
+    "max": [
+     1760.0,
+     192.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_goo",
+    "origin": [
+     1024,
+     0.0,
+     8
+    ],
+    "yaw": 0
+   },
+   "inside": {
+    "origin": [
+     1280,
+     0.0,
+     8
+    ],
+    "yaw": 0
+   },
+   "u_dir": [
+    0,
+    1
+   ],
+   "into_dir": [
+    1,
+    0
+   ]
+  },
+  "doors": {
+   "name": "doors",
+   "entities": {
+    "tb_door": {
+     "classname": "prop_testchamber_door",
+     "origin": [
+      1456,
+      320.0,
+      0
+     ],
+     "note": "test chamber door in the partition, doorway 128 x 128"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_doors",
+     "fires": [
+      "tb_door Open "
+     ],
+     "expect": "door animates open (about 1.5 s), the doorway at v=272 is passable"
+    },
+    "reset": {
+     "name": "tb_reset_doors",
+     "fires": [
+      "tb_door Close "
+     ],
+     "expect": "door closes"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "E",
+   "slot": 4,
+   "nslots": 1,
+   "depth": 512,
+   "height": 256,
+   "main": "tb_door",
+   "settle_s": 3,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     1184.0,
+     192.0,
+     0
+    ],
+    "max": [
+     1696.0,
+     448.0,
+     256
+    ]
+   },
+   "bounds": {
+    "min": [
+     1120.0,
+     128.0,
+     -64
+    ],
+    "max": [
+     1760.0,
+     512.0,
+     320
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_doors",
+    "origin": [
+     1024,
+     320.0,
+     8
+    ],
+    "yaw": 0
+   },
+   "inside": {
+    "origin": [
+     1280,
+     320.0,
+     8
+    ],
+    "yaw": 0
+   },
+   "u_dir": [
+    0,
+    1
+   ],
+   "into_dir": [
+    1,
+    0
+   ]
+  },
+  "gel": {
+   "name": "gel",
+   "entities": {
+    "tb_gel": {
+     "classname": "info_paint_sprayer",
+     "origin": [
+      1440,
+      640.0,
+      300
+     ],
+     "note": "blue (bounce) gel straight down onto the floor at v=256"
+    },
+    "tb_gel_floor": {
+     "classname": "info_target",
+     "origin": [
+      1440.0,
+      640.0,
+      0.0
+     ],
+     "mins": [
+      1376,
+      576.0,
+      0
+     ],
+     "maxs": [
+      1504,
+      704.0,
+      0
+     ],
+     "size": [
+      128,
+      128.0,
+      0
+     ],
+     "top": 0,
+     "center": [
+      1440.0,
+      640.0,
+      0.0
+     ],
+     "panel": "floor",
+     "portalable": true,
+     "normal": [
+      0,
+      0,
+      1
+     ],
+     "note": "floor under the sprayer"
+    }
+   },
+   "relays": {
+    "go": {
+     "name": "tb_go_gel",
+     "fires": [
+      "tb_gel Start "
+     ],
+     "expect": "gel falls from the ceiling at u=0 v=256 (8 blobs/s, 60 u/s) and coats the floor"
+    },
+    "reset": {
+     "name": "tb_reset_gel",
+     "fires": [
+      "tb_gel Stop "
+     ],
+     "expect": "sprayer stops"
+    }
+   },
+   "panels": {},
+   "notes": [],
+   "side": "E",
+   "slot": 5,
+   "nslots": 1,
+   "depth": 512,
+   "height": 320,
+   "main": "tb_gel",
+   "settle_s": 4,
+   "ride": false,
+   "ride_moves": false,
+   "interior": {
+    "min": [
+     1184.0,
+     512.0,
+     0
+    ],
+    "max": [
+     1696.0,
+     768.0,
+     320
+    ]
+   },
+   "bounds": {
+    "min": [
+     1120.0,
+     448.0,
+     -64
+    ],
+    "max": [
+     1760.0,
+     832.0,
+     384
+    ]
+   },
+   "spot": {
+    "name": "tb_spot_gel",
+    "origin": [
+     1024,
+     640.0,
+     8
+    ],
+    "yaw": 0
+   },
+   "inside": {
+    "origin": [
+     1280,
+     640.0,
+     8
+    ],
+    "yaw": 0
+   },
+   "u_dir": [
+    0,
+    1
+   ],
+   "into_dir": [
+    1,
+    0
+   ]
+  }
+ }
+}

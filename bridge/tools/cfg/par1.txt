@@ -1,0 +1,204 @@
+sv_cheats 1
+pc_pit_redirect_mode 2
+fps_max 0
+pcb_assert_soft 1
+# --- prelude: deterministic portal pair in pc_pit_flings (portal_place, verified), redirect checked
+waituntil spawned 600
+waituntil link 1800
+waituntil exit 1800
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_portals
+pcb_assert_portal 0 128 -384 -767.5 4
+pcb_assert_redirect
+noclip
+setpos 128 -384 -500
+setang 89 0 0
+wait 120
+pcb_assert_frames
+# --- end prelude
+pcb_log PAR stand on the ledge 2 blocks in front of the cliff portal, looking at it
+setpos -200 -40 -14080
+noclip
+wait 6
+pcb_assert_noclip 0
+wait 90
+pcb_where
+pcb_log PHASE A rotation-only
+setpos -200 -40 -14080
+wait 30
+pcb_aim -120.8 -40 -13908
+pcb_composite_depth 0 0
+wait 40
+pcb_drift
++moveleft
+wait 15
+screenshot pcb_p_A_strafe
+wait 15
+-moveleft
+wait 10
++moveright
+wait 60
+-moveright
+wait 10
++moveleft
+wait 30
+-moveleft
+wait 10
++back
+wait 15
+-back
+wait 10
++forward
+wait 15
+-forward
+wait 20
+pcb_log PHASE A result
+pcb_drift
+pcb_where
+pcb_composite_lag
+pcb_log PHASE B position-prediction
+setpos -200 -40 -14080
+wait 30
+pcb_aim -120.8 -40 -13908
+pcb_composite_depth 0 1
+wait 40
+pcb_drift
++moveleft
+wait 15
+screenshot pcb_p_B_strafe
+wait 15
+-moveleft
+wait 10
++moveright
+wait 60
+-moveright
+wait 10
++moveleft
+wait 30
+-moveleft
+wait 10
++back
+wait 15
+-back
+wait 10
++forward
+wait 15
+-forward
+wait 20
+pcb_log PHASE B result
+pcb_drift
+pcb_where
+pcb_composite_lag
+pcb_log PHASE C depth-mesh+prediction
+setpos -200 -40 -14080
+wait 30
+pcb_aim -120.8 -40 -13908
+pcb_composite_depth 1 1
+wait 40
+pcb_drift
++moveleft
+wait 15
+screenshot pcb_p_C_strafe
+wait 15
+-moveleft
+wait 10
++moveright
+wait 60
+-moveright
+wait 10
++moveleft
+wait 30
+-moveleft
+wait 10
++back
+wait 15
+-back
+wait 10
++forward
+wait 15
+-forward
+wait 20
+pcb_log PHASE C result
+pcb_drift
+pcb_where
+pcb_composite_lag
+pcb_log PHASE D depth-mesh-only
+setpos -200 -40 -14080
+wait 30
+pcb_aim -120.8 -40 -13908
+pcb_composite_depth 1 0
+wait 40
+pcb_drift
++moveleft
+wait 15
+screenshot pcb_p_D_strafe
+wait 15
+-moveleft
+wait 10
++moveright
+wait 60
+-moveright
+wait 10
++moveleft
+wait 30
+-moveleft
+wait 10
++back
+wait 15
+-back
+wait 10
++forward
+wait 15
+-forward
+wait 20
+pcb_log PHASE D result
+pcb_drift
+pcb_where
+pcb_composite_lag
+pcb_log CHECK 6 the cliff portal behind a terrain ridge
+noclip
+wait 6
+pcb_assert_noclip 1
+pcb_view_occluded
+wait 90
+pcb_composite_depth 0 1
+wait 60
+screenshot pcb_o_before_mesh_off
+wait 10
+pcb_composite_depth 1 1
+wait 60
+screenshot pcb_o_after_mesh_on
+pcb_assert_occluded
+wait 8
+wait 10
+pcb_log CHECK 3/4 masks with the depth mesh on
+pcb_view_portal r 80 0 1
+wait 75
+pcb_assert_mask m_d2
+wait 8
+screenshot pcb_m2_d2
+pcb_view_portal r 1200 0 1
+wait 75
+pcb_assert_mask m_d30
+wait 8
+screenshot pcb_m2_d30
+pcb_view_portal r 600 50 0
+wait 75
+pcb_assert_mask m_d15look50
+wait 8
+screenshot pcb_m2_d15look50
+pcb_view_portal r 8 80
+wait 60
+pcb_assert_mask m_n8a80
+wait 8
+screenshot pcb_m2_n8a80
+pcb_view_portal r 150 20 1
+wait 75
+screenshot pcb_m2_like5
+pcb_composite_depth
+pcb_composite_mask
+pcb_run_summary
+quit

@@ -1,0 +1,292 @@
+# mask1: items 1-4 + lead's A/B. Pinned cliff exit; noclip through blocks; the cliff portal's
+# mask at 2/10/30/60 blocks and oblique, near/grazing (2/8/32 u at 0/45/80 deg); every frame of a
+# walk-back transit; real-gun portals + walking onto the pit floor portal (the user's path) and a
+# look-down drop, with every frame checked for white. Soft asserts: every check runs, summary at the end.
+sv_cheats 1
+pc_pit_redirect_mode 2
+fps_max 0
+pcb_assert_soft 1
+# --- prelude: deterministic portal pair in pc_pit_flings (portal_place, verified), redirect checked
+waituntil spawned 600
+waituntil link 1800
+waituntil exit 1800
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_portals
+pcb_assert_portal 0 128 -384 -767.5 4
+pcb_assert_redirect
+noclip
+setpos 128 -384 -500
+setang 89 0 0
+wait 120
+pcb_assert_frames
+# --- end prelude
+pcb_log CHECK 1 pinned exit
+pcb_assert_exit
+pcb_log CHECK 2 noclip flies out of rock (5 blocks along the face from the portal, 3 blocks deep)
+wait 6
+pcb_assert_noclip 1
+setpos 0 160 -13944
+setang 0 180 0
+wait 20
++forward
+wait 50
+-forward
+wait 10
+pcb_where
+pcb_assert_player_axis x lt -200
+pcb_log CHECK 3/4 mask at 2, 10, 30, 60 blocks
+pcb_view_portal r 80 0 1
+wait 75
+pcb_assert_mask d2
+wait 8
+screenshot pcb_m_d2
+pcb_view_portal r 150 20 1
+wait 75
+pcb_assert_mask d4a20
+wait 8
+screenshot pcb_m_d4a20
+pcb_view_portal r 400 0 1
+wait 75
+pcb_assert_mask d10
+wait 8
+screenshot pcb_m_d10
+pcb_view_portal r 1200 0 1
+wait 75
+pcb_assert_mask d30
+wait 8
+screenshot pcb_m_d30
+pcb_view_portal r 2400 0 1
+wait 75
+pcb_assert_mask d60
+wait 8
+screenshot pcb_m_d60
+pcb_log CHECK 3/4 oblique
+pcb_view_portal r 400 45 1
+wait 75
+pcb_assert_mask d10a45
+wait 8
+screenshot pcb_m_d10a45
+pcb_view_portal r 400 70 1
+wait 75
+pcb_assert_mask d10a70
+wait 8
+pcb_view_portal r 1200 -60 1
+wait 75
+pcb_assert_mask d30a60
+wait 8
+screenshot pcb_m_d30a60
+pcb_view_portal r 600 50 0
+wait 75
+pcb_assert_mask d15look50
+wait 8
+screenshot pcb_m_d15look50
+pcb_log CHECK A near and grazing (eye 2/8/32 u from the plane, looking 0/45/80 deg off the normal)
+pcb_view_portal r 2 0
+wait 60
+pcb_assert_mask n2a0
+wait 8
+pcb_view_portal r 2 45
+wait 60
+pcb_assert_mask n2a45
+wait 8
+pcb_view_portal r 2 80
+wait 60
+pcb_assert_mask n2a80
+wait 8
+screenshot pcb_m_n2a80
+pcb_view_portal r 8 0
+wait 60
+pcb_assert_mask n8a0
+wait 8
+pcb_view_portal r 8 45
+wait 60
+pcb_assert_mask n8a45
+wait 8
+pcb_view_portal r 8 80
+wait 60
+pcb_assert_mask n8a80
+wait 8
+screenshot pcb_m_n8a80
+pcb_view_portal r 32 0
+wait 60
+pcb_assert_mask n32a0
+wait 8
+pcb_view_portal r 32 45
+wait 60
+pcb_assert_mask n32a45
+wait 8
+pcb_view_portal r 32 80
+wait 60
+pcb_assert_mask n32a80
+wait 8
+screenshot pcb_m_n32a80
+pcb_log CHECK A walk back through the cliff portal (noclip flight: the patch is 3 blocks above the ledge), every frame
+pcb_view_portal r 72 0
+wait 40
+pcb_frame_watch 150 walkback
++forward
+wait 40
+-forward
+wait 110
+pcb_assert_watch 5
+pcb_where
+pcb_assert_player_axis z gt -2000
+pcb_log CHECK B real gun portals, walk onto the pit floor portal (the user's path), every frame
+wait 6
+pcb_assert_noclip 1
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 90
+pcb_assert_portals
+pcb_assert_redirect
+setpos 134 -384 -740
+setang 60 -90 0
+wait 6
+pcb_assert_no_flash reset
+pcb_frame_watch 280 natural
+pcb_track 300 6
+noclip
+wait 6
+pcb_assert_noclip 0
+wait 20
++jump
+wait 3
+-jump
+wait 300
+pcb_assert_watch 30
+pcb_assert_no_flash
+pcb_assert_player_below -13000
+pcb_assert_roll 1
+screenshot pcb_m_after_natural
+pcb_log CHECK B look-down drop into the floor portal, every frame
+noclip
+wait 6
+pcb_assert_noclip 1
+setpos 128 -384 -100
+setang 89 0 0
+wait 60
+noclip
+wait 6
+pcb_assert_noclip 0
+pcb_assert_no_flash reset
+pcb_frame_watch 300 dropdown
+wait 300
+pcb_assert_watch 30
+pcb_assert_no_flash
+pcb_assert_player_below -13000
+pcb_assert_roll 1
+pcb_log CHECK 4b Chell's gun onto Minecraft terrain: blue on the ground in the region
+noclip
+wait 6
+pcb_assert_noclip 1
+setpos -1944 -40 -14900
+setang 89 0 0
+wait 30
+pcb_aim_flat 14
+wait 10
++attack
+wait 6
+-attack
+wait 40
+pcb_gun_blocks
+pcb_assert_gun_block 0 1
+pcb_assert_portals
+screenshot pcb_g_floor
+pcb_log CHECK 4b fall into the terrain floor portal, out of the cliff portal
+pcb_goto_portal 0 48
+wait 10
+pcb_assert_teleports reset
+noclip
+wait 6
+pcb_assert_noclip 0
+pcb_frame_watch 200 gunfloor
+wait 200
+pcb_assert_teleports 1
+pcb_where
+pcb_log CHECK 4b orange onto another part of the cliff face
+noclip
+wait 6
+pcb_assert_noclip 1
+pcb_view_portal r 320 0 1
+wait 20
+pcb_aim -120 120 -13900
+wait 10
++attack2
+wait 6
+-attack2
+wait 40
+pcb_gun_blocks
+pcb_assert_gun_block 1 0
+screenshot pcb_g_wall
+pcb_log CHECK 4b blue back on the pit floor: the terrain portal links to the chamber
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 60
+pcb_assert_portals
+pcb_assert_gun_block 1 0
+setpos 134 -384 -740
+setang 60 -90 0
+wait 6
+pcb_assert_teleports reset
+noclip
+wait 6
+pcb_assert_noclip 0
+wait 200
+pcb_assert_teleports 1
+pcb_assert_player_below -13000
+pcb_where
+screenshot pcb_g_out_terrain_portal
+pcb_log PERF static region view: mesh off / stride 2 / stride 1 / lock-step
+noclip
+wait 6
+pcb_view_portal r 400 30 1
+wait 30
+pcb_composite_depth 0 1
+wait 30
+pcb_composite_lag
+wait 240
+pcb_log PERF mesh off
+pcb_composite_lag
+pcb_composite_depth 1 1 0.002 2
+wait 30
+pcb_composite_lag
+wait 240
+pcb_log PERF mesh stride 2
+pcb_composite_lag
+pcb_composite_depth 1 1 0.002 1
+wait 30
+pcb_composite_lag
+wait 240
+pcb_log PERF mesh stride 1
+pcb_composite_lag
+pcb_composite_depth 1 1 0.002 2
+pcb_composite_lockstep 1 25
+wait 30
+pcb_composite_lag
+pcb_composite_lockstep 1
+wait 240
+pcb_log PERF lock-step
+pcb_composite_lag
+pcb_composite_lockstep 0
+pcb_composite_mask
+pcb_gun_blocks
+pcb_run_summary
+quit

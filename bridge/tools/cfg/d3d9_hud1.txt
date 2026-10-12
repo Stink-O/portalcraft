@@ -1,0 +1,60 @@
+# d3d9_hud1: the Minecraft hand/HUD on Direct3D 9 (hud_d3d9.cpp) under -vulkan, same poses as glhud1 (the GL reference: d3d9_hud1_gl.txt).
+# A  M2a probe: a test pattern uploaded every frame through the PBO into the plugin's own GL texture; the presented
+#    pixels are read back (red and green squares), togl's GL state checked after the restore, a PNG of the frame.
+# B  M2b: J to the Minecraft player (survival for the shot: hearts and hunger), a pickaxe in the hand: Minecraft's own
+#    hand + hotbar over Portal 2 (PNG); E opens the inventory (PNG, cursor); E closes it; J back.
+# Run: PCB_GAME_ARGS=-vulkan PCB_SO=<abs>/d3d9-x.so tools/locked_run.sh terrain tools/cfg/d3d9_hud1.txt pc_pit_flings 600 d3d9_hud1
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+pcb_audio_test_mute 1
+pcb_log A test pattern
+pcb_glhud_test 1
+wait 30
+pcb_glhud_stats reset
+wait 120
+pcb_glhud_probe 128 128
+wait 10
+pcb_assert_glhud_pixel 255 0 0 8
+pcb_glhud_probe 288 128
+wait 10
+pcb_assert_glhud_pixel 0 255 0 8
+pcb_assert_glhud 30
+pcb_glhud_shot v_a_pattern
+wait 60
+pcb_glhud_test 0
+pcb_log B Minecraft HUD
+pcb_noclip_set 1
+setpos -298 -416 -60
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_mc_cmd gamemode survival
+pcb_mc_cmd give @p minecraft:diamond_pickaxe
+bridge_mode mc
+waituntil mcmode 1200
+pcb_glhud_stats reset
+wait 120
+pcb_assert_glhud 30
+pcb_glhud_shot v_b_hud
+wait 60
+pcb_mckey 8 1
+wait 5
+pcb_mckey 8 0
+wait 90
+pcb_glhud_shot v_b_inventory
+wait 60
+pcb_mckey 8 1
+wait 5
+pcb_mckey 8 0
+wait 30
+bridge_mode chell
+waituntil chellmode 120
+wait 30
+pcb_mc_cmd gamemode creative
+pcb_glhud_stats
+pcb_run_summary
+quit

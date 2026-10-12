@@ -1,0 +1,192 @@
+# mcmc1 (placements validated by bridge #7: corridor in open air + gun, cliff walls + gun): Minecraft<->Minecraft portal pairs (both portals in the region): every region view drawn from
+# its own stream (no other camera's image reprojected into it), recursion tunnel, side by side on the
+# cliff, walking through repeatedly, the gun's own MC<->MC pair (val2 4b), frame times.
+pcb_assert_soft 1
+sv_cheats 1
+fps_max 0
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_noclip_set 1
+pcb_log T1 facing pair in the open air of the region, looking into the recursion tunnel
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_assert_gun_shot 0 placed wall
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_gun_shot 1 placed wall
+pcb_assert_portal_face
+pcb_view_from 0 3
+wait 120
+pcb_composite_lag
+pcb_assert_own_streams reset
+pcb_assert_mc_alive reset
+pcb_frame_watch 240 tunnel
+wait 240
+pcb_assert_own_streams
+pcb_assert_mc_alive 30
+pcb_assert_watch 1
+screenshot pcb_t1_tunnel
+wait 10
+pcb_log PROF tunnel
+pcb_composite_lag
+setang 0 180 0
+wait 90
+screenshot pcb_t1_tunnel_back
+pcb_log T1b turning in the tunnel
+pcb_assert_own_streams reset
+pcb_assert_mc_alive reset
++left
+wait 240
+-left
+pcb_assert_own_streams
+pcb_assert_mc_alive 30
+pcb_log PROF tunnel turning
+pcb_composite_lag
+pcb_log T2 side by side on the cliff face
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_find_surface wall 64 -1
+wait 20
++attack
+wait 6
+-attack
+wait 40
+waituntil terrain_idle 1200
+pcb_find_surface wall 64 0
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_portal_face
+pcb_view_from 0 4
+wait 120
+pcb_assert_own_streams reset
+pcb_assert_mc_alive reset
+pcb_frame_watch 180 sidebyside
+wait 180
+pcb_assert_own_streams
+pcb_assert_mc_alive 30
+pcb_assert_watch 1
+screenshot pcb_t2_side
+wait 10
+pcb_log T3 walking through the facing pair repeatedly
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_assert_gun_shot 0 placed wall
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_gun_shot 1 placed wall
+pcb_assert_portal_face
+pcb_assert_own_streams reset
+pcb_assert_mc_alive reset
+pcb_assert_teleports reset
+pcb_corridor_aim 1
+pcb_noclip_set 0
+wait 2
+pcb_launch_to p1 400
+wait 90
+pcb_noclip_set 1
+pcb_stop
+wait 10
+setpos -520 -40 -13860
+setang 0 180 0
+pcb_noclip_set 0
+wait 2
+pcb_launch_to p0 400
+wait 90
+pcb_noclip_set 1
+pcb_stop
+pcb_assert_teleports 2
+pcb_assert_own_streams
+pcb_assert_mc_alive 30
+pcb_where
+pcb_log T4 the gun's own pair on terrain (ground + cliff face)
+setpos -1944 -40 -14900
+setang 89 0 0
+wait 30
+pcb_aim_flat 14
+wait 10
++attack
+wait 6
+-attack
+wait 40
+pcb_assert_gun_block 0 1
+pcb_view_portal r 320 0 1
+wait 20
+pcb_aim -120 120 -13900
+wait 10
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_gun_block 1 0
+pcb_assert_portals
+pcb_goto_portal 0 160
+setang 89 0 0
+wait 90
+pcb_assert_own_streams reset
+pcb_assert_mc_alive reset
+pcb_frame_watch 180 gunpair
+wait 180
+pcb_assert_own_streams
+pcb_assert_mc_alive 30
+pcb_assert_watch 1
+screenshot pcb_t4_gunpair_down
+pcb_assert_teleports reset
+pcb_goto_portal 0 48
+pcb_noclip_set 0
+wait 200
+pcb_assert_teleports 1
+pcb_assert_own_streams
+pcb_assert_mc_alive 30
+screenshot pcb_t4_after
+pcb_log PROF all
+pcb_composite_lag
+pcb_assert_vmsize 3200
+pcb_build_corridor remove
+wait 30
+pcb_run_summary
+quit

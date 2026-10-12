@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "portalcraft",
+  "version": "${version}",
+  "name": "Portalcraft",
+  "description": "Portal 2 and Minecraft in one world. The Minecraft half of Portalcraft: it runs next to the real Portal 2 and shares one world with it, so you can dig through chambers and walk through portals into Minecraft. Derived from SkyCraft by chasmlol.",
+  "authors": [
+    "Stink-O",
+    { "name": "chasmlol", "contact": { "homepage": "https://github.com/chasmlol/SkyCraft" } }
+  ],
+  "contributors": [
+    "SkyCraft (chasmlol), the architecture and much of this mod, MIT",
+    "Create (The Creators of Create), mover collision, MIT"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Stink-O/portalcraft",
+    "sources": "https://github.com/Stink-O/portalcraft",
+    "issues": "https://github.com/Stink-O/portalcraft/issues"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "main": ["dev.skycraft.SkyCraft"],
+    "client": ["dev.skycraft.client.SkyCraftClient"]
+  },
+  "mixins": [
+    "portalcraft.mixins.json",
+    { "config": "portalcraft.client.mixins.json", "environment": "client" }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}

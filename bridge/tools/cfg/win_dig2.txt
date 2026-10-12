@@ -1,0 +1,56 @@
+# win_dig2 (Proton): a REAL dig by the Minecraft player (creative lmb) into sp_a1_intro1's bedroom side wall (the y 1647 face), so the mod sends its dug cells and walls.
+# Run: PCB_MC=1 PCB_LINK_FILE=Z:/dev/shm/Portalcraft_v1 PCB_WIN_UNVERIFIED=all PCB_PRE="pc_start_mode mc;pc_world unified" tools/run_game_proton.sh tools/cfg/win_dig2.txt sp_a1_intro1 900 <label>
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 900
+waituntil link 9000
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 600
+pcb_where
+pcb_mc_cmd gamemode creative
+pc_dig_render 2
+pcb_mc_cmd tp @p -119.0 752.76 -90.5
+wait 150
+pcb_setview 0 -90
+wait 60
+pcb_setview 0 -90
+wait 30
+pcb_where
+screenshot pcb_e0_before
+wait 5
+pcb_mckey lmb 1
+wait 300
+pcb_mckey lmb 0
+wait 120
+pcb_where
+pcb_dig_list
+pcb_dig_status
+pcb_terrain_stats
+pcb_band_stats
+pcb_setview 0 -90
+wait 30
+screenshot pcb_e1_after
+pcb_mc_cmd setblock -118 752 -91 minecraft:stone
+pcb_mc_cmd setblock -120 752 -91 minecraft:oak_planks
+wait 120
+pcb_aim_mc -118.5 752.5 -90.5
+wait 30
+screenshot pcb_e3_blocks
+pcb_band_stats
+pcb_setview 0 -90
+wait 20
+pc_cut_audit 1
+wait 20
+screenshot pcb_e4_audit
+pc_cut_audit 0
+pcb_mckey 26 1
+wait 60
+pcb_mckey 26 0
+wait 120
+pcb_where
+screenshot pcb_e2_inside
+pcb_terrain_stats
+pcb_band_stats
+pcb_run_summary
+quit

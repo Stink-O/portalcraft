@@ -1,0 +1,134 @@
+# b22_b (bridge #22, item 1): Minecraft mobs and items through the portal pair (pit floor portal <-> cliff portal), and Portal 2
+# objects seen through it from the far side. Everything summoned is tagged b22 and killed at the end (the user's world is clean).
+# A  from the pit (Chell, still, noclip): a pig and a diamond thrown into the cliff portal come up out of the floor portal.
+# B  from the region (Chell in front of the cliff): a pig dropped into the floor portal comes out of the cliff portal.
+# C  from the region: a frozen cube straddling the floor portal (Portal 2's clone sticks out of the cliff portal).
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+pcb_audio_test_mute 1
+waituntil spawned 600
+waituntil link 9000
+waituntil exit 3600
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_mc_cmd kill @e[tag=b22]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:porkchop"}}]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:rotten_flesh"}}]
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_redirect
+pcb_log A from the pit: a pig and an item into the cliff portal
+pcb_noclip_set 1
+setpos -60 -384 -690
+setang 25 0 0
+pcb_stop
+wait 60
+pcb_assert_scene_ghosts reset
+pcb_glhud_shot b22_a_before
+pcb_mc_cmd summon pig -332.2 95.05 425 {Tags:["b22"],DeathLootTable:"minecraft:empty",Motion:[0.8,0.0,0.0]}
+wait 6
+pcb_glhud_shot b22_a_1
+wait 6
+pcb_glhud_shot b22_a_2
+wait 6
+pcb_glhud_shot b22_a_3
+wait 6
+pcb_glhud_shot b22_a_4
+wait 10
+pcb_glhud_shot b22_a_5
+wait 20
+pcb_glhud_shot b22_a_6
+pcb_mc_cmd summon item -332.8 95.0 425.2 {Tags:["b22"],Item:{id:"minecraft:diamond",count:1},PickupDelay:32767,Motion:[0.5,0.05,0.1]}
+wait 8
+pcb_glhud_shot b22_a_item1
+wait 8
+pcb_glhud_shot b22_a_item2
+wait 30
+pcb_glhud_shot b22_a_item3
+pcb_scene_status
+pcb_mc_check a_pig_in_chamber entity @e[type=pig,tag=b22,x=-420,y=400,z=340,dx=200,dy=80,dz=200]
+pcb_mc_check a_item_in_chamber entity @e[type=item,tag=b22,x=-420,y=400,z=340,dx=200,dy=80,dz=200]
+wait 30
+pcb_assert_mc_say a_pig_in_chamber
+pcb_assert_mc_say a_item_in_chamber
+pcb_assert_scene_ghosts 1
+pcb_mc_cmd kill @e[tag=b22]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:porkchop"}}]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:rotten_flesh"}}]
+wait 30
+pcb_log A2 a still pig straddling the cliff portal's plane (head in the hole): its front half drawn through the pair, out of the floor portal
+pcb_assert_scene_ghosts reset
+pcb_mc_cmd summon pig -331.15 95.05 425 {Tags:["b22"],DeathLootTable:"minecraft:empty",NoAI:1b,Rotation:[-90f,0f]}
+wait 90
+pcb_glhud_shot b22_a2_pit
+pcb_scene_status
+pcb_assert_scene_ghosts 1
+setpos -270 -40 -13850
+setang 18 0 0
+pcb_stop
+wait 90
+pcb_glhud_shot b22_a2_region
+pcb_mc_cmd kill @e[tag=b22]
+wait 20
+setpos -60 -384 -690
+setang 25 0 0
+pcb_stop
+wait 30
+pcb_log B from the region: a pig dropped into the floor portal comes out of the cliff
+setpos -270 -40 -13850
+setang 18 0 0
+pcb_stop
+wait 90
+pcb_assert_scene_ghosts reset
+pcb_glhud_shot b22_b_before
+pcb_mc_cmd summon pig -324.8 426.5 433.6 {Tags:["b22"],DeathLootTable:"minecraft:empty",Motion:[0.0,-0.4,0.0]}
+wait 6
+pcb_glhud_shot b22_b_1
+wait 6
+pcb_glhud_shot b22_b_2
+wait 6
+pcb_glhud_shot b22_b_3
+wait 6
+pcb_glhud_shot b22_b_4
+wait 10
+pcb_glhud_shot b22_b_5
+wait 20
+pcb_glhud_shot b22_b_6
+pcb_mc_check b_pig_in_region entity @e[type=pig,tag=b22,x=-420,y=60,z=340,dx=200,dy=60,dz=200]
+wait 30
+pcb_assert_mc_say b_pig_in_region
+pcb_assert_scene_ghosts 1
+pcb_mc_cmd kill @e[tag=b22]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:porkchop"}}]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:rotten_flesh"}}]
+wait 20
+pcb_log C from the region: a frozen cube straddling the floor portal
+pcb_spawn_cube 128 -384 -764 pcb_cubeB
+wait 3
+ent_fire pcb_cubeB DisableMotion
+setpos -270 -40 -13850
+setang 18 0 0
+pcb_stop
+wait 60
+pcb_where
+pcb_composite_mask
+pcb_glhud_shot b22_c_cube
+wait 60
+pcb_glhud_shot b22_c_cube2
+setpos -60 -384 -690
+setang 25 0 0
+wait 40
+pcb_glhud_shot b22_c_cube_pit
+ent_fire pcb_cubeB Kill
+pcb_mc_cmd kill @e[tag=b22]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:porkchop"}}]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:rotten_flesh"}}]
+wait 30
+pcb_mc_check z_clean entity @e[tag=b22]
+wait 30
+pcb_assert_mc_say z_clean fail
+pcb_run_summary
+quit

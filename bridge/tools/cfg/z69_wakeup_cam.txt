@@ -1,0 +1,47 @@
+# z69: sp_a1_wakeup scripted wake (debug setup relay: teleport_player_wakeup + camera_1 + claw pickup) as the Minecraft player
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 600
+pcb_log Z69 before relay
+pcb_glhud_shot z69a_before
+pcb_where
+ent_fire @debug_relay_wakeup_setup Trigger
+wait 90
+pcb_glhud_shot z69a_00
+pcb_where
+wait 120
+pcb_glhud_shot z69a_01
+wait 120
+pcb_glhud_shot z69a_02
+pcb_where
+wait 180
+pcb_glhud_shot z69a_03
+wait 180
+pcb_glhud_shot z69a_04
+pcb_where
+wait 240
+pcb_glhud_shot z69a_05
+wait 240
+pcb_glhud_shot z69a_06
+pcb_where
+wait 240
+pcb_glhud_shot z69a_07
+wait 240
+pcb_glhud_shot z69a_08
+pcb_where
+wait 300
+pcb_glhud_shot z69a_09
+pcb_where
+wait 300
+pcb_glhud_shot z69a_10
+pcb_where
+pcb_mckey 26 1
+wait 120
+pcb_where
+pcb_mckey 26 0
+pcb_glhud_shot z69a_walk
+pcb_run_summary
+quit

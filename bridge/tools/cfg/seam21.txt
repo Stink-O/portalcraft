@@ -1,0 +1,41 @@
+# seam21 (bridge #21): objects straddling a portal into the Minecraft region, frame by frame. A: a cube falls into the pit-floor portal
+# (exit: the cliff portal in the region), seen from the pit. C: the same cube emerging from the cliff portal, seen from the region side.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+pcb_audio_test_mute 1
+waituntil spawned 600
+waituntil link 9000
+waituntil exit 3600
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_redirect
+ent_fire first_cube_dissolve Disable
+ent_fire companion_cube_trigger Disable
+pcb_log A pit camera, cube falls into the floor portal
+pcb_noclip_set 1
+setpos -50 -384 -700
+setang 21 0 0
+pcb_stop
+wait 60
+pcb_glhud_shot s_a_before
+pcb_spawn_cube 128 -384 -690 pcb_cubeA
+pcb_glhud_burst s_a 100
+wait 150
+pcb_glhud_shot s_a_after
+pcb_log C region camera, a cube emerges from the cliff portal
+setpos -270 -40 -13850
+setang 18 0 0
+wait 60
+pcb_glhud_shot s_c_before
+pcb_spawn_cube 128 -384 -690 pcb_cubeC
+wait 5
+pcb_glhud_burst s_c 100
+wait 150
+pcb_glhud_shot s_c_after
+pcb_run_summary
+quit

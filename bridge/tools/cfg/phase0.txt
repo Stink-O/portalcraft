@@ -1,0 +1,80 @@
+# Phase 0 test script for sp_a2_bridge_intro (run by pcb_script; ticks are 1/60 s)
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 120
+noclip
+pcb_views 40
+# --- A: blocks in the chamber, lighting ---------------------------------
+pcb_block -40 300 0 0
+pcb_block 0 300 0 1
+pcb_block -20 300 40 2
+setpos -10 170 0
+setang 12 90 0
+wait 40
+pcb_status
+screenshot pcb_a_chamber
+wait 30
+pcb_light 2
+wait 5
+screenshot pcb_a_chamber_light2
+wait 30
+pcb_light 0.5
+wait 5
+screenshot pcb_a_chamber_light05
+wait 30
+pcb_light 1
+# --- B: portals (Portal 2's own prop_portal pair, moved by the plugin) --
+pcb_portal_wall 0 0 250 56 0
+pcb_portal_wall 1 0 250 56 180
+wait 60
+pcb_view_portal 0 140
+wait 40
+pcb_views 30
+screenshot pcb_b_through_portal
+wait 30
+pcb_view_portal 1 140
+wait 40
+screenshot pcb_b_through_portal1
+wait 30
+# --- C: solid blocks: Chell on one, a cube dropped on the other -------------
+pcb_solid_block 80 300 0 0
+pcb_solid_block 160 300 0 0
+pcb_spawn_cube 180 320 200
+noclip
+setpos 100 320 60
+setang 20 0 0
+wait 150
+pcb_where
+pcb_probe_down 180 320 300
+pcb_probe_down 240 320 300
+thirdperson
+setang 25 30 0
+wait 20
+screenshot pcb_c_solid
+wait 30
+firstperson
+pcb_where
+# --- a: trace grid ---------------------------------------------------------
+pcb_trace_grid 4 8
+# --- F: portal on a block face ------------------------------------------------
+pcb_portal_on_block 3 3 1
+wait 40
+noclip
+setpos 100 200 0
+setang 10 90 0
+wait 30
+screenshot pcb_f_portal_on_block
+wait 30
+# --- c: puppet: position every tick, view every frame --------------------------
+pcb_puppet -20 200 0 64 6
+wait 60
+pcb_where
+screenshot pcb_d_puppet1
+wait 90
+pcb_where
+screenshot pcb_d_puppet2
+wait 20
+pcb_puppet off
+pcb_log phase0 done
+wait 30
+quit

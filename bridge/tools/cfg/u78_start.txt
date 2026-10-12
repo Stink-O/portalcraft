@@ -1,0 +1,23 @@
+# bridge #78: a campaign map started as the Minecraft player in the unified (terrain) world: the chamber in the band, nothing of other maps in it.
+#   PCB_PRE="pc_start_mode mc" PORTALCRAFT_JVM_ARGS=-Dskycraft.worldName=Portalcraft78_test PCB_SO=<abs .so> tools/locked_run.sh terrain tools/cfg/u78_start.txt <map> 600 <run>
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 900
+pcb_assert_world unified
+pcb_where
+pcb_mc_cmd pcchambers
+screenshot pcb_u78s_0
+wait 30
+pcb_setview 5 90
+wait 180
+screenshot pcb_u78s_90
+pcb_setview 5 180
+wait 180
+screenshot pcb_u78s_180
+pcb_setview 5 270
+wait 180
+screenshot pcb_u78s_270
+wait 60

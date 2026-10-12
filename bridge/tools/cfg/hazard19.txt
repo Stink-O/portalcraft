@@ -1,0 +1,33 @@
+# hazard19 (bridge #19, Owner B item 3): Portal 2 hazards hurt Minecraft's mobs (mirror Minecraft, a stock chamber).
+# Lasers burn, emancipation grids dissolve dropped things and kill mobs, lethal trigger_hurt volumes (goo, pits) kill.
+# Run: <myrun> <so> tools/cfg/hazard19.txt b19_hazardN <map> (sp_a2_laser_intro, sp_a2_fizzler_intro), mirror mode
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+wait 120
+bridge_mode mc
+waituntil mcmode 1200
+wait 60
+pcb_mc_cmd gamemode creative
+pcb_mc_cmd difficulty normal
+wait 120
+pcb_combat
+pcb_combat_hazards
+pcb_log A a zombie in the laser, a zombie and an apple in the grid, a pig in a lethal volume
+pcb_combat_hazard_summon 2 zombie
+pcb_combat_hazard_summon 3 zombie
+pcb_combat_hazard_summon 3 item {Item:{id:apple,count:1}}
+pcb_combat_hazard_summon 4 pig
+pcb_combat_hazard_summon 1 pig
+wait 30
+pcb_scene_status
+screenshot pcb_hz_a_start
+wait 240
+pcb_scene_status
+screenshot pcb_hz_a_after
+pcb_combat
+pcb_run_summary
+quit

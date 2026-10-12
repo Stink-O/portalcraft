@@ -1,0 +1,20 @@
+# w68: sp_a1_wakeup incinerator doors: the Minecraft player stands on the closed floor, the relay opens it, the player falls in
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 300
+pcb_mc_place 10368 1216 245 180 40
+waituntil mcplaced 900
+wait 420
+pcb_where
+pcb_log W68 opening
+pcb_glhud_burst w68a 30
+ent_fire relay_incinerator_open Trigger
+wait 300
+pcb_where
+wait 240
+pcb_where
+pcb_run_summary
+quit

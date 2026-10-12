@@ -1,0 +1,48 @@
+# comp5: full-screen composite in the region (after the fling): look around, back at the cliff
+# portal (the chamber must show in its oval), Minecraft's screenshot at the same pose.
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 720
+noclip
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 120
+screenshot pcb_d_look_down
+setpos 128 -384 -100
+setang 10 0 0
+noclip
+pcb_log drop
+pcb_track 400
+wait 60
+screenshot pcb_d_fall
+wait 50
+screenshot pcb_d_fling
+wait 170
+pcb_where
+setang 5 180 0
+wait 90
+pcb_composite
+pcb_mcshot
+wait 60
+screenshot pcb_d_landed_west
+setang -5 0 0
+wait 90
+pcb_mcshot
+wait 60
+screenshot pcb_d_back_at_cliff
+setang 20 90 0
+wait 90
+screenshot pcb_d_north
+pcb_composite
+quit

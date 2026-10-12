@@ -1,0 +1,17 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 240
+pcb_dump_fields trigger_catapult
+pcb_ent_field trigger_catapult tb_faith m_spawnflags i
+pcb_ent_field trigger_catapult tb_faith m_flPlayerVelocity f
+pcb_ent_field trigger_catapult tb_faith m_strLaunchTarget s
+ent_fire tb_faith AddOutput spawnflags 8
+wait 30
+pcb_ent_field trigger_catapult tb_faith m_spawnflags i
+ent_fire tb_faith AddOutput playerSpeed 175
+wait 30
+pcb_ent_field trigger_catapult tb_faith m_flPlayerVelocity f
+pcb_mech_log 50
+quit

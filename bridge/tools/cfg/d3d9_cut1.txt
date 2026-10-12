@@ -1,0 +1,30 @@
+# d3d9_cut1: the Direct3D 9 cut-away (cut_d3d9.cpp) without Minecraft: a 1 x 2 x 2 cut dug into the east hall wall of pc_testbed
+# (wall face x 1120, floor z 0, 200 u thick) with the host-side commands, seen from 120 u with the cut off and on.
+# Run: PCB_GAME_ARGS=-vulkan PCB_SO=<abs>/d3d9b-x.so tools/locked_run.sh terrain tools/cfg/d3d9_cut1.txt pc_testbed 300 d3d9_cut1
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+wait 90
+wait 20
+pcb_d3d9_stats
+pc_dig 1
+pcb_noclip_set 1
+crosshair 0
+r_drawviewmodel 0
+setpos 1000 1000 8
+setang 0 0 0
+wait 60
+pc_dig_render 1
+wait 20
+pcb_d3d9_shot cut1_a_off
+wait 20
+pc_dig_render 2
+pcb_dig_box 1125 995 5 1195 1005 75
+wait 120
+pcb_d3d9_shot cut1_b_on
+wait 20
+pc_dig_render
+pcb_d3d9_cutstats
+pc_cut_dump
+pcb_dig_status
+quit

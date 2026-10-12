@@ -1,0 +1,69 @@
+# pit7: pit transit with Chell's own gun, landing and walking on Minecraft terrain solids
+# (after the resting-contact fix in blockcollide.cpp), then the departure elevator / level end.
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 900
+pcb_terrain_stats
+pcb_clip_exit
+noclip
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 60
+pcb_portal_check
+setpos 128 -384 -100
+setang 10 0 0
+noclip
+pcb_log A drop
+pcb_track 900
+wait 100
+screenshot pcb_a_fling_1
+wait 170
+pcb_where
+screenshot pcb_a_landed
+wait 60
+pcb_log walk back (+X, towards the cliff)
++back
+wait 60
+-back
+wait 20
+pcb_where
+pcb_log strafe left
++moveleft
+wait 60
+-moveleft
+wait 20
+pcb_where
+pcb_log jump
++jump
+wait 5
+-jump
+wait 15
+pcb_where
+wait 60
+pcb_where
+setang 20 0 0
+wait 30
+screenshot pcb_a_walked
+wait 30
+pcb_log level end: into the departure elevator
+pc_reset
+wait 30
+noclip
+setpos -896 1216 -150
+setang 0 -90 0
+wait 20
+noclip
+wait 1500
+pcb_log still here after 25 s
+quit

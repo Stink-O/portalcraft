@@ -1,0 +1,101 @@
+# mcb1 (bridge #14, DESIGN-mcplayer M1b): Portal 2's campaign as the Minecraft player (mirror Minecraft, no region).
+# Launched by play_clip.sh --mc (pc_start_mode mc in the autoexec, map sp_a1_intro1):
+# A  the level starts as the Minecraft player; Minecraft's HUD is drawn.
+# B  intro1's cube/button room: G picks a cube up and drops it; the Minecraft player stands on the floor button.
+# C  a cube on the floor button, then the Minecraft player walks out through the exit door into the departure
+#    elevator: the elevator ride changes level to sp_a1_intro2 and the Minecraft player still leads there.
+# D  death: `kill`, Portal 2 reloads, the Minecraft player leads again.
+# Run: tools/play_clip.sh --mc --so build/dev-mcportal/<build>.so --script tools/cfg/mcb1.txt 900
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+pcb_log A start as the Minecraft player
+waituntil mcmode 1800
+wait 60
+pcb_assert_mc_mode 1
+pcb_glhud_stats reset
+wait 120
+pcb_assert_glhud 30
+pcb_glhud_shot mcb_a_start
+pcb_log B cube and floor button
+bridge_mode chell
+waituntil chellmode 300
+pcb_noclip_set 1
+setpos -560 4300 2690
+setang 10 90 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_probe_down -560 4300 2700
+pcb_ents_near -624 4432 2680 300
+pcb_spawn_cube -560 4380 2720 pcb_cube
+waituntil stillpcb_cube 600
+bridge_mode mc
+waituntil mcmode 600
+wait 60
+pcb_assert_mc_mode 1
+pcb_aim_prop pcb_cube
+wait 10
+pcb_mckey 10 1
+wait 10
+pcb_mckey 10 0
+waituntil holding 300
+pcb_assert_holding 1 pcb_cube
+pcb_glhud_shot mcb_b_holding
+wait 30
+pcb_mckey 10 1
+wait 10
+pcb_mckey 10 0
+waituntil notholding 300
+pcb_assert_holding 0
+ent_fire button_1-button addoutput "OnPressed !self:AddOutput:targetname pcb_button_pressed:0:1"
+bridge_mode chell
+waituntil chellmode 300
+pcb_noclip_set 1
+setpos -624 4432 2700
+setang 10 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 30
+bridge_mode mc
+waituntil mcmode 600
+waituntil entpcb_button_pressed 600
+pcb_where
+pcb_log C cube on the button, out to the elevator
+pcb_assert_mc_takeovers reset
+bridge_mode chell
+waituntil chellmode 300
+pcb_spawn_cube -624 4432 2740 pcb_cube2
+waituntil stillpcb_cube2 600
+pcb_noclip_set 1
+setpos -688 3900 2690
+setang 0 -90 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 120
+bridge_mode mc
+waituntil mcmode 600
+pcb_mckey 26 1
+wait 600
+pcb_where
+pcb_mckey 26 0
+waituntil mapsp_a1_intro2 5400
+wait 900
+waituntil mcmode 1800
+wait 60
+pcb_assert_mc_mode 1
+pcb_assert_mc_takeovers 1
+pcb_colfield_dyn
+pcb_glhud_shot mcb_c_intro2
+pcb_log D death and reload
+kill
+wait 300
+waituntil mcmode 1800
+wait 60
+pcb_assert_mc_mode 1
+pcb_run_summary
+quit

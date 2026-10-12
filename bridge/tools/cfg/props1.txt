@@ -1,0 +1,46 @@
+# props1: Portal 2 cubes on Minecraft terrain (block colliders around each prop): drop, a fast fall,
+# and a cube falling through the pit portal and flung out of the cliff portal onto terrain.
+# Each cube is asserted once it has settled (waituntil still<name>: under 5 u/s for 30 ticks; bridge #13).
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_noclip_set 1
+pcb_log P1 drop a cube onto terrain
+setpos -1750 -194 -15000
+setang 20 180 0
+wait 30
+pcb_spawn_cube -1911 -194 -15040 cube_drop
+wait 60
+waituntil stillcube_drop 900
+pcb_prop_collide
+pcb_assert_prop_rest cube_drop
+screenshot pcb_p1_drop
+pcb_log P2 a fast fall (10 blocks)
+pcb_spawn_cube -1991 -114 -14700 cube_fast
+wait 60
+waituntil stillcube_fast 1200
+pcb_prop_collide
+pcb_assert_prop_rest cube_fast
+screenshot pcb_p2_fast
+pcb_log P3 a cube through the pit portal, flung out of the cliff portal
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_redirect
+pcb_spawn_cube 128 -384 -300 cube_fling
+setpos -500 -40 -14500
+setang 30 0 0
+wait 180
+waituntil stillcube_fling 1500
+pcb_prop_collide
+pcb_assert_prop_rest cube_fling
+pcb_where
+screenshot pcb_p3_fling
+pcb_assert_mc_alive 30
+pcb_assert_vmsize 3200
+pcb_run_summary
+quit

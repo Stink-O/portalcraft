@@ -1,0 +1,40 @@
+# seam21b: a frozen cube straddling the pit-floor portal; entry-side and exit-side views, clones listed at the exit.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+pcb_audio_test_mute 1
+waituntil spawned 600
+waituntil link 9000
+waituntil exit 3600
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_redirect
+pcb_noclip_set 1
+setpos -50 -384 -700
+setang 21 0 0
+pcb_stop
+wait 40
+pcb_spawn_cube -138 -40 -13905 pcb_cubeR
+wait 3
+ent_fire pcb_cubeR DisableMotion
+wait 60
+pcb_ents_near -138 -40 -13905 40
+pcb_glhud_shot sr_a_view1
+setpos 60 -384 -740
+setang 35 0 0
+wait 30
+pcb_glhud_shot sr_a_view2
+pcb_composite_stage 0
+wait 30
+pcb_glhud_shot sr_a_stage0
+pcb_composite_stage 2
+setpos -270 -40 -13850
+setang 18 0 0
+wait 30
+pcb_glhud_shot sr_c_region
+pcb_run_summary
+quit

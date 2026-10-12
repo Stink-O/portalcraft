@@ -1,0 +1,40 @@
+# pc_pit_flings: redirect + look down through the pit-floor portal (Minecraft: tools/run_mc.sh --terrain <SEED of bridge/world.conf> 6)
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 60
+pcb_probe_down 224 -64 200
+pcb_probe_down 300 -250 200
+pcb_probe_down 100 -150 200
+pcb_probe_down 400 100 200
+pcb_cliff
+wait 2400
+pcb_terrain_stats
+pcb_clip_exit
+pcb_cliff_scan
+pcb_portal_floor 0 224 -64 200
+wait 60
+pcb_portal_check
+pcb_cliff
+noclip
+setpos 224 -64 100
+setang 89 90 0
+wait 120
+screenshot pcb_p1_look_down
+wait 60
+setpos 224 -64 -300
+wait 90
+screenshot pcb_p1_look_down_low
+wait 60
+# drop Chell into the portal
+noclip
+setpos 224 -64 200
+setang 20 90 0
+wait 300
+pcb_where
+screenshot pcb_p1_after_fling
+wait 120
+pcb_where
+screenshot pcb_p1_landed
+wait 60
+pcb_terrain_stats
+quit

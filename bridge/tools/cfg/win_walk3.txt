@@ -1,0 +1,29 @@
+# win_walk3 (Proton): win_walk2 with every plugin init skipped (PCB_SKIP); only the D3D9 Present timing (pcb_d3d9_init).
+pcb_d3d9_init
+pcb_assert_soft 1
+sv_cheats 1
+fps_max 0
+waituntil spawned 900
+wait 300
+setang 0 0 0
+wait 30
+pcb_d3d9_stats reset
++forward
+wait 600
+-forward
+pcb_d3d9_stats
+setang 0 180 0
+wait 30
+pcb_d3d9_stats reset
++forward
+wait 600
+-forward
+pcb_d3d9_stats
+setang 0 90 0
+wait 30
+pcb_d3d9_stats reset
++forward
+wait 600
+-forward
+pcb_d3d9_stats
+quit

@@ -1,0 +1,112 @@
+# r27_c (bridge #27): the first placed block of the session (black on its first builds in r27_b), the hand next to it, Minecraft's
+#legacy-cliff-shift (bridge #81: the Minecraft coordinates below are the original cliff's; pcb_script moves them to the world.conf cliff, see worldconf.hpp)
+# torch on a Portal 2 cube through the lighting-state hook (vs the old dlight), gravel in a clear column. Same area save/restore as r27_a.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd weather clear
+pcb_mc_cmd gamemode creative
+pcb_mc_cmd clone -328 424 429 -314 431 438 -328 480 429 replace
+wait 20
+pcb_mc_cmd fill -323 424 430 -315 428 436 minecraft:air
+pcb_noclip_set 1
+setpos 420 -460 -760
+setang 10 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd gamemode creative
+wait 60
+pcb_where
+pcb_log H the session's first placed block, then the hand (a stone block in the hand) next to it
+pcb_band_stats
+pcb_mc_cmd setblock -319 424 433 minecraft:stone
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:stone
+pcb_aim_mc -319.5 424.5 433.5
+wait 3
+pcb_glhud_shot r27c_h_first3
+wait 300
+pcb_band_stats
+pcb_band_light_stats
+pcb_glhud_shot r27c_h_on
+pc_mc_hand_light 0
+wait 30
+pcb_glhud_shot r27c_h_off
+pc_mc_hand_light 1
+pcb_mc_cmd time set 18000
+wait 120
+pcb_glhud_shot r27c_h_night
+pcb_mc_cmd time set noon
+wait 30
+pcb_mckey 8 1
+wait 4
+pcb_mckey 8 0
+wait 60
+pcb_glhud_shot r27c_h_inventory
+pcb_sdl_event key 41
+wait 30
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:air
+pcb_mc_cmd setblock -319 424 433 minecraft:air
+wait 20
+pcb_log T a Portal 2 cube beside a torch: Minecraft's block light added in the lighting state (new) vs the old dlight on models (flags 0) vs none
+pcb_mc_cmd setblock -320 424 433 minecraft:torch
+pcb_mc_cmd setblock -321 424 434 minecraft:smooth_stone
+pcb_spawn_cube 380 -340 -760 pcb_cubeT
+wait 200
+pcb_aim_mc -319.5 424.4 433.5
+wait 60
+pcb_p2light_mc -318.5 424.5 432.5
+pcb_light_status
+pcb_glhud_shot r27c_t_new
+pcb_mc_native r27c_t_native
+wait 60
+pc_mc_blocklights_models 0
+pc_mc_blocklights_flags 0
+wait 30
+pcb_p2light_mc -318.5 424.5 432.5
+pcb_glhud_shot r27c_t_old
+pc_mc_blocklights_flags 2
+wait 30
+pcb_glhud_shot r27c_t_none
+pc_mc_blocklights_models 1
+wait 10
+ent_fire pcb_cubeT Kill
+pcb_mc_cmd setblock -320 424 433 minecraft:air
+pcb_mc_cmd setblock -321 424 434 minecraft:air
+pcb_mc_cmd kill @e[type=minecraft:item,x=-330,y=420,z=427,dx=18,dy=14,dz=14]
+wait 30
+pcb_log G gravel and sand in columns clear of tilex9_cube_clip (func_clip_vphysics, MC x -318.6..-315.8, z 431.5..436.3), and gravel inside it
+pcb_mc_cmd setblock -321 431 432 minecraft:gravel
+pcb_mc_cmd setblock -322 429 433 minecraft:sand
+pcb_mc_cmd setblock -317 431 433 minecraft:gravel
+wait 900
+pcb_mc_check g_gravel_landed block -321 424 432 minecraft:gravel
+pcb_mc_check g_sand_landed block -322 424 433 minecraft:sand
+pcb_mc_check g_gravel_clip block -317 424 433 minecraft:gravel
+pcb_aim_mc -321.5 424.5 432.5
+wait 30
+pcb_glhud_shot r27c_g_landed
+pcb_mc_native r27c_g_landed
+wait 60
+pcb_log restore the area
+pcb_mc_cmd clone -328 480 429 -314 487 438 -328 424 429 replace
+wait 10
+pcb_mc_cmd fill -328 480 429 -314 487 438 minecraft:air
+pcb_mc_cmd kill @e[type=minecraft:item,x=-330,y=420,z=427,dx=18,dy=14,dz=14]
+wait 30
+pcb_assert_mc_say g_gravel_landed
+pcb_assert_mc_say g_sand_landed
+pcb_assert_mc_say g_gravel_clip
+pcb_band_stats
+pcb_run_summary
+quit

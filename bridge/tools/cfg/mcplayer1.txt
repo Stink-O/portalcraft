@@ -1,0 +1,133 @@
+# mcplayer1 (bridge #13, DESIGN-mcplayer M1): the J switch to the Minecraft player in pc_pit_flings (terrain mode).
+# A  J standing in the chamber: the Minecraft player appears where Chell stands (the chamber band, MC y > 320, on the
+#    exported chamber collision), the body follows it, walking moves it (W), it walks over the floor button and back off it
+#    (S); J back. (The button-press check is parked: the OnPressed marker did not fire in b13_mcp4; not gated.)
+# B  J mid-fall above the pit portal: the Minecraft player falls on with Chell's velocity into the floor portal; Portal 2
+#    carries the body through (the hole carved in the chamber export), Minecraft is teleported to the cliff exit and
+#    flung out onto the terrain.
+# C  J in the region: back to Chell and to the Minecraft player again, position and view kept.
+# D  The Minecraft player walks into the cliff portal (a stone ledge built in front of it; the hole is carved out of
+#    Minecraft's own collision, kInHole) and comes out of the pit floor portal; J back to Chell mid-flight keeps her
+#    position and velocity.
+# World: the ledge is removed at the end; back up the world around the run anyway.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_log A J standing in the chamber
+pcb_noclip_set 1
+setpos -298 -416 -60
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 120
+pcb_where
+pcb_pos_mark
+bridge_mode mc
+waituntil mcmode 1200
+wait 30
+pcb_assert_mc_mode 1
+pcb_assert_pos_kept 8 -1 5
+screenshot pcb_m1_a_mc
+pcb_pos_mark
+pcb_mckey 26 1
+wait 60
+pcb_mckey 26 0
+wait 60
+pcb_where
+pcb_assert_mc_mode 1
+pcb_assert_pos_moved 100 8
+screenshot pcb_m1_a_button
+pcb_mckey 22 1
+wait 30
+pcb_mckey 22 0
+wait 60
+pcb_pos_mark
+bridge_mode chell
+waituntil chellmode 120
+wait 30
+pcb_assert_mc_mode 0
+pcb_assert_pos_kept 8 -1 5
+pcb_log B J mid-fall above the pit portal
+pcb_portal 1 -560 -60 64 0 0 0
+wait 60
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_redirect
+pcb_noclip_set 1
+setpos 128 -384 -150
+setang 89 0 0
+pcb_stop
+wait 30
+pcb_assert_transits reset
+pcb_assert_mc_transits reset
+pcb_noclip_set 0
+wait 15
+pcb_track 900 6
+pcb_pos_mark
+bridge_mode mc
+waituntil mcmode 600
+pcb_assert_mc_mode 1
+waituntil transit 900
+wait 240
+pcb_where
+pcb_assert_mc_transits 1
+pcb_assert_player_region 1
+pcb_assert_mc_mode 1
+screenshot pcb_m1_b_region
+pcb_log C J in the region
+pcb_pos_mark
+bridge_mode chell
+waituntil chellmode 120
+wait 20
+pcb_assert_pos_kept 8 -1 5
+pcb_pos_mark
+bridge_mode mc
+waituntil mcmode 600
+wait 20
+pcb_assert_mc_mode 1
+pcb_assert_pos_kept 12 -1 5
+pcb_log D the Minecraft player walks into the cliff portal
+bridge_mode chell
+waituntil chellmode 120
+pcb_mc_cmd fill -337 93 423 -332 93 427 stone
+pcb_mc_cmd fill -337 94 423 -332 97 427 air
+pcb_noclip_set 1
+pcb_light_goto_mc -335.5 94 425.0 -90 0
+pcb_stop
+wait 60
+waituntil solid-334,93,425 900
+pcb_noclip_set 0
+wait 60
+pcb_where
+pcb_assert_transits reset
+pcb_assert_mc_transits reset
+pcb_pos_mark
+bridge_mode mc
+waituntil mcmode 600
+wait 20
+pcb_assert_mc_mode 1
+pcb_mckey 26 1
+waituntil transit 600
+pcb_mckey 26 0
+wait 10
+pcb_assert_mc_transits 1
+pcb_pos_mark
+bridge_mode chell
+waituntil chellmode 120
+pcb_assert_pos_kept 30 -1 10
+wait 180
+pcb_where
+pcb_assert_mc_mode 0
+screenshot pcb_m1_d_back
+pcb_mc_cmd fill -337 93 423 -332 93 427 air
+pcb_noclip_set 1
+pcb_assert_mc_alive 30
+pcb_run_summary
+quit

@@ -1,0 +1,192 @@
+# edge4: the exact opening (Portal 2's stencil ellipse 32 x 56 u at smoothstep(open)^2) against Portal 2's own, per pose; first shots on a Minecraft floor (occlusion off / on) after the re-apply fix.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_noclip_set 1
+pcb_log FIRST chamber pit floor, colour 0, no partner
+setpos 128 -384 -400
+setang 89 0 0
+pcb_stop
+wait 120
+pcb_frame_dump 90 first_chamber_c0 500 225 1100 675
++attack
+wait 6
+-attack
+wait 150
+ent_fire prop_portal Fizzle
+wait 60
+pcb_mc_portals_shape 32 56 0 0
+pcb_mc_portals_centre 0
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_log FIRST Minecraft floor, occlusion 0
+pcb_composite_occlusion 0
+pcb_light_goto_mc -376 96.6 441 0 89
+pcb_stop
+wait 90
+pcb_frame_dump 90 first_mc_occ0_c0 500 225 1100 675
++attack
+wait 6
+-attack
+wait 150
+ent_fire prop_portal Fizzle
+wait 90
+pcb_log FIRST Minecraft floor, occlusion 1
+pcb_composite_occlusion 1
+pcb_light_goto_mc -376 96.6 441 0 89
+pcb_stop
+wait 90
+pcb_frame_dump 90 first_mc_occ1_c0 500 225 1100 675
++attack
+wait 6
+-attack
+wait 150
+ent_fire prop_portal Fizzle
+wait 90
+pcb_composite_occlusion 1
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_view_portal 0 120 0 1
+pcb_stop
+wait 60
+screenshot pcb_E_0_s3_normal
+wait 10
+pcb_mc_portals_shape 32 56 0 3
+wait 20
+pcb_measure_hole 0 40 p2_0_s3 max lenient
+wait 160
+pcb_mc_portals_shape 32 56 0 0
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 0 40 mc_0_s3 max lenient
+wait 160
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_0_s3 p2_0_s3 1
+pcb_view_portal 0 120 45 1
+pcb_stop
+wait 60
+screenshot pcb_E_0_a45_normal
+wait 10
+pcb_mc_portals_shape 32 56 0 3
+wait 20
+pcb_measure_hole 0 40 p2_0_a45 max lenient
+wait 160
+pcb_mc_portals_shape 32 56 0 0
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 0 40 mc_0_a45 max lenient
+wait 160
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_0_a45 p2_0_a45 1
+pcb_view_portal 0 240 0 1
+pcb_stop
+wait 60
+screenshot pcb_E_0_s6_normal
+wait 10
+pcb_mc_portals_shape 32 56 0 3
+wait 20
+pcb_measure_hole 0 40 p2_0_s6 max lenient
+wait 160
+pcb_mc_portals_shape 32 56 0 0
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 0 40 mc_0_s6 max lenient
+wait 160
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_0_s6 p2_0_s6 1
+pcb_view_portal 1 120 0 1
+pcb_stop
+wait 60
+screenshot pcb_E_1_s3_normal
+wait 10
+pcb_mc_portals_shape 32 56 0 3
+wait 20
+pcb_measure_hole 1 40 p2_1_s3 max lenient
+wait 160
+pcb_mc_portals_shape 32 56 0 0
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 1 40 mc_1_s3 max lenient
+wait 160
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_1_s3 p2_1_s3 1
+pcb_view_portal 1 120 45 1
+pcb_stop
+wait 60
+screenshot pcb_E_1_a45_normal
+wait 10
+pcb_mc_portals_shape 32 56 0 3
+wait 20
+pcb_measure_hole 1 40 p2_1_a45 max lenient
+wait 160
+pcb_mc_portals_shape 32 56 0 0
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 1 40 mc_1_a45 max lenient
+wait 160
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_1_a45 p2_1_a45 1
+pcb_view_portal 1 240 0 1
+pcb_stop
+wait 60
+screenshot pcb_E_1_s6_normal
+wait 10
+pcb_mc_portals_shape 32 56 0 3
+wait 20
+pcb_measure_hole 1 40 p2_1_s6 max lenient
+wait 160
+pcb_mc_portals_shape 32 56 0 0
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 1 40 mc_1_s6 max lenient
+wait 160
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_1_s6 p2_1_s6 1
+pcb_log OPEN mid-animation: re-fire portal 1 and compare every frame of its opening
+pcb_mc_portals_shape 32 56 0 3
+pcb_view_portal 1 200 0 1
+pcb_stop
+wait 60
+pcb_measure_open reset
+pcb_corridor_aim 1 0.5
+wait 20
+pcb_measure_open 1 90
++attack2
+wait 6
+-attack2
+wait 120
+pcb_measure_open assert 0
+pcb_mc_portals_shape 32 56 0 0
+pcb_build_corridor remove
+wait 30
+pcb_run_summary
+quit

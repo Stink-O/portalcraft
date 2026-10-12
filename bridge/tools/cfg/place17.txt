@@ -1,0 +1,163 @@
+# place17 (bridge #17): the Minecraft player places and breaks blocks in pc_pit_flings's chamber (the chamber band,
+# MC y ~440, above vanilla's build limit: the mod raises the overworld to y 511) and on the terrain.
+# A: survival + oak planks; the outline on the Portal 2 floor (SkyClip, voxels); 2 blocks on the floor, 2 on the west wall
+#    (real right clicks, aimed with pcb_aim_mc); a 3x2 patch by /fill for a portal.
+# B: the Minecraft player stands on a floor block; J: Chell stands on it too.
+# C: Chell shoots a portal onto the patch.
+# D: J back; break a wall block with the hand (survival time, cracks), its drop.
+# E: terrain: J in the region, place a block on the ground.
+# Run: PCB_SO=build/dev-mcportal/b17a.so tools/locked_run.sh terrain tools/cfg/place17.txt pc_pit_flings 600 b17_place<N>
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd gamemode survival
+pcb_log A place
+pcb_noclip_set 1
+setpos -420 -416 -100
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 90
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:oak_planks 64
+wait 60
+pcb_where
+pcb_band_stats
+pcb_band_mark
+pcb_aim_mc -339.6 440.375 433.5
+wait 30
+pcb_assert_outline 1
+pcb_worldents
+pcb_glhud_shot a_outline
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 40
+pcb_assert_band_delta 1
+pcb_aim_mc -339.6 440.375 435.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 40
+pcb_assert_band_delta 1
+pcb_aim_mc -340.85 442.5 434.5
+wait 20
+pcb_worldents
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 40
+pcb_assert_band_delta 1
+pcb_aim_mc -340.85 443.5 433.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 40
+pcb_assert_band_delta 1
+pcb_mc_cmd fill -337 440 434 -335 440 435 minecraft:oak_planks
+waituntil solid-335,440,435 300
+pcb_band_stats
+setang 25 180 0
+wait 30
+pcb_glhud_shot a_placed
+pcb_band_light 1 1
+wait 20
+pcb_glhud_shot a_placed_rebuilt
+setang 20 0 0
+wait 30
+pcb_glhud_shot a_patch
+pcb_log B stand
+pcb_mc_cmd tp @p -339.5 441 433.5
+wait 90
+pcb_where
+pcb_assert_mc_flag ground 1
+pcb_assert_body_z -92 -84
+bridge_mode chell
+waituntil chellmode 300
+wait 90
+pcb_where
+pcb_assert_body_z -92 -84
+pcb_log C portal
+pcb_noclip_set 1
+setpos -420 -440 -100
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_aim_mc -335.5 441 435.0
+wait 20
++attack
+wait 6
+-attack
+wait 60
+pcb_assert_portal 0 -300 -440 -88 48
+pcb_glhud_shot c_portal
+pcb_log D break
+bridge_mode mc
+waituntil mcmode 600
+wait 30
+pcb_band_mark
+pcb_aim_mc -340.0 442.5 434.5
+wait 20
+pcb_assert_outline 1
+pcb_mckey lmb 1
+wait 70
+pcb_assert_we crack 1
+pcb_glhud_shot d_crack
+wait 200
+pcb_mckey lmb 0
+wait 8
+pcb_worldents
+pcb_glhud_shot d_drop0
+wait 22
+pcb_assert_band_delta -1
+pcb_worldents
+setang 30 180 0
+wait 20
+pcb_glhud_shot d_drop
+pcb_log E terrain
+bridge_mode chell
+waituntil chellmode 300
+pcb_noclip_set 1
+setpos -200 -40 -13880
+setang 60 180 0
+pcb_stop
+waituntil near 1800
+wait 60
+pcb_noclip_set 0
+wait 120
+bridge_mode mc
+waituntil mcmode 1200
+wait 120
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:oak_planks 64
+wait 60
+setang 50 0 0
+wait 30
+pcb_where
+pcb_mclog 2
+pcb_worldents
+pcb_near_mark
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 90
+pcb_worldents
+pcb_assert_near_delta 1
+wait 60
+pcb_glhud_shot e_terrain
+bridge_mode chell
+waituntil chellmode 300
+wait 30
+pcb_band_stats
+pcb_run_summary
+quit

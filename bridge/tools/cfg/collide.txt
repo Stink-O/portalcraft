@@ -1,0 +1,75 @@
+# Chell vs Minecraft blocks through the movement-trace hook (no collider entities)
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 120
+pcb_block 80 300 0 0
+# 3x3 block wall facing +X at x=-120..-80, y=260..380, z=0..120
+pcb_block -120 260 0 1
+pcb_block -120 300 0 1
+pcb_block -120 340 0 1
+pcb_block -120 260 40 1
+pcb_block -120 300 40 1
+pcb_block -120 340 40 1
+pcb_block -120 260 80 0
+pcb_block -120 300 80 0
+pcb_block -120 340 80 0
+pcb_collide 1
+# 1: drop onto block A and stand
+setpos 100 320 80
+setang 20 180 0
+wait 90
+pcb_where
+thirdperson
+wait 10
+screenshot pcb_col_stand
+wait 20
+firstperson
+# 2: walk off block A (+X)
+setang 0 0 0
++forward
+wait 30
+-forward
+wait 40
+pcb_where
+# 3: jump back onto it from the floor
+setpos 150 320 0
+setang 0 180 0
+wait 20
++jump
++forward
+wait 20
+-jump
+wait 20
+-forward
+wait 40
+pcb_where
+# 4: walk into the block wall: blocked at x = -80 + 16
+setpos 0 320 0
+setang 0 180 0
+wait 20
++forward
+wait 90
+-forward
+wait 20
+pcb_where
+screenshot pcb_col_wall
+wait 20
+# 5: portal on the block wall, portal 1 on the east chamber wall; walk into it
+pcb_portal_on_block 4 0 0
+pcb_portal_wall 1 0 250 56 0
+pcb_log portal 0 on the block wall (block 4 +X face)
+wait 60
+setpos 40 280 0
+setang 0 180 0
+wait 30
+screenshot pcb_col_portal_approach
+wait 20
++forward
+wait 100
+-forward
+wait 30
+pcb_where
+screenshot pcb_col_after_portal
+wait 20
+pcb_collide
+quit

@@ -1,0 +1,54 @@
+# m21_smoke1 (bridge #21): one short smoke test over #18/#19/#20's features on the combined build:
+# A a Portal 2-lit pig + a torch lighting the chamber wall, placed blocks; B chamber<->chamber portal walk as the
+# Minecraft player (eye watch, frame burst: no white frames); C host-owned death reload (alive afterwards, Minecraft mode).
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd gamemode creative
+pcb_mc_cmd gamerule doDaylightCycle false
+pcb_mc_cmd weather clear
+pcb_log A pig, torch, blocks
+pcb_noclip_set 1
+setpos -420 -416 -100
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 90
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd kill @e[type=!player,distance=..60]
+pcb_mc_cmd fill -342 440 431 -334 445 438 minecraft:air
+wait 30
+pcb_mc_cmd fill -337 440 434 -335 440 435 minecraft:oak_planks
+pcb_mc_cmd setblock -339 440 432 minecraft:stone
+pcb_mc_cmd setblock -339 441 432 minecraft:white_concrete
+pcb_mc_cmd setblock -341 442 434 minecraft:oak_planks
+pcb_mc_cmd setblock -338 440 436 minecraft:torch
+pcb_mc_cmd summon pig -336.5 440 436.5 {NoAI:1b}
+waituntil solid-339,441,432 300
+wait 90
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:air
+pcb_aim_mc -337.5 440.5 435.5
+wait 60
+pcb_glhud_shot m21_a_pig
+wait 30
+pcb_mc_native m21_a_pig
+wait 120
+pcb_log torch off
+pcb_mc_cmd setblock -338 440 436 minecraft:air
+wait 60
+pcb_glhud_shot m21_a_notorch
+wait 10
+pcb_mc_cmd kill @e[type=!player,distance=..60]
+pcb_mc_cmd fill -342 440 431 -334 445 438 minecraft:air
+wait 30
+pcb_run_summary
+quit

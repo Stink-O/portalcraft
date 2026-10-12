@@ -1,0 +1,29 @@
+# lead: sp_a1_intro1's dock room after the vault ride (the user fell through its floor as the Minecraft player). The map's own debug relay puts the
+# player at the dock; then the movers there, where Minecraft stands, and four looks.
+#   PCB_PRE="pc_start_mode mc;pc_world unified" PCB_SO=<abs .so> tools/locked_run.sh terrain tools/cfg/lead_dock.txt sp_a1_intro1 900 <run>
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 300
+ent_fire @debug_teleport_to_vault_relay Trigger
+wait 900
+pcb_mc_place -1724.6 4379.4 3081.7 0 60
+waituntil mcplaced 600
+pcb_where
+pcb_mover_probe container_collision -1724.6 4379.4 3070 8
+pcb_mover_probe container_collision -1724.6 4379.4 3040 8
+pcb_mover_probe container_collision -1724.6 4379.4 3000 8
+wait 300
+pcb_where
+wait 300
+pcb_where
+screenshot pcb_dock_0
+pcb_setview 60 90
+wait 120
+screenshot pcb_dock_down
+wait 600
+pcb_where
+quit

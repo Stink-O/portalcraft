@@ -1,0 +1,15 @@
+# trainprobe26 (bridge #26, diagnostic): as Chell at level start in the arrival elevator: where is the train brush, is Chell inside it
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+bridge_mode mc
+wait 10
+pcb_where
+pcb_mover_probe arrival_elevator-elevator_1
+pcb_movers near 200
+wait 30
+pcb_where
+pcb_mover_probe arrival_elevator-elevator_1
+pcb_mover_probe arrival_elevator-elevator_1 64 -1792 -150 4
+pcb_mover_probe arrival_elevator-elevator_1 64 -1792 -300 4
+quit

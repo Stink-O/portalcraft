@@ -1,0 +1,110 @@
+# mcportal1: pc_mc_portal (arm, then Chell's own gun anywhere) with the pit rule off.
+#   A1 arm + cancel, shoot a chamber wall: no anchor
+#   A2 arm, shoot the same wall: its partner goes to the cliff exit
+#   A3 walk into the wall portal -> Minecraft;  A4 back through the cliff portal -> chamber
+#   B  arm, shoot a chamber floor away from the pit, fall in -> Minecraft
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_noclip_set 1
+setpos 300 -380 -740
+wait 10
+pcb_aim 300 -512 -700
+wait 50
+pcb_log A1 arm then cancel, shoot the wall
+pc_mc_portal
+wait 5
+pc_mc_portal
++attack
+wait 6
+-attack
+wait 120
+pcb_mc_portal_state
+pcb_assert_mc_anchor -1
+pcb_log A2 arm, shoot the wall
+pc_mc_portal 1
+wait 5
++attack
+wait 6
+-attack
+wait 150
+pcb_mc_portal_state
+pcb_assert_mc_anchor 0
+pcb_assert_portals
+pcb_assert_redirect
+pcb_assert_mc_alive reset
+setpos 300 -330 -740
+pcb_aim 300 -512 -700
+wait 120
+pcb_assert_frames
+pcb_assert_mc_alive 30
+screenshot pcb_m_wall
+wait 20
+pcb_log A3 walk into the wall portal
+pcb_assert_teleports reset
+setpos 300 -420 -766
+pcb_aim 300 -512 -712
+pcb_noclip_set 0
+wait 30
+pcb_launch_to p0 175
+wait 120
+pcb_assert_teleports 1
+pcb_assert_player_below -13000
+screenshot pcb_m_in_mc
+wait 20
+pcb_log A4 back through the cliff portal
+pcb_noclip_set 1
+wait 3
+pcb_goto_portal 1 120
+pcb_stop
+wait 10
+pcb_aim_track 1 0.2 0
+wait 60
+pcb_assert_teleports reset
+pcb_collide 0
+pcb_noclip_set 0
+wait 2
+pcb_launch_to p1 175
+wait 70
+pcb_collide 1
+pcb_aim_track off
+pcb_assert_teleports 1
+pcb_assert_player_axis z gt -2000
+pcb_where
+screenshot pcb_m_back
+wait 20
+pcb_log B arm, shoot a floor away from the pit, fall in
+pcb_noclip_set 1
+wait 3
+setpos -100 -420 -600
+pcb_stop
+wait 5
+pcb_aim -100 -420 -768
+wait 30
+pc_mc_portal 1
+wait 5
++attack2
+wait 6
+-attack2
+wait 150
+pcb_mc_portal_state
+pcb_assert_mc_anchor 1
+pcb_assert_redirect
+pcb_assert_teleports reset
+pcb_goto_portal 1 150
+pcb_stop
+wait 10
+pcb_noclip_set 0
+wait 150
+pcb_assert_teleports 1
+pcb_assert_player_below -13000
+pcb_assert_mc_alive 30
+screenshot pcb_m_floor_fall
+wait 20
+pcb_mc_portal_state
+pcb_assert_vmsize 3200
+pcb_run_summary
+quit

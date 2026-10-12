@@ -1,0 +1,9 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 1500
+pcb_mech
+pcb_run_summary
+quit

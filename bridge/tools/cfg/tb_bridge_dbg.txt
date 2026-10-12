@@ -1,0 +1,22 @@
+# bridge #31: when does the light bridge beam show (Chell, noclip)
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+noclip
+pcb_goto tb_spot_bridge 64
+wait 150
+pcb_face tb_bridge
+wait 20
+pcb_glhud_shot dbg_bridge_a
+ent_fire tb_go_bridge trigger
+wait 30
+pcb_glhud_shot dbg_bridge_b
+wait 150
+pcb_glhud_shot dbg_bridge_c
+wait 500
+pcb_glhud_shot dbg_bridge_d
+pcb_find tb_bridge
+pcb_run_summary
+quit

@@ -1,0 +1,9 @@
+{
+  "block.portalcraft.chamber_panel_white": "Chamber Panel (White)",
+  "block.portalcraft.chamber_panel_black": "Chamber Panel (Black)",
+  "block.portalcraft.chamber_metal": "Chamber Metal",
+  "block.portalcraft.chamber_tile": "Chamber Tile",
+  "block.portalcraft.chamber_glass": "Chamber Glass",
+  "block.portalcraft.chamber_concrete": "Chamber Concrete",
+  "entity.portalcraft.skyrim_actor": "Host actor"
+}

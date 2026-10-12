@@ -1,0 +1,95 @@
+# mcp8: Portal 2's open animation against Minecraft's opening, frame by frame
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_noclip_set 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd weather clear
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+wait 60
+pcb_log CASE corridor (built)
+waituntil terrain_idle 1200
+pcb_find_surface ground 24 -1
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 90
+pcb_assert_portals
+pcb_assert_portal_face
+pcb_mc_portals_shape 27 47 0 3
+r_drawviewmodel 0
+pcb_corridor_aim 1
+pcb_stop
+wait 30
++attack2
+wait 2
+-attack2
+pcb_measure_open 1 120
+wait 220
+pcb_corridor_aim 1
+pcb_stop
+wait 30
++attack2
+wait 2
+-attack2
+pcb_measure_open 1 120
+wait 220
+pcb_mc_portals_shape 27 47 0 0
+pcb_corridor_aim 1
+pcb_stop
+wait 30
++attack2
+wait 2
+-attack2
+pcb_measure_open 1 120
+wait 220
+pcb_corridor_aim 1
+pcb_stop
+wait 30
++attack2
+wait 2
+-attack2
+pcb_measure_open 1 120
+wait 220
+pcb_log CASE move: orange to the west wall
+pcb_mc_portals_shape 27 47 0 3
+pcb_corridor_aim 0
+pcb_stop
+wait 30
++attack2
+wait 2
+-attack2
+pcb_measure_open 1 120
+wait 220
+pcb_mc_portals_shape 27 47 0 0
+pcb_corridor_aim 1
+pcb_stop
+wait 30
++attack2
+wait 2
+-attack2
+pcb_measure_open 1 120
+wait 220
+r_drawviewmodel 1
+pcb_build_corridor remove
+wait 30
+pcb_run_summary
+quit

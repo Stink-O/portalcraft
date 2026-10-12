@@ -1,0 +1,44 @@
+# Portalcraft bridge: 32-bit Windows plugin (portalcraft_bridge.dll), cross-built with MinGW-w64 (i686, posix threads).
+# Normally run through tools/build_windows_plugin.sh (a container with g++-mingw-w64-i686); `make win` forwards here.
+#   make -f Makefile.win                 -> build/win/portalcraft_bridge.dll
+#   make -f Makefile.win OBJDIR=... DLL=...
+CXX      := i686-w64-mingw32-g++-posix
+OBJDIR   ?= build/objmingw
+DLL      ?= build/win/portalcraft_bridge.dll
+# No GL on Windows. The renderer features use src/bridge/d3d9/hud_d3d9.cpp / cut_d3d9.cpp when they exist, else the inert stubs.
+SRCS     := $(shell find src -name '*.cpp' ! -name 'platform_linux.cpp' ! -path 'src/bridge/render_backend/gl_*' ! -path 'src/bridge/render_backend/stub_*') src/bridge/render_backend/stub_dig.cpp
+ifeq ($(wildcard src/bridge/d3d9/hud_d3d9.cpp),)
+SRCS     += src/bridge/render_backend/stub_hud.cpp
+endif
+ifeq ($(wildcard src/bridge/d3d9/cut_d3d9.cpp),)
+SRCS     += src/bridge/render_backend/stub_cut.cpp
+endif
+OBJS     := $(patsubst src/%.cpp,$(OBJDIR)/%.o,$(SRCS))
+# version information (src/bridge/version.rc): windres next to the compiler (i686-w64-mingw32-windres, or MSYS2's windres)
+WINDRES  ?= $(patsubst %g++,%windres,$(patsubst %g++-posix,%windres,$(CXX)))
+VERSION  ?= $(shell sed -n 's/^version=//p' fabric/gradle.properties)
+RES      := $(OBJDIR)/version.res.o
+DEPS     := $(OBJS:.o=.d)
+WARN     := -Wall -Wno-parentheses -Wno-unknown-pragmas -Wno-delete-non-virtual-dtor -Wno-overloaded-virtual -Wno-unused-variable -Wno-class-memaccess -Wno-invalid-offsetof -Wno-attributes -Wno-unused-but-set-variable -Wno-format -Wno-format-extra-args
+# -mstackrealign: the engine (MSVC) calls our hooks with a 4-byte aligned stack, GCC assumes 16 for SSE spills.
+CXXFLAGS := -std=gnu++17 -O2 -g -mstackrealign -mno-ms-bitfields -D__USE_MINGW_ANSI_STDIO=1 -DNOMINMAX -DWIN32_LEAN_AND_MEAN -D_WIN32_WINNT=0x0601 -Isrc/sar -Isrc -Iprotocol $(WARN)
+LDFLAGS  := -shared -static -static-libgcc -static-libstdc++ -Wl,--kill-at -Wl,--enable-stdcall-fixup -Wl,--no-undefined -Wl,--large-address-aware -Wl,--wrap=fopen -Wl,--wrap=stat -Wl,--wrap=remove -Wl,--wrap=rename
+LIBS     := -lpthread -lpsapi -luser32 -lkernel32 -ladvapi32
+
+comma := ,
+all: $(DLL)
+
+$(DLL): $(OBJS) $(RES)
+	@mkdir -p $(dir $@)
+	$(CXX) $(OBJS) $(RES) $(LDFLAGS) $(LIBS) -o $@
+
+$(RES): src/bridge/version.rc fabric/gradle.properties
+	@mkdir -p $(dir $@)
+	$(WINDRES) -DPCB_VER='\"$(VERSION)\"' -DPCB_VERNUM=$(subst .,$(comma),$(VERSION)),0 -O coff -i $< -o $@
+
+$(OBJDIR)/%.o: src/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -MMD -c $< -o $@
+
+-include $(DEPS)
+.PHONY: all

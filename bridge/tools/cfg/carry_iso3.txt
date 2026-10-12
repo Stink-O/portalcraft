@@ -1,0 +1,88 @@
+# carry_iso3 (bridge #12): the cause, as a control/fix pair in the test corridor with a held cube (prop colliders
+# around it). CONTROL: the old behaviour (pcb_collide_seams 0, colliders 0.2 u low: pcb_prop_collide_lift 0).
+# FIX: the new defaults. Each phase walks 1 s west and 1 s east holding the cube.
+pcb_assert_soft 1
+sv_cheats 1
+pcb_audio_test_mute 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_noclip_set 1
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_blockers watch 1
+pcb_log CONTROL old behaviour
+pcb_collide_seams 0
+pcb_prop_collide_lift 0
+pcb_light_goto_mc -373.5 89 442.5 90 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+wait 60
+pcb_light_cube_mc -375 90.5 442.5
+wait 120
+pcb_aim_prop pcb_cube
+wait 10
++use
+wait 20
+-use
+waituntil holding 180
+setang 0 180 0
+wait 60
+pcb_where
+pcb_blockers reset
+pcb_blockers speedwin 1
++forward
+wait 60
+-forward
+wait 20
+setang 0 0 0
+wait 20
++forward
+wait 60
+-forward
+pcb_blockers speedwin 0
+wait 20
+pcb_where
+pcb_assert_holding 1 pcb_cube
+pcb_blockers report control
+pcb_assert_blockers control 150
+pcb_log FIX new defaults (colliders re-placed raised; seam rule on)
+pcb_collide_seams 1
+pcb_prop_collide_lift 0.2
+pcb_noclip_set 1
+pcb_light_goto_mc -373.5 89 442.5 0 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+wait 60
+pcb_assert_holding 1 pcb_cube
+setang 0 180 0
+wait 60
+pcb_where
+pcb_blockers reset
+pcb_blockers speedwin 1
++forward
+wait 60
+-forward
+wait 20
+setang 0 0 0
+wait 20
++forward
+wait 60
+-forward
+pcb_blockers speedwin 0
+wait 20
+pcb_where
+pcb_assert_holding 1 pcb_cube
+pcb_blockers report fix
+pcb_assert_blockers fix 150
+pcb_prop_collide
+pcb_build_corridor remove
+pcb_run_summary
+quit

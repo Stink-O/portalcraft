@@ -1,0 +1,89 @@
+# propfloor (bridge #10): cubes on placed (fill-command) stone. Near an open portal Portal 2 simulates a prop in the
+# portal's own physics environment, where the block colliders do not count (float2's cube fell through the
+# corridor floor); the prop push-out holds them. Asserts each cube rests on the floor (ground top y 89), and a
+# pinned cube can be picked up, lifted and dropped back onto the floor.
+# A: corridor, no portals, cube 12 u above the floor in the middle. B: the pair on the walls, cube 80 u before
+# portal 1 (float2's spot). C: cube in the middle (6 blocks from each portal). D: cube 200 u before portal 1.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pc_mc_float 0
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_log CUBE A: no portals, middle of the corridor
+pcb_spawn_cube -1900 -740 -14138 cubeA
+wait 120
+pcb_prop_debug cubeA
+pcb_assert_prop_rest cubeA 89
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_log CUBE B: 80 u before portal 1
+pcb_spawn_cube_before 1 80 cubeB
+wait 120
+pcb_prop_debug cubeB
+pcb_assert_prop_rest cubeB 89
+pcb_log CUBE C: middle with the pair open (beside cube A)
+pcb_spawn_cube -1900 -820 -14138 cubeC
+wait 120
+pcb_prop_debug cubeC
+pcb_assert_prop_rest cubeC 89
+pcb_log CUBE D: 200 u before portal 1, off to the side
+pcb_spawn_cube -1880 -660 -14138 cubeD
+wait 120
+pcb_prop_debug cubeD
+pcb_assert_prop_rest cubeD 89
+pcb_log CUBE E: dropped from 3 blocks onto the floor 40 u before portal 0
+pcb_spawn_cube -2080 -740 -14030 cubeE
+wait 150
+pcb_prop_debug cubeE
+pcb_assert_prop_rest cubeE 89
+pcb_log CUBE B picked up by Chell, carried, dropped near the portal again
+pcb_prop_mark cubeB
+setpos -1850 -740 -14167
+pcb_stop
+pcb_noclip_set 0
+wait 30
+pcb_aim -1760 -740 -14150
+wait 10
++use
+wait 5
+-use
+wait 30
+setang -25 0 0
+wait 60
+pcb_assert_prop_moved cubeB 20 20
++use
+wait 5
+-use
+wait 120
+pcb_prop_debug cubeB
+pcb_assert_prop_rest cubeB 89
+pcb_prop_collide
+pcb_build_corridor remove
+wait 30
+pcb_run_summary
+quit

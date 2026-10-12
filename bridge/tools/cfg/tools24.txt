@@ -1,0 +1,73 @@
+# tools24 (bridge #24): the test tools themselves, in pc_pit_flings (terrain session).
+# A the map index: pcb_find; pcb_goto next to button_1 (no guessed coordinates); collision overlay shots on the chamber floor
+#   as the Minecraft player (mode 2 and mode 1)
+# B a bug mark through the real key-polling path (pcb_bugmark press) after a short walk and a turn; its replay.txt is run
+#   separately (tools24 report)
+# C pcb_goto exit_ledge_player_clip 80 low + pcb_face ... bottom (the ledge top the clip sits on): the ledge straight ahead (Chell and Minecraft), overlay shots there
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_log A map index, goto, overlay on the chamber floor
+pcb_mapindex
+pcb_find exit_ledge
+pcb_find button_1
+pcb_goto button_1-button 96
+wait 60
+pcb_where
+pcb_assert_facing button_1-button 3
+bridge_mode mc
+waituntil mcmode 1200
+waituntil mcleads 600
+wait 90
+pcb_where
+pcb_glhud_shot a24_floor_plain
+wait 20
+pcb_collision_shot a24_floor_col2 2
+wait 150
+pcb_collision_shot a24_floor_col1 1
+wait 90
+pc_show_collision
+pcb_log B bug mark
+pcb_mckey 26 1
+wait 40
+pcb_mckey 26 0
+wait 30
+pcb_setview 10 45
+wait 20
+pcb_bugmark press t1
+wait 60
+pcb_bugmark last
+pcb_log C the exit ledge
+bridge_mode chell
+waituntil chellmode 600
+pcb_goto exit_ledge_player_clip 80 low
+wait 60
+pcb_where
+pcb_face exit_ledge_player_clip bottom
+wait 20
+pcb_assert_facing exit_ledge_player_clip bottom 2
+waituntil near exit_ledge_player_clip 120 60
+pcb_glhud_shot a24_ledge_chell
+wait 20
+bridge_mode mc
+waituntil mcmode 1200
+waituntil mcleads 600
+wait 60
+pcb_face exit_ledge_player_clip bottom
+wait 20
+pcb_assert_facing exit_ledge_player_clip bottom 2
+pcb_glhud_shot a24_ledge_mc
+wait 20
+pcb_collision_shot a24_ledge_col2 2
+wait 150
+pcb_collision_shot a24_ledge_col1 1
+wait 90
+pcb_assert_past exit_ledge_player_clip -z -128
+pcb_mapindex
+pcb_run_summary
+quit

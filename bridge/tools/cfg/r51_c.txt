@@ -1,0 +1,56 @@
+# r51_c (bridge #51): two portals truly facing each other across the 128 u corridor (x=-495), digs 200 u ahead, old/new/off at one pose
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+bridge_mode chell
+waituntil chellmode 900
+wait 90
+pcb_noclip_set 1
+crosshair 0
+r_drawviewmodel 0
+pcb_portal_wall 0 -495 -640 1200 90
+pcb_portal_wall 1 -495 -640 1200 270
+wait 150
+setpos -900 -640 1152
+setang 8 0 0
+pcb_setview 8 0
+pcb_stop
+wait 40
+pcb_assert_pose -900 -640 1152 3 8 0 1
+pcb_log R51 c0 no digs
+screenshot pcb_r51c_c0_nodig
+pcb_log R51 dig the floor at x=-700
+setpos -700 -640 1152
+setang 0 0 0
+pcb_setview 0 0
+pcb_stop
+wait 40
+pcb_assert_pose -700 -640 1152 3 0 0 1
+pcb_dig_under 2
+wait 30
+setpos -900 -640 1152
+setang 8 0 0
+pcb_setview 8 0
+pcb_stop
+wait 40
+pcb_assert_pose -900 -640 1152 3 8 0 1
+pc_dig_punch 1 0
+pcb_log R51 c1 dug, OLD angles-only test
+wait 20
+screenshot pcb_r51c_c1_old
+pc_dig_punch
+pc_dig_punch 1 1
+pcb_log R51 c2 dug, NEW main-view test
+wait 20
+screenshot pcb_r51c_c2_new
+pc_dig_punch
+pc_dig_punch 0 1
+pc_dig_peel 0
+pc_vis_clamp 0 0
+pcb_log R51 c3 dug, features off
+wait 20
+screenshot pcb_r51c_c3_off
+pc_dig_punch
+pcb_log R51 done
+quit

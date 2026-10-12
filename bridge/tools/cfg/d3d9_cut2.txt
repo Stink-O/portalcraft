@@ -1,0 +1,85 @@
+# d3d9_cut2: the cut-away with Minecraft's own dug cells, as the Minecraft player (D3D9 / -vulkan): the cut1 hole on pc_testbed (east hall wall, MC cells x 116..117, y 443..445, z -74..-73),
+# mined through the mod (/pcdig mine, the path a pickaxe takes) instead of pcb_dig_box, so the dug set comes from Minecraft (kRenDug) and the revealed blocks / caps are Minecraft's.
+# Run: PCB_PRE="pc_start_mode mc" PCB_GAME_ARGS=-vulkan PCB_SO=<abs>/d3d9c-x.so tools/locked_run.sh terrain tools/cfg/d3d9_cut2.txt pc_testbed 600 d3d9_cut2
+# GL twin: d3d9_cut2_gl.txt (shots g2_*; no PCB_GAME_ARGS).
+sv_cheats 1
+pcb_assert_soft 1
+pc_input_lock 1
+wait 120
+waituntil link 3600
+wait 120
+bridge_mode mc
+waituntil mcmode 900
+waituntil mcalive 600
+pcb_mc_cmd gamemode creative
+wait 60
+pc_dig 1
+pcb_dig_reset
+wait 120
+crosshair 0
+r_drawviewmodel 0
+pcb_mc_place 1000 1000 8 0 24
+waituntil mcplaced 900
+wait 30
+pcb_setview 0 0
+wait 240
+pcb_glhud_shot v2_a_front_undug
+wait 6
+pcb_mc_cmd pcdig mine 116 443 -74
+wait 5
+pcb_mc_cmd pcdig mine 116 443 -73
+wait 5
+pcb_mc_cmd pcdig mine 116 444 -74
+wait 5
+pcb_mc_cmd pcdig mine 116 444 -73
+wait 5
+pcb_mc_cmd pcdig mine 116 445 -74
+wait 5
+pcb_mc_cmd pcdig mine 116 445 -73
+wait 5
+pcb_mc_cmd pcdig mine 117 443 -74
+wait 5
+pcb_mc_cmd pcdig mine 117 443 -73
+wait 5
+pcb_mc_cmd pcdig mine 117 444 -74
+wait 5
+pcb_mc_cmd pcdig mine 117 444 -73
+wait 5
+pcb_mc_cmd pcdig mine 117 445 -74
+wait 5
+pcb_mc_cmd pcdig mine 117 445 -73
+wait 5
+wait 400
+pcb_dig_status
+pcb_glhud_shot v2_b_front_dug
+wait 6
+pc_cut_audit 1
+wait 40
+pcb_glhud_shot v2_c_front_audit
+wait 6
+pc_cut_audit 0
+wait 30
+pcb_mc_place 1000 1070 8 -20 24
+waituntil mcplaced 900
+wait 30
+pcb_setview 0 -20
+wait 200
+pcb_glhud_shot v2_d_side
+wait 6
+pc_cut_audit 1
+wait 40
+pcb_glhud_shot v2_e_side_audit
+wait 6
+pc_cut_audit 0
+wait 20
+pc_dig_render 1
+wait 60
+pcb_glhud_shot v2_f_side_cutoff
+wait 6
+pc_dig_render 2
+wait 20
+pcb_d3d9_cutstats
+pcb_dig_status
+pcb_mc_cmd pcdig clear
+wait 60
+quit

@@ -1,0 +1,51 @@
+# z69: sp_a1_wakeup debug relays: the 3 !player teleports and the breaker ride, as the Minecraft player
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 600
+pcb_log Z69 tp1 inside elevator
+ent_fire @debug_warp_inside_of_elevator Trigger
+wait 200
+pcb_glhud_shot z69b_tp1_a
+pcb_where
+wait 300
+pcb_where
+pcb_glhud_shot z69b_tp1_b
+pcb_mckey 26 1
+wait 60
+pcb_where
+pcb_mckey 26 0
+pcb_log Z69 breaker ride start
+ent_fire basement_breakers_start Trigger
+wait 120
+pcb_glhud_shot z69b_ride_a
+pcb_where
+wait 300
+pcb_glhud_shot z69b_ride_b
+pcb_where
+wait 600
+pcb_glhud_shot z69b_ride_c
+pcb_where
+wait 900
+pcb_glhud_shot z69b_ride_d
+pcb_where
+pcb_log Z69 tp2 stairwell
+ent_fire @debug_warp_to_stairwell Trigger
+wait 400
+pcb_glhud_shot z69b_tp2_a
+pcb_where
+wait 300
+pcb_log Z69 tp3 elevator
+ent_fire @debug_warp_to_elevator Trigger
+wait 400
+pcb_glhud_shot z69b_tp3_a
+pcb_where
+pcb_mckey 26 1
+wait 90
+pcb_where
+pcb_mckey 26 0
+pcb_glhud_shot z69b_tp3_walk
+pcb_run_summary
+quit

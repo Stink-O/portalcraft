@@ -1,0 +1,24 @@
+# carprobe25 (bridge #25): what the export has under the arrival car's floor at spawn (Chell mode, Minecraft linked)
+pcb_assert_soft 1
+waituntil spawned 600
+pcb_where
+pcb_dyn_probe 64 -1792 -240 0
+pcb_dyn_probe 64 -1792 -252 0
+pcb_dyn_probe 64 -1792 -256 0
+pcb_dyn_probe 64 -1792 -262 0
+pcb_contents 64 -1792 -252
+waituntil link 9000
+bridge_mode mc
+wait 1
+pcb_dyn_probe 64 -1792 -252 0
+pcb_colfield_block 64 -1792 -252
+pcb_colfield_block 64 -1792 -262
+pcb_colfield_dyn
+pcb_where
+wait 10
+pcb_where
+pcb_dyn_probe 64 -1792 -252 0
+pcb_colfield_block 64 -1792 -262
+wait 300
+pcb_run_summary
+quit

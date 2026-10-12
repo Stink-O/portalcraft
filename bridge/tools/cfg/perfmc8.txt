@@ -1,0 +1,41 @@
+# perfmc8 (lead): the user's lag walking up from the arrival elevator into the main chamber as the Minecraft player
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+pcb_audio_test_mute 1
+bridge_mode mc
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 120
+pcb_where
+pcb_colfield_trace 300
+pcb_log PERF E0 in the elevator
+pcb_composite_lag
+wait 120
+pcb_composite_lag
+setang 0 90 0
+pcb_mckey 26 1
+pcb_log PERF E1 walking 1
+pcb_composite_lag
+wait 120
+pcb_composite_lag
+pcb_where
+pcb_log PERF E2 walking 2
+wait 120
+pcb_composite_lag
+pcb_where
+pcb_log PERF E3 walking 3
+wait 120
+pcb_composite_lag
+pcb_where
+pcb_log PERF E4 walking 4
+wait 120
+pcb_composite_lag
+pcb_where
+pcb_mckey 26 0
+pcb_colfield
+pcb_terrain_stats
+pcb_run_summary
+quit

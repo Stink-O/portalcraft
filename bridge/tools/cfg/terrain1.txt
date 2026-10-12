@@ -1,0 +1,22 @@
+# Terrain streaming test in sp_a2_bridge_intro (Minecraft: tools/run_mc.sh --terrain)
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 60
+noclip
+pcb_terrain_region 0 64 0 0 300 0
+wait 1500
+pcb_terrain_stats
+setpos -200 -300 400
+setang 25 60 0
+wait 60
+screenshot pcb_t1_overview
+wait 60
+pcb_portal_wall 0 0 250 56 0
+pcb_portal_wall 1 0 250 56 180
+wait 60
+pcb_view_portal 0 150
+wait 60
+screenshot pcb_t1_portal
+wait 60
+pcb_terrain_stats
+quit

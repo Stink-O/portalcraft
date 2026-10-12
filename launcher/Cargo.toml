@@ -1,0 +1,48 @@
+[package]
+name = "portalcraft-launcher"
+version = "0.2.0"
+edition = "2021"
+description = "Portalcraft launcher: sets up and starts Portal 2 + Minecraft together"
+license = "MIT"
+publish = false
+
+# Standalone crate with its own [workspace].
+# Build with:  CARGO_TARGET_DIR=target-launcher cargo build --release --manifest-path launcher/Cargo.toml
+[workspace]
+
+[[bin]]
+name = "portalcraft-launcher"
+path = "src/main.rs"
+
+[dependencies]
+ureq = "3"
+sha2 = "0.10"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+flate2 = "1"
+tar = "0.4"
+zip = { version = "2", default-features = false, features = ["deflate"] }
+png = "0.17"
+
+
+[target.'cfg(unix)'.dependencies]
+eframe = { version = "0.36", default-features = false, features = ["glow", "wayland", "x11", "default_fonts"] }
+libc = "0.2"
+
+[target.'cfg(windows)'.dependencies]
+eframe = { version = "0.36", default-features = false, features = ["glow", "default_fonts"] }
+winreg = "0.55"
+sysinfo = { version = "0.37", default-features = false, features = ["system"] }
+windows-sys = { version = "0.61", features = [
+    "Win32_Foundation", "Win32_System_Threading", "Win32_System_Console", "Win32_UI_WindowsAndMessaging",
+    "Win32_Storage_FileSystem", "Win32_System_SystemInformation",
+] }
+
+[profile.release]
+opt-level = 2
+lto = "thin"
+strip = true
+codegen-units = 4
+
+[build-dependencies]
+winresource = "0.1"

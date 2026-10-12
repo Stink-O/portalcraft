@@ -1,0 +1,83 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+pcb_noclip_set 0
+pcb_log TB67 ---- CHELL on the unmodified player_catapult ----
+setpos -10 -160 -425
+setang 0 180 0
+wait 90
+pcb_where
+screenshot pcb_f67c_chell_0
++forward
+wait 40
+-forward
+wait 15
+pcb_where
+wait 15
+pcb_where
+screenshot pcb_f67c_chell_1
+wait 15
+pcb_where
+wait 15
+pcb_where
+screenshot pcb_f67c_chell_2
+wait 15
+pcb_where
+wait 15
+pcb_where
+screenshot pcb_f67c_chell_3
+wait 15
+pcb_where
+wait 15
+pcb_where
+screenshot pcb_f67c_chell_4
+wait 200
+pcb_where
+pcb_log TB67 ---- MC player, same spot ----
+bridge_mode mc
+waituntil mcmode 2400
+waituntil mcleads 2400
+pcb_noclip_set 0
+wait 120
+pcb_mc_reset_player
+wait 60
+waituntil mcalive 600
+pcb_mc_place -10 -160 -425 180 20
+waituntil mcplaced 900
+wait 6
+pcb_setview 0 180
+pcb_assert_placed
+pcb_assert_mech reset
+pcb_mcm reset
+screenshot pcb_f67c_mc_0
+pcb_mckey 26 1
+wait 40
+pcb_mckey 26 0
+wait 15
+pcb_where
+wait 15
+pcb_where
+screenshot pcb_f67c_mc_1
+wait 15
+pcb_where
+wait 15
+pcb_where
+screenshot pcb_f67c_mc_2
+wait 15
+pcb_where
+wait 15
+pcb_where
+screenshot pcb_f67c_mc_3
+wait 15
+pcb_where
+wait 15
+pcb_where
+screenshot pcb_f67c_mc_4
+wait 200
+pcb_where
+pcb_assert_mech launches 1 1
+pcb_assert_mc_near launch_target2b 250 200
+pcb_mech
+quit

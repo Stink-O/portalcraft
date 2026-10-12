@@ -1,0 +1,21 @@
+# w68: build and cache the mover shapes of every campaign map (run once; shapes land in cache/bridge/movershapes)
+sv_cheats 1
+waituntil spawned 600
+pc_movers 1 25 25
+pcb_log W68 prebuild sp_a2_bts2
+map sp_a2_bts2
+waituntil mapsp_a2_bts2 3600
+waituntil moversbuilt 1500
+wait 120
+pcb_log W68 prebuild sp_a3_01
+map sp_a3_01
+waituntil mapsp_a3_01 3600
+waituntil moversbuilt 1500
+wait 120
+pcb_log W68 prebuild sp_a4_finale1
+map sp_a4_finale1
+waituntil mapsp_a4_finale1 3600
+waituntil moversbuilt 1500
+wait 120
+pcb_run_summary
+quit

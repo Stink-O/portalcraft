@@ -1,0 +1,177 @@
+# edge1: (1) the first portal shot in Minecraft, frame by frame from the shot to ~1 s after (no partner,
+# then with a partner), against first shots onto a chamber wall at the same distance (6 blocks);
+# (2) the opening's edge per path, colour and angle: Portal 2's visible opening (its views magenta) against
+# Minecraft's (its opening flat magenta), max over 40 frames, lenient (magenta under the rim counts).
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_log FIRST chamber reference: colour 0 on a chamber wall, no partner, 6 blocks
+pcb_noclip_set 1
+setpos -320 -60 0
+setang 0 180 0
+pcb_stop
+wait 120
+pcb_frame_dump 90 first_chamber_c0 500 225 1100 675
++attack
+wait 6
+-attack
+wait 120
+pcb_log FIRST chamber reference: colour 1 beside it (partner exists)
+setang 0 165 0
+wait 60
+pcb_frame_dump 90 first_chamber_c1 500 225 1100 675
++attack2
+wait 6
+-attack2
+wait 120
+ent_fire prop_portal Fizzle
+wait 60
+pcb_log FIRST Minecraft: corridor
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 90
+pcb_frame_dump 90 first_mc_c0 500 225 1100 675
++attack
+wait 6
+-attack
+wait 120
+pcb_log FIRST Minecraft: colour 1 on the other wall (partner exists)
+pcb_corridor_aim 1
+wait 90
+pcb_frame_dump 90 first_mc_c1 500 225 1100 675
++attack2
+wait 6
+-attack2
+wait 120
+pcb_assert_portals
+pcb_assert_portal_face
+pcb_log EDGE pair portal 0 at 0 deg
+pcb_view_portal 0 120 0 1
+pcb_stop
+wait 60
+screenshot pcb_E_0_0_normal
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 0 40 p2_0_0 max lenient
+wait 70
+pcb_measure_hole 0 40 p2s_0_0 median
+wait 70
+screenshot pcb_E_0_0_p2magenta
+pcb_mc_portals_shape 27 47 0 0
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 0 40 mc_0_0 max lenient
+wait 70
+screenshot pcb_E_0_0_mcmagenta
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_0_0 p2_0_0 1
+pcb_log EDGE pair portal 0 at 45 deg
+pcb_view_portal 0 120 45 1
+pcb_stop
+wait 60
+screenshot pcb_E_0_45_normal
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 0 40 p2_0_45 max lenient
+wait 70
+pcb_measure_hole 0 40 p2s_0_45 median
+wait 70
+screenshot pcb_E_0_45_p2magenta
+pcb_mc_portals_shape 27 47 0 0
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 0 40 mc_0_45 max lenient
+wait 70
+screenshot pcb_E_0_45_mcmagenta
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_0_45 p2_0_45 1
+pcb_log EDGE pair portal 1 at 0 deg
+pcb_view_portal 1 120 0 1
+pcb_stop
+wait 60
+screenshot pcb_E_1_0_normal
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 1 40 p2_1_0 max lenient
+wait 70
+pcb_measure_hole 1 40 p2s_1_0 median
+wait 70
+screenshot pcb_E_1_0_p2magenta
+pcb_mc_portals_shape 27 47 0 0
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 1 40 mc_1_0 max lenient
+wait 70
+screenshot pcb_E_1_0_mcmagenta
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_1_0 p2_1_0 1
+pcb_log EDGE pair portal 1 at 45 deg
+pcb_view_portal 1 120 45 1
+pcb_stop
+wait 60
+screenshot pcb_E_1_45_normal
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 1 40 p2_1_45 max lenient
+wait 70
+pcb_measure_hole 1 40 p2s_1_45 median
+wait 70
+screenshot pcb_E_1_45_p2magenta
+pcb_mc_portals_shape 27 47 0 0
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 1 40 mc_1_45 max lenient
+wait 70
+screenshot pcb_E_1_45_mcmagenta
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_1_45 p2_1_45 1
+pcb_build_corridor remove
+ent_fire prop_portal Fizzle
+wait 60
+pcb_log EDGE chamber<->Minecraft: the pit floor portal seen from the chamber
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_redirect
+pcb_view_portal 0 160 0 1
+pcb_stop
+wait 90
+screenshot pcb_E_pit_0_normal
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 0 40 pitp2_0 max lenient
+wait 70
+screenshot pcb_E_pit_0_magenta
+pcb_mc_portals_shape 27 47 0 0
+wait 10
+pcb_view_portal 0 160 45 1
+pcb_stop
+wait 90
+screenshot pcb_E_pit_45_normal
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 0 40 pitp2_45 max lenient
+wait 70
+screenshot pcb_E_pit_45_magenta
+pcb_mc_portals_shape 27 47 0 0
+wait 10
+pcb_run_summary
+quit

@@ -1,0 +1,24 @@
+# bridge #80: promotion check. A `play_clip.sh --start mc` pit flings session (pc_pit_flings, the Minecraft player down the arrival elevator),
+# short load: link, the pinned cliff exit, the Minecraft player leads, four looks.
+#   PCB_PRE="pc_start_mode mc;pc_world unified" PORTALCRAFT_JVM_ARGS=-Dskycraft.worldName=Portalcraft80_test PCB_SO=<abs .so> tools/locked_run.sh terrain tools/cfg/r80_pit.txt pc_pit_flings 900 <run>
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 9000
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 600
+pc_world
+pcb_where
+screenshot pcb_r80p_0
+pcb_setview 5 90
+wait 180
+screenshot pcb_r80p_90
+pcb_setview 5 180
+wait 180
+screenshot pcb_r80p_180
+pcb_setview 5 270
+wait 180
+screenshot pcb_r80p_270
+wait 60
+quit

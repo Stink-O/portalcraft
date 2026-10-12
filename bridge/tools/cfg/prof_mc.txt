@@ -1,0 +1,116 @@
+# prof_mc (bridge #10: + host frame stats per phase, "HOST <phase>" then pcb_composite_lag): where Minecraft's frame time goes, per phase (about 2.5 minutes in the game). Each phase holds a
+# still pose for 20 s (four 5 s "frame stats" windows in mc.log) with Minecraft's own profiler running over
+# the middle 10 s (pcb_mc_profile; report zip in fabric/run/debug/profiling/). tools/mc_perf.sh summarises.
+# Phases: A chamber looking down at the pit portal (one camera), B the open badlands view (camera in the
+# region, RD 24), C the facing tunnel (Minecraft draws 4 portal passes), D the tunnel with a moving camera (bridge #11).
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_mc_cmd weather clear
+pcb_log PHASE A chamber, looking at the pit portal
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_noclip_set 1
+setpos 128 -384 -500
+setang 89 0 0
+pcb_stop
+wait 120
+pcb_log PERF A begin
+pcb_composite_lag
+wait 300
+pcb_mc_profile
+wait 600
+pcb_mc_profile
+wait 300
+pcb_log HOST A
+pcb_composite_lag
+pcb_log PERF A end
+pcb_log PHASE B open badlands
+pcb_light_goto_mc -336.5 118 425.5 90 25
+pcb_stop
+wait 240
+pcb_log PERF B begin
+pcb_composite_lag
+wait 300
+pcb_mc_profile
+wait 600
+pcb_mc_profile
+wait 300
+pcb_log HOST B
+pcb_composite_lag
+pcb_log PERF B end
+pcb_log PHASE C facing tunnel
+ent_fire prop_portal Fizzle
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_portals
+pcb_view_from 0 3
+pcb_stop
+wait 120
+pcb_log PERF C begin
+pcb_composite_lag
+wait 300
+pcb_mc_profile
+wait 600
+pcb_mc_profile
+wait 300
+pcb_log HOST C
+pcb_composite_lag
+pcb_log PERF C end
+pcb_log PHASE D facing tunnel, moving camera (strafe + turn: no pass-cache reuse expected; checks it loses nothing)
+pcb_view_from 0 4
+pcb_stop
+wait 60
+pcb_log PERF D begin
+pcb_composite_lag
++moveleft
+wait 150
+-moveleft
+pcb_mc_profile
++moveright
+wait 150
+-moveright
+pcb_cam_turn 40 30
+wait 150
+pcb_cam_turn -40 30
+wait 150
++moveleft
+wait 150
+-moveleft
+pcb_mc_profile
++moveright
+wait 150
+-moveright
+pcb_log HOST D
+pcb_composite_lag
+pcb_log PERF D end
+pcb_build_corridor remove
+wait 60
+pcb_run_summary
+quit

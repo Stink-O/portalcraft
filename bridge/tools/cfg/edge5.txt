@@ -1,0 +1,220 @@
+# edge5: same-frame gap / overshoot of Minecraft's opening against Portal 2's rim (pcb_measure_gap, flat magenta),
+# for candidate openings, per colour, straight on at 3 and 6 blocks and at 45 deg, and through the open animation.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_mc_portals_flat 1
+pcb_log CAND A: 29.1 x 50.3 centre 1.36
+pcb_mc_portals_shape 29.1 50.3 0 0
+pcb_mc_portals_centre 1.36
+pcb_view_portal 0 120 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 0 30 A_0_s3 1
+wait 150
+screenshot pcb_G_A_0_s3_flat
+pcb_view_portal 0 120 45 1
+pcb_stop
+wait 40
+pcb_measure_gap 0 30 A_0_a45 1
+wait 150
+screenshot pcb_G_A_0_a45_flat
+pcb_view_portal 0 240 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 0 30 A_0_s6 1
+wait 150
+screenshot pcb_G_A_0_s6_flat
+pcb_view_portal 1 120 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 1 30 A_1_s3 1
+wait 150
+pcb_view_portal 1 120 45 1
+pcb_stop
+wait 40
+pcb_measure_gap 1 30 A_1_a45 1
+wait 150
+pcb_view_portal 1 240 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 1 30 A_1_s6 1
+wait 150
+pcb_log CAND B: 28.0 x 48.4 centre 1.36
+pcb_mc_portals_shape 28.0 48.4 0 0
+pcb_mc_portals_centre 1.36
+pcb_view_portal 0 120 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 0 30 B_0_s3 1
+wait 150
+pcb_view_portal 0 120 45 1
+pcb_stop
+wait 40
+pcb_measure_gap 0 30 B_0_a45 1
+wait 150
+pcb_view_portal 0 240 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 0 30 B_0_s6 1
+wait 150
+pcb_view_portal 1 120 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 1 30 B_1_s3 1
+wait 150
+pcb_view_portal 1 120 45 1
+pcb_stop
+wait 40
+pcb_measure_gap 1 30 B_1_a45 1
+wait 150
+pcb_view_portal 1 240 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 1 30 B_1_s6 1
+wait 150
+pcb_log CAND C: 28.6 x 49.4 centre 1.36
+pcb_mc_portals_shape 28.6 49.4 0 0
+pcb_mc_portals_centre 1.36
+pcb_view_portal 0 120 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 0 30 C_0_s3 1
+wait 150
+pcb_view_portal 0 120 45 1
+pcb_stop
+wait 40
+pcb_measure_gap 0 30 C_0_a45 1
+wait 150
+pcb_view_portal 0 240 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 0 30 C_0_s6 1
+wait 150
+pcb_view_portal 1 120 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 1 30 C_1_s3 1
+wait 150
+pcb_view_portal 1 120 45 1
+pcb_stop
+wait 40
+pcb_measure_gap 1 30 C_1_a45 1
+wait 150
+pcb_view_portal 1 240 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 1 30 C_1_s6 1
+wait 150
+pcb_log CAND D: 29.1 x 50.3 centre 0
+pcb_mc_portals_shape 29.1 50.3 0 0
+pcb_mc_portals_centre 0
+pcb_view_portal 0 120 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 0 30 D_0_s3 1
+wait 150
+pcb_view_portal 0 120 45 1
+pcb_stop
+wait 40
+pcb_measure_gap 0 30 D_0_a45 1
+wait 150
+pcb_view_portal 0 240 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 0 30 D_0_s6 1
+wait 150
+pcb_view_portal 1 120 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 1 30 D_1_s3 1
+wait 150
+pcb_view_portal 1 120 45 1
+pcb_stop
+wait 40
+pcb_measure_gap 1 30 D_1_a45 1
+wait 150
+pcb_view_portal 1 240 0 1
+pcb_stop
+wait 40
+pcb_measure_gap 1 30 D_1_s6 1
+wait 150
+pcb_log OPEN animation with candidate A, curve 0 / 1, prediction 0 / 2
+pcb_mc_portals_shape 29.1 50.3 0 0
+pcb_mc_portals_centre 1.36
+pcb_mc_portals_curve 0 0
+pcb_view_portal 1 200 0 1
+pcb_stop
+wait 40
+pcb_corridor_aim 1 -0.6
+wait 20
++attack2
+wait 2
+-attack2
+pcb_view_portal 1 200 0 1
+pcb_measure_gap 1 60 open_c0_p0 1
+wait 240
+pcb_mc_portals_curve 0 2
+pcb_view_portal 1 200 0 1
+pcb_stop
+wait 40
+pcb_corridor_aim 1 0.6
+wait 20
++attack2
+wait 2
+-attack2
+pcb_view_portal 1 200 0 1
+pcb_measure_gap 1 60 open_c0_p2 1
+wait 240
+pcb_mc_portals_curve 1 2
+pcb_view_portal 1 200 0 1
+pcb_stop
+wait 40
+pcb_corridor_aim 1 0.6
+wait 20
++attack2
+wait 2
+-attack2
+pcb_view_portal 1 200 0 1
+pcb_measure_gap 1 60 open_c1_p2 1
+wait 240
+pcb_mc_portals_flat 0
+pcb_mc_portals_curve 0 0
+pcb_view_portal 0 120 0 1
+wait 60
+screenshot pcb_G_A_normal_0
+pcb_view_portal 1 120 0 1
+wait 60
+screenshot pcb_G_A_normal_1
+pcb_build_corridor remove
+wait 30
+pcb_run_summary
+quit

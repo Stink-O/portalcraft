@@ -1,0 +1,58 @@
+# exitledge25 (bridge #25; #23's open item 1): the Minecraft player walks and jumps up the exit ledge from its low side, before and
+# after the map's trigger_once at (-402 -108 64) kills exit_ledge_player_clip (x -528..-512 y -384..-256 and x -512..-384
+# y -256..-232, z 0..128). The playerclip is not exported (bridge #23), so Minecraft gets up both times. Placed with #24's
+# pcb_goto / pcb_face (no guessed coordinates). Shots: the low side, the collision overlay there, and the top.
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+pcb_find exit_ledge
+bridge_mode mc
+waituntil mcmode 2400
+waituntil mcleads 1200
+pcb_log X1 before the trigger: the low side of the exit ledge
+pcb_goto exit_ledge_player_clip 80 low
+wait 40
+waituntil mcleads 1200
+wait 60
+pcb_where
+pcb_face exit_ledge_player_clip
+wait 2
+pcb_glhud_shot x25_a_low
+pcb_collision_shot x25_a_col
+pcb_assert_mc_rise reset
+pcb_mckey 26 1
+pcb_mckey 44 1
+wait 150
+pcb_mckey 44 0
+pcb_mckey 26 0
+wait 30
+pcb_where
+pcb_assert_mc_rise 24 400
+pcb_assert_body_clear
+pcb_glhud_shot x25_b_up
+pcb_log X2 after the trigger: the clip killed (what trigger_once at -402 -108 64 does)
+ent_fire exit_ledge_player_clip kill
+wait 60
+pcb_goto exit_ledge_player_clip 80 low
+wait 40
+waituntil mcleads 1200
+wait 60
+pcb_where
+pcb_face exit_ledge_player_clip
+wait 2
+pcb_glhud_shot x25_c_low
+pcb_assert_mc_rise reset
+pcb_mckey 26 1
+pcb_mckey 44 1
+wait 150
+pcb_mckey 44 0
+pcb_mckey 26 0
+wait 30
+pcb_where
+pcb_assert_mc_rise 24 400
+pcb_assert_body_clear
+pcb_glhud_shot x25_d_up
+wait 10
+pcb_run_summary
+quit

@@ -1,0 +1,506 @@
+# win_play_i1 (Proton): crash-free playthrough of sp_a1_intro1 as the Minecraft player with digging, a few minutes. Run:
+# PCB_MC=1 PCB_LINK_FILE=Z:/dev/shm/Portalcraft_v1 PCB_WIN_UNVERIFIED=all PCB_PRE="pc_start_mode mc;pc_world unified" tools/run_game_proton.sh tools/cfg/win_play_i1.txt sp_a1_intro1 1500 <label>
+pcb_assert_soft 1
+sv_cheats 1
+fps_max 60
+waituntil spawned 900
+waituntil link 9000
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 600
+pcb_mc_cmd gamemode creative
+pc_dig_render 2
+pcb_where
+screenshot pcb_p0_start
+wait 5
+pcb_mc_cmd tp @p -119.0 752.76 -90.5
+wait 300
+pcb_setview 0 0
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 0
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p1_c0_y0
+wait 5
+pcb_setview 0 90
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 90
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p2_c0_y90
+wait 5
+pcb_setview 0 180
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 180
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p3_c0_y180
+wait 5
+pcb_setview 0 270
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 270
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p4_c0_y270
+wait 5
+pcb_mc_cmd execute at @p run summon minecraft:pig ~2 ~ ~2
+wait 120
+pcb_dig_status
+pcb_band_stats
+pcb_terrain_stats
+pcb_setview 0 0
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 0
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p5_c1_y0
+wait 5
+pcb_setview 0 90
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 90
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p6_c1_y90
+wait 5
+pcb_setview 0 180
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 180
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p7_c1_y180
+wait 5
+pcb_setview 0 270
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 270
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p8_c1_y270
+wait 5
+pcb_mc_cmd execute at @p run summon minecraft:pig ~2 ~ ~2
+wait 120
+pcb_dig_status
+pcb_band_stats
+pcb_terrain_stats
+pcb_setview 0 0
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 0
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p9_c2_y0
+wait 5
+pcb_setview 0 90
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 90
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p10_c2_y90
+wait 5
+pcb_setview 0 180
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 180
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p11_c2_y180
+wait 5
+pcb_setview 0 270
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 270
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p12_c2_y270
+wait 5
+pcb_mc_cmd execute at @p run summon minecraft:pig ~2 ~ ~2
+wait 120
+pcb_dig_status
+pcb_band_stats
+pcb_terrain_stats
+pcb_setview 0 0
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 0
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p13_c3_y0
+wait 5
+pcb_setview 0 90
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 90
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p14_c3_y90
+wait 5
+pcb_setview 0 180
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 180
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p15_c3_y180
+wait 5
+pcb_setview 0 270
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 270
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p16_c3_y270
+wait 5
+pcb_mc_cmd execute at @p run summon minecraft:pig ~2 ~ ~2
+wait 120
+pcb_dig_status
+pcb_band_stats
+pcb_terrain_stats
+pcb_setview 0 0
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 0
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p17_c4_y0
+wait 5
+pcb_setview 0 90
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 90
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p18_c4_y90
+wait 5
+pcb_setview 0 180
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 180
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p19_c4_y180
+wait 5
+pcb_setview 0 270
+wait 60
+pcb_mckey lmb 1
+wait 240
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 26 1
+wait 120
+pcb_mckey 26 0
+wait 30
+pcb_setview 20 270
+wait 30
+pcb_mckey lmb 1
+wait 120
+pcb_mckey lmb 0
+wait 60
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 120
+pcb_where
+screenshot pcb_p20_c4_y270
+wait 5
+pcb_mc_cmd execute at @p run summon minecraft:pig ~2 ~ ~2
+wait 120
+pcb_dig_status
+pcb_band_stats
+pcb_terrain_stats
+pcb_d3d9_cutstats
+pcb_d3d9_stats
+pcb_run_summary
+quit

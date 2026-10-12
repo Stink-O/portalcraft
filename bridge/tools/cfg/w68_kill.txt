@@ -1,0 +1,23 @@
+# w68: a script health write to 0 kills the Minecraft player; a positive write does not
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 400
+pcb_log W68 positive write
+ent_fire !player SetHealth 50
+wait 120
+pcb_log W68 lethal write
+pcb_ent_field player * m_iHealth i
+ent_fire !player SetHealth 0
+pcb_ent_field player * m_iHealth i
+wait 1
+pcb_ent_field player * m_iHealth i
+wait 3
+pcb_ent_field player * m_iHealth i
+pcb_ent_field player * m_lifeState i
+wait 300
+pcb_log W68 after
+pcb_run_summary
+quit

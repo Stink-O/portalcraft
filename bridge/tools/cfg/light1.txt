@@ -1,0 +1,109 @@
+# light1: Minecraft's light on Portal 2 objects in the region (the gun, a cube). Temporary stone
+# structures are built in open air above the badlands next to the cliff (only where there is air) and
+# removed at the end. Marks are the eye probe's applied luminance (what the gun is lit with).
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd weather clear
+pcb_mc_cmd time set noon
+wait 60
+pcb_log LIGHT chamber
+setang 5 90 0
+wait 60
+pcb_light_status
+pc_mc_light 0
+wait 30
+screenshot pcb_L0_chamber_off
+wait 20
+pc_mc_light 1
+wait 30
+screenshot pcb_L0_chamber_on
+wait 20
+pcb_light_mark chamber
+pcb_log LIGHT noon, open air
+pcb_noclip_set 1
+pcb_light_goto_mc -336.5 118 425.5 90 25
+pcb_stop
+wait 200
+pcb_light_status
+pcb_light_mark noon
+screenshot pcb_L1_noon
+wait 20
+pc_mc_light 0
+wait 20
+screenshot pcb_L1_noon_off
+pc_mc_light 1
+wait 20
+pcb_log LIGHT overhang
+pcb_mc_cmd fill -341 121 421 -332 121 430 stone replace air
+wait 200
+pcb_light_status
+pcb_light_mark overhang
+screenshot pcb_L2_overhang
+wait 20
+pcb_log LIGHT cave (closed stone box)
+pcb_mc_cmd fill -341 116 421 -332 116 430 stone replace air
+pcb_mc_cmd fill -341 116 421 -341 121 430 stone replace air
+pcb_mc_cmd fill -332 116 421 -332 121 430 stone replace air
+pcb_mc_cmd fill -341 116 421 -332 121 421 stone replace air
+pcb_mc_cmd fill -341 116 430 -332 121 430 stone replace air
+wait 200
+pcb_light_status
+pcb_light_mark cave
+screenshot pcb_L3_cave
+wait 20
+pcb_mc_cmd fill -341 116 421 -332 121 430 air replace stone
+pcb_log LIGHT night, open air
+pcb_mc_cmd time set midnight
+wait 240
+pcb_light_status
+pcb_light_mark night
+screenshot pcb_L4_night
+wait 20
+pc_mc_light 0
+wait 20
+screenshot pcb_L4_night_off
+pc_mc_light 1
+wait 20
+pcb_log LIGHT torch at night
+pcb_mc_cmd setblock -338 118 425 stone replace
+pcb_mc_cmd setblock -338 119 425 torch replace
+wait 200
+pcb_light_status
+pcb_light_mark torch
+screenshot pcb_L5_torch
+wait 20
+pcb_mc_cmd setblock -338 119 425 air replace
+pcb_mc_cmd setblock -338 118 425 air replace
+pcb_log LIGHT cube at night
+pcb_mc_cmd fill -340 116 427 -336 116 431 stone replace air
+wait 60
+pcb_light_cube_mc -338 117.5 429.5
+pcb_light_goto_mc -338.5 118 425.5 0 30
+pcb_stop
+wait 240
+pcb_light_status
+pcb_light_mark cube_night cube
+screenshot pcb_L6_cube_night
+wait 20
+pc_mc_light 0
+wait 20
+screenshot pcb_L6_cube_night_off
+pc_mc_light 1
+wait 20
+pcb_log LIGHT cleanup
+pcb_mc_cmd fill -340 116 427 -336 116 431 air replace stone
+pcb_mc_cmd time set day
+wait 30
+pcb_assert_light_order noon overhang 1.15
+pcb_assert_light_order overhang night 1.15
+pcb_assert_light_order noon night 2
+pcb_assert_light_order torch night 1.5
+pcb_assert_light_order overhang cave 1.5
+pcb_assert_light_order cube_night_p2 cube_night 3
+pcb_run_summary
+quit

@@ -1,0 +1,32 @@
+# jump1: jump apex on a Portal 2 floor vs on bridge blocks (no Minecraft needed)
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 300
+noclip
+setpos -560 -60 16
+setang 0 0 0
+noclip
+wait 90
+pcb_where
+pcb_track 120 1
++jump
+wait 3
+-jump
+wait 90
+pcb_block -520 -100 0 0
+pcb_block -520 -60 0 0
+pcb_block -480 -100 0 0
+pcb_block -480 -60 0 0
+noclip
+setpos -500 -60 60
+noclip
+wait 90
+pcb_where
+pcb_track 120 1
++jump
+wait 3
+-jump
+wait 90
+pcb_where
+pcb_collide
+quit

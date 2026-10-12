@@ -1,0 +1,75 @@
+# b22_g (bridge #22): (1) the region view going black with a frozen cube straddling the floor portal (b22_b part C, twice:
+# the new pair features off, then on); (2) a pig pushed into the cliff portal (near-portal debug in mc.log). Tagged b22, killed.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+pcb_audio_test_mute 1
+waituntil spawned 600
+waituntil link 9000
+waituntil exit 3600
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_mc_cmd kill @e[tag=b22]
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_redirect
+pcb_noclip_set 1
+pcb_log P a pig pushed into the cliff portal, seen from the region
+setpos -270 -40 -13850
+setang 18 0 0
+pcb_stop
+wait 90
+pcb_mc_cmd summon pig -332.2 95.05 425 {Tags:["b22"],DeathLootTable:"minecraft:empty",Motion:[0.8,0.0,0.0]}
+wait 8
+pcb_glhud_shot b22_g_p1
+wait 8
+pcb_glhud_shot b22_g_p2
+wait 8
+pcb_glhud_shot b22_g_p3
+wait 30
+pcb_glhud_shot b22_g_p4
+pcb_mc_check p_pig_in_chamber entity @e[type=pig,tag=b22,x=-420,y=400,z=340,dx=200,dy=80,dz=200]
+wait 30
+pcb_assert_mc_say p_pig_in_chamber
+pcb_mc_cmd kill @e[tag=b22]
+wait 30
+pcb_log C1 cube straddling the floor portal, region view, pair features OFF
+pc_mc_mob_transit 0
+pc_mc_scene_ghosts 0
+pcb_spawn_cube 128 -384 -764 pcb_cubeB
+wait 3
+ent_fire pcb_cubeB DisableMotion
+wait 60
+pcb_composite_mask
+pcb_glhud_shot b22_g_c1a
+wait 60
+pcb_glhud_shot b22_g_c1b
+wait 120
+pcb_composite_mask
+pcb_glhud_shot b22_g_c1c
+ent_fire pcb_cubeB Kill
+wait 60
+pcb_glhud_shot b22_g_c1d
+pcb_log C2 the same, pair features ON
+pc_mc_mob_transit 1
+pc_mc_scene_ghosts 1
+pcb_spawn_cube 128 -384 -764 pcb_cubeC
+wait 3
+ent_fire pcb_cubeC DisableMotion
+wait 60
+pcb_glhud_shot b22_g_c2a
+wait 60
+pcb_glhud_shot b22_g_c2b
+wait 120
+pcb_composite_mask
+pcb_glhud_shot b22_g_c2c
+ent_fire pcb_cubeC Kill
+pcb_mc_cmd kill @e[tag=b22]
+wait 30
+pcb_mc_check z_clean entity @e[tag=b22]
+wait 30
+pcb_assert_mc_say z_clean fail
+pcb_run_summary
+quit

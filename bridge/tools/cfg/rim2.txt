@@ -1,0 +1,25 @@
+# rim2 (bridge #11): Portal 2-only reference for rim1's "recursed rim over Chell's legs": the same geometry as the
+# Minecraft corridor (facing portals 480 u apart, Chell 200 u in front of portal 0, facing it) in the chamber.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+r_drawviewmodel 0
+pcb_portal 0 -560 -60 64 0 0 0
+pcb_portal 1 -80 -60 64 0 180 0
+wait 60
+pcb_noclip_set 0
+setpos -360 -60 8
+setang 0 180 0
+pcb_stop
+wait 120
+pcb_where
+screenshot pcb_rim_chamber
+wait 30
+setang 0 180 0
+wait 30
+screenshot pcb_rim_chamber_b
+wait 30
+pcb_run_summary
+quit

@@ -1,0 +1,58 @@
+# comp1: Minecraft's own frame composited into the pit portal's view (HostView + overlay readback),
+# Minecraft's own screenshot at the same pose, then the full-screen composite after the fling.
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 720
+pcb_terrain_stats
+noclip
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 120
+pcb_composite
+pcb_mcshot
+wait 60
+screenshot pcb_c_look_down
+pcb_composite
+wait 120
+setpos 128 -620 -560
+setang 40 90 0
+wait 60
+pcb_mcshot
+wait 60
+screenshot pcb_c_oblique
+pcb_composite
+wait 60
+pcb_composite 0
+wait 30
+screenshot pcb_c_oblique_meshes
+pcb_composite 1
+wait 30
+setpos 128 -384 -100
+setang 10 0 0
+noclip
+pcb_log drop
+pcb_track 600
+wait 100
+screenshot pcb_c_fling
+wait 170
+pcb_where
+pcb_composite
+pcb_mcshot
+wait 60
+screenshot pcb_c_landed
+setang 0 0 0
+wait 60
+screenshot pcb_c_landed_cliff
+pcb_composite
+quit

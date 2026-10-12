@@ -1,0 +1,321 @@
+# ledge23b (bridge #23): deterministic probes, no movement: the exit_ledge_player_clip box (x -528..-512 y -384..-256,
+# x -512..-384 y -256..-232, z 0..128) and in front of it, on a grid of Minecraft blocks: old rule (playerclip exported),
+# new rule, and after the Kill. Plus floor heights along y -320 and x -460 (the ledge geometry).
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_noclip_set 1
+setpos -700 -320 40
+setang 0 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+waituntil mcleads 1200
+wait 180
+pcb_log FLOOR heights (down traces from z 300)
+pcb_trace_probe -640 -320 300 0 0 -1 800
+pcb_trace_probe -600 -320 300 0 0 -1 800
+pcb_trace_probe -560 -320 300 0 0 -1 800
+pcb_trace_probe -520 -320 300 0 0 -1 800
+pcb_trace_probe -480 -320 300 0 0 -1 800
+pcb_trace_probe -440 -320 300 0 0 -1 800
+pcb_trace_probe -400 -320 300 0 0 -1 800
+pcb_trace_probe -360 -320 300 0 0 -1 800
+pcb_trace_probe -320 -320 300 0 0 -1 800
+pcb_trace_probe -460 -440 300 0 0 -1 800
+pcb_trace_probe -460 -400 300 0 0 -1 800
+pcb_trace_probe -460 -360 300 0 0 -1 800
+pcb_trace_probe -460 -300 300 0 0 -1 800
+pcb_trace_probe -460 -260 300 0 0 -1 800
+pcb_trace_probe -460 -230 300 0 0 -1 800
+pcb_trace_probe -460 -200 300 0 0 -1 800
+pcb_trace_probe -460 -160 300 0 0 -1 800
+pcb_colfield_playerclip 1
+wait 5
+pcb_log GRID OLD rule (playerclip and clip brush entities exported)
+pcb_colfield_block -552 -376 20
+pcb_colfield_block -536 -376 20
+pcb_colfield_block -520 -376 20
+pcb_colfield_block -504 -376 20
+pcb_colfield_block -480 -376 20
+pcb_colfield_block -440 -376 20
+pcb_colfield_block -552 -320 20
+pcb_colfield_block -536 -320 20
+pcb_colfield_block -520 -320 20
+pcb_colfield_block -504 -320 20
+pcb_colfield_block -480 -320 20
+pcb_colfield_block -440 -320 20
+pcb_colfield_block -552 -264 20
+pcb_colfield_block -536 -264 20
+pcb_colfield_block -520 -264 20
+pcb_colfield_block -504 -264 20
+pcb_colfield_block -480 -264 20
+pcb_colfield_block -440 -264 20
+pcb_colfield_block -552 -244 20
+pcb_colfield_block -536 -244 20
+pcb_colfield_block -520 -244 20
+pcb_colfield_block -504 -244 20
+pcb_colfield_block -480 -244 20
+pcb_colfield_block -440 -244 20
+pcb_colfield_block -552 -220 20
+pcb_colfield_block -536 -220 20
+pcb_colfield_block -520 -220 20
+pcb_colfield_block -504 -220 20
+pcb_colfield_block -480 -220 20
+pcb_colfield_block -440 -220 20
+pcb_colfield_block -552 -376 60
+pcb_colfield_block -536 -376 60
+pcb_colfield_block -520 -376 60
+pcb_colfield_block -504 -376 60
+pcb_colfield_block -480 -376 60
+pcb_colfield_block -440 -376 60
+pcb_colfield_block -552 -320 60
+pcb_colfield_block -536 -320 60
+pcb_colfield_block -520 -320 60
+pcb_colfield_block -504 -320 60
+pcb_colfield_block -480 -320 60
+pcb_colfield_block -440 -320 60
+pcb_colfield_block -552 -264 60
+pcb_colfield_block -536 -264 60
+pcb_colfield_block -520 -264 60
+pcb_colfield_block -504 -264 60
+pcb_colfield_block -480 -264 60
+pcb_colfield_block -440 -264 60
+pcb_colfield_block -552 -244 60
+pcb_colfield_block -536 -244 60
+pcb_colfield_block -520 -244 60
+pcb_colfield_block -504 -244 60
+pcb_colfield_block -480 -244 60
+pcb_colfield_block -440 -244 60
+pcb_colfield_block -552 -220 60
+pcb_colfield_block -536 -220 60
+pcb_colfield_block -520 -220 60
+pcb_colfield_block -504 -220 60
+pcb_colfield_block -480 -220 60
+pcb_colfield_block -440 -220 60
+pcb_colfield_block -552 -376 100
+pcb_colfield_block -536 -376 100
+pcb_colfield_block -520 -376 100
+pcb_colfield_block -504 -376 100
+pcb_colfield_block -480 -376 100
+pcb_colfield_block -440 -376 100
+pcb_colfield_block -552 -320 100
+pcb_colfield_block -536 -320 100
+pcb_colfield_block -520 -320 100
+pcb_colfield_block -504 -320 100
+pcb_colfield_block -480 -320 100
+pcb_colfield_block -440 -320 100
+pcb_colfield_block -552 -264 100
+pcb_colfield_block -536 -264 100
+pcb_colfield_block -520 -264 100
+pcb_colfield_block -504 -264 100
+pcb_colfield_block -480 -264 100
+pcb_colfield_block -440 -264 100
+pcb_colfield_block -552 -244 100
+pcb_colfield_block -536 -244 100
+pcb_colfield_block -520 -244 100
+pcb_colfield_block -504 -244 100
+pcb_colfield_block -480 -244 100
+pcb_colfield_block -440 -244 100
+pcb_colfield_block -552 -220 100
+pcb_colfield_block -536 -220 100
+pcb_colfield_block -520 -220 100
+pcb_colfield_block -504 -220 100
+pcb_colfield_block -480 -220 100
+pcb_colfield_block -440 -220 100
+pcb_colfield_playerclip 0
+wait 5
+pcb_log GRID NEW rule (before the kill)
+pcb_colfield_block -552 -376 20
+pcb_colfield_block -536 -376 20
+pcb_colfield_block -520 -376 20
+pcb_colfield_block -504 -376 20
+pcb_colfield_block -480 -376 20
+pcb_colfield_block -440 -376 20
+pcb_colfield_block -552 -320 20
+pcb_colfield_block -536 -320 20
+pcb_colfield_block -520 -320 20
+pcb_colfield_block -504 -320 20
+pcb_colfield_block -480 -320 20
+pcb_colfield_block -440 -320 20
+pcb_colfield_block -552 -264 20
+pcb_colfield_block -536 -264 20
+pcb_colfield_block -520 -264 20
+pcb_colfield_block -504 -264 20
+pcb_colfield_block -480 -264 20
+pcb_colfield_block -440 -264 20
+pcb_colfield_block -552 -244 20
+pcb_colfield_block -536 -244 20
+pcb_colfield_block -520 -244 20
+pcb_colfield_block -504 -244 20
+pcb_colfield_block -480 -244 20
+pcb_colfield_block -440 -244 20
+pcb_colfield_block -552 -220 20
+pcb_colfield_block -536 -220 20
+pcb_colfield_block -520 -220 20
+pcb_colfield_block -504 -220 20
+pcb_colfield_block -480 -220 20
+pcb_colfield_block -440 -220 20
+pcb_colfield_block -552 -376 60
+pcb_colfield_block -536 -376 60
+pcb_colfield_block -520 -376 60
+pcb_colfield_block -504 -376 60
+pcb_colfield_block -480 -376 60
+pcb_colfield_block -440 -376 60
+pcb_colfield_block -552 -320 60
+pcb_colfield_block -536 -320 60
+pcb_colfield_block -520 -320 60
+pcb_colfield_block -504 -320 60
+pcb_colfield_block -480 -320 60
+pcb_colfield_block -440 -320 60
+pcb_colfield_block -552 -264 60
+pcb_colfield_block -536 -264 60
+pcb_colfield_block -520 -264 60
+pcb_colfield_block -504 -264 60
+pcb_colfield_block -480 -264 60
+pcb_colfield_block -440 -264 60
+pcb_colfield_block -552 -244 60
+pcb_colfield_block -536 -244 60
+pcb_colfield_block -520 -244 60
+pcb_colfield_block -504 -244 60
+pcb_colfield_block -480 -244 60
+pcb_colfield_block -440 -244 60
+pcb_colfield_block -552 -220 60
+pcb_colfield_block -536 -220 60
+pcb_colfield_block -520 -220 60
+pcb_colfield_block -504 -220 60
+pcb_colfield_block -480 -220 60
+pcb_colfield_block -440 -220 60
+pcb_colfield_block -552 -376 100
+pcb_colfield_block -536 -376 100
+pcb_colfield_block -520 -376 100
+pcb_colfield_block -504 -376 100
+pcb_colfield_block -480 -376 100
+pcb_colfield_block -440 -376 100
+pcb_colfield_block -552 -320 100
+pcb_colfield_block -536 -320 100
+pcb_colfield_block -520 -320 100
+pcb_colfield_block -504 -320 100
+pcb_colfield_block -480 -320 100
+pcb_colfield_block -440 -320 100
+pcb_colfield_block -552 -264 100
+pcb_colfield_block -536 -264 100
+pcb_colfield_block -520 -264 100
+pcb_colfield_block -504 -264 100
+pcb_colfield_block -480 -264 100
+pcb_colfield_block -440 -264 100
+pcb_colfield_block -552 -244 100
+pcb_colfield_block -536 -244 100
+pcb_colfield_block -520 -244 100
+pcb_colfield_block -504 -244 100
+pcb_colfield_block -480 -244 100
+pcb_colfield_block -440 -244 100
+pcb_colfield_block -552 -220 100
+pcb_colfield_block -536 -220 100
+pcb_colfield_block -520 -220 100
+pcb_colfield_block -504 -220 100
+pcb_colfield_block -480 -220 100
+pcb_colfield_block -440 -220 100
+ent_fire exit_ledge_player_clip kill
+wait 180
+pcb_log GRID NEW rule after the Kill
+pcb_colfield_block -552 -376 20
+pcb_colfield_block -536 -376 20
+pcb_colfield_block -520 -376 20
+pcb_colfield_block -504 -376 20
+pcb_colfield_block -480 -376 20
+pcb_colfield_block -440 -376 20
+pcb_colfield_block -552 -320 20
+pcb_colfield_block -536 -320 20
+pcb_colfield_block -520 -320 20
+pcb_colfield_block -504 -320 20
+pcb_colfield_block -480 -320 20
+pcb_colfield_block -440 -320 20
+pcb_colfield_block -552 -264 20
+pcb_colfield_block -536 -264 20
+pcb_colfield_block -520 -264 20
+pcb_colfield_block -504 -264 20
+pcb_colfield_block -480 -264 20
+pcb_colfield_block -440 -264 20
+pcb_colfield_block -552 -244 20
+pcb_colfield_block -536 -244 20
+pcb_colfield_block -520 -244 20
+pcb_colfield_block -504 -244 20
+pcb_colfield_block -480 -244 20
+pcb_colfield_block -440 -244 20
+pcb_colfield_block -552 -220 20
+pcb_colfield_block -536 -220 20
+pcb_colfield_block -520 -220 20
+pcb_colfield_block -504 -220 20
+pcb_colfield_block -480 -220 20
+pcb_colfield_block -440 -220 20
+pcb_colfield_block -552 -376 60
+pcb_colfield_block -536 -376 60
+pcb_colfield_block -520 -376 60
+pcb_colfield_block -504 -376 60
+pcb_colfield_block -480 -376 60
+pcb_colfield_block -440 -376 60
+pcb_colfield_block -552 -320 60
+pcb_colfield_block -536 -320 60
+pcb_colfield_block -520 -320 60
+pcb_colfield_block -504 -320 60
+pcb_colfield_block -480 -320 60
+pcb_colfield_block -440 -320 60
+pcb_colfield_block -552 -264 60
+pcb_colfield_block -536 -264 60
+pcb_colfield_block -520 -264 60
+pcb_colfield_block -504 -264 60
+pcb_colfield_block -480 -264 60
+pcb_colfield_block -440 -264 60
+pcb_colfield_block -552 -244 60
+pcb_colfield_block -536 -244 60
+pcb_colfield_block -520 -244 60
+pcb_colfield_block -504 -244 60
+pcb_colfield_block -480 -244 60
+pcb_colfield_block -440 -244 60
+pcb_colfield_block -552 -220 60
+pcb_colfield_block -536 -220 60
+pcb_colfield_block -520 -220 60
+pcb_colfield_block -504 -220 60
+pcb_colfield_block -480 -220 60
+pcb_colfield_block -440 -220 60
+pcb_colfield_block -552 -376 100
+pcb_colfield_block -536 -376 100
+pcb_colfield_block -520 -376 100
+pcb_colfield_block -504 -376 100
+pcb_colfield_block -480 -376 100
+pcb_colfield_block -440 -376 100
+pcb_colfield_block -552 -320 100
+pcb_colfield_block -536 -320 100
+pcb_colfield_block -520 -320 100
+pcb_colfield_block -504 -320 100
+pcb_colfield_block -480 -320 100
+pcb_colfield_block -440 -320 100
+pcb_colfield_block -552 -264 100
+pcb_colfield_block -536 -264 100
+pcb_colfield_block -520 -264 100
+pcb_colfield_block -504 -264 100
+pcb_colfield_block -480 -264 100
+pcb_colfield_block -440 -264 100
+pcb_colfield_block -552 -244 100
+pcb_colfield_block -536 -244 100
+pcb_colfield_block -520 -244 100
+pcb_colfield_block -504 -244 100
+pcb_colfield_block -480 -244 100
+pcb_colfield_block -440 -244 100
+pcb_colfield_block -552 -220 100
+pcb_colfield_block -536 -220 100
+pcb_colfield_block -520 -220 100
+pcb_colfield_block -504 -220 100
+pcb_colfield_block -480 -220 100
+pcb_colfield_block -440 -220 100
+pcb_run_summary
+quit

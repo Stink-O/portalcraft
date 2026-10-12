@@ -1,0 +1,38 @@
+# video_elevator (lead): record the Minecraft player riding the arrival elevator and walking into the test chamber
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+pcb_audio_test_mute 1
+bridge_mode mc
+waituntil mcmode 2400
+setang 0 90 0
+pcb_record start mc_elevator_walk 60
+waituntil mcleads 3600
+wait 90
+pcb_mckey 26 1
+wait 600
+setang 0 80 0
+wait 2
+setang 0 70 0
+wait 2
+setang 0 60 0
+wait 2
+setang 0 50 0
+wait 2
+setang 0 40 0
+wait 120
+pcb_mckey 26 0
+wait 30
+setang -5 60 0
+wait 3
+setang -8 90 0
+wait 3
+setang -10 120 0
+wait 3
+setang -10 150 0
+wait 60
+pcb_record stop
+wait 60
+pcb_where
+pcb_run_summary
+quit

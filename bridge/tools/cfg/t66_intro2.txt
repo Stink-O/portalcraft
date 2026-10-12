@@ -1,0 +1,39 @@
+# t66: intro2 map portals as the Minecraft player, frame burst across each crossing
+sv_cheats 1
+pcb_assert_soft 1
+pc_input_lock 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+wait 600
+ent_fire portal_red_1 SetActivatedState 1
+ent_fire portal_blue_3 SetActivatedState 1
+wait 180
+pcb_mc_place -320 -150 -62 270 8
+waituntil mcplaced 900
+wait 60
+pcb_setview 0 270
+wait 30
+pcb_log T66 walk 1 into red
+pcb_mckey 26 1
+wait 25
+pcb_glhud_burst t66a 60
+wait 150
+pcb_mckey 26 0
+wait 60
+pcb_glhud_shot t66_after1
+pcb_mc_place -32 300 -62 90 8
+waituntil mcplaced 900
+wait 60
+pcb_setview 0 90
+wait 30
+pcb_log T66 walk 2 into blue_3
+pcb_mckey 26 1
+wait 25
+pcb_glhud_burst t66b 60
+wait 150
+pcb_mckey 26 0
+wait 60
+pcb_glhud_shot t66_after2
+pcb_run_summary
+quit

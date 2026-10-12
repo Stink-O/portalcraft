@@ -1,0 +1,17 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 600
+ent_fire tractorbeam_emitter Enable
+wait 120
+pcb_mc_place 1664 512 -500 0 40
+waituntil mcplaced 900
+wait 400
+pcb_where
+wait 200
+pcb_where
+pcb_mech
+pcb_run_summary
+quit

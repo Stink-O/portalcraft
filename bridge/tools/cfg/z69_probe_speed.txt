@@ -1,0 +1,16 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+pcb_dump_fields player agged
+pcb_dump_fields player peed
+pcb_dump_fields player MaxSpeed
+pcb_dump_fields player Move
+pcb_dump_fields player Duck
+pcb_dump_fields player Jump
+pcb_dump_fields player_speedmod *
+pcb_ent_field player * m_flLaggedMovementValue f
+pcb_ent_field player * m_flMaxspeed f
+pcb_run_summary
+quit

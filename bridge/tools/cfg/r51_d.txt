@@ -1,0 +1,61 @@
+# r51_d (bridge #51): real gun shots (attack / attack2) on the corridor's facing walls, the user's bracketed-outline view (images 11)
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+bridge_mode chell
+waituntil chellmode 900
+wait 90
+pcb_noclip_set 1
+setpos -495 -640 1152
+setang 0 90 0
+pcb_setview 0 90
+pcb_stop
+wait 40
+pcb_assert_pose -495 -640 1152 3 0 90 1
+pcb_log R51 d fire blue at the +y wall
++attack
+wait 8
+-attack
+wait 80
+setpos -495 -640 1152
+setang 0 270 0
+pcb_setview 0 270
+pcb_stop
+wait 40
+pcb_assert_pose -495 -640 1152 3 0 270 1
+pcb_log R51 d fire orange at the -y wall
++attack2
+wait 8
+-attack2
+wait 80
+pcb_log R51 d portals now
+pcb_mc_portal_state
+pcb_assert_portals
+setpos -900 -640 1152
+setang 8 0 0
+pcb_setview 8 0
+pcb_stop
+wait 40
+pcb_assert_pose -900 -640 1152 3 8 0 1
+wait 60
+pcb_log R51 d1 camera along the corridor
+screenshot pcb_r51d_d1_corridor
+setpos -495 -640 1152
+setang 5 0 0
+pcb_setview 5 0
+pcb_stop
+wait 40
+pcb_assert_pose -495 -640 1152 3 5 0 1
+pcb_log R51 d2 between the portals
+screenshot pcb_r51d_d2_between
+setpos -1000 -640 1152
+setang 5 0 0
+pcb_setview 5 0
+pcb_stop
+wait 40
+pcb_assert_pose -1000 -640 1152 3 5 0 1
+pcb_log R51 d3 further back
+screenshot pcb_r51d_d3_back
+pcb_log R51 done
+quit

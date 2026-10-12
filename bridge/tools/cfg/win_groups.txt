@@ -1,0 +1,13 @@
+# win_groups (Proton, 2026-10-11): exercises the held-back slot groups on the Windows build with no Minecraft link: lights, tone, stencil, dormant.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 900
+wait 240
+pcb_where
+screenshot pcb_g1_start
+pcb_probe -8674 1773 80
+pcb_light_status
+wait 120
+screenshot pcb_g2_later
+pcb_run_summary
+quit

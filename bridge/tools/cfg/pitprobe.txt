@@ -1,0 +1,14 @@
+# pitprobe (bridge #12, diagnosis): what in the pit drops or removes a cube (dropped near y -240; spawned at y -296
+# and -310 it vanished)
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+pcb_audio_test_mute 1
+waituntil spawned 600
+pcb_ents_near 128 -300 -700 450
+pcb_spawn_cube 128 -296 -745 c1
+wait 30
+pcb_ents_near 128 -300 -740 120
+wait 60
+pcb_ents_near 128 -300 -740 120
+quit

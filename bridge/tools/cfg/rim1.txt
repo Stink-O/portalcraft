@@ -1,0 +1,124 @@
+# rim1 (bridge #11): captures for the two user visual reports.
+# (1) Portal outer glow on Minecraft blocks vs on a chamber wall, same relative poses (sheet: glow_*).
+# (2) A Minecraft<->Minecraft facing pair with Chell standing between: the view through portal 0 shows her from
+#     behind with the recursed portal 0 beyond her; the user saw its rim drawn over her legs. Variants isolate
+#     the cause: default / occlusion layers off / pair drawn by streams (pcb_mc_portals 0) / composite off.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_mc_cmd weather clear
+r_drawviewmodel 0
+pcb_log RIM glow: linked pair on the chamber walls
+pcb_noclip_set 1
+crosshair 0
+cc_subtitles 0
+pcb_portal 0 -560 -60 64 0 0 0
+pcb_portal 1 -80 -60 64 0 180 0
+wait 90
+pcb_view_portal 0 120 0
+pcb_stop
+wait 30
+pcb_view_portal 0 120 0
+pcb_stop
+wait 60
+screenshot pcb_glow_chamber_120_0
+pcb_view_portal 0 120 45
+pcb_stop
+wait 30
+pcb_view_portal 0 120 45
+pcb_stop
+wait 60
+screenshot pcb_glow_chamber_120_45
+pcb_view_portal 0 240 0
+pcb_stop
+wait 30
+pcb_view_portal 0 240 0
+pcb_stop
+wait 60
+screenshot pcb_glow_chamber_240_0
+pcb_log RIM corridor pair in Minecraft
+ent_fire prop_portal Fizzle
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_log RIM glow: portal on Minecraft blocks
+pcb_noclip_set 1
+pcb_view_portal 0 120 0
+pcb_stop
+wait 30
+pcb_view_portal 0 120 0
+pcb_stop
+wait 60
+screenshot pcb_glow_mc_120_0
+pcb_view_portal 0 120 45
+pcb_stop
+wait 30
+pcb_view_portal 0 120 45
+pcb_stop
+wait 60
+screenshot pcb_glow_mc_120_45
+pcb_view_portal 0 240 0
+pcb_stop
+wait 30
+pcb_view_portal 0 240 0
+pcb_stop
+wait 60
+screenshot pcb_glow_mc_240_0
+pcb_log RIM Chell between the facing portals
+pcb_noclip_set 0
+pcb_stand_before 0 200
+pcb_stop
+wait 90
+pcb_where
+pcb_composite_trace 12
+screenshot pcb_rim_default
+wait 20
+pcb_frame_dump 1 rim_default
+wait 30
+pcb_composite_occlusion 0
+wait 30
+screenshot pcb_rim_occl_off
+wait 20
+pcb_composite_occlusion 1
+pcb_mc_portals 0
+wait 60
+screenshot pcb_rim_streams
+wait 20
+pcb_mc_portals 1
+pcb_composite 0
+wait 30
+screenshot pcb_rim_composite_off
+wait 20
+pcb_composite 1
+wait 30
+pcb_noclip_set 1
+pcb_build_corridor remove
+wait 60
+crosshair 1
+cc_subtitles 1
+pcb_run_summary
+quit

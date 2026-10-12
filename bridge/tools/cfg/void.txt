@@ -1,0 +1,46 @@
+# World-limit experiments: blocks inside the map vs out in the void vs past +-16384
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 120
+noclip
+pcb_block -20 300 0 0
+pcb_block 1200 230 36 0
+pcb_block 1200 270 36 1
+pcb_block 1200 250 76 2
+pcb_block 17000 0 0 0
+pcb_status
+pcb_probe 1100 250 56
+pcb_probe 17020 20 20
+pcb_probe 0 250 56
+# inside the chamber, looking at the east wall the void blocks are behind
+setpos 0 250 0
+setang 0 0 0
+wait 40
+screenshot pcb_v1_inside_facing_void
+wait 20
+# camera out in the void (outside the map), looking at the void blocks
+setpos 1100 250 0
+setang 0 0 0
+wait 40
+pcb_where
+screenshot pcb_v2_camera_in_void
+wait 20
+# portal pair: 0 on the chamber's east wall (facing into the chamber), 1 floating in the void facing the blocks
+pcb_portal_wall 0 0 250 56 0
+pcb_portal 1 1100 250 56 0 0 0
+wait 60
+pcb_portal_check
+setpos 110 250 0
+setang 0 0 0
+wait 60
+pcb_views 9
+screenshot pcb_v3_void_through_portal
+wait 20
+# past the coordinate limit
+setpos 16900 0 0
+wait 40
+pcb_where
+setang 0 0 0
+screenshot pcb_v4_past_limit
+wait 20
+quit

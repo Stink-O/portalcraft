@@ -1,0 +1,83 @@
+# t28_e (bridge #28): only case E of t28_transit (the G pair to the cliff and back), with transit debug logging
+# t28_transit (bridge #28): the Minecraft player goes through portals in Minecraft (PlayerTransit), Portal 2 follows.
+# Every case: pcb_view_track (the rendered camera unfolded through the pair: speed before/after, stalls, jumps, turns),
+# a frame burst across the crossing (cache/bridge/glhud_t28_<case>_NN.png), pcb_mc_hurt (no damage), the speeds in and out.
+#   A Chell walks into portal 1 (west wall, upper floor) -> out of portal 0 (pit wall): the reference
+#   B the Minecraft player walks the same way      C sprints the same way
+#   D a fall into a floor portal (12 blocks) and the fling out of the pit wall: Chell, then the Minecraft player
+#   E the G pair (pit floor -> the Minecraft cliff): falls in, flung out over the region; then walks back into the cliff portal
+#   (no portal on a moving surface: Portal 2 has sv_allow_mobile_portals 0, single player never places one)
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_eye_watch reset
+pcb_mc_cmd gamemode survival
+pcb_log E the G pair: pit floor -> the Minecraft cliff, and back
+pc_pit_redirect_mode 2
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 120
+pcb_assert_redirect
+pcb_noclip_set 1
+setpos 20 -384 -740
+setang 89 90 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 30
+bridge_mode mc
+waituntil mcmode 1200
+wait 120
+pcb_mc_hurt mark
+pcb_assert_transits reset
+pcb_assert_mc_transits reset
+pcb_view_track start
+pcb_mc_transit_debug 60
+pcb_mc_cmd tp @p -324.8 436.0 433.6
+waituntil near 128,-384,-600 160 600
+pcb_glhud_burst t28_e_cliff 30
+waituntil transit 600
+wait 150
+pcb_view_track report mc_to_cliff
+pcb_view_track assert 0 85 3 30
+pcb_assert_mc_transits 1
+pcb_assert_mc_transit_speed 10
+wait 60
+pcb_mc_hurt assert 0
+pcb_glhud_shot t28_e_region
+wait 20
+pcb_log E2 back: walk into the cliff portal from the region side
+pcb_mc_cmd tp @p -332.4 94.2 425.0
+pcb_mc_transit_debug 120
+setang 0 0 0
+wait 90
+pcb_mc_hurt mark
+pcb_assert_transits reset
+pcb_assert_mc_transits reset
+pcb_view_track start
+pcb_mckey 26 1
+wait 20
+pcb_glhud_burst t28_e_back 40
+waituntil transit 600
+wait 20
+pcb_mckey 26 0
+wait 100
+pcb_view_track report mc_from_cliff
+pcb_view_track assert 0 85 3 30
+pcb_assert_mc_transits 1
+wait 60
+pcb_mc_hurt assert 0
+pcb_glhud_shot t28_e_backin
+wait 20
+pcb_eye_watch assert 0
+pcb_assert_p2_puppet_transits 0
+pcb_mc_cmd gamemode creative
+pcb_run_summary
+quit

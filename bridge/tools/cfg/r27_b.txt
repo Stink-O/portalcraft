@@ -1,0 +1,117 @@
+# r27_b (bridge #27): r27_a follow-up: the hand light with the render-thread tonemap, the cube beside a torch with the elight at
+#legacy-cliff-shift (bridge #81: the Minecraft coordinates below are the original cliff's; pcb_script moves them to the world.conf cliff, see worldconf.hpp)
+# half colour (model_k 0.5) vs 1.0, and sand/gravel landing with longer waits, columns swapped. Same area save/restore as r27_a.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd weather clear
+pcb_mc_cmd gamemode creative
+pcb_mc_cmd clone -328 424 429 -314 431 438 -328 480 429 replace
+wait 20
+pcb_mc_cmd fill -323 424 430 -315 428 436 minecraft:air
+pcb_noclip_set 1
+setpos 420 -460 -760
+setang 10 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd gamemode creative
+wait 60
+pcb_where
+pcb_log H the hand: a stone block in the hand, a stone block on the floor ahead
+pcb_mc_cmd setblock -319 424 433 minecraft:stone
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:stone
+wait 60
+pcb_aim_mc -319.5 424.5 433.5
+wait 60
+pc_mc_hand_light
+pcb_glhud_shot r27b_h_on
+pc_mc_hand_light 0
+wait 30
+pcb_glhud_shot r27b_h_off
+pc_mc_hand_light 1
+wait 30
+pcb_mckey 8 1
+wait 4
+pcb_mckey 8 0
+wait 60
+pcb_glhud_shot r27b_h_inventory
+pcb_sdl_event key 41
+wait 30
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:air
+pcb_mc_cmd setblock -319 424 433 minecraft:air
+wait 20
+pcb_log T a Portal 2 cube beside a torch: what the cube's draw actually holds (pcb_model_light_dump) for: elight full colour, elight half, old dlight flags 0, no block lights
+pcb_mc_cmd setblock -320 424 433 minecraft:torch
+pcb_mc_cmd setblock -321 424 434 minecraft:smooth_stone
+pcb_spawn_cube 380 -340 -760 pcb_cubeT
+wait 120
+pcb_aim_mc -319.5 424.4 433.5
+wait 60
+pc_mc_blocklights_elight 1 1.0
+wait 30
+pcb_model_light_dump 380 -340 -750 64
+pcb_p2light_mc -318.5 424.5 432.5
+pcb_glhud_shot r27b_t_full
+wait 10
+pc_mc_blocklights_elight 1 0.5
+wait 30
+pcb_model_light_dump 380 -340 -750 64
+pcb_glhud_shot r27b_t_half
+wait 10
+pc_mc_blocklights_elight 0
+pc_mc_blocklights_flags 0
+wait 30
+pcb_model_light_dump 380 -340 -750 64
+pcb_glhud_shot r27b_t_flags0
+wait 10
+pc_mc_blocklights_flags 2
+pc_mc_blocklights_elight 1 0.5
+pc_mc_blocklights 0
+wait 30
+pcb_model_light_dump 380 -340 -750 64
+pcb_glhud_shot r27b_t_none
+pc_mc_blocklights 1
+pcb_mc_native r27b_t_native
+wait 60
+ent_fire pcb_cubeT Kill
+pcb_mc_cmd setblock -320 424 433 minecraft:air
+pcb_mc_cmd setblock -321 424 434 minecraft:air
+pcb_mc_cmd kill @e[type=minecraft:item,x=-330,y=420,z=427,dx=18,dy=14,dz=14]
+wait 30
+pcb_log G sand and gravel fall onto the Portal 2 floor (gravel at -319, sand at -318: columns swapped from r27_a)
+pcb_mc_cmd setblock -319 431 432 minecraft:gravel
+pcb_mc_cmd setblock -318 429 432 minecraft:sand
+pcb_mc_cmd setblock -317 431 433 minecraft:gravel
+wait 900
+pcb_mc_check g_gravel_landed block -319 424 432 minecraft:gravel
+pcb_mc_check g_sand_landed block -318 424 432 minecraft:sand
+pcb_mc_check g_gravel2_landed block -317 424 433 minecraft:gravel
+pcb_mc_check g_no_item entity @e[type=minecraft:item,x=-322,y=422,z=429,dx=8,dy=8,dz=8]
+pcb_aim_mc -318.5 424.5 432.5
+wait 30
+pcb_glhud_shot r27b_g_landed
+pcb_mc_native r27b_g_landed
+wait 60
+pcb_log restore the area
+pcb_mc_cmd clone -328 480 429 -314 487 438 -328 424 429 replace
+wait 10
+pcb_mc_cmd fill -328 480 429 -314 487 438 minecraft:air
+pcb_mc_cmd kill @e[type=minecraft:item,x=-330,y=420,z=427,dx=18,dy=14,dz=14]
+wait 30
+pcb_assert_mc_say g_gravel_landed
+pcb_assert_mc_say g_sand_landed
+pcb_assert_mc_say g_gravel2_landed
+pcb_assert_mc_say g_no_item fail
+pcb_run_summary
+quit

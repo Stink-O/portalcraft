@@ -1,0 +1,321 @@
+# w68: build and cache the mover shapes of every campaign map (run once; shapes land in cache/bridge/movershapes)
+sv_cheats 1
+waituntil spawned 600
+pc_movers 1 25 25
+pcb_log W68 prebuild sp_a1_intro1
+map sp_a1_intro1
+waituntil mapsp_a1_intro1 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a1_intro2
+map sp_a1_intro2
+waituntil mapsp_a1_intro2 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a1_intro3
+map sp_a1_intro3
+waituntil mapsp_a1_intro3 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a1_intro4
+map sp_a1_intro4
+waituntil mapsp_a1_intro4 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a1_intro5
+map sp_a1_intro5
+waituntil mapsp_a1_intro5 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a1_intro6
+map sp_a1_intro6
+waituntil mapsp_a1_intro6 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a1_intro7
+map sp_a1_intro7
+waituntil mapsp_a1_intro7 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a1_wakeup
+map sp_a1_wakeup
+waituntil mapsp_a1_wakeup 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_intro
+map sp_a2_intro
+waituntil mapsp_a2_intro 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_laser_intro
+map sp_a2_laser_intro
+waituntil mapsp_a2_laser_intro 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_laser_stairs
+map sp_a2_laser_stairs
+waituntil mapsp_a2_laser_stairs 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_dual_lasers
+map sp_a2_dual_lasers
+waituntil mapsp_a2_dual_lasers 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_laser_over_goo
+map sp_a2_laser_over_goo
+waituntil mapsp_a2_laser_over_goo 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_catapult_intro
+map sp_a2_catapult_intro
+waituntil mapsp_a2_catapult_intro 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_trust_fling
+map sp_a2_trust_fling
+waituntil mapsp_a2_trust_fling 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_pit_flings
+map sp_a2_pit_flings
+waituntil mapsp_a2_pit_flings 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_fizzler_intro
+map sp_a2_fizzler_intro
+waituntil mapsp_a2_fizzler_intro 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_sphere_peek
+map sp_a2_sphere_peek
+waituntil mapsp_a2_sphere_peek 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_ricochet
+map sp_a2_ricochet
+waituntil mapsp_a2_ricochet 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_bridge_intro
+map sp_a2_bridge_intro
+waituntil mapsp_a2_bridge_intro 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_bridge_the_gap
+map sp_a2_bridge_the_gap
+waituntil mapsp_a2_bridge_the_gap 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_turret_intro
+map sp_a2_turret_intro
+waituntil mapsp_a2_turret_intro 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_laser_relays
+map sp_a2_laser_relays
+waituntil mapsp_a2_laser_relays 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_turret_blocker
+map sp_a2_turret_blocker
+waituntil mapsp_a2_turret_blocker 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_laser_vs_turret
+map sp_a2_laser_vs_turret
+waituntil mapsp_a2_laser_vs_turret 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_pull_the_rug
+map sp_a2_pull_the_rug
+waituntil mapsp_a2_pull_the_rug 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_column_blocker
+map sp_a2_column_blocker
+waituntil mapsp_a2_column_blocker 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_laser_chaining
+map sp_a2_laser_chaining
+waituntil mapsp_a2_laser_chaining 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_triple_laser
+map sp_a2_triple_laser
+waituntil mapsp_a2_triple_laser 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_bts1
+map sp_a2_bts1
+waituntil mapsp_a2_bts1 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_bts2
+map sp_a2_bts2
+waituntil mapsp_a2_bts2 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_bts3
+map sp_a2_bts3
+waituntil mapsp_a2_bts3 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_bts4
+map sp_a2_bts4
+waituntil mapsp_a2_bts4 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_bts5
+map sp_a2_bts5
+waituntil mapsp_a2_bts5 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_bts6
+map sp_a2_bts6
+waituntil mapsp_a2_bts6 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a2_core
+map sp_a2_core
+waituntil mapsp_a2_core 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a3_00
+map sp_a3_00
+waituntil mapsp_a3_00 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a3_01
+map sp_a3_01
+waituntil mapsp_a3_01 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a3_03
+map sp_a3_03
+waituntil mapsp_a3_03 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a3_jump_intro
+map sp_a3_jump_intro
+waituntil mapsp_a3_jump_intro 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a3_bomb_flings
+map sp_a3_bomb_flings
+waituntil mapsp_a3_bomb_flings 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a3_crazy_box
+map sp_a3_crazy_box
+waituntil mapsp_a3_crazy_box 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a3_transition01
+map sp_a3_transition01
+waituntil mapsp_a3_transition01 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a3_speed_ramp
+map sp_a3_speed_ramp
+waituntil mapsp_a3_speed_ramp 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a3_speed_flings
+map sp_a3_speed_flings
+waituntil mapsp_a3_speed_flings 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a3_portal_intro
+map sp_a3_portal_intro
+waituntil mapsp_a3_portal_intro 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a3_end
+map sp_a3_end
+waituntil mapsp_a3_end 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_intro
+map sp_a4_intro
+waituntil mapsp_a4_intro 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_tb_intro
+map sp_a4_tb_intro
+waituntil mapsp_a4_tb_intro 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_tb_trust_drop
+map sp_a4_tb_trust_drop
+waituntil mapsp_a4_tb_trust_drop 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_tb_wall_button
+map sp_a4_tb_wall_button
+waituntil mapsp_a4_tb_wall_button 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_tb_polarity
+map sp_a4_tb_polarity
+waituntil mapsp_a4_tb_polarity 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_tb_catch
+map sp_a4_tb_catch
+waituntil mapsp_a4_tb_catch 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_stop_the_box
+map sp_a4_stop_the_box
+waituntil mapsp_a4_stop_the_box 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_laser_catapult
+map sp_a4_laser_catapult
+waituntil mapsp_a4_laser_catapult 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_laser_platform
+map sp_a4_laser_platform
+waituntil mapsp_a4_laser_platform 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_speed_tb_catch
+map sp_a4_speed_tb_catch
+waituntil mapsp_a4_speed_tb_catch 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_jump_polarity
+map sp_a4_jump_polarity
+waituntil mapsp_a4_jump_polarity 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_finale1
+map sp_a4_finale1
+waituntil mapsp_a4_finale1 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_finale2
+map sp_a4_finale2
+waituntil mapsp_a4_finale2 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_finale3
+map sp_a4_finale3
+waituntil mapsp_a4_finale3 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a4_finale4
+map sp_a4_finale4
+waituntil mapsp_a4_finale4 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_log W68 prebuild sp_a5_credits
+map sp_a5_credits
+waituntil mapsp_a5_credits 3600
+waituntil moversbuilt 1800
+wait 120
+pcb_run_summary
+quit

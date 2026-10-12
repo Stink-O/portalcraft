@@ -1,0 +1,54 @@
+# win_dig3 (Proton): look at the (persisted) hole dug by win_dig2 from 70 u away, with the cap/band diagnostics and the mod-walls-only comparison.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 900
+waituntil link 9000
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 600
+pcb_mc_cmd gamemode creative
+pc_dig_render 2
+pcb_mc_cmd tp @p -120.5 752.76 -91.0
+wait 200
+pcb_setview 0 -90
+wait 60
+pcb_setview 0 -90
+wait 60
+pcb_mc_cmd fill -122 752 -89 -118 755 -88 minecraft:stone
+wait 200
+pcb_setview 0 -90
+wait 30
+pcb_where
+pcb_dig_list
+pc_dig_caps
+pc_dig_caps_at -120 753 -90
+pc_dig_caps_at -119 754 -90
+pcb_band_stats
+screenshot pcb_f1_caps
+wait 5
+pc_dig_caps 0
+wait 120
+pcb_setview 0 -90
+wait 30
+pc_dig_caps
+screenshot pcb_f2_modwalls
+wait 5
+pc_dig_caps 1
+wait 120
+pcb_setview 0 -90
+wait 30
+pc_cut_audit 1
+wait 30
+screenshot pcb_f3_audit
+wait 5
+pc_cut_audit 0
+pcb_mc_cmd tp @p -120.5 752.76 -92.0
+wait 100
+pcb_setview 0 -90
+wait 30
+screenshot pcb_f4_closer
+pcb_mc_cmd fill -122 752 -89 -118 755 -88 minecraft:air
+wait 60
+pcb_d3d9_stats
+pcb_run_summary
+quit

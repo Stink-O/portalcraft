@@ -1,0 +1,192 @@
+# r27_a (bridge #27, Owner A): rendering and lighting in the pc_pit_flings pit (floor MC y 424 = Source z -768; Source (420 -460) =
+#legacy-cliff-shift (bridge #81: the Minecraft coordinates below are the original cliff's; pcb_script moves them to the world.conf cliff, see worldconf.hpp)
+# MC (-317.5 435.5)). The area MC x -328..-314, y 424..431, z 429..438 is saved to y 480 first and restored at the end.
+#  H  the Minecraft player's hand: Portal 2's light (pc_mc_hand_light 1) vs Minecraft's own (0), noon and night, inventory open
+#  T  a Portal 2 cube beside a torch: dlight + elight (new) vs the dlight at flags 0 (old); a Minecraft block on the torch's other side
+#  S  one block placed alone (black until more blocks?): shots 10 and 150 frames after, band stats
+#  C  comparison sheet: furnace, chest, lever, wheat, trapdoor, bed, door, ladder, ours vs Minecraft native at the same pose
+#  W  water on the Portal 2 floor (stays put), G gravel and sand fall and land
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd weather clear
+pcb_mc_cmd gamemode creative
+pcb_mc_cmd clone -328 424 429 -314 431 438 -328 480 429 replace
+wait 20
+pcb_mc_cmd fill -323 424 430 -315 428 436 minecraft:air
+pcb_noclip_set 1
+setpos 420 -460 -760
+setang 10 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd gamemode creative
+wait 60
+pcb_where
+pcb_log H the hand: a stone block in the hand, a stone block on the floor ahead (the same block, lit by Portal 2)
+pcb_mc_cmd setblock -319 424 433 minecraft:stone
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:stone
+wait 60
+pcb_aim_mc -319.5 424.5 433.5
+wait 40
+pc_mc_hand_light 1
+wait 20
+pc_mc_hand_light
+pcb_glhud_shot r27_h_noon_on
+pc_mc_hand_light 0
+wait 20
+pcb_glhud_shot r27_h_noon_off
+pc_mc_hand_light 1
+pcb_mc_cmd time set 18000
+wait 60
+pcb_glhud_shot r27_h_night_on
+pc_mc_hand_light 0
+wait 20
+pcb_glhud_shot r27_h_night_off
+pc_mc_hand_light 1
+wait 20
+pcb_mckey 8 1
+wait 4
+pcb_mckey 8 0
+wait 40
+pcb_glhud_shot r27_h_inventory
+pcb_sdl_event key 41
+wait 30
+pcb_mc_cmd time set noon
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:air
+pcb_mc_cmd setblock -319 424 433 minecraft:air
+wait 20
+pcb_log T a Portal 2 cube beside a torch; a smooth stone block on the torch's other side
+pcb_mc_cmd setblock -320 424 433 minecraft:torch
+pcb_mc_cmd setblock -321 424 434 minecraft:smooth_stone
+pcb_spawn_cube 380 -340 -760 pcb_cubeT
+wait 120
+pcb_aim_mc -319.5 424.4 433.5
+wait 60
+pcb_blocklights
+pc_mc_blocklights_elight 1
+wait 30
+pcb_p2light_mc -318.5 424.5 432.5
+pcb_glhud_shot r27_t_elight
+pcb_mc_native r27_t_native
+wait 60
+pc_mc_blocklights_elight 0
+pc_mc_blocklights_flags 0
+wait 30
+pcb_p2light_mc -318.5 424.5 432.5
+pcb_glhud_shot r27_t_old
+pc_mc_blocklights_flags 2
+pc_mc_blocklights_elight 1
+wait 10
+ent_fire pcb_cubeT Kill
+pcb_mc_cmd setblock -320 424 433 minecraft:air
+pcb_mc_cmd setblock -321 424 434 minecraft:air
+wait 30
+pcb_log S one block placed alone (an oak log, at a spot no block has lit before)
+pcb_band_stats
+pcb_mc_cmd setblock -322 424 431 minecraft:oak_log
+wait 10
+pcb_aim_mc -321.5 424.5 431.5
+wait 2
+pcb_glhud_shot r27_s_10
+wait 150
+pcb_glhud_shot r27_s_150
+pcb_band_stats
+pcb_mc_cmd setblock -322 424 431 minecraft:air
+wait 20
+pcb_log C comparison sheet: block entities and special blocks on the Portal 2 floor
+pcb_mc_cmd setblock -323 424 432 minecraft:furnace[facing=south]
+pcb_mc_cmd setblock -322 424 432 minecraft:chest[facing=south]
+pcb_mc_cmd setblock -321 424 432 minecraft:lever[face=floor,facing=south]
+pcb_mc_cmd setblock -320 424 432 minecraft:farmland[moisture=7]
+pcb_mc_cmd setblock -320 425 432 minecraft:wheat[age=7]
+pcb_mc_cmd setblock -319 424 432 minecraft:oak_trapdoor[facing=south,half=bottom]
+pcb_mc_cmd setblock -323 424 430 minecraft:red_bed[facing=east,part=foot]
+pcb_mc_cmd setblock -322 424 430 minecraft:red_bed[facing=east,part=head]
+pcb_mc_cmd setblock -321 424 430 minecraft:oak_door[facing=south,half=lower]
+pcb_mc_cmd setblock -321 425 430 minecraft:oak_door[facing=south,half=upper]
+pcb_mc_cmd setblock -319 424 430 minecraft:cobblestone
+pcb_mc_cmd setblock -319 425 430 minecraft:cobblestone
+pcb_mc_cmd setblock -319 424 431 minecraft:ladder[facing=south]
+pcb_mc_cmd setblock -319 425 431 minecraft:ladder[facing=south]
+wait 150
+pcb_aim_mc -320.5 424.8 431.5
+wait 40
+pcb_glhud_shot r27_c_sheet
+pcb_mc_native r27_c_sheet
+wait 80
+pcb_mc_check c_furnace block -323 424 432 minecraft:furnace
+pcb_mc_check c_lever block -321 424 432 minecraft:lever
+pcb_mc_check c_wheat block -320 425 432 minecraft:wheat
+pcb_mc_check c_door block -321 425 430 minecraft:oak_door
+pcb_mc_check c_bed block -322 424 430 minecraft:red_bed
+pcb_mc_check c_ladder block -319 425 431 minecraft:ladder
+pcb_mc_cmd fill -323 424 430 -315 428 436 minecraft:air
+pcb_mc_cmd kill @e[type=minecraft:item,x=-330,y=420,z=427,dx=18,dy=14,dz=14]
+wait 30
+pcb_log W water on the Portal 2 floor: spreads, stays on the floor, not through the walls (y=-256 at z 430.4, y=-512 at z 436.8)
+pcb_mc_cmd setblock -319 424 433 minecraft:water
+wait 240
+pcb_mc_check w_spread_n block -319 424 431 minecraft:water
+pcb_mc_check w_not_down block -319 423 433 minecraft:air
+pcb_mc_check w_not_into_wall block -319 424 437 minecraft:air
+pcb_mc_check w_not_into_wall2 block -319 424 429 minecraft:air
+pcb_mc_check w_not_down2 block -317 423 433 minecraft:air
+pcb_aim_mc -319.5 424 433
+wait 30
+pcb_glhud_shot r27_w_water
+pcb_mc_native r27_w_water
+wait 60
+pcb_mc_cmd fill -323 420 428 -314 430 440 minecraft:air replace minecraft:water
+wait 60
+pcb_log G sand and gravel fall onto the Portal 2 floor
+pcb_mc_cmd setblock -319 429 432 minecraft:sand
+pcb_mc_cmd setblock -318 431 432 minecraft:gravel
+wait 8
+pcb_aim_mc -318.5 427 432.5
+wait 4
+pcb_glhud_shot r27_g_falling
+wait 120
+pcb_mc_check g_sand_landed block -319 424 432 minecraft:sand
+pcb_mc_check g_gravel_landed block -318 424 432 minecraft:gravel
+pcb_mc_check g_sand_not_sunk block -319 423 432 minecraft:air
+pcb_mc_check g_no_item entity @e[type=minecraft:item,x=-322,y=422,z=429,dx=8,dy=8,dz=8]
+pcb_aim_mc -318.5 424.5 432.5
+wait 20
+pcb_glhud_shot r27_g_landed
+pcb_mc_native r27_g_landed
+wait 60
+pcb_log restore the area
+pcb_mc_cmd clone -328 480 429 -314 487 438 -328 424 429 replace
+wait 10
+pcb_mc_cmd fill -328 480 429 -314 487 438 minecraft:air
+pcb_mc_cmd kill @e[type=minecraft:item,x=-330,y=420,z=427,dx=18,dy=14,dz=14]
+wait 30
+pcb_assert_mc_say c_furnace
+pcb_assert_mc_say c_lever
+pcb_assert_mc_say c_wheat
+pcb_assert_mc_say c_door
+pcb_assert_mc_say c_bed
+pcb_assert_mc_say c_ladder
+pcb_assert_mc_say w_spread_n
+pcb_assert_mc_say w_not_down
+pcb_assert_mc_say w_not_into_wall
+pcb_assert_mc_say w_not_into_wall2
+pcb_assert_mc_say w_not_down2
+pcb_assert_mc_say g_sand_landed
+pcb_assert_mc_say g_gravel_landed
+pcb_assert_mc_say g_sand_not_sunk
+pcb_assert_mc_say g_no_item fail
+pcb_band_stats
+pcb_run_summary
+quit

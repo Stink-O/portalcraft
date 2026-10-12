@@ -1,0 +1,126 @@
+# mobs19 (bridge #19, Owner B item 2): Minecraft mobs living in pc_pit_flings's chamber (terrain Minecraft).
+# A: spawn eggs on Portal 2's floor (real right clicks): a pig and a zombie appear in the chamber (drawn by Portal 2).
+# B: the zombie (survival, normal difficulty) walks over Portal 2's floor to the Minecraft player (pathing over the
+#    exported collision, PathTypeMixin) and attacks; Chell mode: mobs hunt Chell's stand-in (the hidden player follows her).
+# C: natural spawning on a placed platform under Portal 2's roof: forced dark (pcb_combat_hostlight 1 0) -> monsters spawn
+#    there in a /tick sprint; Portal 2's own light (lit chamber) -> the spawner's darkness test fails there.
+# Run: <myrun> <so> tools/cfg/mobs19.txt b19_mobsN
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+# (the shared world save keeps entities from earlier runs: leftovers removed)
+pcb_mc_cmd kill @e[type=!player]
+pcb_mc_cmd time set noon
+pcb_mc_cmd difficulty normal
+pcb_log A spawn eggs
+pcb_noclip_set 1
+setpos -420 -416 -100
+setang 0 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_combat_face_open 240
+wait 20
+bridge_mode mc
+waituntil mcmode 1200
+wait 40
+pcb_mc_cmd gamemode creative
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:pig_spawn_egg
+pcb_turn 10 40
+wait 40
+pcb_scene_status
+screenshot pcb_mb_a_before
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 30
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:zombie_spawn_egg
+pcb_turn -25 35
+wait 30
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 60
+pcb_assert_scene 2 1
+pcb_turn 0 20
+wait 30
+screenshot pcb_mb_a_eggs
+pcb_mc_native mb_a_eggs
+wait 60
+wait 40
+pcb_log B the zombie walks to the player over Portal 2's floor
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon zombie ^1 ^ ^5
+pcb_mc_cmd gamemode survival
+pcb_mc_cmd effect give @p minecraft:resistance 60 4 true
+wait 20
+pcb_scene_status
+screenshot pcb_mb_b_far
+wait 240
+pcb_scene_status
+screenshot pcb_mb_b_near
+pcb_mc_native mb_b_near
+wait 60
+wait 40
+pcb_log B2 Chell mode: the hidden player follows her; mobs hunt Chell's stand-in
+pcb_chell_proxy 1 5 1
+pcb_assert_chell_hit reset
+bridge_mode chell
+waituntil chellmode 600
+wait 600
+pcb_scene_status
+pcb_chell_proxy
+pcb_assert_chell_hit 1
+screenshot pcb_mb_b_chell
+bridge_mode mc
+waituntil mcmode 1200
+wait 30
+pcb_mc_cmd kill @e[type=!player]
+pcb_log C natural spawning on a placed platform in the chamber (the player 28 blocks up: spawns need 24+ blocks)
+pcb_mc_cmd gamemode creative
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run fill ^-3 ^-1 ^2 ^3 ^-1 ^6 minecraft:smooth_stone
+pcb_mc_cmd time set midnight
+pcb_combat_hostlight 1 0
+wait 300
+pcb_combat_hostlight
+pcb_mc_cmd attribute @p minecraft:gravity base set 0
+pcb_mc_cmd execute as @p at @s run tp @s ~ ~28 ~
+wait 60
+pcb_mc_cmd tick sprint 6000
+wait 900
+pcb_mc_cmd execute as @p at @s run tp @s ~ ~-28 ~
+pcb_mc_cmd attribute @p minecraft:gravity base set 0.08
+wait 120
+pcb_turn 0 30
+wait 30
+pcb_scene_status
+screenshot pcb_mb_c_dark
+pcb_mc_native mb_c_dark
+wait 60
+pcb_assert_scene 2 1
+pcb_log C2 Portal 2's own light (the chamber is lit): no spawns on the platform
+pcb_mc_cmd kill @e[type=!player]
+pcb_combat_hostlight 1 -1
+wait 300
+pcb_combat_hostlight
+pcb_mc_cmd attribute @p minecraft:gravity base set 0
+pcb_mc_cmd execute as @p at @s run tp @s ~ ~28 ~
+wait 60
+pcb_mc_cmd tick sprint 6000
+wait 900
+pcb_mc_cmd execute as @p at @s run tp @s ~ ~-28 ~
+pcb_mc_cmd attribute @p minecraft:gravity base set 0.08
+wait 120
+pcb_turn 0 30
+wait 30
+pcb_scene_status
+screenshot pcb_mb_c_lit
+pcb_mc_native mb_c_lit
+wait 60
+pcb_run_summary
+quit

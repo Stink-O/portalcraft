@@ -1,0 +1,14 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+pcb_noclip_set 1
+setpos -96 700 1040
+setang 40 90 0
+wait 60
+screenshot pcb_f67_p3_a
+pcb_movers near 260
+pcb_ents_near -96 848 975 130
+pcb_mc_portal_state
+quit

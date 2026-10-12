@@ -1,0 +1,284 @@
+# transitspeed: speed kept through portals on Minecraft blocks (falls at 300/600/1000 u/s into floor portals,
+# a fling into a wall portal, walking in), and never stuck beside a floor portal
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+wait 60
+pcb_log PAIR floors (ground<->ground)
+waituntil terrain_idle 1200
+pcb_find_surface ground 24 -1
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_assert_gun_shot 0 placed floor
+pcb_assert_portal_face 0
+waituntil terrain_idle 1200
+pcb_find_surface ground 24 0
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_gun_shot 1 placed floor
+pcb_assert_portal_face 1
+pcb_assert_portals
+pcb_assert_stuck reset
+pcb_log TRANSIT fall 300 into 0
+pcb_noclip_set 1
+pcb_goto_aim 0 140 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+pcb_assert_transits reset
+pcb_track 120 1
+pcb_launch_to p0 300
+wait 25
+pcb_assert_transits 1
+pcb_assert_transit_speed 5 270
+pcb_noclip_set 1
+pcb_stop
+wait 20
+pcb_log TRANSIT fall 300 into 1
+pcb_noclip_set 1
+pcb_goto_aim 1 140 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+pcb_assert_transits reset
+pcb_track 120 1
+pcb_launch_to p1 300
+wait 25
+pcb_assert_transits 1
+pcb_assert_transit_speed 5 270
+pcb_noclip_set 1
+pcb_stop
+wait 20
+pcb_log TRANSIT fall 600 into 0
+pcb_noclip_set 1
+pcb_goto_aim 0 140 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+pcb_assert_transits reset
+pcb_track 120 1
+pcb_launch_to p0 600
+wait 25
+pcb_assert_transits 1
+pcb_assert_transit_speed 5 540
+pcb_noclip_set 1
+pcb_stop
+wait 20
+pcb_log TRANSIT fall 600 into 1
+pcb_noclip_set 1
+pcb_goto_aim 1 140 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+pcb_assert_transits reset
+pcb_track 120 1
+pcb_launch_to p1 600
+wait 25
+pcb_assert_transits 1
+pcb_assert_transit_speed 5 540
+pcb_noclip_set 1
+pcb_stop
+wait 20
+pcb_log TRANSIT fall 1000 into 0
+pcb_noclip_set 1
+pcb_goto_aim 0 140 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+pcb_assert_transits reset
+pcb_track 120 1
+pcb_launch_to p0 1000
+wait 25
+pcb_assert_transits 1
+pcb_assert_transit_speed 5 900
+pcb_noclip_set 1
+pcb_stop
+wait 20
+pcb_log TRANSIT fall 1000 into 1
+pcb_noclip_set 1
+pcb_goto_aim 1 140 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+pcb_assert_transits reset
+pcb_track 120 1
+pcb_launch_to p1 1000
+wait 25
+pcb_assert_transits 1
+pcb_assert_transit_speed 5 900
+pcb_noclip_set 1
+pcb_stop
+wait 20
+pcb_log CASE beside a floor portal: stand, jump, walk off (never stuck)
+pcb_noclip_set 0
+pcb_stop
+pcb_stand_before 0 70 0
+wait 30
++jump
+wait 5
+-jump
+wait 60
++back
+wait 40
+-back
+wait 20
+pcb_noclip_set 0
+pcb_stop
+pcb_stand_before 0 70 45
+wait 30
++jump
+wait 5
+-jump
+wait 60
++back
+wait 40
+-back
+wait 20
+pcb_noclip_set 0
+pcb_stop
+pcb_stand_before 0 70 90
+wait 30
++jump
+wait 5
+-jump
+wait 60
++back
+wait 40
+-back
+wait 20
+pcb_noclip_set 0
+pcb_stop
+pcb_stand_before 0 70 135
+wait 30
++jump
+wait 5
+-jump
+wait 60
++back
+wait 40
+-back
+wait 20
+pcb_assert_stuck 0
+pcb_log PAIR ground<->wall
+pcb_noclip_set 1
+waituntil terrain_idle 1200
+pcb_find_surface wall 64 -1
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_gun_shot 1 placed wall
+pcb_assert_portal_face 1
+pcb_assert_portals
+pcb_assert_stuck reset
+pcb_log TRANSIT fling into the wall portal #0
+pcb_noclip_set 1
+pcb_goto_aim 1 300 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+pcb_assert_transits reset
+pcb_track 120 2
+pcb_launch_to p1 500
+wait 90
+pcb_assert_transits 1
+pcb_assert_transit_speed 6 300
+pcb_noclip_set 1
+pcb_stop
+wait 20
+pcb_log TRANSIT walk into the wall portal #0
+pcb_noclip_set 0
+pcb_stop
+pcb_stand_before 1 140 0
+wait 30
+pcb_assert_transits reset
+pcb_track 120 2
+pcb_aim_track 1
++forward
+wait 120
+-forward
+pcb_aim_track off
+pcb_assert_transits 1
+pcb_noclip_set 1
+pcb_stop
+wait 20
+pcb_log TRANSIT fall 600 into the floor portal, out of the wall #0
+pcb_noclip_set 1
+pcb_goto_aim 0 140 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+pcb_assert_transits reset
+pcb_track 120 1
+pcb_launch_to p0 600
+wait 25
+pcb_assert_transits 1
+pcb_assert_transit_speed 5 540
+pcb_noclip_set 1
+pcb_stop
+wait 20
+pcb_log TRANSIT fling into the wall portal #1
+pcb_noclip_set 1
+pcb_goto_aim 1 300 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+pcb_assert_transits reset
+pcb_track 120 2
+pcb_launch_to p1 500
+wait 90
+pcb_assert_transits 1
+pcb_assert_transit_speed 6 300
+pcb_noclip_set 1
+pcb_stop
+wait 20
+pcb_log TRANSIT walk into the wall portal #1
+pcb_noclip_set 0
+pcb_stop
+pcb_stand_before 1 140 0
+wait 30
+pcb_assert_transits reset
+pcb_track 120 2
+pcb_aim_track 1
++forward
+wait 120
+-forward
+pcb_aim_track off
+pcb_assert_transits 1
+pcb_noclip_set 1
+pcb_stop
+wait 20
+pcb_log TRANSIT fall 600 into the floor portal, out of the wall #1
+pcb_noclip_set 1
+pcb_goto_aim 0 140 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+pcb_assert_transits reset
+pcb_track 120 1
+pcb_launch_to p0 600
+wait 25
+pcb_assert_transits 1
+pcb_assert_transit_speed 5 540
+pcb_noclip_set 1
+pcb_stop
+wait 20
+pcb_assert_stuck 0
+pcb_run_summary
+quit

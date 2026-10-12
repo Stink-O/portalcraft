@@ -1,0 +1,50 @@
+# cave1 (bridge #11): deep caves below Minecraft y 48 have collision (the mod ships the collision bitsets of sections
+# below minSectionY 3, without their meshes). A pocket is carved at y 20..23 under the lowland west of the cliff with a
+# stone floor at y 19; Chell is stepped down to it through the floating origin (vertical shifts), dropped from 1.5
+# blocks with noclip off, and must stand on its floor (feet y 20) instead of falling through.
+# World hygiene: the carve is not undone in game; back up region r.-1.0.mca (chunks -24 28) before the run and
+# restore it after Minecraft has quit (cache/bridge/world_backup/cave1/).
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd fill -376 19 446 -368 19 454 stone
+pcb_mc_cmd fill -375 20 447 -369 23 453 air
+wait 60
+pcb_noclip_set 1
+pcb_light_goto_mc -372 70 450 90 20
+pcb_stop
+wait 60
+pcb_float_step_to -372 21.5 450
+wait 30
+pcb_float_step_to -372 21.5 450
+wait 30
+pcb_float_step_to -372 21.5 450
+wait 30
+pcb_float_step_to -372 21.5 450
+wait 30
+pcb_where
+waituntil terrain_idle 1200
+pcb_assert_sections_mc -372 20 450 3
+pcb_light_goto_mc -372 21.5 450 90 20
+pcb_stop
+wait 20
+pcb_noclip_set 0
+wait 150
+pcb_where
+pcb_assert_feet_mcy 19.95 20.3
+screenshot pcb_cave1_floor
+wait 120
+pcb_assert_feet_mcy 19.95 20.3
+pcb_log CAVE walk in the pocket
++forward
+wait 40
+-forward
+wait 60
+pcb_assert_feet_mcy 19.95 20.3
+pcb_noclip_set 1
+pcb_run_summary
+quit

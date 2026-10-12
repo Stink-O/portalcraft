@@ -1,0 +1,260 @@
+# edge2: (1) first shots frame by frame: a Minecraft floor (the test corridor's) and the chamber's pit floor,
+# 6.6 blocks straight down, colour 0 with no partner then colour 1 beside it; the Minecraft shots with the old
+# forced re-apply (20 ticks) and the new default (0). (2) the opening: Portal 2's visible opening fitted
+# (centre + half extents, max over 40 frames, magenta under the rim counts) at 3 poses per colour, the opening
+# Minecraft draws set from those fits, then Minecraft's own opening measured the same way and asserted against
+# Portal 2's per pose (gap and overshoot <= 1 px, per side).
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_noclip_set 1
+pcb_log FIRST chamber pit floor, colour 0, no partner
+setpos 128 -384 -400
+setang 89 0 0
+pcb_stop
+wait 120
+pcb_frame_dump 120 first_chamber_c0 500 225 1100 675
++attack
+wait 6
+-attack
+wait 150
+pcb_log FIRST chamber pit floor, colour 1 beside it
+setpos 128 -300 -400
+pcb_stop
+wait 60
+pcb_frame_dump 120 first_chamber_c1 500 225 1100 675
++attack2
+wait 6
+-attack2
+wait 150
+screenshot pcb_F_chamber_pair
+ent_fire prop_portal Fizzle
+wait 60
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_log FIRST Minecraft corridor floor, forced re-apply 20
+pcb_gun_reapply 20
+pcb_light_goto_mc -376 96.6 441 0 89
+pcb_stop
+wait 90
+pcb_frame_dump 120 first_mc_f20_c0 500 225 1100 675
++attack
+wait 6
+-attack
+wait 150
+pcb_light_goto_mc -376 96.6 443.5 0 89
+pcb_stop
+wait 60
+pcb_frame_dump 120 first_mc_f20_c1 500 225 1100 675
++attack2
+wait 6
+-attack2
+wait 150
+screenshot pcb_F_mc_pair_f20
+ent_fire prop_portal Fizzle
+wait 90
+pcb_log FIRST Minecraft corridor floor, forced re-apply 0
+pcb_gun_reapply 0
+pcb_light_goto_mc -376 96.6 441 0 89
+pcb_stop
+wait 90
+pcb_frame_dump 120 first_mc_f0_c0 500 225 1100 675
++attack
+wait 6
+-attack
+wait 150
+pcb_light_goto_mc -376 96.6 443.5 0 89
+pcb_stop
+wait 60
+pcb_frame_dump 120 first_mc_f0_c1 500 225 1100 675
++attack2
+wait 6
+-attack2
+wait 150
+screenshot pcb_F_mc_pair_f0
+ent_fire prop_portal Fizzle
+wait 90
+pcb_gun_reapply 0
+pcb_log EDGE corridor pair
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_assert_portal_face
+pcb_view_portal 0 120 0 1
+pcb_stop
+wait 60
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 0 40 p2_0_s3 max lenient
+wait 70
+pcb_mc_portals_shape 27 47 0 0
+wait 10
+pcb_view_portal 0 120 45 1
+pcb_stop
+wait 60
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 0 40 p2_0_a45 max lenient
+wait 70
+pcb_mc_portals_shape 27 47 0 0
+wait 10
+pcb_view_portal 0 240 0 1
+pcb_stop
+wait 60
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 0 40 p2_0_s6 max lenient
+wait 70
+pcb_mc_portals_shape 27 47 0 0
+wait 10
+pcb_view_portal 1 120 0 1
+pcb_stop
+wait 60
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 1 40 p2_1_s3 max lenient
+wait 70
+pcb_mc_portals_shape 27 47 0 0
+wait 10
+pcb_view_portal 1 120 45 1
+pcb_stop
+wait 60
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 1 40 p2_1_a45 max lenient
+wait 70
+pcb_mc_portals_shape 27 47 0 0
+wait 10
+pcb_view_portal 1 240 0 1
+pcb_stop
+wait 60
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 1 40 p2_1_s6 max lenient
+wait 70
+pcb_mc_portals_shape 27 47 0 0
+wait 10
+pcb_mc_portals_fit p2_0_s3 p2_0_a45 p2_0_s6 p2_1_s3 p2_1_a45 p2_1_s6
+pcb_view_portal 0 120 0 1
+pcb_stop
+wait 60
+screenshot pcb_E_0_s3_normal
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 0 40 mc_0_s3 max lenient
+wait 70
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_0_s3 p2_0_s3 1
+pcb_view_portal 0 120 45 1
+pcb_stop
+wait 60
+screenshot pcb_E_0_a45_normal
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 0 40 mc_0_a45 max lenient
+wait 70
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_0_a45 p2_0_a45 1
+pcb_view_portal 0 240 0 1
+pcb_stop
+wait 60
+screenshot pcb_E_0_s6_normal
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 0 40 mc_0_s6 max lenient
+wait 70
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_0_s6 p2_0_s6 1
+pcb_view_portal 1 120 0 1
+pcb_stop
+wait 60
+screenshot pcb_E_1_s3_normal
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 1 40 mc_1_s3 max lenient
+wait 70
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_1_s3 p2_1_s3 1
+pcb_view_portal 1 120 45 1
+pcb_stop
+wait 60
+screenshot pcb_E_1_a45_normal
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 1 40 mc_1_a45 max lenient
+wait 70
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_1_a45 p2_1_a45 1
+pcb_view_portal 1 240 0 1
+pcb_stop
+wait 60
+screenshot pcb_E_1_s6_normal
+pcb_mc_portals_flat 1
+wait 20
+pcb_measure_hole 1 40 mc_1_s6 max lenient
+wait 70
+pcb_mc_portals_flat 0
+wait 10
+pcb_assert_edge_gap mc_1_s6 p2_1_s6 1
+pcb_mc_portals
+pcb_build_corridor remove
+ent_fire prop_portal Fizzle
+wait 60
+pcb_log EDGE chamber<->Minecraft: the pit floor portal seen from the chamber
+pc_pit_redirect 1
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 120
+pcb_assert_redirect
+pcb_view_portal 0 160 0 1
+pcb_stop
+wait 90
+screenshot pcb_E_pit_0_normal
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 0 40 pitp2_0 max lenient
+wait 70
+screenshot pcb_E_pit_0_magenta
+pcb_mc_portals_shape 27 47 0 0
+wait 10
+pcb_view_portal 0 160 45 1
+pcb_stop
+wait 90
+screenshot pcb_E_pit_45_normal
+pcb_mc_portals_shape 27 47 0 3
+wait 20
+pcb_measure_hole 0 40 pitp2_45 max lenient
+wait 70
+screenshot pcb_E_pit_45_magenta
+pcb_mc_portals_shape 27 47 0 0
+wait 10
+pcb_run_summary
+quit

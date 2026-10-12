@@ -1,0 +1,66 @@
+# plat23 (bridge #23): start as the Minecraft player in the descending arrival elevator; Minecraft rides it itself
+# (live platform: collfield.cpp + the mod's SkyPlatform). Walk and jump inside the moving car, then arrive.
+# Asserts: no Portal 2 carry (<= 0.3 s in all while the shape is on its way, none after), Minecraft rides the platform,
+# walk speed relative to the car is Minecraft's, body clear, no late-floor carry after the arrival.
+pc_start_mode mc
+pcb_platform_live 1 3 1
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+pcb_assert_mc_carry reset
+waituntil spawned 600
+waituntil link 9000
+pcb_audio_test_mute 1
+bridge_mode mc
+waituntil mcmode 2400
+pcb_log P1 riding the arrival elevator as the Minecraft player
+pcb_platform_live 1 3 1
+wait 30
+pcb_where
+pcb_assert_mc_platform 1
+setang 45 90 0
+wait 2
+pcb_glhud_shot p23_ride_a
+pcb_assert_mc_platform_walk reset
+pcb_mckey 26 1
+wait 30
+pcb_mckey 26 0
+pcb_where
+pcb_assert_mc_platform_walk 3.0 6.0
+pcb_assert_body_clear
+pcb_glhud_shot p23_ride_walk
+pcb_mckey 44 1
+wait 6
+pcb_mckey 44 0
+wait 14
+pcb_where
+pcb_assert_mc_platform 1
+pcb_glhud_shot p23_ride_jump
+wait 20
+pcb_mckey 22 1
+wait 30
+pcb_mckey 22 0
+pcb_glhud_shot p23_ride_back
+pcb_where
+pcb_assert_body_clear
+pcb_platform_live 1 3 1
+pcb_log P2 arrival
+waituntil mcleads 3600
+wait 180
+pcb_where
+pcb_platform_live 1 3 1
+pcb_assert_mc_carry 0.3 0.3
+pcb_assert_mc_mode 1
+pcb_assert_body_clear
+pcb_glhud_shot p23_arrived
+pcb_log P3 walk out
+setang 0 90 0
+pcb_mckey 26 1
+wait 60
+pcb_mckey 26 0
+pcb_where
+pcb_assert_mc_carry 0.3 0.3
+pcb_glhud_shot p23_out
+wait 20
+pcb_run_summary
+quit

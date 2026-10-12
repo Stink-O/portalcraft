@@ -1,0 +1,80 @@
+# maps agent: same poses in pc_pit_flings, then the hidden region
+sv_cheats 1
+wait 180
+noclip
+setpos -560 -60 16
+setang 15 -60 0
+wait 50
+screenshot pcb_pose_a
+wait 20
+setpos 100 100 -200
+setang 45 -90 0
+wait 50
+screenshot pcb_pose_b
+wait 20
+setpos 300 -150 -760
+setang 5 -170 0
+wait 50
+screenshot pcb_pose_c
+wait 20
+setpos 64 -950 -760
+setang 0 -90 0
+wait 50
+screenshot pcb_pose_d
+wait 20
+setpos -896 1000 40
+setang 0 90 0
+wait 50
+screenshot pcb_pose_e
+wait 20
+setpos 528 1600 70
+setang 0 90 0
+wait 50
+screenshot pcb_pose_f
+wait 20
+script EntFire("@command", "Command", "pcb_log [maps] GetMapName=" + GetMapName(), 0)
+wait 10
+pcb_probe 200 -150 -700
+pcb_probe 0 0 -8000
+pcb_probe 0 0 -16100
+pcb_probe 16000 16000 -5700
+pcb_probe 0 0 -5000
+setpos 0 0 -8000
+setang 0 0 0
+wait 50
+pcb_where
+screenshot pcb_region_mid
+wait 20
+setang 60 45 0
+wait 40
+screenshot pcb_region_mid_down
+wait 20
+setpos 200 0 -16060
+setang 25 0 0
+wait 30
+pcb_block_here 160 0
+pcb_block_here 200 1
+pcb_block 400 40 -16128 2
+wait 30
+pcb_status
+screenshot pcb_region_floor_block
+wait 20
+pcb_block 0 0 -9480 0
+pcb_block 40 0 -9480 1
+pcb_block 0 40 -9480 2
+pcb_block -40 -40 -9480 0
+pcb_portal 0 200 -150 -767 -90 0 0
+pcb_portal 1 20 20 -9000 90 0 0
+wait 60
+setpos 200 -150 -700
+setang 89 0 0
+wait 60
+pcb_views 8
+screenshot pcb_region_through_pit_portal
+wait 20
+setpos 200 -350 -700
+setang 50 90 0
+wait 40
+screenshot pcb_region_pit_portal_oblique
+wait 20
+quit

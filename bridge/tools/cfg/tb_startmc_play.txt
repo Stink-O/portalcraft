@@ -1,0 +1,30 @@
+# tb_startmc_play (generated, bridge #31): play_clip.sh --map pc_testbed --start mc, i.e.
+#   PCB_PRE="pc_start_mode mc" PCB_SO=<abs .so> tools/locked_run.sh terrain tools/cfg/tb_startmc_play.txt pc_testbed 400 <run>
+sv_cheats 1
+pcb_assert_soft 1
+pcb_assert_mc_feet_above reset
+pcb_assert_mc_rode reset
+pcb_ride_track reset
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+pcb_assert_mc_mode 1
+pcb_where
+pcb_glhud_shot tb_play_0
+pcb_setview 50 90
+wait 2
+pcb_glhud_shot tb_play_down
+pcb_setview 0 90
+waituntil mcleads 3600
+wait 600
+pcb_where
+pc_mc_fall_guard
+pcb_assert_mc_feet_above -770 0
+pcb_assert_mc_rode 10 0
+pcb_assert_mc_mode 1
+pcb_assert_body_clear
+pcb_assert_mc_flag ground 1
+pcb_glhud_shot tb_play_end
+pcb_movers write
+pcb_run_summary
+quit

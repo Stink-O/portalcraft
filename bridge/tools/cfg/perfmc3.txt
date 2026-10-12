@@ -1,0 +1,50 @@
+# perfmc1 (lead): where Minecraft mode spends the frame. Same poses in Chell mode and Minecraft mode,
+# standing and walking, in the chamber and on the terrain; host frame times, composite costs and the
+# direct-GL HUD's upload/draw costs per phase.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_audio_test_mute 1
+pcb_noclip_set 1
+setpos -298 -416 -100
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 120
+bridge_mode mc
+waituntil mcmode 1200
+
+pcb_log PERF M1 just switched
+pcb_composite_lag
+wait 200
+pcb_composite_lag
+pcb_colfield
+pcb_where
+
+pcb_log PERF M2 standing
+pcb_composite_lag
+wait 200
+pcb_composite_lag
+pcb_colfield
+pcb_where
+pcb_mckey 26 1
+pcb_log PERF M3 walking
+pcb_composite_lag
+wait 200
+pcb_mckey 26 0
+pcb_composite_lag
+pcb_colfield
+pcb_where
+
+pcb_log PERF M4 standing after walk
+pcb_composite_lag
+wait 200
+pcb_composite_lag
+pcb_colfield
+pcb_where
+pcb_run_summary
+quit

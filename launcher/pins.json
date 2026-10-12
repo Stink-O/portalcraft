@@ -1,0 +1,21 @@
+{
+  "_comment": "Third-party downloads the launcher installs. Pinned by sha256; bump deliberately, then rebuild launcher.json with tools/make_release.py. 'prism' is the Linux Qt6 portable tarball (top level of launcher.json), 'prism_windows' the self-contained MinGW-w64 portable zip (launcher.json platforms.windows-x86_64).",
+  "prism": {
+    "version": "11.1.1",
+    "url": "https://github.com/PrismLauncher/PrismLauncher/releases/download/11.1.1/PrismLauncher-Linux-Qt6-Portable-11.1.1.tar.gz",
+    "sha256": "e21949a8101c1803dbc6f67a2cdad48ba80ede1c133f0d1f2a89da07af09e823",
+    "size": 63960101
+  },
+  "prism_windows": {
+    "version": "11.1.1",
+    "url": "https://github.com/PrismLauncher/PrismLauncher/releases/download/11.1.1/PrismLauncher-Windows-MinGW-w64-Portable-11.1.1.zip",
+    "sha256": "05841d0b3bfc0a8212658457cc6035e1c29cd7ffae919464e874e384cbe8d062",
+    "size": 43687692
+  },
+  "fabric_api": {
+    "version": "0.161.0+26.3",
+    "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/bNnaTiuM/fabric-api-0.161.0%2B26.3.jar",
+    "sha256": "86f16178a3cecc887a85a4cfe9a79d92fa7341d8f39b5951a4d6ad800ab657a6",
+    "size": 2620967
+  }
+}

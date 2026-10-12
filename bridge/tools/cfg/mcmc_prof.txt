@@ -1,0 +1,74 @@
+# mcmc_prof: where the frame time goes in the MC<->MC recursion tunnel (composite on/off, recursion depth)
+sv_cheats 1
+fps_max 0
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_noclip_set 1
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_assert_gun_shot 0 placed wall
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_gun_shot 1 placed wall
+pcb_assert_portal_face
+pcb_view_from 0 3
+wait 30
+setpos -500 -40 -13860
+setang 0 0 0
+wait 180
+pcb_log PROF A composite on
+pcb_composite_lag
+pcb_composite_occlusion
+wait 240
+pcb_composite_lag
+pcb_composite_occlusion
+pcb_log PROF B composite off
+pcb_composite 0
+wait 30
+pcb_composite_lag
+wait 240
+pcb_composite_lag
+pcb_composite 1
+pcb_log PROF C composite on, second camera off (K 1)
+pcb_composite_cams 1
+wait 30
+pcb_composite_lag
+wait 240
+pcb_composite_lag
+pcb_composite_cams 6
+pcb_log PROF D looking away from the portals (region, no portal on screen)
+setang 0 90 0
+wait 30
+pcb_composite_lag
+wait 240
+pcb_composite_lag
+pcb_log PROF E composite off, looking away
+pcb_composite 0
+wait 30
+pcb_composite_lag
+wait 240
+pcb_composite_lag
+pcb_composite 1
+pcb_build_corridor remove
+wait 30
+quit

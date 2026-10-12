@@ -1,0 +1,100 @@
+# carry0 (bridge #12, exploratory): the user's report "carrying a cube into Minecraft, it's like there are invisible
+# blocks". Chell picks up a cube on the pit floor, walks into the floor portal, comes out of the cliff portal onto a
+# stone course (flat, a one-block step, pillars), walks it carrying the cube; every non-block wall hit is logged.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+pcb_audio_test_mute 1
+waituntil spawned 600
+waituntil link 9000
+waituntil exit 3600
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_dump_fields player Hold
+pcb_dump_fields player hold
+pcb_dump_fields player Use
+pcb_dump_fields player Grab
+pcb_dump_fields prop_weighted_cube
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_redirect
+pcb_log COURSE build: platform top y 93 x -352..-332 z 420..430, step top y 94 from x -340, pillars
+pcb_mc_cmd fill -352 92 420 -332 92 430 stone
+pcb_mc_cmd fill -352 93 420 -341 93 430 stone
+pcb_mc_cmd fill -344 94 423 -344 95 423 stone
+pcb_mc_cmd fill -347 94 427 -347 95 427 stone
+pcb_mc_cmd fill -350 94 423 -350 95 423 stone
+wait 120
+pcb_blockers log 60
+pcb_blockers watch 1
+pcb_blockers reset
+pcb_log PICKUP on the pit floor
+pcb_noclip_set 0
+setpos 128 -200 -760
+setang 0 90 0
+wait 60
+pcb_spawn_cube 128 -130 -740 carry
+wait 90
+pcb_aim 128 -130 -750
+wait 10
++use
+wait 5
+-use
+wait 60
+pcb_prop_mark carry
+setang 0 -90 0
+wait 60
+pcb_where
+pcb_ent_field prop_weighted_cube carry origin s
+pcb_blockers report pickup
+pcb_blockers reset
+pcb_assert_transits reset
+pcb_log WALK into the floor portal carrying the cube
+pcb_track 600 6
++forward
+wait 150
+-forward
+wait 120
+pcb_assert_transits 1
+pcb_where
+pcb_prop_debug carry
+pcb_blockers report transit
+pcb_blockers reset
+pcb_log WALK the course (yaw 180 = Minecraft -X)
+setang 0 180 0
+wait 30
++forward
+waituntil mcxbelow-339.3 300
+-forward
+wait 20
+pcb_blockers report flat
++forward
++jump
+wait 20
+-jump
+wait 60
+waituntil mcxbelow-351 600
+-forward
+wait 30
+pcb_where
+pcb_prop_debug carry
+pcb_prop_collide
+pcb_blockers report course
+pcb_assert_blockers course 100
+screenshot pcb_carry0_end
+pcb_log FLOAT shift while carrying
+pcb_blockers reset
+pcb_float_shift 1 0
+wait 30
+setang 0 0 0
++forward
+wait 90
+-forward
+wait 30
+pcb_prop_collide
+pcb_blockers report aftershift
+pcb_assert_blockers aftershift 100
+pcb_run_summary
+quit

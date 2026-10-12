@@ -1,0 +1,21 @@
+# Terrain streaming look test (camera out in the void above the terrain: Portal 2's world isn't drawn there)
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 60
+noclip
+pcb_terrain_region 0 64 0 0 300 0
+wait 1500
+pcb_terrain_stats
+setpos 2200 -2200 2400
+setang 35 135 0
+wait 60
+screenshot pcb_t2_lit
+wait 30
+pcb_terrain_exposure 1 1
+pcb_log unlit sections from here
+wait 600
+setpos 2200 -2200 2400
+screenshot pcb_t2_mixed
+wait 30
+pcb_terrain_stats
+quit

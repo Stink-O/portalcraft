@@ -1,0 +1,116 @@
+# t30_sway (bridge #30): hand sway across a Minecraft transit. A Chell reference + B the Minecraft player through the wall pair (a 90-degree-class turn), D the fall into a floor portal and the fling out of the wall. Frame bursts t30_*; the sway lines are in mc.log ("hand sway").
+# t28_transit (bridge #28): the Minecraft player goes through portals in Minecraft (PlayerTransit), Portal 2 follows.
+# Every case: pcb_view_track (the rendered camera unfolded through the pair: speed before/after, stalls, jumps, turns),
+# a frame burst across the crossing (cache/bridge/glhud_t28_<case>_NN.png), pcb_mc_hurt (no damage), the speeds in and out.
+#   A Chell walks into portal 1 (west wall, upper floor) -> out of portal 0 (pit wall): the reference
+#   B the Minecraft player walks the same way      C sprints the same way
+#   D a fall into a floor portal (12 blocks) and the fling out of the pit wall: Chell, then the Minecraft player
+#   E the G pair (pit floor -> the Minecraft cliff): falls in, flung out over the region; then walks back into the cliff portal
+#   (no portal on a moving surface: Portal 2 has sv_allow_mobile_portals 0, single player never places one)
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_eye_watch reset
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_wall 0 160 -416 -712 270
+wait 30
+pcb_log A Chell walks into portal 1 -> out of portal 0
+pcb_noclip_set 1
+pcb_stand_before 1 160
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_assert_transits reset
+pcb_view_track start
++forward
+pcb_glhud_burst t30_a_chell 60
+waituntil transit 600
+wait 40
+-forward
+pcb_view_track report chell_walk
+pcb_assert_transit_speed 15
+wait 30
+pcb_log B the Minecraft player walks the same way
+pcb_noclip_set 1
+pcb_stand_before 1 160
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd gamemode survival
+wait 60
+pcb_mc_hurt mark
+pcb_assert_transits reset
+pcb_assert_mc_transits reset
+pcb_view_track start
+pcb_mckey 26 1
+waituntil near -560,-60,64 70 600
+pcb_glhud_burst t30_b_walk 60
+waituntil transit 600
+wait 40
+pcb_mckey 26 0
+pcb_view_track report mc_walk
+pcb_view_track assert 0 85 3 20
+pcb_assert_mc_transits 1
+pcb_assert_mc_transit_speed 15
+wait 40
+pcb_mc_hurt assert 0
+pcb_assert_body_clear
+pcb_log D a fall into a floor portal (480 u / 12 blocks) and the fling out of the pit wall: Chell, then the Minecraft player
+bridge_mode chell
+waituntil chellmode 300
+pcb_portal_floor 1 128 -384 -600
+wait 30
+pcb_noclip_set 1
+setpos 128 -384 -120
+setang 89 90 0
+pcb_stop
+wait 30
+pcb_assert_transits reset
+pcb_view_track start
+pcb_noclip_set 0
+waituntil transit 600
+wait 10
+pcb_assert_transit_speed 10
+wait 110
+pcb_assert_transits 1
+pcb_view_track report chell_fall
+pcb_noclip_set 1
+setpos 20 -384 -740
+setang 89 90 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 30
+bridge_mode mc
+waituntil mcmode 1200
+wait 150
+pcb_mc_hurt mark
+pcb_assert_transits reset
+pcb_assert_mc_transits reset
+pcb_view_track start
+pcb_mc_cmd tp @p -324.8 436.0 433.6
+waituntil near 128,-384,-600 60 600
+pcb_glhud_burst t30_d_fall 60
+waituntil transit 600
+wait 10
+pcb_assert_mc_transit_speed 10
+wait 110
+pcb_view_track report mc_fall
+pcb_view_track assert 0 85 3 30
+pcb_assert_mc_transits 1
+wait 60
+pcb_mc_hurt assert 0
+pcb_assert_body_clear
+pcb_glhud_shot t30_d_landed
+wait 20
+pcb_run_summary
+quit

@@ -1,0 +1,34 @@
+# alpha1: what does Portal 2 leave in destination alpha (portal opening, rim, floor)?
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 600
+noclip
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 150
+pcb_composite_stage 2
+wait 30
+pcb_alpha_probe
+wait 10
+screenshot pcb_h_stage2
+pcb_composite 0
+wait 30
+pcb_alpha_probe
+wait 10
+pcb_composite 1
+pcb_composite_stage 3
+wait 30
+pcb_alpha_probe
+wait 10
+quit

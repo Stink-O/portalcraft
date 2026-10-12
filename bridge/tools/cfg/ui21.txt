@@ -1,0 +1,44 @@
+# ui21 (bridge #21): the Minecraft hand/hotbar drawn under Portal 2's UI: right way up, captions and console on top.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 0
+pcb_noclip_set 1
+setpos -420 -416 -100
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 90
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd gamemode creative
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:iron_sword
+pcb_mc_cmd item replace entity @p hotbar.1 with minecraft:torch 16
+pcb_mc_cmd item replace entity @p hotbar.2 with minecraft:oak_planks 64
+wait 90
+pcb_glhud_shot u21_a_nocaption
+wait 10
+closecaption 1
+cc_lang english
+cc_random 3
+wait 20
+pcb_glhud_shot u21_b_caption
+wait 60
+cc_random 3
+wait 15
+pcb_glhud_shot u21_b_caption2
+wait 30
+pc_mc_hud_under_ui 0
+cc_random 3
+wait 20
+pcb_glhud_shot u21_c_atswap_caption
+wait 20
+pcb_glhud_stats
+pcb_run_summary
+quit

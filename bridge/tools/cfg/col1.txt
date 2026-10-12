@@ -1,0 +1,35 @@
+# col1: in-view composite colours vs Minecraft (still pose), stage 2 vs stage 3 without paint
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 600
+noclip
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 150
+pcb_composite_paint 0
+pcb_composite_stage 3
+wait 60
+pcb_mcshot
+wait 40
+screenshot pcb_i_stage3_nopaint
+wait 30
+pcb_composite_stage 2
+wait 60
+screenshot pcb_i_stage2
+wait 30
+pcb_composite_opts 0 1
+wait 60
+screenshot pcb_i_stage2_nosrgb
+wait 30
+quit

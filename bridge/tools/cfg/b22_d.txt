@@ -1,0 +1,118 @@
+# b22_d (bridge #22): items 6, 7, 8, 13, 14 in the pc_pit_flings pit (floor MC y 424 = Source z -768; Source (420 -460) =
+#legacy-cliff-shift (bridge #81: the Minecraft coordinates below are the original cliff's; pcb_script moves them to the world.conf cliff, see worldconf.hpp)
+# MC (-317.5 435.5)). Everything summoned is tagged b22 and killed at the end; the torch is removed, the weather cleared.
+#  6 a pig and crit particles against Minecraft native        7 a Portal 2 cube beside a torch: dlight flags 0 vs 2
+#  8 rain, seen from inside the chamber                       13 a burning pig (visual fire)
+# 14 a zombie and Chell (hunt debug in mc.log: cache/bridge/debug_hunt)
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd weather clear
+pcb_mc_cmd kill @e[tag=b22]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:porkchop"}}]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:rotten_flesh"}}]
+pcb_noclip_set 1
+setpos 420 -460 -760
+setang 10 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd gamemode creative
+wait 60
+pcb_log 6 a pig and crit particles, ours vs Minecraft native
+pcb_mc_cmd summon pig -320.5 424 433.5 {Tags:["b22"],DeathLootTable:"minecraft:empty",NoAI:1b,Rotation:[60f,0f]}
+wait 60
+pcb_aim_mc -320.5 424.6 433.5
+wait 40
+pcb_glhud_shot b22_6_pig
+pcb_mc_native b22_6_pig
+wait 60
+pcb_mc_cmd particle minecraft:crit -319.5 425 433.5 0.4 0.4 0.4 0.05 60 force
+wait 4
+pcb_glhud_shot b22_6_crit
+pcb_mc_cmd particle minecraft:crit -319.5 425 433.5 0.4 0.4 0.4 0.05 60 force
+pcb_mc_native b22_6_crit
+wait 60
+pcb_log 13 a burning pig (visual fire)
+pcb_mc_cmd data merge entity @e[type=pig,tag=b22,limit=1] {HasVisualFire:1b}
+wait 40
+pcb_glhud_shot b22_13_fire
+pcb_mc_native b22_13_fire
+wait 60
+pcb_mc_cmd kill @e[tag=b22]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:porkchop"}}]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:rotten_flesh"}}]
+pcb_log 7 a Portal 2 cube beside a torch: the cube's lighting state and look with the block lights' dlights at flags 0, then 2
+pcb_mc_cmd setblock -320 424 433 minecraft:torch
+pcb_spawn_cube 380 -340 -760 pcb_cubeT
+wait 120
+pcb_aim_mc -319.5 424.4 433.5
+wait 60
+pc_mc_blocklights_flags 0
+wait 30
+pcb_blocklights
+pcb_p2light_mc -318.5 424.5 433.5
+pcb_glhud_shot b22_7_flags0
+wait 30
+pc_mc_blocklights_flags 2
+wait 30
+pcb_p2light_mc -318.5 424.5 433.5
+pcb_glhud_shot b22_7_flags2
+wait 30
+pc_mc_blocklights 0
+wait 30
+pcb_p2light_mc -318.5 424.5 433.5
+pcb_glhud_shot b22_7_off
+pc_mc_blocklights 1
+pc_mc_blocklights_flags 0
+ent_fire pcb_cubeT Kill
+pcb_mc_cmd setblock -320 424 433 minecraft:air
+wait 30
+pcb_log 8 rain, from inside the chamber
+pcb_mc_cmd weather rain
+wait 300
+setang 10 180 0
+wait 30
+pcb_glhud_shot b22_8_rain_mc
+pcb_mc_native b22_8_rain_mc
+wait 60
+pcb_scene_status
+bridge_mode chell
+waituntil chellmode 300
+wait 60
+pcb_glhud_shot b22_8_rain_chell
+pcb_mc_cmd weather clear
+wait 30
+pcb_log 14 a zombie and Chell in the pit
+pcb_mc_cmd difficulty easy
+pcb_mc_cmd summon zombie -326 424 433.5 {Tags:["b22"],DeathLootTable:"minecraft:empty",PersistenceRequired:1b,CanPickUpLoot:0b}
+wait 30
+pcb_where
+pcb_glhud_shot b22_14_a
+wait 300
+pcb_where
+pcb_glhud_shot b22_14_b
+wait 300
+pcb_glhud_shot b22_14_c
+pcb_mc_cmd kill @e[tag=b22]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:porkchop"}}]
+pcb_mc_cmd kill @e[type=item,nbt={Item:{id:"minecraft:rotten_flesh"}}]
+pcb_mc_cmd difficulty peaceful
+wait 30
+pcb_mc_check z_clean entity @e[tag=b22]
+pcb_mc_check z_torch_gone block -320 424 433 minecraft:air
+wait 30
+pcb_assert_mc_say z_clean fail
+pcb_assert_mc_say z_torch_gone
+pcb_run_summary
+quit

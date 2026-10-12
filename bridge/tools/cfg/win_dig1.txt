@@ -1,0 +1,24 @@
+# win_dig1 (Proton): a dig into sp_a1_intro1's wall (Portal 2 geometry carved, Minecraft world drawn behind) after the wake-up. Chell mode, linked Minecraft.
+pcb_assert_soft 1
+sv_cheats 1
+pc_input_lock 1
+waituntil spawned 900
+waituntil link 9000
+wait 1800
+pc_dig 1
+pcb_noclip_set 1
+crosshair 0
+r_drawviewmodel 0
+setpos -8709 1690 60
+setang 0 0 0
+wait 120
+pc_dig_render 2
+wait 60
+screenshot pcb_d1_before
+pcb_dig_box -8560 1650 30 -8480 1730 110
+wait 120
+screenshot pcb_d2_after
+wait 240
+screenshot pcb_d3_later
+pcb_run_summary
+quit

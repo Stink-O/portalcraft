@@ -1,0 +1,46 @@
+# cursor21 (bridge #21, task 2b): the inventory cursor must follow the mouse and hold. Real hardware: Portal 2 warps the pointer back
+# to the window centre after each read, and SDL reports the warp as a motion event; pcb_sdl_event motionwarp pushes a move + that warp.
+# Before the fix the cursor stayed at the centre. Check with pcb_screen_cursor (centre = viewport/2) and the shots.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_noclip_set 1
+setpos -420 -416 -100
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 90
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd gamemode survival
+wait 60
+pcb_mckey 8 1
+wait 5
+pcb_mckey 8 0
+wait 60
+pcb_screen_cursor
+pcb_mouse_log 40
+pcb_glhud_shot k_a_open
+wait 10
+pcb_sdl_event motionwarp 150 -80
+wait 10
+pcb_sdl_event motionwarp 150 -80
+wait 10
+pcb_sdl_event motionwarp 60 200
+wait 20
+pcb_screen_cursor
+pcb_glhud_shot k_b_moved
+wait 60
+pcb_screen_cursor
+pcb_glhud_shot k_c_held
+pcb_sdl_event key 41
+wait 30
+pcb_run_summary
+quit

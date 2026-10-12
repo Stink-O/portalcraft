@@ -1,0 +1,5 @@
+pc_pit_redirect_mode 2
+wait 2400
+pcb_status
+wait 60
+quit

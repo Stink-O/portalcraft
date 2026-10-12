@@ -1,0 +1,30 @@
+# pit_flings reference for the testbed lighting match (bridge #29): probes + shots at the same kind of spots
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+noclip
+pcb_probe -560 -60 56
+pcb_probe 100 100 -200
+pcb_probe 300 -150 -740
+pcb_probe 64 -950 -740
+pcb_probe -896 1000 60
+pcb_probe 528 1600 70
+setpos -560 -60 16
+setang 15 -60 0
+wait 60
+pcb_glhud_shot pit_ref_a
+setpos 64 -950 -760
+setang 0 -90 0
+wait 60
+pcb_glhud_shot pit_ref_d
+setpos 300 -150 -760
+setang 5 -170 0
+wait 60
+pcb_glhud_shot pit_ref_c
+setpos 528 1600 70
+setang 0 90 0
+wait 60
+pcb_glhud_shot pit_ref_f
+pcb_run_summary
+quit

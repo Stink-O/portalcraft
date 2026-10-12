@@ -1,0 +1,14 @@
+# lead: a cube rests on a block the Minecraft player placed in a campaign chamber (prop colliders off the region maps).
+#   PCB_PRE="pc_start_mode mc;pc_world unified" PCB_SO=<abs .so> tools/locked_run.sh terrain tools/cfg/lead_cubeblock.txt sp_a1_intro2 600 <run>
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 300
+pcb_where
+pcb_mc_cmd execute at @p run fill ~3 ~ ~-1 ~5 ~1 ~1 minecraft:stone
+wait 240
+pcb_where
+quit

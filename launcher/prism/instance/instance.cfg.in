@@ -1,0 +1,14 @@
+[General]
+InstanceType=OneSix
+name=Portalcraft
+iconKey=default
+notes=Managed by the Portalcraft launcher. It rewrites the Java arguments each time you press Play, so changes to them here do not stick. Minecraft runs hidden next to Portal 2; this is on purpose.
+OverrideJavaArgs=true
+JvmArgs=@JVM_ARGS@
+OverrideMemory=true
+MinMemAlloc=512
+MaxMemAlloc=@MAX_MEM@
+OverrideConsole=true
+ShowConsole=false
+AutoCloseConsole=false
+ShowConsoleOnError=true

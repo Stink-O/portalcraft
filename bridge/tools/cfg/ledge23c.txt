@@ -1,0 +1,39 @@
+# ledge23c (bridge #23): ONE physical check at exit_ledge_player_clip (not killed: the clip is live in Portal 2).
+# Geometry (VMF): upper floor z 0 west of x -512 / north of y -256; the clip's L (x -528..-512 y -384..-256 and
+# x -512..-384 y -256..-232, z 0..128) stands on its edge; below it the low area x -512..-384 y -384..-256, floor z -128.
+# The Minecraft player stands on the upper floor 56 u west of the clip (x -584 y -320), faces east (yaw 0) and walks
+# 0.6 s: it must end past the clip line (x > -512: moved >= 80 u east), off the edge into the low area.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_noclip_set 1
+setpos -584 -320 8
+setang 10 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+waituntil mcleads 1200
+wait 180
+pcb_dyn_probe -520 -320 64 4
+pcb_colfield_block -520 -320 60
+pcb_where
+pcb_pos_mark
+pcb_glhud_shot l23c_facing_ledge
+wait 10
+pcb_mckey 26 1
+wait 36
+pcb_mckey 26 0
+wait 60
+pcb_where
+pcb_assert_pos_moved 80
+pcb_assert_body_clear
+pcb_run_summary
+quit

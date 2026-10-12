@@ -1,0 +1,143 @@
+# mcchamber1 (bridge #14): the Minecraft player in pc_pit_flings's chamber (the chamber band, above the build limit).
+# A floor: walk west onto the floor button (it presses), on into the west wall (held), jump, crouch.
+# C a cube picked up with G, carried, dropped with G.
+# E Chell's portals in the chamber (wall -> pit floor, chamber to chamber): the Minecraft player walks through.
+# F death (`kill`): Portal 2 reloads in the arrival elevator; Minecraft rides the elevator itself (bridge #26 movers, no takeover).
+# G walking out of the elevator opens door_0.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_log A floor button, wall, jump, crouch
+ent_fire button_1-button addoutput "OnPressed !self:AddOutput:targetname pcb_button_pressed:0:1"
+pcb_noclip_set 1
+setpos -298 -416 -100
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 90
+bridge_mode mc
+waituntil mcmode 1200
+wait 30
+pcb_pos_mark
+pcb_mckey 26 1
+waituntil entpcb_button_pressed 300
+pcb_where
+pcb_glhud_shot ch_a_button
+wait 20
+wait 240
+pcb_mckey 26 0
+wait 20
+pcb_where
+pcb_assert_pos_moved 120
+pcb_assert_body_clear
+pcb_apex_begin
+pcb_mckey 44 1
+wait 6
+pcb_mckey 44 0
+wait 60
+pcb_assert_apex 30 70
+pcb_mckey 225 1
+wait 30
+pcb_assert_mc_flag sneak 1
+pcb_mckey 225 0
+wait 20
+pcb_log C cube
+bridge_mode chell
+waituntil chellmode 300
+pcb_noclip_set 1
+setpos -298 -416 -100
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 600
+pcb_spawn_cube -298 -470 -90 pcb_cube
+waituntil stillpcb_cube 600
+pcb_aim_prop pcb_cube
+wait 10
+pcb_mckey 10 1
+wait 10
+pcb_mckey 10 0
+waituntil holding 300
+pcb_assert_holding 1 pcb_cube
+pcb_prop_mark pcb_cube
+setang 0 0 0
+pcb_mckey 26 1
+wait 60
+pcb_mckey 26 0
+pcb_glhud_shot ch_c_carry
+wait 20
+pcb_assert_prop_moved pcb_cube 60
+pcb_mckey 10 1
+wait 10
+pcb_mckey 10 0
+waituntil notholding 300
+pcb_assert_holding 0
+pcb_log E chamber portals
+bridge_mode chell
+waituntil chellmode 300
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 30
+pcb_noclip_set 1
+setpos -440 -60 20
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_assert_mc_transits reset
+pcb_assert_transits reset
+bridge_mode mc
+waituntil mcmode 600
+pcb_mckey 26 1
+waituntil transit 600
+pcb_mckey 26 0
+wait 60
+pcb_assert_mc_transits 1
+pcb_where
+pcb_glhud_shot ch_e_portal
+wait 20
+pcb_log F death, respawn in the arrival elevator, ride
+pcb_assert_mc_takeovers reset
+pcb_assert_mc_rode reset
+kill
+wait 240
+waituntil mcleads 3600
+wait 60
+pcb_assert_mc_mode 1
+pcb_glhud_shot ch_f_respawn
+wait 20
+pcb_colfield_dyn
+pcb_dyn_probe 64 -1792 -240 4
+wait 880
+pcb_where
+waituntil mcleads 1800
+pcb_assert_mc_takeovers 0 0
+pcb_assert_mc_rode 20 0
+pcb_assert_mc_mode 1
+pcb_assert_body_clear
+pcb_glhud_shot ch_f_ride
+wait 20
+pcb_log G out of the elevator: door_0 opens
+ent_fire door_0-testchamber_door addoutput "OnOpen !self:AddOutput:targetname pcb_door_opened:0:1"
+setang 0 90 0
+wait 10
+pcb_mckey 26 1
+waituntil entpcb_door_opened 600
+wait 120
+pcb_mckey 26 0
+pcb_where
+pcb_glhud_shot ch_g_door
+wait 20
+pcb_run_summary
+quit

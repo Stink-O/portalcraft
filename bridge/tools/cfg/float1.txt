@@ -1,0 +1,90 @@
+# float1: endless terrain (floating origin). The shift distance is lowered to 40 blocks so a short flight
+# triggers it. Checks: Chell, a portal pair shot on Minecraft blocks and a cube keep their Minecraft
+# positions across shifts; every frame across a shift is watched (no white / missing / stale image);
+# the twitch of the pair's openings stays small; the mapping returns home once Chell is back in the
+# chamber with nothing open in the region, and the pit's cliff exit is valid again.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pc_mc_float 1 40
+pcb_log FLOAT setup: a ground + cliff pair near the cliff, and a cube
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_find_surface ground 24 -1
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_assert_gun_shot 0 placed floor 0
+pcb_assert_portal_face 0
+pcb_find_surface cliff 32 -1
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_gun_shot 1 valid any 0
+pcb_assert_portals
+pcb_spawn_cube_before 1 80 pcb_cube
+wait 120
+pcb_float_mark
+pcb_assert_light_smooth reset
+pcb_log FLOAT shift 1: fly 60 blocks east, watching every frame
+pcb_view_from 1 6
+wait 40
+pcb_frame_watch 6000 float1 mcworld
+pcb_twitch reset
+pcb_fly_to p1 2400 400
+wait 480
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_float_origin 1
+pc_mc_float
+pcb_assert_float_kept 0.3
+pcb_assert_portals
+screenshot pcb_F1_after_shift
+pcb_log FLOAT shift 2 (test command, 3 chunks north) looking at the pair
+pcb_view_from 1 10
+wait 60
+pcb_frame_watch 6000 float2 mcworld
+pcb_twitch reset
+pcb_float_shift 0 -3
+wait 120
+pcb_twitch report float2_still 1.0 4
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_float_kept 0.3
+pcb_assert_light_smooth 0.25
+screenshot pcb_F2_after_command_shift
+pcb_log FLOAT walk through the pair after the shifts
+pcb_noclip_set 0
+pcb_stand_before 1 120 0
+wait 60
+pcb_assert_teleports reset
++forward
+wait 90
+-forward
+wait 60
+pcb_assert_teleports 1
+pcb_log FLOAT home: close the pair, Chell back to the chamber, the mapping returns
+ent_fire prop_portal Fizzle
+pcb_noclip_set 1
+setpos 128 -384 -500
+pcb_stop
+wait 240
+pc_mc_float
+pcb_assert_exit
+pcb_run_summary
+quit

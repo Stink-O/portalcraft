@@ -1,0 +1,27 @@
+# d3d9_cut1_gl: d3d9_cut1 in the GL build (the reference): same dig box, same pose; shots by pcb_glhud_shot (cache/bridge/glhud_c1g_*.png).
+# (wall face x 1120, floor z 0, 200 u thick) with the host-side commands, seen from 120 u with the cut off and on.
+# Run: PCB_SO=<abs>/d3d9c-gl.so tools/locked_run.sh terrain tools/cfg/d3d9_cut1_gl.txt pc_testbed 300 d3d9_cut1_gl
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+wait 90
+wait 20
+pc_dig 1
+pcb_noclip_set 1
+crosshair 0
+r_drawviewmodel 0
+setpos 1000 1000 8
+setang 0 0 0
+wait 60
+pc_dig_render 1
+wait 20
+pcb_glhud_shot c1g_a_off
+wait 20
+pc_dig_render 2
+pcb_dig_box 1125 995 5 1195 1005 75
+wait 120
+pcb_glhud_shot c1g_b_on
+wait 20
+pc_dig_render
+pcb_dig_status
+quit

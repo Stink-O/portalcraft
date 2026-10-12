@@ -1,0 +1,106 @@
+# mw0: exploratory smoke for the mcworld suite's new helpers (surface finder, gun-shot asserts,
+# twitch, stuck/transit counters, the cliff portal entered with block collision on)
+pcb_assert_soft 1
+sv_cheats 1
+fps_max 0
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_noclip_set 1
+sv_noclipspeed 1
+pcb_log MW0 ground
+setpos -1911 -194 -15100
+wait 60
+waituntil near 1800
+wait 30
+pcb_find_surface ground 24
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_assert_gun_shot 0 placed floor
+screenshot pcb_mw0_ground
+pcb_log MW0 wall (cliff)
+setpos -500 -40 -13950
+wait 30
+waituntil near 1800
+wait 30
+pcb_find_surface wall 24
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_gun_shot 1 placed wall
+pcb_assert_portals
+screenshot pcb_mw0_wall
+pcb_log MW0 twitch still / turning / strafing, looking at the cliff portal from 6 blocks
+pcb_goto_aim 1 240 0
+wait 60
+pcb_twitch reset
+pcb_frame_watch 120 mw0still mcworld
+wait 125
+pcb_assert_watch
+pcb_twitch report still
+pcb_twitch reset
+pcb_aim_track 1
++moveleft
+wait 60
+-moveleft
++moveright
+wait 60
+-moveright
+pcb_aim_track off
+pcb_twitch report strafe
+pcb_twitch reset
+pcb_cam_turn 180 180
+wait 130
+pcb_cam_turn -180 180
+wait 130
+pcb_twitch report turn
+pcb_log MW0 enter the cliff portal with block collision on
+pcb_assert_transits reset
+pcb_assert_stuck reset
+pcb_goto_aim 1 120 0
+pcb_noclip_set 0
+wait 30
+pcb_collide 1 40
+pcb_aim_track 1
++forward
+wait 120
+-forward
+pcb_assert_transits 1
+pcb_assert_stuck
+pcb_where
+screenshot pcb_mw0_after
+pcb_noclip_set 1
+pcb_log MW0 water / noportal
+setpos -1911 -194 -15100
+wait 30
+pcb_find_surface water 32
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_assert_gun_shot 0 rejected
+pcb_find_surface noportal 32
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_assert_gun_shot 0 rejected
+pcb_find_surface ground 24 -1 cube
+wait 150
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_gun_shot 1 placed floor
+screenshot pcb_mw0_cube
+pcb_composite_lag
+pcb_run_summary
+quit

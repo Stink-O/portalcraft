@@ -1,0 +1,85 @@
+# prof2: host frame time per phase (composite off = no Minecraft drawing at all) in the chamber look-down and in the region
+sv_cheats 1
+pc_pit_redirect_mode 2
+fps_max 0
+# --- prelude: deterministic portal pair in pc_pit_flings (portal_place, verified), redirect checked
+waituntil spawned 600
+waituntil link 1800
+waituntil exit 1800
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_portals
+pcb_assert_portal 0 128 -384 -767.5 4
+pcb_assert_redirect
+noclip
+setpos 128 -384 -500
+setang 89 0 0
+wait 120
+pcb_assert_frames
+# --- end prelude
+pcb_composite 0
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE down composite off
+pcb_assert_counting
+pcb_composite_lag
+pcb_composite 1
+pcb_composite_opts 1 1 1.25 1 1 1
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE down composite on
+pcb_assert_counting
+pcb_assert_frames
+pcb_composite_lag
+pcb_composite_opts 1 1 1.25 1 1 0
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE down upload off
+pcb_assert_counting
+pcb_composite_lag
+pcb_composite_opts 1 1 1.25 1 1 1
+setpos 128 -384 -100
+setang 10 0 0
+noclip
+wait 300
+pcb_assert_player_below -13500
+noclip
+setpos -1700 -40 -15000
+setang 0 120 0
+wait 30
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE region composite on
+pcb_assert_counting
+pcb_assert_frames
+pcb_composite_lag
+pcb_composite_opts 1 1 1.25 1 1 0
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE region upload off
+pcb_assert_counting
+pcb_composite_lag
+pcb_composite_opts 1 1 1.0 1 1 1
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE region overscan 1.0
+pcb_assert_counting
+pcb_assert_frames
+pcb_composite_lag
+pcb_composite 0
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE region composite off
+pcb_assert_counting
+pcb_composite_lag
+pcb_run_summary
+quit

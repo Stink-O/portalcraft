@@ -1,0 +1,57 @@
+# ledge23 (bridge #23): the user's "invisible blocks before the ledge going up": func_brush exit_ledge_player_clip
+# (playerclip, x -528..-512 y -384..-256 and x -512..-384 y -256..-232, z 0..128), killed by a trigger_once at
+# (-402 -108 64). Playerclip-only brush entities are no longer exported; a dead entity's voxels are cleared.
+# A: before the kill: probe, the Minecraft player walks east through x -520. B: kill it, probe again.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_noclip_set 1
+setpos -600 -320 40
+setang 0 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 120
+pcb_where
+bridge_mode mc
+waituntil mcmode 1200
+waituntil mcleads 1200
+wait 180
+pcb_log A before the kill
+pcb_where
+pcb_dyn_probe -520 -320 64 4
+pcb_colfield_block -520 -320 40
+pcb_colfield_block -520 -320 80
+pcb_glhud_shot l23_a_before
+wait 10
+pcb_mckey 26 1
+pcb_mckey 44 1
+wait 150
+pcb_mckey 44 0
+pcb_mckey 26 0
+wait 30
+pcb_where
+pcb_assert_body_clear
+pcb_glhud_shot l23_a_after
+wait 10
+pcb_log B after the kill
+ent_fire exit_ledge_player_clip kill
+wait 180
+pcb_dyn_probe -520 -320 64 4
+pcb_colfield_block -520 -320 40
+pcb_colfield_block -520 -320 80
+setang 0 180 0
+pcb_mckey 26 1
+wait 90
+pcb_mckey 26 0
+wait 20
+pcb_where
+pcb_glhud_shot l23_b_back
+wait 10
+pcb_run_summary
+quit

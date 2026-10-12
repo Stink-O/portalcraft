@@ -1,0 +1,74 @@
+# perfmc1 (lead): where Minecraft mode spends the frame. Same poses in Chell mode and Minecraft mode,
+# standing and walking, in the chamber and on the terrain; host frame times, composite costs and the
+# direct-GL HUD's upload/draw costs per phase.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_audio_test_mute 1
+pcb_noclip_set 1
+setpos -298 -416 -100
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 120
+
+wait 60
+pcb_log PERF P0 Chell
+pcb_composite_lag
+wait 400
+pcb_composite_lag
+bridge_mode mc
+waituntil mcmode 1200
+wait 300
+
+wait 60
+pcb_log PERF P1 MC all on
+pcb_composite_lag
+wait 400
+pcb_composite_lag
+pc_mc_hud 0
+wait 60
+pcb_log PERF P2 hud off
+pcb_composite_lag
+wait 400
+pcb_composite_lag
+pc_mc_body 0
+wait 60
+pcb_log PERF P3 +body off
+pcb_composite_lag
+wait 400
+pcb_composite_lag
+pc_mc_scene 0
+wait 60
+pcb_log PERF P4 +scene off
+pcb_composite_lag
+wait 400
+pcb_composite_lag
+pc_mc_blocklights 0
+wait 60
+pcb_log PERF P5 +blocklights off
+pcb_composite_lag
+wait 400
+pcb_composite_lag
+pcb_composite 0
+wait 60
+pcb_log PERF P6 +composite off
+pcb_composite_lag
+wait 400
+pcb_composite_lag
+pcb_composite 1
+pc_mc_blocklights 1
+pc_mc_scene 1
+pc_mc_body 1
+pc_mc_hud 1
+wait 60
+pcb_log PERF P7 all back on
+pcb_composite_lag
+wait 400
+pcb_composite_lag
+pcb_run_summary
+quit

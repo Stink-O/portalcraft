@@ -1,0 +1,72 @@
+# prof1: host frame time with the composite off / on / upload off / no overscan, chamber look-down and in the region
+sv_cheats 1
+pc_pit_redirect_mode 2
+fps_max 0
+wait 900
+noclip
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 60
+pcb_composite 0
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE down composite off
+pcb_composite_lag
+pcb_composite 1
+pcb_composite_opts 1 1 1.25 1 1 1
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE down composite on
+pcb_composite_lag
+pcb_composite_opts 1 1 1.25 1 1 0
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE down upload off
+pcb_composite_lag
+pcb_composite_opts 1 1 1.25 1 1 1
+setpos 128 -384 -100
+setang 10 0 0
+noclip
+wait 300
+noclip
+setpos -1700 -40 -15000
+setang 0 120 0
+wait 30
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE region composite on
+pcb_composite_lag
+pcb_composite_opts 1 1 1.25 1 1 0
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE region upload off
+pcb_composite_lag
+pcb_composite_opts 1 1 1.0 1 1 1
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE region overscan 1.0
+pcb_composite_lag
+pcb_composite 0
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PHASE region composite off
+pcb_composite_lag
+quit

@@ -1,0 +1,204 @@
+# carry1 (bridge #12): the user's report "carrying a cube into Minecraft, it's like there are invisible blocks
+# blocking me". Chell picks up a cube on the pit floor, walks into the floor portal carrying it and comes out of the
+# cliff portal onto a stone course built in front of it (platform top y 93, x -352..-332, z 420..430; a one-block
+# step up at x -340; pillars at (-344 423) (-347 427) (-350 423)), walks it, drops the cube and picks it up again,
+# walks through a floating-origin shift, then carries a second cube through a Minecraft<->Minecraft pair (test
+# corridor). Map logic in the pit (Valve's): trigger_once first_cube_dissolve at (144 -296 -720) dissolves the first
+# cube in it (still did with a sacrificial cube before it), and a trigger_multiple at (32 -208 -640) dropped held cubes
+# near y -229. So Chell takes the cube at x -40 on the portal's own line (y -384) and walks +X onto it. Every wall Chell's movement traces hit is attributed (pcb_blockers): only real blocks may stop her.
+# World hygiene: the course and corridor change the world in front of the clip's exit. Back up r.-1.0.mca
+# (region/entities/poi) before the run and restore it after Minecraft has quit (cache/bridge/world_backup/carry12/).
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+pcb_audio_test_mute 1
+waituntil spawned 600
+waituntil link 9000
+waituntil exit 3600
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_assert_redirect
+pcb_mc_cmd fill -352 92 420 -332 92 430 stone
+pcb_mc_cmd fill -352 93 420 -341 93 430 stone
+pcb_mc_cmd fill -344 94 423 -344 95 423 stone
+pcb_mc_cmd fill -347 94 427 -347 95 427 stone
+pcb_mc_cmd fill -350 94 423 -350 95 423 stone
+wait 120
+pcb_blockers log 80
+pcb_blockers watch 1
+pcb_log PICKUP on the pit floor
+pcb_noclip_set 0
+setpos -40 -384 -760
+setang 0 0 0
+wait 30
+pcb_spawn_cube 30 -384 -745 carry
+wait 120
+pcb_ents_near 30 -384 -745 40
+pcb_aim_prop carry
+wait 10
++use
+wait 20
+-use
+waituntil holding 180
+pcb_assert_holding 1 carry
+setang 0 0 0
+wait 40
+pcb_blockers reset
+pcb_assert_transits reset
+pcb_log PIT walk into the floor portal carrying the cube
++forward
+waituntil transit 600
+wait 30
+-forward
+wait 120
+pcb_assert_transits 1
+pcb_assert_holding 1 carry
+pcb_where
+pcb_prop_debug carry
+pcb_blockers report pit
+pcb_assert_blockers pit 0 1
+pcb_log COURSE flat (Minecraft -X), carrying
+pcb_blockers reset
+setang 0 180 0
+wait 30
+pcb_blockers speedwin 1
++forward
+waituntil mcxbelow-339.2 300
+pcb_blockers speedwin 0
+pcb_log COURSE step: walk into the step face, then jump onto it
+wait 40
++jump
+wait 20
+-jump
+wait 60
+pcb_assert_feet_mcy 93.95 94.3
+pcb_log COURSE upper level, past the pillars
+pcb_blockers speedwin 1
+waituntil mcxbelow-351 600
+pcb_blockers speedwin 0
+-forward
+wait 30
+pcb_where
+pcb_prop_debug carry
+pcb_prop_collide
+pcb_blockers report course
+pcb_assert_blockers course 150
+pcb_assert_holding 1 carry
+screenshot pcb_carry1_course
+pcb_log COURSE back east along the pillars, carrying
+pcb_blockers reset
+setang 0 0 0
+wait 20
+pcb_blockers speedwin 1
++forward
+waituntil mcxabove-341.6 600
+pcb_blockers speedwin 0
+-forward
+wait 30
+pcb_blockers report back
+pcb_assert_blockers back 150
+pcb_assert_holding 1 carry
+pcb_log DROP the cube on the step and pick it up again (collider pool capped at 40: colliders are moved, not spawned)
+pcb_prop_collide 1 2 40
+setang 30 180 0
+wait 20
++use
+wait 20
+-use
+waituntil notholding 180
+wait 120
+pcb_assert_holding 0
+pcb_prop_debug carry
+pcb_assert_prop_rest carry 94
+pcb_prop_mark carry
+pcb_aim_prop carry
+wait 10
++use
+wait 20
+-use
+waituntil holding 180
+setang 0 180 0
+wait 40
+pcb_assert_holding 1 carry
+pcb_assert_prop_moved carry 5 5
+pcb_prop_collide 1 2 320
+pcb_log SHIFT the floating origin while carrying, then walk
+pcb_blockers reset
+pcb_float_shift 1 0
+wait 30
+setang 0 180 0
+wait 20
+pcb_blockers speedwin 1
++forward
+waituntil mcxbelow-350 600
+pcb_blockers speedwin 0
+-forward
+wait 30
+pcb_prop_collide
+pcb_blockers report aftershift
+pcb_assert_blockers aftershift 150
+pcb_assert_holding 1 carry
+pcb_log DROP cube 1 before the corridor
++use
+wait 20
+-use
+waituntil notholding 180
+wait 60
+pcb_log MCMC corridor pair: carry a second cube through it
+pcb_noclip_set 1
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_light_goto_mc -374.5 89 442.5 90 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+wait 60
+pcb_light_cube_mc -376 90.5 442.5
+wait 120
+pcb_aim_prop pcb_cube
+wait 10
++use
+wait 20
+-use
+waituntil holding 180
+pcb_assert_holding 1 pcb_cube
+setang 0 180 0
+wait 30
+pcb_blockers reset
+pcb_assert_transits reset
+pcb_log MCMC walk west into portal 0 carrying the cube (out of portal 1, on west)
++forward
+wait 150
+-forward
+wait 60
+pcb_assert_transits 1
+pcb_assert_holding 1 pcb_cube
+pcb_where
+pcb_prop_debug pcb_cube
+pcb_prop_collide
+pcb_blockers report mcmc
+pcb_assert_blockers mcmc 0 1
+screenshot pcb_carry1_mcmc
+pcb_build_corridor remove
+pcb_assert_mc_alive 30
+pcb_run_summary
+quit

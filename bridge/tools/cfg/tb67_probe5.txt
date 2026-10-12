@@ -1,0 +1,13 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+pcb_goto room_1_portal 60
+wait 120
+pcb_where
+pcb_ents_near -376 0 330 200
+setang 0 180 0
+wait 20
+screenshot pcb_f67_p5
+quit

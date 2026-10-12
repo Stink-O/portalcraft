@@ -1,0 +1,103 @@
+# combat19 (bridge #19, Owner B item 3): combat between the Minecraft player and Portal 2, pc_pit_flings's chamber (terrain).
+# A: a turret facing away and a cube in front of the Minecraft player (survival, diamond sword): hits knock the cube about
+#    and tip the turret over (Minecraft's hits come back as Portal 2 physics pushes).
+# B: a turret facing the player: its bullets hurt the Minecraft player (Portal 2 damage -> Minecraft health); it dies:
+#    the host owns death (the user's decision): Portal 2's player dies (its fade, the checkpoint reload), no Minecraft death
+#    screen; the Minecraft player is back at Portal 2's spawn, alive, still the player.
+# Run: <myrun> <so> tools/cfg/combat19.txt b19_combatN
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+# (the shared world save keeps entities from earlier runs: leftovers removed)
+pcb_mc_cmd kill @e[type=!player]
+pcb_mc_cmd time set noon
+pcb_log A setup
+pcb_noclip_set 1
+setpos -420 -416 -100
+setang 0 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_combat_face_open 240
+wait 20
+pcb_combat_spawn_front 0 prop_weighted_cube 70 -40
+pcb_combat_spawn_front 1 npc_portal_turret_floor 80 50 away
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+wait 40
+pcb_mc_cmd gamemode survival
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:diamond_sword
+pcb_mc_cmd effect give @p minecraft:resistance 30 4 true
+wait 60
+pcb_combat
+pcb_assert_combat tracked 2
+pcb_assert_combat reset
+pcb_log A cube
+pcb_combat_mark 0
+pcb_combat_aim 0 0
+wait 20
+screenshot pcb_cb_a_aim_cube
+pcb_mckey lmb 1
+wait 3
+pcb_mckey lmb 0
+wait 50
+pcb_assert_combat hits 1
+pcb_assert_moved 0 8
+screenshot pcb_cb_a_cube_hit
+pcb_log A turret
+pcb_combat_mark 1
+pcb_combat_aim 1 30
+wait 20
+screenshot pcb_cb_a_aim_turret
+pcb_mckey lmb 1
+wait 3
+pcb_mckey lmb 0
+wait 40
+pcb_combat_aim 1 20
+wait 15
+pcb_mckey lmb 1
+wait 3
+pcb_mckey lmb 0
+wait 40
+pcb_combat_aim 1 20
+wait 15
+pcb_mckey lmb 1
+wait 3
+pcb_mckey lmb 0
+wait 90
+pcb_combat_nearest npc_portal_turret_floor
+pcb_assert_moved 1 4 45
+screenshot pcb_cb_a_turret_tipped
+pcb_combat
+pcb_log B turret shoots the Minecraft player
+pcb_mc_cmd effect clear @p
+pcb_assert_combat reset
+pcb_combat_face_open 240
+wait 20
+pcb_combat_spawn_front 2 npc_portal_turret_floor 160 0 toward
+wait 200
+pcb_assert_combat hurts 1
+pcb_combat
+pcb_glhud_shot cb_b_hurt
+wait 600
+pcb_assert_combat deaths 1
+screenshot pcb_cb_b_dead
+pcb_glhud_shot cb_b_dead
+waituntil spawned 1200
+waituntil mcleads 1800
+wait 120
+pcb_where
+pcb_assert_mc_mode 1
+pcb_assert_mc_living 1
+pcb_combat
+screenshot pcb_cb_b_respawned
+pcb_glhud_shot cb_b_respawned
+pcb_run_summary
+quit

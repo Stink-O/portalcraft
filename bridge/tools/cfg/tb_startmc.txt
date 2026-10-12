@@ -1,0 +1,28 @@
+# tb_startmc (generated): pc_start_mode mc (PCB_PRE), start in the testbed hall as the Minecraft player, then ride the arrival car
+sv_cheats 1
+pcb_assert_soft 1
+pcb_assert_mc_feet_above reset
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+pcb_assert_mc_mode 1
+pcb_where
+pcb_glhud_shot tb_startmc_0
+pcb_log TB startmc arrival
+pcb_goto tb_spot_arrival 64
+waituntil mcleads 1200
+wait 40
+pcb_face arrival_elevator-elevator_1
+pcb_glhud_shot tb_startmc_arrival_0
+pcb_assert_mc_rode reset
+pcb_stand_on arrival_elevator-elevator_1
+wait 30
+waituntil mcleads 600
+pcb_assert_mc_platform 1
+ent_fire tb_go_arrival trigger
+wait 1600
+pcb_where
+pcb_glhud_shot tb_startmc_arrival_1
+pc_mc_fall_guard
+pcb_run_summary
+quit

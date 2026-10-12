@@ -1,0 +1,104 @@
+# diagfo1 (bridge #10): floating-origin diagnostics. A/B: a test-command shift with Chell moved by SnapPlayer
+# (A) and by point_teleport (B), still view of the corridor pair, every client frame's eye logged after the
+# shift, the cube kept (point_teleport TeleportToCurrentPos). C: noclip flight east under real input with a
+# shift every 40 blocks until the pair is parked out of the box, then back west until it is placed again,
+# then a launch into the pair.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pc_mc_float 0
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_spawn_cube_before 1 80 pcb_cube
+wait 300
+pcb_float_mark
+pcb_log DIAG A: SnapPlayer shift, still view of the pair
+pcb_view_from 1 10
+wait 60
+pcb_twitch reset
+pcb_float_tpmode 0
+pcb_float_shift 0 -3
+wait 120
+pcb_twitch report diagA 1.0 4
+pcb_assert_float_kept 0.3
+pcb_log DIAG B: point_teleport shift
+pcb_view_from 1 10
+wait 60
+pcb_twitch reset
+pcb_float_tpmode 1
+pcb_float_shift 0 3
+wait 120
+pcb_twitch report diagB 1.0 4
+pcb_assert_float_kept 0.3
+screenshot pcb_B_after
+pcb_log DIAG C: noclip +forward east, a shift every 40 blocks
+pc_mc_float 1 40
+setpos -1920 -700 -12500
+setang 0 0 0
+pcb_stop
+wait 90
+pcb_float_trip start
+pcb_frame_watch 30000 diagC_out mcworld
++forward
+wait 1800
+-forward
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_float_trip assert 300
+screenshot pcb_C_out
+pcb_log DIAG C: back west
+setang 0 180 0
+wait 30
+pcb_float_trip start
+pcb_frame_watch 30000 diagC_back mcworld
++forward
+wait 1800
+-forward
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_float_trip assert 300
+pcb_assert_float_parked 1 1 1
+pcb_assert_float_kept 0.3
+pcb_assert_portals
+pcb_log DIAG D: launch into the pair
+pcb_goto_portal 1 120
+pcb_noclip_set 0
+wait 10
+pcb_assert_teleports reset
+pcb_launch_to p1 350
+wait 150
+pcb_assert_teleports 1
+screenshot pcb_D_after
+pc_mc_float 0
+pcb_build_corridor remove
+wait 30
+pcb_run_summary
+quit

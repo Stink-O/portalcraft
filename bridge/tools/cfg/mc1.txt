@@ -1,0 +1,47 @@
+# Phase 1 milestone: the Minecraft player walks around sp_a2_bridge_intro (Minecraft must be running: tools/run_mc.sh)
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 60
+pcb_mclog 3
+setpos -10 170 0
+setang 5 90 0
+# Minecraft opens its world once linked (a few seconds), then gets the collision field
+wait 700
+pcb_mclog 3
+pcb_colfield
+bridge_mode mc
+wait 240
+pcb_mclog 5
+pcb_where
+screenshot pcb_mc1_start
+wait 180
+# walk forward 2 s (W), then jump (space) while walking
+pcb_log walk forward
+pcb_mckey 26 1
+wait 120
+pcb_mclog 2
+pcb_where
+pcb_mckey 44 1
+wait 20
+pcb_mckey 44 0
+wait 40
+pcb_mckey 26 0
+wait 60
+pcb_mclog 2
+pcb_where
+screenshot pcb_mc1_after_walk
+wait 180
+# turn and walk into the chamber wall (east): should stop
+setang 5 0 0
+pcb_mckey 26 1
+wait 300
+pcb_mckey 26 0
+pcb_where
+pcb_mclog 2
+screenshot pcb_mc1_wall
+wait 180
+pcb_colfield
+bridge_mode chell
+wait 120
+pcb_where
+quit

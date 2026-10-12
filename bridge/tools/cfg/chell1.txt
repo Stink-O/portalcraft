@@ -1,0 +1,46 @@
+# chell1: Chell inside Minecraft: mobs hunt and hit her stand-in, a skeleton shoots her, a creeper's
+# explosion reaches her; each hit arrives as Portal 2 damage (scale 1 here, so she survives the test).
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 1 1
+pcb_noclip_set 1
+setpos -1900 -194 -15100
+setang 10 180 0
+pcb_noclip_set 0
+wait 120
+pcb_where
+pcb_mc_cmd time set midnight
+pcb_mc_cmd kill @e[type=!player,type=!portalcraft:skyrim_actor]
+wait 60
+pcb_log C1 a zombie 5 blocks away
+pcb_assert_chell_hit reset
+pcb_mc_summon_near zombie 5 0
+wait 600
+pcb_chell_proxy
+pcb_assert_chell_hit 1
+screenshot pcb_c1_zombie
+pcb_mc_cmd kill @e[type=zombie]
+wait 60
+pcb_log C2 a skeleton 8 blocks away
+pcb_assert_chell_hit reset
+pcb_mc_summon_near skeleton 8 0
+wait 600
+pcb_chell_proxy
+pcb_assert_chell_hit 1
+pcb_mc_cmd kill @e[type=skeleton]
+wait 60
+pcb_log C3 a creeper 4 blocks away
+pcb_assert_chell_hit reset
+pcb_mc_summon_near creeper 4 0
+wait 600
+pcb_chell_proxy
+pcb_assert_chell_hit 1
+pcb_mc_cmd kill @e[type=!player,type=!portalcraft:skyrim_actor]
+pcb_mc_cmd time set noon
+pcb_assert_mc_alive 30
+pcb_run_summary
+quit

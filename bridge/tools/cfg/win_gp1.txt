@@ -1,0 +1,41 @@
+# win_gp1 (Proton): a G portal. sp_a2_pit_flings as Chell with the linked Minecraft, unified world: give the gun, arm pc_mc_portal (G), shoot the nearest portalable wall, then the other colour.
+# Run: PCB_MC=1 PCB_LINK_FILE=Z:/dev/shm/Portalcraft_v1 PCB_WIN_UNVERIFIED=all PCB_PRE="pc_world unified" tools/run_game_proton.sh tools/cfg/win_gp1.txt sp_a2_pit_flings 900 <label>
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 900
+waituntil link 9000
+wait 1500
+pc_pit_redirect 0
+pcb_noclip_set 1
+setpos 300 -380 -740
+wait 60
+pcb_noclip_set 0
+wait 60
+pc_world
+give weapon_portalgun
+upgrade_portalgun
+wait 120
+pcb_where
+screenshot pcb_g0_start
+pcb_aim_portalable 900
+wait 40
+screenshot pcb_g1_aimed
+pc_mc_portal 1
+wait 10
++attack
+wait 8
+-attack
+wait 200
+pcb_mc_portal_state
+pcb_portal_check
+screenshot pcb_g2_shot
+pcb_aim_portalable 900
+wait 30
++attack2
+wait 8
+-attack2
+wait 200
+pcb_mc_portal_state
+screenshot pcb_g3_both
+pcb_run_summary
+quit

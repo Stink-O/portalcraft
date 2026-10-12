@@ -1,0 +1,61 @@
+# switch1 (bridge #14): the J switch must be seamless (the user: "the screen just stretches out and breaks").
+# Same-pose pairs, Chell vs the Minecraft player, in the chamber (A) and on the terrain (B), Portal 2's own screenshot
+# and the presented frame (pcb_glhud_shot); every presented frame around each switch (pcb_glhud_burst).
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_log A chamber pair
+pcb_noclip_set 1
+setpos -298 -416 -60
+setang 5 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 120
+screenshot pcb_s_a_chell
+pcb_glhud_shot a_chell
+wait 60
+pcb_glhud_burst a_switch 30
+bridge_mode mc
+waituntil mcmode 1200
+wait 120
+screenshot pcb_s_a_mc
+pcb_glhud_shot a_mc
+pcb_mclog 2
+wait 60
+pcb_glhud_burst a_back 20
+bridge_mode chell
+waituntil chellmode 300
+wait 60
+pcb_log B terrain pair
+pcb_noclip_set 1
+setpos -200 -40 -13880
+setang 8 180 0
+pcb_stop
+waituntil near 1800
+wait 60
+pcb_noclip_set 0
+wait 180
+screenshot pcb_s_b_chell
+pcb_glhud_shot b_chell
+wait 60
+pcb_glhud_burst b_switch 30
+bridge_mode mc
+waituntil mcmode 1200
+wait 120
+screenshot pcb_s_b_mc
+pcb_glhud_shot b_mc
+pcb_mclog 2
+wait 60
+bridge_mode chell
+waituntil chellmode 300
+wait 30
+pcb_glhud_stats
+pcb_run_summary
+quit

@@ -1,0 +1,37 @@
+# d3d9_v0 (PLAN-vulkan.md V0): the Direct3D 9 hook on the game's device under -vulkan (DXVK): Present patched through a throw-away
+# device; a red rectangle, a triangle and a translucent square drawn over the frame inside a state block.
+# Pass: stable over a map change, no crash, no visual change with the overlay off (compare v0_off with v0_off2).
+# Run: PCB_GAME_ARGS=-vulkan PCB_SO=<abs>/build/dev-mcportal/d3d9-<x>.so tools/locked_run.sh terrain tools/cfg/d3d9_v0.txt pc_pit_flings 300 d3d9_v0
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+pcb_d3d9_init
+wait 60
+pcb_d3d9_shot v0_off
+wait 20
+pcb_d3d9_overlay 1
+pcb_d3d9_info
+wait 60
+pcb_d3d9_probe 100 100
+wait 10
+pcb_assert_d3d9_pixel 255 0 0 4
+pcb_d3d9_shot v0_on
+wait 30
+pcb_d3d9_stats
+pcb_d3d9_overlay 0
+wait 40
+pcb_d3d9_shot v0_off2
+wait 30
+pcb_d3d9_overlay 1
+map pc_testbed
+waituntil spawned 900
+wait 120
+pcb_d3d9_probe 100 100
+wait 60
+pcb_assert_d3d9_pixel 255 0 0 4
+pcb_d3d9_shot v0_map2
+wait 30
+pcb_d3d9_stats
+pcb_d3d9_overlay 0
+wait 30
+quit

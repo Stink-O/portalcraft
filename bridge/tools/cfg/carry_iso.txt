@@ -1,0 +1,114 @@
+# carry_iso (bridge #12, diagnosis): Chell stopped dead in the test corridor while holding a cube (carry1a mcmc).
+# C: cube held, prop colliders on, no portals. B: same, colliders off. D: the corridor pair placed, cube held,
+# colliders on. E: pair, cube dropped. Every wall hit is logged (blocks too).
+pcb_assert_soft 1
+sv_cheats 1
+pcb_audio_test_mute 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_noclip_set 1
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_blockers watch 1
+pcb_light_goto_mc -373.5 89 442.5 90 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+wait 60
+pcb_light_cube_mc -375 90.5 442.5
+wait 120
+pcb_aim_prop pcb_cube
+wait 10
++use
+wait 20
+-use
+waituntil holding 180
+pcb_log C cube held, prop colliders on, no portals
+setang 0 180 0
+wait 30
+pcb_where
+pcb_blockers reset
+pcb_blockers log 30 1
++forward
+wait 60
+-forward
+wait 30
+pcb_where
+pcb_assert_holding 1 pcb_cube
+pcb_blockers report C
+pcb_log B cube held, prop colliders off
+pcb_prop_collide 0
+setang 0 0 0
+wait 30
+pcb_blockers reset
+pcb_blockers log 30 1
++forward
+wait 60
+-forward
+wait 30
+pcb_where
+pcb_assert_holding 1 pcb_cube
+pcb_blockers report B
+pcb_prop_collide 1
+pcb_log D the corridor pair, cube held
+pcb_noclip_set 1
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_light_goto_mc -374.5 89 442.5 90 0
+pcb_stop
+wait 20
+pcb_noclip_set 0
+wait 60
+pcb_assert_holding 1 pcb_cube
+pcb_where
+pcb_blockers reset
+pcb_blockers log 30 1
+pcb_assert_transits reset
++forward
+wait 150
+-forward
+wait 30
+pcb_where
+pcb_assert_transits 1
+pcb_assert_holding 1 pcb_cube
+pcb_blockers report D
+pcb_prop_debug pcb_cube
+pcb_log E the pair, cube dropped
++use
+wait 20
+-use
+wait 60
+pcb_light_goto_mc -374.5 89 441.5 90 0
+pcb_stop
+wait 60
+pcb_where
+pcb_blockers reset
+pcb_blockers log 30 1
+pcb_assert_transits reset
++forward
+wait 150
+-forward
+wait 30
+pcb_where
+pcb_assert_transits 1
+pcb_blockers report E
+pcb_build_corridor remove
+pcb_run_summary
+quit

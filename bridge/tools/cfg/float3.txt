@@ -1,0 +1,175 @@
+# float3 (bridge #10): endless terrain, the floating-origin gate. float2's failures fixed: props are moved with
+# point_teleport's TeleportToCurrentPos (its Teleport input sent them to 0 0 0), Chell is moved with
+# point_teleport (the client snaps in the next frame; SnapPlayer made it swing over ~12 frames), the trip is
+# real noclip input (the setpos fly raced the shifts) and portals/props left behind are kept in Minecraft
+# coordinates. Setup: a pair on the corridor walls, a cube. Two test-command shifts while looking at the pair
+# (every frame watched, twitch, light smoothing, kept). A launch through the pair. Then the long trip at the
+# default 200-block distance: >= 1500 blocks east (the pair and cube are parked out of the box), >= 1500
+# blocks back (they are placed again), every frame watched, Chell never outside the box; the pair still there
+# at the same Minecraft spot and a launch through it. Home: the mapping returns, the cliff exit is valid.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pc_mc_float 0
+pcb_log FLOAT setup: a pair on the corridor walls and a cube
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_assert_portal_face 0
+pcb_assert_portal_face 1
+pcb_spawn_cube -1760 -820 -14138 pcb_cube
+wait 3
+pcb_prop_debug pcb_cube
+wait 20
+pcb_prop_debug pcb_cube
+wait 280
+pcb_prop_debug pcb_cube
+pcb_assert_prop_rest pcb_cube 89
+pcb_float_mark
+pcb_log FLOAT shift 1 (test command, 3 chunks north) looking at the pair
+pcb_view_from 1 10
+wait 300
+pcb_assert_light_smooth reset
+pcb_frame_watch 6000 shift1 mcworld
+pcb_twitch reset
+wait 30
+pcb_float_shift 0 -3
+wait 120
+pcb_twitch report shift1_still 1.0 4
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 5
+pcb_assert_float_kept 0.3
+pcb_assert_light_smooth 0.25
+screenshot pcb_F1_after_shift
+pcb_log FLOAT shift 2 (test command, 3 chunks south) looking at the pair
+pcb_view_from 1 6
+wait 300
+pcb_frame_watch 6000 shift2 mcworld
+pcb_twitch reset
+wait 30
+pcb_float_shift 0 3
+wait 120
+pcb_twitch report shift2_still 1.0 4
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 5
+pcb_assert_float_kept 0.3
+pcb_assert_light_smooth 0.25
+pcb_log FLOAT through the pair after the shifts (launched into portal 1)
+pcb_goto_portal 1 120
+pcb_noclip_set 0
+wait 10
+pcb_assert_teleports reset
+pcb_launch_to p1 350
+wait 150
+pcb_assert_teleports 1
+pcb_log FLOAT long trip out: >= 1500 blocks east at the default shift distance, noclip input, every frame watched
+pc_mc_float 1 200
+pcb_noclip_set 1
+setpos -1920 -700 -11000
+pcb_steer 1400 168 441.5
+pcb_stop
+sv_noclipspeed 5
+wait 180
+pcb_float_trip start
+pcb_frame_watch 40000 trip_out mcworld
++forward
+waituntil trip1520 12000
+-forward
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 30
+pcb_float_trip assert 1500
+screenshot pcb_F3_far
+pcb_log FLOAT long trip back west to the pair
+pcb_steer -376 168 441.5
+wait 30
+pcb_float_trip start
+pcb_frame_watch 40000 trip_back mcworld
++forward
+waituntil trip1520 12000
+-forward
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 30
+pcb_float_trip assert 1500
+pcb_log FLOAT vertical: up past the world's top (y 330), down to y -50 through the rock (deep caves), back up to y 100
+pcb_float_trip start
+pcb_frame_watch 40000 vertical mcworld
+pcb_steer angles -89 0
+wait 10
++forward
+waituntil mcyabove330 6000
+-forward
+pcb_steer angles 89 0
+wait 10
++forward
+waituntil mcybelow-50 12000
+-forward
+pcb_steer angles -89 0
+wait 10
++forward
+waituntil mcyabove100 6000
+-forward
+pcb_steer off
+setang 0 0 0
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 10
+pcb_float_trip assert 0
+wait 60
+pcb_assert_float_parked 2 2 1
+pcb_assert_float_kept 0.3
+pcb_assert_portals
+pcb_log FLOAT the pair after the trip: launched into portal 1
+pcb_goto_portal 1 120
+pcb_stop
+pcb_noclip_set 0
+wait 10
+pcb_assert_teleports reset
+pcb_launch_to p1 350
+wait 150
+pcb_assert_teleports 1
+screenshot pcb_F4_after_trip
+pcb_log FLOAT home: close the pair, Chell back to the chamber, the mapping returns
+ent_fire prop_portal Fizzle
+setpos 128 -384 -500
+pcb_stop
+wait 240
+pc_mc_float
+pcb_assert_exit
+pcb_build_corridor remove
+wait 30
+pcb_run_summary
+quit

@@ -1,0 +1,1422 @@
+# trans1: the transition test. Chell's real gun places the pair (orange on the pit wall -> redirected to the cliff, blue on the pit floor).
+# 20 + 20 aimed crossings each way at walking and fling speed, every frame checked (region background, Minecraft in the
+# cliff portal's opening, stale image, image of another pose, black), plus portal_in_view on the approach; then glancing-angle
+# sets (labelled separately) and prof3.
+sv_cheats 1
+pc_pit_redirect_mode 2
+fps_max 0
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 1800
+waituntil exit 1800
+pcb_noclip_set 1
+wait 6
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 90
+pcb_assert_portals
+pcb_assert_redirect
+pcb_composite_streams 400
+pcb_log SET c2m_walk: 20 aimed crossings
+pcb_transit_set reset c2m_walk
+pcb_assert_in_view reset
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 48
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_walk transit
+wait 10
+pcb_launch_to p0 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_transit_set assert
+pcb_assert_in_view
+pcb_log SET c2m_fling: 20 aimed crossings
+pcb_transit_set reset c2m_fling
+pcb_assert_in_view reset
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 600
+wait 4
+pcb_aim_track 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_fling transit
+wait 10
+pcb_launch_to p0 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_transit_set assert
+pcb_assert_in_view
+pcb_log SET m2c_walk: 20 aimed crossings
+pcb_transit_set reset m2c_walk
+pcb_assert_in_view reset
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 120
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_walk transit
+wait 10
+pcb_launch_to p1 200
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_transit_set assert
+pcb_assert_in_view
+pcb_log SET m2c_fling: 20 aimed crossings
+pcb_transit_set reset m2c_fling
+pcb_assert_in_view reset
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 600
+wait 4
+pcb_aim_track 1
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_fling transit
+wait 10
+pcb_launch_to p1 900
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_transit_set assert
+pcb_assert_in_view
+pcb_log SET c2m_glancing (camera not aimed): 10 crossings
+pcb_transit_set reset c2m_glancing
+pcb_noclip_set 0
+pcb_goto_portal 0 200
+wait 4
+setang 20 -90 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_glancing transit
+wait 10
+pcb_launch_to p0 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 200
+wait 4
+setang 20 -90 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_glancing transit
+wait 10
+pcb_launch_to p0 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 200
+wait 4
+setang 20 -90 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_glancing transit
+wait 10
+pcb_launch_to p0 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 200
+wait 4
+setang 20 -90 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_glancing transit
+wait 10
+pcb_launch_to p0 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 200
+wait 4
+setang 20 -90 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_glancing transit
+wait 10
+pcb_launch_to p0 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 200
+wait 4
+setang 20 -90 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_glancing transit
+wait 10
+pcb_launch_to p0 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 200
+wait 4
+setang 20 -90 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_glancing transit
+wait 10
+pcb_launch_to p0 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 200
+wait 4
+setang 20 -90 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_glancing transit
+wait 10
+pcb_launch_to p0 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 200
+wait 4
+setang 20 -90 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_glancing transit
+wait 10
+pcb_launch_to p0 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 0 200
+wait 4
+setang 20 -90 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 c2m_glancing transit
+wait 10
+pcb_launch_to p0 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_transit_set assert
+pcb_log SET m2c_glancing (camera not aimed): 10 crossings
+pcb_transit_set reset m2c_glancing
+pcb_noclip_set 0
+pcb_goto_portal 1 300
+wait 4
+setang 0 100 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_glancing transit
+wait 10
+pcb_launch_to p1 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 300
+wait 4
+setang 0 100 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_glancing transit
+wait 10
+pcb_launch_to p1 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 300
+wait 4
+setang 0 100 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_glancing transit
+wait 10
+pcb_launch_to p1 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 300
+wait 4
+setang 0 100 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_glancing transit
+wait 10
+pcb_launch_to p1 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 300
+wait 4
+setang 0 100 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_glancing transit
+wait 10
+pcb_launch_to p1 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 300
+wait 4
+setang 0 100 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_glancing transit
+wait 10
+pcb_launch_to p1 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 300
+wait 4
+setang 0 100 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_glancing transit
+wait 10
+pcb_launch_to p1 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 300
+wait 4
+setang 0 100 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_glancing transit
+wait 10
+pcb_launch_to p1 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 300
+wait 4
+setang 0 100 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_glancing transit
+wait 10
+pcb_launch_to p1 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_noclip_set 0
+pcb_goto_portal 1 300
+wait 4
+setang 0 100 0
+pcb_assert_teleports reset
+pcb_frame_watch 160 m2c_glancing transit
+wait 10
+pcb_launch_to p1 500
+wait 100
+pcb_assert_teleports 1
+pcb_transit_set cross
+pcb_aim_track off
+wait 50
+pcb_transit_set assert
+pcb_composite_streams
+pcb_composite_mask
+pcb_noclip_set 1
+wait 6
+pcb_log PROF3 all features on (in-view composite, occlusion, position prediction, RD 24)
+pcb_composite_depth 0 1
+pcb_log PROF3 phase 1: chamber look-down into the floor portal (portal stream)
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PROF3 result look-down
+pcb_composite_lag
+pcb_composite_occlusion
+pcb_log PROF3 phase 2: region, looking at the cliff portal from behind the ridge (occlusion layers)
+pcb_view_occluded
+wait 30
+pcb_composite_lag
+wait 300
+pcb_log PROF3 result occluded view
+pcb_composite_lag
+pcb_composite_occlusion
+pcb_log PROF3 phase 3: region, near the cliff portal, turning
+pcb_view_portal r 300 20 1
+wait 30
+pcb_composite_lag
++left
+wait 150
+-left
++right
+wait 150
+-right
+pcb_log PROF3 result turning
+pcb_composite_lag
+pcb_composite_occlusion
+pcb_log PROF3 phase 4: region, walking and strafing on the ledge
+pcb_noclip_set 0
+setpos -200 -40 -14080
+wait 30
+pcb_aim -120.8 -40 -13908
+wait 10
+pcb_composite_lag
+pcb_drift
++moveleft
+wait 40
+-moveleft
++moveright
+wait 80
+-moveright
++moveleft
+wait 40
+-moveleft
++back
+wait 20
+-back
++forward
+wait 20
+-forward
+wait 20
+pcb_log PROF3 result walking
+pcb_composite_lag
+pcb_drift
+pcb_composite_occlusion
+pcb_run_summary
+quit

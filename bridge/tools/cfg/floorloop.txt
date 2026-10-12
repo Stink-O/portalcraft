@@ -1,0 +1,67 @@
+# floorloop (bridge #12): the user's "collision breaks low down" session (bridge.log, user session after 23:58): two
+# floor portals on Minecraft blocks, Chell falls into one, comes out of the other below its plane, falls straight
+# back in, and after two transits sinks into the rock under the opening (40 UNSTUCK lines). Reproduction: a stone
+# platform in open air (top y 100), floor portals shot with the gun at yaw 0 and yaw 115, Chell dropped into one.
+pcb_assert_soft 1
+sv_cheats 1
+pcb_audio_test_mute 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_noclip_set 1
+pcb_mc_cmd fill -362 99 478 -348 99 494 stone
+pcb_light_goto_mc -355 106 486 90 0
+pcb_stop
+wait 60
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_light_goto_mc -351.5 104 482.5 0 89
+pcb_stop
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_light_goto_mc -357.5 104 489.5 -115 89
+pcb_stop
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_log DROP into portal 0 from 4 blocks
+pcb_light_goto_mc -351.5 104 482.5 0 89
+pcb_stop
+wait 20
+pcb_assert_transits reset
+pcb_assert_stuck reset
+pcb_unstick 1
+pcb_track 600 2
+pcb_noclip_set 0
+wait 300
+pcb_where
+pcb_assert_transits 4
+pcb_assert_stuck
+pcb_unstick
+pcb_noclip_set 1
+pcb_log DROP into portal 1 from 2 blocks
+pcb_light_goto_mc -357.5 102 489.5 -115 89
+pcb_stop
+wait 20
+pcb_assert_transits reset
+pcb_assert_stuck reset
+pcb_track 600 2
+pcb_noclip_set 0
+wait 300
+pcb_where
+pcb_assert_transits 4
+pcb_assert_stuck
+pcb_unstick
+pcb_noclip_set 1
+pcb_mc_cmd fill -362 99 478 -348 99 494 air
+pcb_run_summary
+quit

@@ -1,0 +1,112 @@
+#!/usr/bin/env python3
+"""The pc_testbed suite (lead, 2026-10-03). Every test drives the mechanic with the player's own inputs, records a
+trace, and is judged afterwards (tools/tb/judge.py). See tools/tb/README.md.
+
+  tools/tbtest list [-k pat]                       the tests
+  tools/tbtest run  [-k pat[,pat]] [--so abs.so] [--tag name] [--start chell|mc] [--modes chell,mc]
+  tools/tbtest judge <tag>                         re-judge a finished run (no game)
+
+Results: cache/bridge/tb/<tag>/report.html and results.json.
+"""
+import argparse
+import glob
+import json
+import os
+import shutil
+import subprocess
+import sys
+import time
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, "tb"))
+import core  # noqa: E402
+import judge  # noqa: E402
+import tests  # noqa: E402,F401  (registers the tests)
+
+ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
+TBDIR = os.path.join(ROOT, "cache", "bridge", "tb")
+
+
+def select(pats, modes):
+    out = []
+    for tc in core.REGISTRY:
+        if modes and tc["mode"] not in modes:
+            continue
+        if pats and not any(p in tc["id"] for p in pats):
+            continue
+        if not pats and tc["run"] != "main":
+            continue  # start-of-map tests (arrival) need their own run: -k arrival
+        out.append(tc)
+    # Chell first, then the Minecraft player (one switch); lethal ones last within each mode
+    return sorted(out, key=lambda tc: (tc["mode"] != "chell", tc["order"], core.LAYOUT["order"].index(tc["bay"]) if tc["bay"] in core.LAYOUT["order"] else 99, tc["id"]))
+
+
+def do_judge(tag):
+    d = os.path.join(TBDIR, tag)
+    man = json.load(open(os.path.join(d, "manifest.json")))
+    byid = {tc["id"]: tc for tc in core.REGISTRY}
+    res = judge.judge_run(d, byid, man)
+    json.dump(res, open(os.path.join(d, "results.json"), "w"), indent=1)
+    judge.report(res, tag, os.path.join(d, "report.html"))
+    for r in res:
+        print("%-8s %-40s %s" % (r["verdict"], r["id"], r.get("why", "")[:160] if r["verdict"] != "PASS" else ""))
+    c = {}
+    for r in res:
+        c[r["verdict"]] = c.get(r["verdict"], 0) + 1
+    print("== %s: %s  -> %s" % (tag, ", ".join("%d %s" % (v, k) for k, v in sorted(c.items())), os.path.join(d, "report.html")))
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("cmd", choices=["list", "run", "judge"])
+    ap.add_argument("tag", nargs="?")
+    ap.add_argument("-k", default="")
+    ap.add_argument("--so", default="")
+    ap.add_argument("--start", default="chell")
+    ap.add_argument("--modes", default="")
+    ap.add_argument("--mc", default="mirror", choices=["mirror", "terrain"])
+    ap.add_argument("--map", default="pc_testbed", help="the map the run loads (campaign tests: any map)")
+    ap.add_argument("--pre", default="", help="extra console commands before the map loads, ';'-separated (e.g. 'pc_dig 1')")
+    ap.add_argument("--target", default=None, help="campaign_linked tests: the map loaded from the running session once Minecraft leads")
+    a = ap.parse_args()
+    pats = [p for p in a.k.split(",") if p]
+    core.TARGET_MAP = a.target
+    modes = [m for m in a.modes.split(",") if m]
+    if a.cmd == "list":
+        for tc in select(pats, modes):
+            print("%-40s %s%s" % (tc["id"], tc["title"], "  [needs %s]" % tc["needs"] if tc["needs"] else ""))
+        return
+    if a.cmd == "judge":
+        core.TARGET_MAP = json.load(open(os.path.join(TBDIR, a.tag, "manifest.json"))).get("target")
+        return do_judge(a.tag)
+    tag = a.tag or time.strftime("tb%m%d-%H%M")
+    d = os.path.join(TBDIR, tag)
+    os.makedirs(d, exist_ok=True)
+    sel = select(pats, modes)
+    if not sel:
+        sys.exit("no tests match")
+    lines, info = core.build_script(sel, tag, d, a.start)
+    open(os.path.join(d, "script.txt"), "w").write("\n".join(lines) + "\n")
+    json.dump({"run": tag, "tests": info, "so": a.so, "start": a.start, "map": a.map, "target": a.target}, open(os.path.join(d, "manifest.json"), "w"), indent=1)
+    est = 240 + sum(int(l.split()[1]) / 60 for l in lines if l.startswith("wait ")) + 20 * len(sel)
+    print("[tbtest] %d tests, about %d s of script; run dir %s" % (len(sel), est, d))
+    env = dict(os.environ)
+    if a.so:
+        env["PCB_SO"] = os.path.abspath(a.so)
+    pre = [c for c in a.pre.split(";") if c.strip()]
+    if a.start == "mc":
+        pre.append("pc_start_mode mc")
+    if pre:
+        env["PCB_PRE"] = ";".join(pre)
+    r = subprocess.call([os.path.join(HERE, "locked_run.sh"), a.mc, os.path.join(d, "script.txt"), a.map, str(int(est * 1.5) + 120), "tb_" + tag], env=env, cwd=os.path.join(ROOT, "bridge"))
+    print("[tbtest] game run exited %d" % r)
+    for f in glob.glob(os.path.join(ROOT, "cache", "bridge", "glhud_tb_%s__*" % tag)):
+        shutil.move(f, os.path.join(d, os.path.basename(f)[len("glhud_"):]))
+    shutil.copy(os.path.join(ROOT, "cache", "bridge", "bridge.log"), os.path.join(d, "bridge.log"))
+    if os.path.exists(os.path.join(ROOT, "cache", "bridge", "shots", "tb_" + tag, "mc.log")):
+        shutil.copy(os.path.join(ROOT, "cache", "bridge", "shots", "tb_" + tag, "mc.log"), os.path.join(d, "mc.log"))
+    do_judge(tag)
+
+
+if __name__ == "__main__":
+    main()

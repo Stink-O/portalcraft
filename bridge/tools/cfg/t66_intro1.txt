@@ -1,0 +1,10 @@
+# t66: intro1 as the Minecraft player: does the scripted view redirect (vault/bed scene) still happen?
+sv_cheats 1
+pcb_assert_soft 1
+pc_input_lock 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+wait 7200
+pcb_run_summary
+quit

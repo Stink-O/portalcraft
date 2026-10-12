@@ -1,0 +1,239 @@
+# b22_c (bridge #22: c20_world1 re-run; the saved copy at y 480 is cleared after the restore) (bridge #20, Owner C): Minecraft world rules on Portal 2's chamber floor (pc_pit_flings pit, floor MC y 424,
+#legacy-cliff-shift (bridge #81: the Minecraft coordinates below are the original cliff's; pcb_script moves them to the world.conf cliff, see worldconf.hpp)
+# P2 walls at MC z 430.4 (y=-256) and 436.8 (y=-512)). The Minecraft player stands at MC (-317.5 424 435.5).
+# W water, L lava, S sand + gravel, F fire (command + flint and steel), B bucket, T TNT (crater; a P2 wall shields).
+# Checks are Minecraft-side (pcb_mc_check -> say PCB_OK/FAIL in mc.log -> pcb_assert_mc_say).
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd gamemode creative
+pcb_log save the test area (pit floor, MC x -328..-314 z 429..438 y 424..431) to y 480 (empty band air), restored at the end
+pcb_mc_cmd clone -328 424 429 -314 431 438 -328 480 429 replace
+wait 20
+pcb_mc_cmd fill -320 424 431 -316 428 436 minecraft:air replace minecraft:water
+pcb_mc_cmd fill -320 424 431 -316 428 436 minecraft:air replace minecraft:lava
+pcb_noclip_set 1
+setpos 420 -460 -760
+setang 10 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd gamemode creative
+wait 60
+pcb_where
+pcb_aim_mc -321 425 433
+wait 20
+pcb_glhud_shot c20_w_survey_w
+setang 10 90 0
+wait 20
+pcb_glhud_shot c20_w_survey_n
+setang 10 -90 0
+wait 20
+pcb_glhud_shot c20_w_survey_s
+pcb_log W water on the Portal 2 floor, a second source on the cobblestone (Minecraft's own floor) for comparison
+pcb_mc_cmd setblock -319 424 433 minecraft:water
+pcb_mc_cmd setblock -321 427 432 minecraft:water
+wait 240
+pcb_mc_check w_spread_n block -319 424 431 minecraft:water
+pcb_mc_check w_spread_e block -318 424 433 minecraft:water
+pcb_mc_check w_not_down block -319 423 433 minecraft:air
+pcb_mc_check w_not_into_wall block -319 424 437 minecraft:air
+pcb_mc_check w_not_into_wall2 block -319 424 429 minecraft:air
+pcb_mc_check w_cobble_falls block -320 424 432 minecraft:water
+pcb_aim_mc -319.5 424 433
+wait 30
+pcb_glhud_shot c20_w_water
+pcb_mc_native c20_w_water
+setang 35 135 0
+wait 20
+pcb_glhud_shot c20_w_water2
+pcb_mc_native c20_w_water2
+pcb_log SW swimming: the Minecraft player in a 2-deep pool on the Portal 2 floor
+pcb_mc_cmd fill -320 424 435 -316 425 436 minecraft:water
+pcb_mc_cmd tp @p -318 424.2 435.5
+wait 60
+pcb_mc_check sw_in_water entity @p[x=-321,y=423,z=434,dx=6,dy=3,dz=3]
+pcb_mckey 44 1
+wait 60
+pcb_mckey 44 0
+pcb_glhud_shot c20_sw_swim
+pcb_mc_native c20_sw_swim
+pcb_mc_cmd fill -322 420 428 -314 430 440 minecraft:air replace minecraft:water
+wait 60
+pcb_mc_cmd tp @p -317.5 424 435.5
+wait 60
+pcb_log L lava on the Portal 2 floor
+pcb_mc_cmd setblock -319 424 433 minecraft:lava
+wait 300
+pcb_mc_check l_spread_n block -319 424 431 minecraft:lava
+pcb_mc_check l_not_down block -319 423 433 minecraft:air
+pcb_mc_check l_not_into_wall block -319 424 429 minecraft:air
+pcb_aim_mc -319.5 424 433
+wait 30
+pcb_glhud_shot c20_l_lava
+pcb_mc_native c20_l_lava
+pcb_mc_cmd fill -322 420 428 -314 430 440 minecraft:air replace minecraft:lava
+wait 30
+pcb_log S sand and gravel fall onto the Portal 2 floor
+pcb_mc_cmd setblock -319 429 432 minecraft:sand
+pcb_mc_cmd setblock -318 431 432 minecraft:gravel
+wait 30
+pcb_aim_mc -318.5 426 432.5
+pcb_glhud_shot c20_s_falling
+wait 120
+pcb_mc_check s_sand_landed block -319 424 432 minecraft:sand
+pcb_mc_check s_gravel_landed block -318 424 432 minecraft:gravel
+pcb_mc_check s_sand_not_sunk block -319 423 432 minecraft:air
+pcb_mc_check s_no_sand_item entity @e[type=minecraft:item,x=-322,y=422,z=429,dx=8,dy=8,dz=8]
+pcb_aim_mc -318.5 424.5 432.5
+wait 20
+pcb_glhud_shot c20_s_landed
+pcb_mc_native c20_s_landed
+pcb_mc_cmd fill -320 424 431 -316 426 436 minecraft:air replace minecraft:sand
+pcb_mc_cmd fill -320 424 431 -316 426 436 minecraft:air replace minecraft:gravel
+pcb_log F fire on the Portal 2 floor: a command, then flint and steel (a real right click)
+pcb_mc_cmd gamerule fire_spread_radius_around_player 0
+pcb_mc_cmd setblock -317 424 432 minecraft:fire
+wait 20
+pcb_mc_check f_fire_cmd block -317 424 432 minecraft:fire
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:flint_and_steel
+wait 20
+pcb_aim_mc -317.5 424.02 434.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 20
+pcb_mc_check f_fire_flint block -318 424 434 minecraft:fire
+pcb_aim_mc -317.5 424.5 433
+wait 10
+pcb_glhud_shot c20_f_fire
+pcb_mc_native c20_f_fire
+pcb_mc_cmd fill -322 424 428 -314 426 440 minecraft:air replace minecraft:fire
+pcb_mc_cmd gamerule fire_spread_radius_around_player 128
+pcb_log B buckets: pick up a source, pour it on the Portal 2 floor
+pcb_mc_cmd setblock -319 424 434 minecraft:water
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:bucket
+wait 30
+pcb_aim_mc -318.5 424.6 434.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 20
+pcb_mc_check b_filled items entity @p weapon.mainhand minecraft:water_bucket
+pcb_mc_check b_source_taken block -319 424 434 minecraft:water[level=0]
+pcb_aim_mc -318.5 424.02 432.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 40
+pcb_mc_check b_poured block -319 424 432 minecraft:water[level=0]
+pcb_mc_check b_emptied items entity @p weapon.mainhand minecraft:bucket
+pcb_glhud_shot c20_b_poured
+pcb_mc_native c20_b_poured
+pcb_mc_cmd fill -322 420 428 -314 430 440 minecraft:air replace minecraft:water
+wait 60
+pcb_mc_cmd fill -320 424 431 -316 426 436 minecraft:air replace minecraft:sand
+pcb_mc_cmd fill -320 424 431 -316 426 436 minecraft:air replace minecraft:gravel
+pcb_log G farming on the Portal 2 floor: dirt placed, hoed (a real click), seeds planted, watered, grown
+pcb_mc_cmd setblock -319 424 433 minecraft:dirt
+pcb_mc_cmd setblock -319 424 434 minecraft:dirt
+pcb_mc_cmd setblock -318 424 433 minecraft:water
+wait 20
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:iron_hoe
+wait 20
+pcb_aim_mc -318.5 425.0 433.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 20
+pcb_mc_check g_tilled block -319 424 433 minecraft:farmland
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:wheat_seeds
+wait 20
+pcb_aim_mc -318.5 425.0 433.5
+wait 20
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 20
+pcb_mc_check g_planted block -319 425 433 minecraft:wheat
+pcb_mc_cmd gamerule random_tick_speed 2000
+wait 300
+pcb_mc_cmd gamerule random_tick_speed 3
+pcb_mc_check g_grown block -319 425 433 minecraft:wheat[age=7]
+pcb_mc_check g_moist block -319 424 433 minecraft:farmland[moisture=7]
+pcb_aim_mc -318.5 425.3 433.5
+wait 20
+pcb_glhud_shot c20_g_wheat
+pcb_mc_native c20_g_wheat
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:air
+pcb_mc_cmd fill -320 424 431 -316 426 436 minecraft:air
+pcb_log T TNT: a planks block crater, planks behind the y=-512 wall (MC z 438) survive, the same distance in the open (z 432) does not
+pcb_mc_cmd gamemode survival
+pcb_mc_cmd effect give @p minecraft:resistance 30 4 true
+pcb_mc_cmd fill -320 424 433 -318 425 435 minecraft:oak_planks
+pcb_mc_cmd setblock -319 424 438 minecraft:oak_planks
+pcb_mc_cmd setblock -319 428 431 minecraft:oak_planks
+pcb_mc_cmd tp @p -317.5 424 430.9
+wait 40
+pcb_aim_mc -319 425 434
+wait 20
+pcb_glhud_shot c20_t_before
+pcb_mc_cmd summon minecraft:tnt -318.5 426 434.5 {fuse:20}
+wait 90
+pcb_mc_cmd summon minecraft:tnt -318.5 425 434.5 {fuse:20}
+wait 90
+pcb_glhud_shot c20_t_after
+pcb_mc_native c20_t_after
+pcb_mc_check t_crater block -319 425 434 minecraft:air
+pcb_mc_check t_shielded block -319 424 438 minecraft:oak_planks
+pcb_mc_check t_open_blown block -319 428 431 minecraft:air
+pcb_mc_cmd gamemode creative
+wait 30
+pcb_mc_cmd clone -328 480 429 -314 487 438 -328 424 429 replace
+wait 10
+pcb_mc_cmd fill -328 480 429 -314 487 438 minecraft:air
+pcb_mc_cmd kill @e[type=minecraft:item,x=-330,y=420,z=427,dx=18,dy=14,dz=14]
+wait 30
+pcb_assert_mc_say w_spread_n
+pcb_assert_mc_say w_spread_e
+pcb_assert_mc_say w_not_down
+pcb_assert_mc_say w_not_into_wall
+pcb_assert_mc_say w_not_into_wall2
+pcb_assert_mc_say w_cobble_falls
+pcb_assert_mc_say sw_in_water
+pcb_assert_mc_say l_spread_n
+pcb_assert_mc_say l_not_down
+pcb_assert_mc_say l_not_into_wall
+pcb_assert_mc_say s_sand_landed
+pcb_assert_mc_say s_gravel_landed
+pcb_assert_mc_say s_sand_not_sunk
+pcb_assert_mc_say s_no_sand_item fail
+pcb_assert_mc_say f_fire_cmd
+pcb_assert_mc_say f_fire_flint
+pcb_assert_mc_say b_filled
+pcb_assert_mc_say b_source_taken fail
+pcb_assert_mc_say b_poured
+pcb_assert_mc_say b_emptied
+pcb_assert_mc_say g_tilled
+pcb_assert_mc_say g_planted
+pcb_assert_mc_say g_grown
+pcb_assert_mc_say g_moist
+pcb_assert_mc_say t_crater
+pcb_assert_mc_say t_shielded
+pcb_assert_mc_say t_open_blown
+pcb_run_summary
+quit

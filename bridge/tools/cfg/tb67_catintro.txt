@@ -1,0 +1,44 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+bridge_mode mc
+waituntil mcmode 2400
+waituntil mcleads 2400
+pcb_noclip_set 0
+wait 120
+pcb_mc_cmd attribute @p minecraft:max_health base set 20
+pcb_mc_reset_player
+wait 60
+pcb_mech_log 120
+pcb_test_block ci_player_catapult
+pcb_log TB67 ---- catapult_intro: stand on the plate that has the clients flag (player_catapult), under it the physics-only catapult2c: ONE launch, to launch_target2b ----
+pcb_mc_reset_player
+wait 60
+waituntil mcalive 600
+wait 20
+ent_fire player_catapult Disable
+ent_fire catapult2c Disable
+wait 20
+pcb_mc_place -64 -160 -410 90 20
+waituntil mcplaced 900
+wait 6
+pcb_setview 0 90
+pcb_assert_placed
+pcb_assert_mech reset
+ent_fire player_catapult Enable
+ent_fire catapult2c Enable
+pcb_mcm reset
+wait 10
+wait 30
+screenshot pcb_f67_ci_air
+wait 150
+pcb_assert_mech launches 1 1
+pcb_assert_mc_near launch_target2b 250 200
+pcb_assert_mcm rise 40
+pcb_assert_mc_near launch_target2b 220 150
+pcb_where
+pcb_mech
+wait 30
+quit

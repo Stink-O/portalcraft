@@ -1,0 +1,24 @@
+# z69: wakeup stairwell teleport (the harvest-stall case)
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 600
+pcb_log Z69 tp stairwell
+ent_fire @debug_warp_to_stairwell Trigger
+wait 900
+pcb_where
+pc_colfield_harvest
+pcb_glhud_shot z69c_stair
+pcb_log Z69 tp elevator
+ent_fire @debug_warp_to_elevator Trigger
+wait 600
+pcb_where
+pcb_log Z69 tp stairwell again
+ent_fire @debug_warp_to_stairwell Trigger
+wait 900
+pcb_where
+pc_colfield_harvest
+pcb_run_summary
+quit

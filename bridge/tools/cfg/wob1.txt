@@ -1,0 +1,152 @@
+# wob1 (bridge #11): the user's "the whole Minecraft world stutters / warps slightly when I'm in motion; not when I
+# only move the camera". Walks, strafes, turns on the spot and flies (noclip at walking speed) over Minecraft
+# terrain in the lowland west of the cliff (MC ~ -372 64 430), with per-pixel reprojection on (3 iterations), off
+# (0: the old single proxy plane) and on again. pcb_wobble tracks fixed points on block faces and measures
+# Minecraft's world against where Portal 2 would draw them, as drawn (see composite.cpp, wobble probe).
+pcb_assert_soft 1
+sv_cheats 1
+fps_max 0
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_mc_cmd weather clear
+pcb_noclip_set 1
+pcb_light_goto_mc -372 70 430.8 90 15
+pcb_stop
+wait 60
+waituntil terrain_idle 1200
+pcb_noclip_set 0
+wait 120
+pcb_log HOST settle
+pcb_composite_lag
+pcb_log WOB on: per-pixel reprojection iterations 3
+pcb_reproject_pixel 3
+pcb_noclip_set 0
+pcb_light_goto_mc -372 65 430.8 90 15
+pcb_stop
+wait 90
+pcb_where
+pcb_wobble start 72
+pcb_wobble log 12
++forward
+wait 180
+-forward
+pcb_wobble report wob_on_walk 0.5 1.5
+pcb_where
+pcb_light_goto_mc -372 65 430.8 90 15
+pcb_stop
+wait 90
+pcb_wobble start 72
++moveleft
+wait 150
+-moveleft
+pcb_wobble report wob_on_strafe 0.5 1.5
+pcb_stop
+wait 30
+pcb_wobble start 72
+pcb_cam_turn 160 120
+wait 150
+pcb_wobble report wob_on_turn 0.5 1.5
+pcb_noclip_set 1
+sv_noclipspeed 1
+pcb_light_goto_mc -372 72 430.8 90 30
+pcb_stop
+wait 30
+pcb_wobble start 72
++forward
+wait 180
+-forward
+pcb_wobble report wob_on_fly 0.5 1.5
+pcb_wobble stop
+pcb_stop
+pcb_log HOST on
+pcb_composite_lag
+pcb_log WOB off: per-pixel reprojection iterations 0
+pcb_reproject_pixel 0
+pcb_noclip_set 0
+pcb_light_goto_mc -372 65 430.8 90 15
+pcb_stop
+wait 90
+pcb_where
+pcb_wobble start 72
+pcb_wobble log 12
++forward
+wait 180
+-forward
+pcb_wobble report wob_off_walk
+pcb_where
+pcb_light_goto_mc -372 65 430.8 90 15
+pcb_stop
+wait 90
+pcb_wobble start 72
++moveleft
+wait 150
+-moveleft
+pcb_wobble report wob_off_strafe
+pcb_stop
+wait 30
+pcb_wobble start 72
+pcb_cam_turn 160 120
+wait 150
+pcb_wobble report wob_off_turn
+pcb_noclip_set 1
+sv_noclipspeed 1
+pcb_light_goto_mc -372 72 430.8 90 30
+pcb_stop
+wait 30
+pcb_wobble start 72
++forward
+wait 180
+-forward
+pcb_wobble report wob_off_fly
+pcb_wobble stop
+pcb_stop
+pcb_log HOST off
+pcb_composite_lag
+pcb_log WOB on2: per-pixel reprojection iterations 3
+pcb_reproject_pixel 3
+pcb_noclip_set 0
+pcb_light_goto_mc -372 65 430.8 90 15
+pcb_stop
+wait 90
+pcb_where
+pcb_wobble start 72
+pcb_wobble log 12
++forward
+wait 180
+-forward
+pcb_wobble report wob_on2_walk 0.5 1.5
+pcb_where
+pcb_light_goto_mc -372 65 430.8 90 15
+pcb_stop
+wait 90
+pcb_wobble start 72
++moveleft
+wait 150
+-moveleft
+pcb_wobble report wob_on2_strafe 0.5 1.5
+pcb_stop
+wait 30
+pcb_wobble start 72
+pcb_cam_turn 160 120
+wait 150
+pcb_wobble report wob_on2_turn 0.5 1.5
+pcb_noclip_set 1
+sv_noclipspeed 1
+pcb_light_goto_mc -372 72 430.8 90 30
+pcb_stop
+wait 30
+pcb_wobble start 72
++forward
+wait 180
+-forward
+pcb_wobble report wob_on2_fly 0.5 1.5
+pcb_wobble stop
+pcb_stop
+pcb_log HOST on2
+pcb_composite_lag
+pcb_run_summary
+quit

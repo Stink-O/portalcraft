@@ -1,0 +1,40 @@
+# pc_pit_flings: floor portal in the pit -> partner on the Minecraft cliff; look down; fall through
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 60
+wait 2400
+pcb_terrain_stats
+pcb_clip_exit
+pcb_portal_floor 0 224 -64 200
+wait 90
+pcb_portal_check
+pcb_cliff
+noclip
+pcb_view_portal 1 260
+wait 120
+screenshot pcb_p2_exit_on_cliff
+wait 60
+setpos 224 -64 -600
+setang 89 90 0
+wait 120
+screenshot pcb_p2_look_down
+wait 60
+# fall into the floor portal from 900 u up
+noclip
+setpos 224 -64 100
+setang 10 90 0
+pcb_log drop
+wait 60
+pcb_where
+wait 30
+pcb_where
+screenshot pcb_p2_fling_1
+wait 30
+pcb_where
+screenshot pcb_p2_fling_2
+wait 120
+pcb_where
+screenshot pcb_p2_landed
+wait 60
+pcb_terrain_stats
+quit

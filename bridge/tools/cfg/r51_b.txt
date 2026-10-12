@@ -1,0 +1,77 @@
+# r51_b (bridge #51): portals on opposite corridor walls (opposite normals: identity transform), digs, main-view test A/B, features off
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+bridge_mode chell
+waituntil chellmode 900
+wait 90
+pcb_noclip_set 1
+crosshair 0
+r_drawviewmodel 0
+pcb_portal_wall 0 -700 -624 1200 90
+pcb_portal_wall 1 -300 -624 1200 270
+wait 150
+setpos -950 -624 1152
+setang 5 0 0
+pcb_setview 5 0
+pcb_stop
+wait 40
+pcb_assert_pose -950 -624 1152 3 5 0 1
+
+pcb_log R51 s0 no digs, defaults
+screenshot pcb_r51b_s0_nodig
+pcb_log R51 dig the floor near x=-120
+setpos -120 -624 1152
+setang 0 0 0
+pcb_setview 0 0
+pcb_stop
+wait 40
+pcb_assert_pose -120 -624 1152 3 0 0 1
+pcb_dig_under 2
+wait 30
+setpos -950 -624 1152
+setang 5 0 0
+pcb_setview 5 0
+pcb_stop
+wait 40
+pcb_assert_pose -950 -624 1152 3 5 0 1
+
+pc_dig_punch 1 1
+pcb_log R51 s1 dug, main view test on (new)
+wait 20
+screenshot pcb_r51b_s1_new
+pc_dig_punch
+pc_dig_punch 1 0
+pcb_log R51 s2 dug, angles only (old)
+wait 20
+screenshot pcb_r51b_s2_old
+pc_dig_punch
+pc_dig_punch 1 1
+pc_dig_punch 0
+pc_dig_peel 0
+pc_vis_clamp 0 0
+pcb_log R51 s3 dug, our features all off
+wait 20
+screenshot pcb_r51b_s3_off
+pc_dig_punch
+pc_dig_peel
+pc_dig_punch 1 1
+pc_dig_peel 1
+pc_vis_clamp 1 1
+setpos -500 -624 1152
+setang 5 0 0
+pcb_setview 5 0
+pcb_stop
+wait 40
+pcb_assert_pose -500 -624 1152 3 5 0 1
+
+pcb_log R51 s4 between the portals, new
+screenshot pcb_r51b_s4_between_new
+pc_dig_punch 1 0
+wait 20
+screenshot pcb_r51b_s5_between_old
+pc_dig_punch 1 1
+pc_dig_punch
+pcb_log R51 done
+quit

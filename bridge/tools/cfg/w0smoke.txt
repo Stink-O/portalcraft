@@ -1,0 +1,9 @@
+# w0smoke (windows-port W0): launcher-path smoke. start mode mc + unified world, wait for spawn and link, a short stay, quit.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+wait 600
+pcb_status
+pcb_run_summary
+quit

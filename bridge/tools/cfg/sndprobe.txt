@@ -1,0 +1,33 @@
+# sndprobe (bridge #12): snd_set_master_volume scale on a soundscape loop; snd_report_start_sound format
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+pcb_conlog 1
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 60
+setpos 128 -330 -760
+wait 90
+snd_print_channels
+wait 20
+snd_set_master_volume 52 0.5
+wait 30
+snd_print_channels
+wait 20
+snd_set_master_volume 52 0
+wait 30
+snd_print_channels
+wait 20
+snd_set_master_volume 52 1
+wait 30
+snd_print_channels
+snd_report_start_sound 1
+pcb_portal 1 -560 -60 64 0 0 0
++attack
+wait 10
+-attack
+wait 60
+snd_report_start_sound 0
+quit

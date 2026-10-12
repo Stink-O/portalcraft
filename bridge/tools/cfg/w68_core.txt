@@ -1,0 +1,32 @@
+# w68: pick up and carry a scripted core (sp_a1_intro7's @sphere) as the Minecraft player
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 900
+ent_fire @sphere ClearParent
+ent_fire @sphere EnableMotion
+ent_fire @sphere Wake
+ent_fire sphere_teleport Teleport
+wait 200
+ent_fire @sphere EnablePickup
+pcb_mc_place -624 -690 1250 270 60
+waituntil mcplaced 900
+wait 500
+pcb_where
+pcb_aim_prop @sphere
+wait 30
+ent_fire PlayerProxy ForceVMGrabController
+pcb_log W68 grab
+pcb_mckey rmb 1
+wait 30
+pcb_mckey rmb 0
+wait 60
+pcb_assert_holding 1 @sphere
+pcb_setview 10 270
+wait 30
+pcb_glhud_shot w68_core_held
+pcb_assert_mc_use 1
+pcb_run_summary
+quit

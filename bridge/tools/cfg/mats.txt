@@ -1,0 +1,36 @@
+# material / vertex colour investigation (sp_a2_bridge_intro)
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 120
+noclip
+pcb_block -40 300 0 0
+pcb_block 0 300 0 1
+pcb_block -20 300 40 2
+setpos -10 170 0
+setang 12 90 0
+wait 40
+pcb_mat 0 0
+wait 10
+screenshot pcb_m0
+wait 20
+pcb_mat 0 1
+wait 10
+screenshot pcb_m0dbg
+wait 20
+pcb_mat 1 1
+wait 10
+screenshot pcb_m1dbg
+wait 20
+pcb_mat 2 0
+wait 10
+screenshot pcb_m2
+wait 20
+pcb_mat 2 1
+wait 10
+screenshot pcb_m2dbg
+wait 20
+pcb_mat 3 1
+wait 10
+screenshot pcb_m3dbg
+wait 20
+quit

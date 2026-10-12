@@ -1,0 +1,123 @@
+# parity18b (bridge #18, Owner A items 3-5): Minecraft particles, block entities, water and lava in pc_pit_flings's
+#legacy-cliff-shift (bridge #81: the Minecraft coordinates below are the original cliff's; pcb_script moves them to the world.conf cliff, see worldconf.hpp)
+# chamber, each pose side by side with Minecraft's own view (pcb_mc_native -> cache/bridge/mcnative/).
+# Set (cleared first, MC y 440 = the chamber floor): a water pool and a lava pool in stone frames, a free water source
+# (flows over the Portal 2 floor if the world agent's flow is in), a chest, a bed, a sign, a banner, a head, a piston
+# pushed by a redstone block; particles: torch flames, /particle crit and explosion, a block broken with `destroy`.
+# Run: PCB_SO=<abs .so> tools/locked_run.sh terrain tools/cfg/parity18b.txt pc_pit_flings 600 a18_parityN
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd gamemode creative
+pcb_mc_cmd gamerule doDaylightCycle false
+pcb_mc_cmd weather clear
+pcb_mc_cmd gamerule doFireTick false
+pcb_log A build
+pcb_noclip_set 1
+setpos -420 -416 -100
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 90
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd fill -342 440 430 -333 445 438 minecraft:air
+wait 30
+pcb_mc_cmd fill -341 440 431 -339 440 433 minecraft:stone
+pcb_mc_cmd setblock -340 440 432 minecraft:water
+pcb_mc_cmd fill -337 440 431 -335 440 433 minecraft:stone
+pcb_mc_cmd setblock -336 440 432 minecraft:lava
+pcb_mc_cmd setblock -341 440 435 minecraft:chest[facing=east]
+pcb_mc_cmd setblock -339 440 435 minecraft:red_bed[facing=east,part=foot]
+pcb_mc_cmd setblock -338 440 435 minecraft:red_bed[facing=east,part=head]
+pcb_mc_cmd setblock -336 440 435 minecraft:oak_sign[rotation=4]
+pcb_mc_cmd setblock -335 440 435 minecraft:red_banner[rotation=4]
+pcb_mc_cmd setblock -341 440 437 minecraft:creeper_head[rotation=4]
+pcb_mc_cmd setblock -338 440 437 minecraft:piston[facing=west]
+pcb_mc_cmd setblock -334 440 437 minecraft:torch
+pcb_mc_cmd setblock -340 441 433 minecraft:oak_planks
+waituntil solid-338,440,437 300
+wait 90
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:air
+pcb_mc_cmd tp @p -337.5 441 440.5
+wait 60
+pcb_log B pose 1: the set
+pcb_aim_mc -338 440.3 434 64
+wait 60
+pcb_band_stats
+pc_mc_anim_hz
+pcb_blocklights
+pcb_scene_status
+pcb_glhud_shot a18_b_set
+pcb_mc_native a18_b_set
+wait 40
+pcb_log C pools close
+pcb_mc_cmd tp @p -338 441.5 434.5
+wait 60
+pcb_aim_mc -338 440.2 432 64
+wait 40
+pcb_glhud_shot a18_b_pools
+pcb_mc_native a18_b_pools
+wait 40
+wait 30
+pcb_glhud_shot a18_b_pools2
+pc_mc_anim_hz
+pcb_log D particles
+pcb_mc_cmd tp @p -337.5 441 439.5
+wait 40
+pcb_aim_mc -338 441 434 64
+wait 30
+pcb_mc_cmd particle minecraft:crit -338 441.5 434.5 0.4 0.4 0.4 0.2 60
+wait 3
+pcb_glhud_shot a18_b_crit
+pcb_mc_native a18_b_crit
+wait 30
+pcb_mc_cmd setblock -340 441 433 minecraft:air destroy
+wait 3
+pcb_glhud_shot a18_b_break
+pcb_mc_native a18_b_break
+wait 30
+pcb_mc_cmd particle minecraft:explosion -337 441.5 434 0.5 0.5 0.5 0 6
+wait 3
+pcb_glhud_shot a18_b_explode
+pcb_mc_native a18_b_explode
+wait 40
+pcb_scene_status
+pcb_log E piston and chest
+pcb_mc_cmd setblock -337 440 437 minecraft:redstone_block
+wait 2
+pcb_glhud_shot a18_b_piston_moving
+wait 30
+pcb_glhud_shot a18_b_piston_out
+pcb_mc_native a18_b_piston
+wait 40
+pcb_mc_cmd tp @p -339.5 441 435.5
+wait 30
+pcb_aim_mc -340.5 440.5 435.5 64
+wait 30
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 20
+pcb_glhud_shot a18_b_chest_open
+pcb_mc_native a18_b_chest
+wait 30
+pcb_mckey 41 1
+wait 4
+pcb_mckey 41 0
+wait 20
+pcb_scene_status
+pcb_mc_cmd fill -342 440 430 -333 445 438 minecraft:air
+wait 30
+bridge_mode chell
+waituntil chellmode 300
+wait 30
+pcb_run_summary
+quit

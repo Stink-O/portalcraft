@@ -1,0 +1,41 @@
+# z69: sp_a2_intro level start (mid-air under the scripted camera) as the Minecraft player; J toggles
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 60
+pcb_log Z69 a2intro start
+pcb_glhud_shot z69d_00
+pcb_where
+wait 120
+pcb_glhud_shot z69d_01
+pcb_where
+wait 120
+pcb_glhud_shot z69d_02
+pcb_where
+wait 180
+pcb_glhud_shot z69d_03
+pcb_where
+pcb_log Z69 J during
+bridge_mode toggle
+wait 120
+pcb_glhud_shot z69d_04
+pcb_where
+bridge_mode toggle
+wait 240
+pcb_glhud_shot z69d_05
+pcb_where
+wait 600
+pcb_glhud_shot z69d_06
+pcb_where
+wait 900
+pcb_glhud_shot z69d_07
+pcb_where
+wait 900
+pcb_glhud_shot z69d_08
+pcb_where
+wait 900
+pcb_glhud_shot z69d_09
+pcb_where
+pcb_run_summary
+quit

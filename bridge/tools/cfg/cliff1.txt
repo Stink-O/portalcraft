@@ -1,0 +1,25 @@
+# Look at the cliff candidate (376 108 -596, faces south) streamed into Portal 2 (camera in the void)
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 60
+noclip
+pcb_terrain_region 376 108 -596 0 300 0
+wait 1800
+pcb_terrain_stats
+setpos 0 -2100 520
+setang 8 90 0
+wait 60
+screenshot pcb_c1_south
+wait 30
+setpos 1600 -1600 900
+setang 12 135 0
+wait 60
+screenshot pcb_c1_southeast
+wait 30
+setpos 0 250 380
+setang 30 -90 0
+wait 60
+screenshot pcb_c1_from_top
+wait 30
+pcb_terrain_stats
+quit

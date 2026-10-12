@@ -1,0 +1,39 @@
+# t66: carry a cube through intro2's map pair as the Minecraft player
+sv_cheats 1
+pcb_assert_soft 1
+pc_input_lock 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+wait 600
+ent_fire portal_red_1 SetActivatedState 1
+ent_fire portal_blue_3 SetActivatedState 1
+wait 180
+pcb_mc_place -320 -150 -62 270 8
+waituntil mcplaced 900
+wait 60
+pcb_setview 0 270
+pcb_spawn_cube -320 -195 -41 t66cube
+wait 120
+pcb_aim_prop t66cube
+wait 20
+pcb_mckey rmb 1
+wait 25
+pcb_mckey rmb 0
+waituntil holding 180
+pcb_assert_holding 1 t66cube
+pcb_setview 0 270
+pcb_log T66 holding, walking
+wait 20
+pcb_glhud_shot t66_cube_before
+pcb_mckey 26 1
+wait 20
+pcb_glhud_burst t66c 60
+wait 150
+pcb_mckey 26 0
+wait 90
+pcb_log T66 after the transit
+pcb_assert_holding 1 t66cube
+pcb_glhud_shot t66_cube_after
+pcb_run_summary
+quit

@@ -1,0 +1,12 @@
+# win_first (Proton run 2026-10-11): first-run checks on the Windows build: probe, PointOutsideWorld, status, quit. No Minecraft link wanted.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 900
+wait 300
+pcb_probe 0 0 0
+pcb_probe 100 100 100
+pcb_probe_slots 4
+pcb_status
+wait 60
+pcb_run_summary
+quit

@@ -1,0 +1,26 @@
+# bridge #80: promotion check. A `play_clip.sh --mc` session (sp_a1_intro1 started as the Minecraft player), short load: link, the Minecraft
+# player leads, where the chamber sits, four looks. play_clip.sh's autoexec is reproduced with PCB_PRE:
+#   PCB_PRE="pc_start_mode mc;pc_world unified" (play_clip's default with a pc_world plugin) or "pc_start_mode mc;pc_world legacy" (--world mirror)
+#   PORTALCRAFT_JVM_ARGS=-Dskycraft.worldName=Portalcraft80_test PCB_SO=<abs .so> tools/locked_run.sh terrain|mirror tools/cfg/r80_mc.txt sp_a1_intro1 900 <run>
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+waituntil mcleads 3600
+wait 600
+pc_world
+pcb_where
+pc_dig_render
+pc_cut_light
+screenshot pcb_r80m_0
+pcb_setview 5 90
+wait 180
+screenshot pcb_r80m_90
+pcb_setview 5 180
+wait 180
+screenshot pcb_r80m_180
+pcb_setview 5 270
+wait 180
+screenshot pcb_r80m_270
+wait 60
+quit

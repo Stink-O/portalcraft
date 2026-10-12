@@ -1,0 +1,57 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+bridge_mode mc
+waituntil mcmode 2400
+waituntil mcleads 2400
+pcb_noclip_set 0
+wait 120
+pcb_mc_cmd attribute @p minecraft:max_health base set 20
+pcb_mc_reset_player
+wait 60
+pcb_mech_log 120
+pcb_spawn_ent math_counter 0 0 0 0 tb77_touch
+pcb_spawn_ent math_counter 0 0 0 0 tb77_cat
+pcb_spawn_ent math_counter 0 0 0 0 tb77_relay
+wait 10
+ent_fire catapult2a AddOutput "OnStartTouch tb77_touch,Add,1,0,-1"
+wait 5
+ent_fire catapult2a AddOutput "OnCatapulted tb77_cat,Add,1,0,-1"
+wait 5
+ent_fire catapult_target_relay AddOutput "OnTrigger tb77_relay,Add,1,0,-1"
+wait 5
+pcb_test_block ci_2a_outputs
+pcb_log TB77 ---- catapult_intro: walk onto catapult2a (clients flag) as the Minecraft player: Portal 2's StartTouch + OnCatapulted run, the relay closes the landing platform, the flight ends ON it (no goo) ----
+pcb_mc_reset_player
+wait 60
+waituntil mcalive 600
+wait 20
+pcb_mc_place -64 580 -440 270 20
+waituntil mcplaced 900
+wait 6
+pcb_setview 0 270
+pcb_assert_placed
+pcb_assert_mech reset
+pcb_mcm reset
+pcb_mc_hurt mark
+pcb_mckey 26 1
+wait 100
+pcb_mckey 26 0
+wait 30
+screenshot pcb_g77_ci_air
+wait 60
+screenshot pcb_g77_ci_air2
+wait 150
+screenshot pcb_g77_ci_landed
+pcb_assert_mech launches 1 1
+pcb_assert_ent_float math_counter tb77_touch m_OutValue 1 99
+pcb_assert_ent_float math_counter tb77_cat m_OutValue 1 99
+pcb_assert_ent_float math_counter tb77_relay m_OutValue 1 99
+pcb_assert_mc_near launch_target2a 250 200
+pcb_mc_hurt assert 0
+pcb_where
+pcb_mech
+wait 30
+quit

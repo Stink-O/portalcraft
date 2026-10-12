@@ -1,0 +1,710 @@
+# float4 (bridge #10, written by tools/gen_float.py): the floating-origin gate. Far points by teleport steps
+# (each through the shift logic, asserted: inside the box, clean frames, pair + cube intact); frame continuity
+# at a shift by short continuous flights across one boundary per axis direction; the pair still works after
+# 1500+ blocks away and back.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pc_mc_float 0
+pcb_log FLOAT setup: a pair on the corridor walls and a cube on its floor beside them
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 60
+pcb_assert_portals
+pcb_assert_portal_face 0
+pcb_assert_portal_face 1
+pcb_spawn_cube -1760 -820 -14138 pcb_cube
+wait 300
+pcb_assert_prop_rest pcb_cube 89
+pcb_float_mark
+pcb_log FLOAT shift 1 (test command, 3 chunks north) looking at the pair
+pcb_view_from 1 10
+wait 300
+pcb_assert_light_smooth reset
+pcb_frame_watch 30 warm mcworld
+wait 40
+pcb_frame_watch 0
+pcb_frame_watch 6000 shift1 mcworld
+pcb_twitch reset
+wait 30
+pcb_float_shift 0 -3
+wait 120
+pcb_twitch report shift1_still 1.0 4
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 5
+pcb_assert_float_kept 0.3
+pcb_assert_light_smooth 0.25
+pcb_log FLOAT shift 2 (test command, 3 chunks south) looking at the pair
+pcb_view_from 1 6
+wait 300
+pcb_frame_watch 30 warm mcworld
+wait 40
+pcb_frame_watch 0
+pcb_frame_watch 6000 shift2 mcworld
+pcb_twitch reset
+wait 30
+pcb_float_shift 0 3
+wait 120
+pcb_twitch report shift2_still 1.0 4
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 5
+pcb_assert_float_kept 0.3
+pcb_assert_light_smooth 0.25
+pcb_log FLOAT through the pair after the command shifts: launched into portal 1
+pcb_goto_portal 1 120
+pcb_stop
+pcb_noclip_set 0
+wait 10
+pcb_assert_teleports reset
+pcb_launch_to p1 350
+wait 150
+pcb_assert_teleports 1
+pcb_noclip_set 1
+pcb_log FLOAT continuous flights: ~40 blocks across one shift boundary per axis direction, every frame watched
+pc_mc_float 1 200
+sv_noclipspeed 5
+setpos -1920 -700 -11000
+pcb_stop
+wait 120
+pcb_log FLOAT flight +x
+pcb_float_near_edge +x 20
+pcb_steer rel 60 0 0
+wait 60
+waituntil streamidle 900
+pcb_frame_watch 30 warm mcworld
+wait 40
+pcb_frame_watch 0
+pcb_frame_watch 6000 fly+x mcworld
++forward
+waituntil floatshift 600
+wait 60
+-forward
+pcb_steer off
+pcb_stop
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 5
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_log FLOAT flight -x
+pcb_float_near_edge -x 20
+pcb_steer rel -60 0 0
+wait 60
+waituntil streamidle 900
+pcb_frame_watch 30 warm mcworld
+wait 40
+pcb_frame_watch 0
+pcb_frame_watch 6000 fly-x mcworld
++forward
+waituntil floatshift 600
+wait 60
+-forward
+pcb_steer off
+pcb_stop
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 5
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_log FLOAT flight +z
+pcb_float_near_edge +z 20
+pcb_steer rel 0 0 60
+wait 60
+waituntil streamidle 900
+pcb_frame_watch 30 warm mcworld
+wait 40
+pcb_frame_watch 0
+pcb_frame_watch 6000 fly+z mcworld
++forward
+waituntil floatshift 600
+wait 60
+-forward
+pcb_steer off
+pcb_stop
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 5
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_log FLOAT flight -z
+pcb_float_near_edge -z 20
+pcb_steer rel 0 0 -60
+wait 60
+waituntil streamidle 900
+pcb_frame_watch 30 warm mcworld
+wait 40
+pcb_frame_watch 0
+pcb_frame_watch 6000 fly-z mcworld
++forward
+waituntil floatshift 600
+wait 60
+-forward
+pcb_steer off
+pcb_stop
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 5
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_log FLOAT flight up
+pcb_float_near_edge up 20
+pcb_steer angles -89 0
+wait 60
+waituntil streamidle 900
+pcb_frame_watch 30 warm mcworld
+wait 40
+pcb_frame_watch 0
+pcb_frame_watch 6000 flyup mcworld
++forward
+waituntil floatshift 600
+wait 60
+-forward
+pcb_steer off
+pcb_stop
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 5
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_log FLOAT flight down
+pcb_float_near_edge down 20
+pcb_steer angles 89 0
+wait 60
+waituntil streamidle 900
+pcb_frame_watch 30 warm mcworld
+wait 40
+pcb_frame_watch 0
+pcb_frame_watch 6000 flydown mcworld
++forward
+waituntil floatshift 600
+wait 60
+-forward
+pcb_steer off
+pcb_stop
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch
+pcb_assert_watch_shifts 5
+pcb_assert_float_inbox
+pcb_assert_float_intact
+setang 0 0 0
+pcb_float_step_to -376 168 442
+wait 150
+pcb_float_step_to -376 168 442
+wait 150
+pcb_log FLOAT steps east_out: towards MC (1144 168 442)
+pcb_float_trip start
+wait 2
+pcb_frame_watch 2000 east_out1 mcworld
+pcb_float_step_to 1144 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 east_out2 mcworld
+pcb_float_step_to 1144 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 east_out3 mcworld
+pcb_float_step_to 1144 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 east_out4 mcworld
+pcb_float_step_to 1144 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 east_out5 mcworld
+pcb_float_step_to 1144 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_float_trip assert 1500
+pcb_log FLOAT steps east_back: towards MC (-376 168 442)
+pcb_float_trip start
+wait 2
+pcb_frame_watch 2000 east_back1 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 east_back2 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 east_back3 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 east_back4 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 east_back5 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_float_trip assert 1500
+pcb_assert_float_parked 2 2 1
+pcb_assert_portals
+pcb_log FLOAT the pair after 1500 blocks east and back (teleport steps): launched into portal 1
+pcb_goto_portal 1 120
+pcb_stop
+pcb_noclip_set 0
+wait 10
+pcb_assert_teleports reset
+pcb_launch_to p1 350
+wait 150
+pcb_assert_teleports 1
+pcb_noclip_set 1
+pcb_float_step_to -376 168 442
+wait 150
+pcb_log FLOAT steps west_out: towards MC (-1896 168 442)
+pcb_float_trip start
+wait 2
+pcb_frame_watch 2000 west_out1 mcworld
+pcb_float_step_to -1896 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 west_out2 mcworld
+pcb_float_step_to -1896 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 west_out3 mcworld
+pcb_float_step_to -1896 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 west_out4 mcworld
+pcb_float_step_to -1896 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 west_out5 mcworld
+pcb_float_step_to -1896 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_float_trip assert 1500
+pcb_log FLOAT steps west_back: towards MC (-376 168 442)
+pcb_float_trip start
+wait 2
+pcb_frame_watch 2000 west_back1 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 west_back2 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 west_back3 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 west_back4 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 west_back5 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_float_trip assert 1500
+pcb_log FLOAT steps south_out: towards MC (-376 168 1962)
+pcb_float_trip start
+wait 2
+pcb_frame_watch 2000 south_out1 mcworld
+pcb_float_step_to -376 168 1962
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 south_out2 mcworld
+pcb_float_step_to -376 168 1962
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 south_out3 mcworld
+pcb_float_step_to -376 168 1962
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 south_out4 mcworld
+pcb_float_step_to -376 168 1962
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 south_out5 mcworld
+pcb_float_step_to -376 168 1962
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_float_trip assert 1500
+pcb_log FLOAT steps south_back: towards MC (-376 168 442)
+pcb_float_trip start
+wait 2
+pcb_frame_watch 2000 south_back1 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 south_back2 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 south_back3 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 south_back4 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 south_back5 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_float_trip assert 1500
+pcb_log FLOAT steps north_out: towards MC (-376 168 -1078)
+pcb_float_trip start
+wait 2
+pcb_frame_watch 2000 north_out1 mcworld
+pcb_float_step_to -376 168 -1078
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 north_out2 mcworld
+pcb_float_step_to -376 168 -1078
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 north_out3 mcworld
+pcb_float_step_to -376 168 -1078
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 north_out4 mcworld
+pcb_float_step_to -376 168 -1078
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 north_out5 mcworld
+pcb_float_step_to -376 168 -1078
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_float_trip assert 1500
+pcb_log FLOAT steps north_back: towards MC (-376 168 442)
+pcb_float_trip start
+wait 2
+pcb_frame_watch 2000 north_back1 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 north_back2 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 north_back3 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 north_back4 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 north_back5 mcworld
+pcb_float_step_to -376 168 442
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_float_trip assert 1500
+pcb_log FLOAT vertical steps: up past the world's top (y 330), down to y -50 (deep caves), back to y 168
+pcb_frame_watch 2000 up1 mcworld
+pcb_float_step_to ~ 335 ~
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 up2 mcworld
+pcb_float_step_to ~ 335 ~
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 up3 mcworld
+pcb_float_step_to ~ 335 ~
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+waituntil mcyabove330 60
+pcb_frame_watch 2000 down1 mcworld
+pcb_float_step_to ~ -55 ~
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 down2 mcworld
+pcb_float_step_to ~ -55 ~
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 down3 mcworld
+pcb_float_step_to ~ -55 ~
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 down4 mcworld
+pcb_float_step_to ~ -55 ~
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 down5 mcworld
+pcb_float_step_to ~ -55 ~
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+waituntil mcybelow-50 60
+pcb_frame_watch 2000 back1 mcworld
+pcb_float_step_to ~ 168 ~
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 back2 mcworld
+pcb_float_step_to ~ 168 ~
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_frame_watch 2000 back3 mcworld
+pcb_float_step_to ~ 168 ~
+wait 150
+pcb_frame_watch 0
+wait 5
+pcb_assert_watch_nowhite
+pcb_assert_float_inbox
+pcb_assert_float_intact
+pcb_float_step_to -376 168 442
+wait 150
+pcb_assert_float_parked 2 2 1
+pcb_assert_float_intact
+pcb_assert_portals
+pcb_log FLOAT the pair at the end: launched into portal 1
+pcb_goto_portal 1 120
+pcb_stop
+pcb_noclip_set 0
+wait 10
+pcb_assert_teleports reset
+pcb_launch_to p1 350
+wait 150
+pcb_assert_teleports 1
+pcb_noclip_set 1
+pcb_log FLOAT home: close the pair, Chell back to the chamber, the mapping returns
+ent_fire prop_portal Fizzle
+setpos 128 -384 -500
+pcb_stop
+wait 240
+pc_mc_float
+pcb_assert_exit
+pcb_build_corridor remove
+wait 30
+pcb_run_summary
+quit

@@ -1,0 +1,53 @@
+# passcache_vis (bridge #10): the facing tunnel at a still pose (Minecraft draws the portal views), for the pass
+# section cache (-Dportalcraft.passCache=true) against the same run without it: screenshots before, with a gold block
+# placed where only the view through portal 0 shows it (behind Chell, 4 blocks before portal 1), held still, and removed.
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_mc_cmd weather clear
+pcb_log PHASE C facing tunnel
+ent_fire prop_portal Fizzle
+pcb_noclip_set 1
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+pcb_build_corridor -376 89 442 12
+wait 30
+waituntil corridor 1200
+waituntil terrain_idle 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 40
+pcb_assert_portals
+pcb_view_from 0 3
+pcb_stop
+wait 300
+screenshot pcb_V1_still
+pcb_mc_cmd setblock -374 90 442 gold_block
+wait 60
+screenshot pcb_V2_block
+wait 180
+screenshot pcb_V3_block_held
+pcb_mc_cmd setblock -374 90 442 air
+wait 60
+screenshot pcb_V4_removed
+pcb_build_corridor remove
+wait 60
+pcb_run_summary
+quit

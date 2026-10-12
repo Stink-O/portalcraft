@@ -1,0 +1,86 @@
+# chamber23 (bridge #23): the Minecraft player in pc_pit_flings's chamber.
+# S  sounds: chamber phase (listener in the chamber, level = pc_mc_volume), rain muted; place, break, a pig (mc.log
+#    "Portalcraft: sound ..." lines: blocks/neutral at volume > 0, weather/ambient 0)
+# B  a single block placed on the floor in a fresh spot: not black (shot b23_b_single), pcb_band_stats relights
+# O  the outline on the bare floor (shot b23_o_outline): the floor's own voxel shape
+# Cleanup: the block is broken, the pig killed, the weather cleared.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_audio_log_sounds 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd gamemode survival
+pcb_noclip_set 1
+setpos -330 -470 -100
+setang 0 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 90
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:oak_planks 64
+pcb_mc_cmd weather rain
+wait 60
+pcb_where
+pcb_log S chamber sounds
+pcb_audio 1
+pcb_assert_audio 0.55 0.65
+pcb_log O outline on the bare floor
+waituntil mcleads 1200
+wait 240
+pcb_colfield
+pcb_where
+pcb_contents -390 -470 -140
+pcb_contents -390 -470 -108
+pcb_colfield_block -390 -470 -140
+pcb_colfield_block -390 -470 -108
+pcb_aim_mc -337.15 440.0 435.75
+wait 20
+pcb_assert_outline 1
+pcb_worldents
+pcb_glhud_shot b23_o_outline
+wait 10
+pcb_log B single block
+pcb_band_stats
+pcb_band_mark
+pcb_mckey rmb 1
+wait 4
+pcb_mckey rmb 0
+wait 40
+pcb_assert_band_delta 1
+pcb_band_stats
+pcb_aim_mc -337.15 440.0 435.75
+wait 30
+pcb_glhud_shot b23_b_single
+wait 10
+pcb_band_stats
+pcb_log S pig
+pcb_mc_cmd execute at @p run summon minecraft:pig ~-2 ~ ~2
+wait 120
+pcb_glhud_shot b23_s_pig
+wait 10
+pcb_log S break the block
+pcb_mc_cmd gamemode creative
+wait 30
+pcb_aim_mc -337.3 441.0 435.75
+wait 20
+pcb_mckey lmb 1
+wait 4
+pcb_mckey lmb 0
+wait 30
+pcb_band_stats
+pcb_glhud_shot b23_b_broken
+wait 10
+pcb_mc_cmd execute at @p run kill @e[type=minecraft:pig,distance=..12]
+pcb_mc_cmd weather clear
+pcb_mc_cmd setblock -338 440 435 minecraft:air
+pcb_audio_log_sounds 0
+wait 30
+pcb_run_summary
+quit

@@ -1,0 +1,160 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 240
+pcb_goto tb_spot_portals 64
+wait 100
+bridge_mode mc
+waituntil mcmode 2400
+waituntil mcleads 2400
+pcb_noclip_set 0
+wait 30
+wait 120
+pcb_mc_cmd attribute @p minecraft:max_health base set 20
+pcb_mc_reset_player
+wait 60
+pcb_mech_log 200
+pcb_test_block f1_base
+pcb_log TB67 ---- baseline: clients plate, no threshold: launched ----
+pcb_mc_reset_player
+wait 60
+waituntil mcalive 600
+wait 20
+ent_fire tb_go_faith trigger
+wait 90
+pcb_ent_field trigger_catapult tb_faith m_spawnflags i
+pcb_ent_field trigger_catapult tb_faith m_flPlayerVelocity f
+pcb_mc_place 1222.0 -960.0 1.0 0 8
+waituntil mcplaced 900
+wait 30
+pcb_setview 0 0
+wait 6
+pcb_assert_placed
+pcb_assert_mech reset
+pcb_mcm reset
+pcb_mckey 26 1
+wait 48
+pcb_mckey 26 0
+wait 25
+screenshot pcb_f67_f1_base_air
+wait 300
+pcb_assert_mech launches 1 1
+pcb_assert_mcm rise 48
+pcb_log TB67 end f1_base
+ent_fire tb_faith Disable
+wait 10
+ent_fire tb_faith AddOutput "spawnflags 4105"
+ent_fire tb_faith AddOutput "useThresholdCheck 0"
+wait 20
+pcb_test_block f2_noclients
+pcb_log TB67 ---- spawnflags 8 (physics only): NOT launched ----
+pcb_mc_reset_player
+wait 60
+waituntil mcalive 600
+wait 20
+ent_fire tb_go_faith trigger
+wait 90
+ent_fire tb_faith AddOutput "spawnflags 8"
+wait 10
+pcb_ent_field trigger_catapult tb_faith m_spawnflags i
+pcb_ent_field trigger_catapult tb_faith m_flPlayerVelocity f
+pcb_mc_place 1222.0 -960.0 1.0 0 8
+waituntil mcplaced 900
+wait 30
+pcb_setview 0 0
+wait 6
+pcb_assert_placed
+pcb_assert_mech reset
+pcb_mcm reset
+pcb_mckey 26 1
+wait 48
+pcb_mckey 26 0
+wait 300
+pcb_assert_mech launches 0 0
+pcb_assert_mcm rise 0 20
+pcb_log TB67 end f2_noclients
+ent_fire tb_faith Disable
+wait 10
+ent_fire tb_faith AddOutput "spawnflags 4105"
+ent_fire tb_faith AddOutput "useThresholdCheck 0"
+wait 20
+pcb_test_block f3_thr_miss
+pcb_log TB67 ---- threshold check, window 297..490 u/s, walking ~173: Portal 2 does not launch ----
+pcb_mc_reset_player
+wait 60
+waituntil mcalive 600
+wait 20
+ent_fire tb_go_faith trigger
+wait 90
+ent_fire tb_faith AddOutput "spawnflags 4105"
+wait 10
+ent_fire tb_faith AddOutput "useThresholdCheck 1"
+wait 10
+pcb_ent_field trigger_catapult tb_faith m_spawnflags i
+pcb_ent_field trigger_catapult tb_faith m_flPlayerVelocity f
+pcb_mc_place 1222.0 -960.0 1.0 0 8
+waituntil mcplaced 900
+wait 30
+pcb_setview 0 0
+wait 6
+pcb_assert_placed
+pcb_assert_mech reset
+pcb_mcm reset
+pcb_mckey 26 1
+wait 48
+pcb_mckey 26 0
+wait 300
+pcb_assert_mech launches 0 0
+pcb_assert_mcm rise 0 20
+pcb_log TB67 end f3_thr_miss
+ent_fire tb_faith Disable
+wait 10
+ent_fire tb_faith AddOutput "spawnflags 4105"
+ent_fire tb_faith AddOutput "useThresholdCheck 0"
+wait 20
+pcb_test_block f4_thr_hit
+pcb_log TB67 ---- threshold check, window 0..1925 u/s (open): Portal 2 launches the walker, the bridge hands it over ----
+pcb_mc_reset_player
+wait 60
+waituntil mcalive 600
+wait 20
+ent_fire tb_go_faith trigger
+wait 90
+ent_fire tb_faith AddOutput "spawnflags 4105"
+wait 10
+ent_fire tb_faith AddOutput "useThresholdCheck 1"
+wait 10
+ent_fire tb_faith AddOutput "playerSpeed 175"
+wait 10
+ent_fire tb_faith AddOutput "lowerThreshold 1.0"
+wait 10
+ent_fire tb_faith AddOutput "upperThreshold 10"
+wait 10
+pcb_ent_field trigger_catapult tb_faith m_spawnflags i
+pcb_ent_field trigger_catapult tb_faith m_flPlayerVelocity f
+pcb_mc_place 1222.0 -960.0 1.0 0 8
+waituntil mcplaced 900
+wait 30
+pcb_setview 0 0
+wait 6
+pcb_assert_placed
+pcb_assert_mech reset
+pcb_mcm reset
+pcb_mckey 26 1
+wait 48
+pcb_mckey 26 0
+wait 25
+screenshot pcb_f67_f4_thr_hit_air
+wait 300
+pcb_assert_mech launches 1 1
+pcb_assert_mcm rise 20
+pcb_log TB67 end f4_thr_hit
+ent_fire tb_faith Disable
+wait 10
+ent_fire tb_faith AddOutput "spawnflags 4105"
+ent_fire tb_faith AddOutput "useThresholdCheck 0"
+wait 20
+pcb_mech
+wait 30
+quit

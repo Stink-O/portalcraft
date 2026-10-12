@@ -1,0 +1,178 @@
+# home1 (bridge #12): the pit redirect is opt-in (G), and the ways back from Minecraft.
+# A1 default mode (1, G only): orange on a chamber wall (-560 -60 64, the prelude's placement), blue fired with the gun
+#    on the pit floor without G: a normal pair (orange stays on the chamber wall; Chell falls in and comes out of the
+#    wall portal in the chamber).
+# A2 blue re-fired on the pit floor with G held (pcb_key_hold arm: the same key polling as the real G): orange goes to
+#    the Minecraft cliff; Chell falls in and lands in Minecraft.
+# B  in Minecraft, orange fired on a Minecraft wall with G held: blue (its partner) goes back to the last chamber wall
+#    a portal was on (orange's, the pit wall); Chell walks into the orange portal and is back in the chamber.
+# C  H held 0.5 s (pcb_key_hold home) far out in Minecraft (~1500 blocks, through the floating origin) with a cube in
+#    her hands: Chell is back on the last chamber spot she stood on, still, holding the cube; every frame of the
+#    jump watched; the chamber ambience back; the floating origin back at its anchor.
+pcb_assert_soft 1
+sv_cheats 1
+pcb_audio_test_mute 1
+waituntil spawned 600
+waituntil link 9000
+waituntil exit 1800
+pcb_chell_proxy 0
+pc_pit_redirect_mode
+pcb_log A1 default mode: pit pair without G
+pcb_noclip_set 1
+pcb_portal 1 -560 -60 64 0 0 0
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 20
+-attack
+wait 90
+pcb_assert_portals
+pcb_assert_portal_region 1 0
+pcb_assert_portal_region 0 0
+pcb_assert_transits reset
+setpos 128 -384 -650
+pcb_stop
+wait 10
+pcb_noclip_set 0
+waituntil transit 300
+wait 60
+pcb_assert_transits 1
+pcb_assert_player_region 0
+pcb_log A2 blue re-fired on the pit floor with G held
+pcb_noclip_set 1
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
+pcb_key_hold arm 1.0
+wait 10
++attack
+wait 20
+-attack
+wait 120
+pcb_mc_portal_state
+pcb_assert_portal_region 0 0
+pcb_assert_portal_region 1 1
+pcb_assert_redirect
+pcb_log A2 stand on a chamber spot first (pc_mc_home's target), then fall in
+setpos 128 -160 -766
+setang 0 -90 0
+pcb_stop
+pcb_noclip_set 0
+wait 90
+pcb_noclip_set 1
+pcb_assert_transits reset
+setpos 128 -384 -650
+pcb_stop
+wait 10
+pcb_noclip_set 0
+waituntil transit 300
+wait 150
+pcb_assert_player_region 1
+pcb_log B in Minecraft: orange on a Minecraft wall with G held, its partner goes home
+pcb_find_surface wall 24
+wait 30
+pcb_key_hold arm 1.0
+wait 10
++attack2
+wait 20
+-attack2
+wait 120
+pcb_mc_portal_state
+pcb_assert_mc_home 1
+pcb_assert_portal_region 1 1
+pcb_assert_portal_region 0 0
+pcb_stand_before 1 80
+wait 20
+pcb_noclip_set 0
+wait 30
+pcb_assert_transits reset
++forward
+waituntil transit 300
+wait 10
+-forward
+wait 90
+pcb_assert_transits 1
+pcb_where
+pcb_assert_player_region 0
+wait 60
+pcb_assert_player_region 0
+pcb_log C H held far out in Minecraft, with a cube
+pcb_noclip_set 1
+setpos 128 -160 -766
+setang 0 -90 0
+pcb_stop
+pcb_noclip_set 0
+wait 90
+pcb_noclip_set 1
+pcb_light_goto_mc -372 66 430.8 90 15
+pcb_stop
+wait 60
+pcb_float_step_to 1100 80 430
+wait 30
+pcb_float_step_to 1100 80 430
+wait 30
+pcb_float_step_to 1100 80 430
+wait 30
+pcb_float_step_to 1100 80 430
+wait 30
+pcb_float_step_to 1100 80 430
+wait 30
+pcb_float_step_to 1100 80 430
+wait 30
+pcb_float_step_to 1100 80 430
+wait 30
+pcb_float_step_to 1100 80 430
+wait 30
+pcb_float_step_to 1100 80 430
+wait 30
+pcb_where
+waituntil near 1800
+pcb_mc_cmd fill 1096 79 428 1104 79 434 stone
+wait 60
+pcb_light_goto_mc 1100.5 80 430.5 90 0
+pcb_stop
+wait 30
+# the platform's collision must have streamed before Chell (in noclip until now) drops onto it and the cube is
+# spawned: bridge #12's run had both fall 27 blocks (the cube 3294 u away). It streams only once she is within the
+# collision export radius, so this waits here, after the move, not right after the fill (bridge #13)
+waituntil solid1096,79,428 1800
+waituntil solid1104,79,434 600
+waituntil solid1100,79,430 600
+pcb_column 1100 430
+pcb_noclip_set 0
+wait 60
+pcb_assert_feet_mcy 79.95 80.3
+pcb_light_cube_mc 1099 81 430.5
+wait 30
+waituntil stillpcb_cube 600
+pcb_aim_prop pcb_cube
+wait 10
++use
+wait 20
+-use
+waituntil holding 180
+setang 0 90 0
+wait 30
+pcb_assert_holding 1 pcb_cube
+pcb_assert_player_region 1
+pcb_frame_watch 150 home mcworld
+pcb_key_hold home 0.7
+wait 120
+pcb_frame_watch 0
+pcb_where
+pcb_assert_player_region 0 128 -160 -766 4
+wait 30
+pcb_assert_holding 1 pcb_cube
+pcb_assert_watch_nowhite
+pcb_assert_watch
+pcb_assert_ambience 0
+wait 40
+waituntil streamidle 600
+wait 120
+pcb_assert_float_home
+pcb_mc_cmd fill 1096 79 428 1104 79 434 air
+pcb_assert_mc_alive 30
+pcb_run_summary
+quit

@@ -1,0 +1,36 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+bridge_mode mc
+waituntil mcmode 2400
+waituntil mcleads 2400
+pcb_noclip_set 0
+wait 120
+pcb_mc_cmd attribute @p minecraft:max_health base set 20
+pcb_mc_reset_player
+wait 60
+pcb_mech_log 120
+pcb_test_block tb67_intro6
+pcb_log TB67 ---- intro6: drop into fling_safety_catapult in front of the fling portal (threshold plate, walker): no launch ----
+pcb_mc_reset_player
+wait 60
+waituntil mcalive 600
+wait 20
+pcb_assert_mech reset
+pcb_mc_place -302.0 0.0 340.0 180 400
+waituntil mcplaced 900
+wait 30
+pcb_setview 0 180
+wait 6
+pcb_assert_placed
+screenshot pcb_f67_i6_after
+wait 60
+pcb_assert_mech launches 0 0
+pcb_where
+pcb_mc_reset_player
+wait 30
+pcb_mech
+wait 30
+quit

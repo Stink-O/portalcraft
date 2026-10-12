@@ -1,0 +1,15 @@
+# startmc1 (lead): play_clip.sh --start mc: the level starts as the Minecraft player, riding the arrival elevator
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+pcb_assert_mc_mode 1
+waituntil mcleads 3600
+wait 120
+pcb_assert_mc_mode 1
+pcb_assert_body_clear
+pcb_where
+pcb_glhud_shot sm_elevator
+wait 20
+pcb_run_summary
+quit

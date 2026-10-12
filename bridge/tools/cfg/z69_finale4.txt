@@ -1,0 +1,146 @@
+# z69: sp_a4_finale4 ending (vehicle, moon portal, sucked out, teleport, credits) as the Minecraft player
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 600
+pcb_log Z69 finale4 pre
+pcb_glhud_shot z69h_pre
+pcb_where
+pcb_log Z69 stalemate button relay
+ent_fire stalemate_button_relay Trigger
+wait 120
+pcb_glhud_shot z69h_a00
+pcb_where
+wait 120
+pcb_glhud_shot z69h_a01
+pcb_where
+wait 120
+pcb_glhud_shot z69h_a02
+pcb_where
+wait 120
+pcb_glhud_shot z69h_a03
+pcb_where
+wait 120
+pcb_glhud_shot z69h_a04
+pcb_where
+wait 120
+pcb_glhud_shot z69h_a05
+pcb_where
+pcb_log Z69 J to chell
+bridge_mode toggle
+wait 120
+pcb_glhud_shot z69h_a06
+pcb_where
+wait 120
+pcb_glhud_shot z69h_a07
+pcb_where
+pcb_log Z69 J back
+bridge_mode toggle
+wait 120
+pcb_glhud_shot z69h_a08
+pcb_where
+wait 120
+pcb_glhud_shot z69h_a09
+pcb_where
+pcb_log Z69 ending_relay (moon portal hit)
+ent_fire ending_relay Trigger
+wait 180
+pcb_glhud_shot z69h_b00
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b01
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b02
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b03
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b04
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b05
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b06
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b07
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b08
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b09
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b10
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b11
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b12
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b13
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b14
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b15
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b16
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b17
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b18
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b19
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b20
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b21
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b22
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b23
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b24
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b25
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b26
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b27
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b28
+pcb_where
+wait 180
+pcb_glhud_shot z69h_b29
+pcb_where
+pcb_log Z69 walk
+pcb_mckey 26 1
+wait 120
+pcb_where
+pcb_mckey 26 0
+pcb_glhud_shot z69h_walk
+pcb_run_summary
+quit

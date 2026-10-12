@@ -1,0 +1,66 @@
+# pit8: pit transit with Chell's own gun, then ground on Minecraft terrain (SetGroundEntity hook):
+# walk speed, friction stop, jump, step onto a 1-block rise.
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 720
+pcb_terrain_stats
+noclip
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 60
+pcb_portal_check
+setpos 128 -384 -100
+setang 10 0 0
+noclip
+pcb_log A drop
+pcb_track 1200
+wait 100
+screenshot pcb_a_fling
+wait 170
+pcb_where
+pcb_collide
+pcb_log walk back (+X) 1 s
++back
+wait 60
+-back
+pcb_where
+wait 30
+pcb_log released 0.5 s
+pcb_where
+pcb_log jump
++jump
+wait 4
+-jump
+wait 20
+pcb_where
+wait 60
+pcb_where
+pcb_log strafe left 1.5 s
++moveleft
+wait 90
+-moveleft
+wait 30
+pcb_where
+pcb_log walk back again 2 s
++back
+wait 120
+-back
+wait 30
+pcb_where
+setang 15 180 0
+wait 30
+screenshot pcb_a_on_terrain
+wait 30
+pcb_collide
+quit

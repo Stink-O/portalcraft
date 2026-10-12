@@ -1,0 +1,117 @@
+# pit6: (1) the maps agent's pose captures on the final pc_pit_flings (same poses as maps/tools/cfg/pc.txt)
+# and the map-name shim; (2) pit transit with Chell's own gun (A), then with a portal_place pair (B).
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 180
+noclip
+setpos -560 -60 16
+setang 15 -60 0
+wait 50
+screenshot pcb_pose_a
+wait 20
+setpos 100 100 -200
+setang 45 -90 0
+wait 50
+screenshot pcb_pose_b
+wait 20
+setpos 300 -150 -760
+setang 5 -170 0
+wait 50
+screenshot pcb_pose_c
+wait 20
+setpos 64 -950 -760
+setang 0 -90 0
+wait 50
+screenshot pcb_pose_d
+wait 20
+setpos -896 1000 40
+setang 0 90 0
+wait 50
+screenshot pcb_pose_e
+wait 20
+setpos 528 1600 70
+setang 0 90 0
+wait 50
+screenshot pcb_pose_f
+wait 20
+script EntFire("@command", "Command", "pcb_log [maps] GetMapName=" + GetMapName(), 0)
+wait 10
+pcb_terrain_stats
+wait 600
+pcb_terrain_stats
+pcb_clip_exit
+pcb_cliff_scan
+# A: Chell's own gun. Orange on the white pit wall (y -512), then blue on the white pit floor.
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 60
+pcb_portal_check
+pcb_cliff
+wait 30
+screenshot pcb_a_look_down
+wait 40
+pcb_view_portal 1 320
+wait 60
+screenshot pcb_a_exit_on_cliff
+wait 30
+setpos 128 -384 -100
+setang 10 0 0
+noclip
+pcb_log A drop
+pcb_track 420
+wait 100
+screenshot pcb_a_fling_1
+wait 30
+screenshot pcb_a_fling_2
+wait 150
+pcb_where
+screenshot pcb_a_landed
+wait 30
++forward
+wait 60
+-forward
+pcb_where
++jump
+wait 5
+-jump
+wait 60
+pcb_where
+screenshot pcb_a_walked
+wait 30
+# B: fallback, both portals by portal_place (partner first), as bridge/tools/cfg/pit4.txt
+pc_reset
+wait 60
+noclip
+pcb_portal_wall 1 128 -300 -704 -90
+wait 30
+pcb_portal_floor 0 128 -384 -600
+wait 90
+pcb_portal_check
+setpos 128 -384 -500
+setang 89 0 0
+wait 60
+screenshot pcb_b_look_down
+wait 30
+setpos 128 -384 -100
+setang 10 0 0
+noclip
+pcb_log B drop
+pcb_track 420
+wait 130
+screenshot pcb_b_fling
+wait 150
+pcb_where
+screenshot pcb_b_landed
+wait 30
+quit

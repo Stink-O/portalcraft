@@ -1,0 +1,140 @@
+# z69: sp_a3_00 start (player_speedmod 0, the fall, potato end) as the Minecraft player
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+pcb_log Z69 a3_00 start
+pcb_glhud_shot z69g_00
+pcb_where
+wait 120
+pcb_glhud_shot z69g_01
+pcb_where
+wait 120
+pcb_glhud_shot z69g_02
+pcb_where
+wait 120
+pcb_glhud_shot z69g_03
+pcb_where
+pcb_log Z69 walk W during speedmod
+pcb_mckey 26 1
+wait 120
+pcb_glhud_shot z69g_04
+pcb_where
+wait 120
+pcb_glhud_shot z69g_05
+pcb_where
+pcb_mckey 26 0
+wait 120
+pcb_glhud_shot z69g_06
+pcb_where
+wait 120
+pcb_glhud_shot z69g_07
+pcb_where
+wait 120
+pcb_glhud_shot z69g_08
+pcb_where
+wait 120
+pcb_glhud_shot z69g_09
+pcb_where
+pcb_log Z69 J to chell
+bridge_mode toggle
+wait 120
+pcb_glhud_shot z69g_10
+pcb_where
+wait 120
+pcb_glhud_shot z69g_11
+pcb_where
+pcb_log Z69 J back
+bridge_mode toggle
+wait 120
+pcb_glhud_shot z69g_12
+pcb_where
+wait 120
+pcb_glhud_shot z69g_13
+pcb_where
+wait 120
+pcb_glhud_shot z69g_14
+pcb_where
+wait 120
+pcb_glhud_shot z69g_15
+pcb_where
+wait 120
+pcb_glhud_shot z69g_16
+pcb_where
+wait 120
+pcb_glhud_shot z69g_17
+pcb_where
+wait 120
+pcb_glhud_shot z69g_18
+pcb_where
+wait 120
+pcb_glhud_shot z69g_19
+pcb_where
+wait 120
+pcb_glhud_shot z69g_20
+pcb_where
+pcb_log Z69 fire potatos_end_relay
+ent_fire potatos_end_relay Trigger
+wait 120
+pcb_glhud_shot z69g_21
+pcb_where
+wait 120
+pcb_glhud_shot z69g_22
+pcb_where
+wait 120
+pcb_glhud_shot z69g_23
+pcb_where
+wait 120
+pcb_glhud_shot z69g_24
+pcb_where
+wait 120
+pcb_glhud_shot z69g_25
+pcb_where
+wait 120
+pcb_glhud_shot z69g_26
+pcb_where
+wait 120
+pcb_glhud_shot z69g_27
+pcb_where
+wait 120
+pcb_glhud_shot z69g_28
+pcb_where
+wait 120
+pcb_glhud_shot z69g_29
+pcb_where
+wait 120
+pcb_glhud_shot z69g_30
+pcb_where
+wait 120
+pcb_glhud_shot z69g_31
+pcb_where
+wait 120
+pcb_glhud_shot z69g_32
+pcb_where
+wait 120
+pcb_glhud_shot z69g_33
+pcb_where
+wait 120
+pcb_glhud_shot z69g_34
+pcb_where
+wait 120
+pcb_glhud_shot z69g_35
+pcb_where
+wait 120
+pcb_glhud_shot z69g_36
+pcb_where
+pcb_log Z69 walk after
+pcb_mckey 26 1
+wait 120
+pcb_glhud_shot z69g_37
+pcb_where
+wait 120
+pcb_glhud_shot z69g_38
+pcb_where
+pcb_mckey 26 0
+wait 120
+pcb_glhud_shot z69g_39
+pcb_where
+wait 120
+pcb_run_summary
+quit

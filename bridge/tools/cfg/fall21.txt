@@ -1,0 +1,56 @@
+# c20_smooth1 (bridge #20): the user's "the Minecraft player through portals isn't as smooth as Chell" and "he gets hurt
+# going through the portals". The same pair, Chell then the Minecraft player: walk, sprint, fall into a floor portal (fling).
+# pcb_view_track: the rendered camera unfolded through the pair (speed before/after, stalls, jumps); pcb_mc_hurt: damage.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600 abort
+waituntil mcalive 600 abort
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_wall 0 160 -416 -712 270
+wait 30
+pcb_audio_test_mute 1
+pcb_log D falls into a floor portal in the pit (portal 1 moved to the pit floor), out of the pit wall: Chell, then the Minecraft player
+bridge_mode chell
+waituntil chellmode 300
+pcb_portal_floor 1 128 -384 -600
+wait 30
+pcb_noclip_set 1
+setpos 128 -384 -400
+setang 89 90 0
+pcb_stop
+wait 30
+pcb_assert_transits reset
+pcb_view_track start
+pcb_noclip_set 0
+waituntil transit 600
+wait 60
+pcb_view_track report chell_fall
+pcb_noclip_set 1
+setpos 20 -384 -740
+setang 0 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 30
+bridge_mode mc
+waituntil mcmode 1200
+wait 150
+pcb_mc_hurt mark
+pcb_assert_transits reset
+pcb_view_track start
+pcb_mc_cmd tp @p -324.8 433.2 433.6
+waituntil transit 600
+wait 60
+pcb_view_track report mc_fall
+pcb_view_track assert 0 85 3
+wait 40
+pcb_mc_hurt assert 0
+pcb_assert_portal_held 0
+pcb_run_summary
+quit

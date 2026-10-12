@@ -1,0 +1,49 @@
+# audio1: Minecraft's listener and level per phase (Minecraft itself stays silent: pcb_audio_test_mute
+# is on in every scripted run): chamber far from the portals, near the pit portal, the fall through it
+# (crossing), in the region next to a mob; the level never jumps by more than 0.1 per frame.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_mc_volume 1
+pcb_portal 1 -560 -60 64 0 0 0
+wait 20
+pcb_portal_floor 0 128 -384 -600
+wait 60
+pcb_assert_redirect
+pcb_noclip_set 1
+pcb_log A1 chamber, far from the portals
+setpos 528 1744 70
+wait 60
+pcb_audio
+pcb_assert_audio reset
+wait 60
+pcb_assert_audio 0 0.01
+pcb_log A2 near the pit portal (about 3 blocks above it)
+pcb_assert_audio reset
+setpos 128 -384 -660
+setang 89 0 0
+wait 90
+pcb_audio 3
+pcb_assert_audio 0.6 1
+pcb_log A3 the fall through the pit portal (crossing)
+pcb_assert_audio reset
+setpos 128 -384 -300
+pcb_noclip_set 0
+wait 240
+pcb_audio 3
+pcb_assert_player_below -13000
+pcb_assert_audio 0.95 1 0.1
+pcb_log A4 in the region next to a zombie
+pcb_mc_summon_near zombie 3 0
+wait 120
+pcb_audio
+pcb_assert_audio 0.95 1 0.1
+pcb_mc_cmd kill @e[type=zombie]
+pcb_log A5 pause (console) silences Minecraft smoothly
+pcb_assert_audio reset
+pcb_assert_mc_alive 30
+pcb_run_summary
+quit

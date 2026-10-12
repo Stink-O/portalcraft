@@ -1,0 +1,75 @@
+# pit9: terrain streaming check (pcb_column vs CliffFinder's real-block profile), then the gun
+# transit, landing and ground movement on Minecraft terrain.
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 600
+pcb_terrain_stats
+wait 600
+pcb_terrain_stats
+wait 600
+pcb_terrain_stats
+pcb_column -331 424
+pcb_column -331 425
+pcb_column -345 424
+pcb_column -345 425
+pcb_column -357 424
+pcb_column -357 425
+pcb_column -365 424
+pcb_column -365 425
+pcb_column -369 424
+pcb_column -369 425
+pcb_column -373 424
+pcb_column -373 425
+pcb_column -377 424
+pcb_column -377 425
+pcb_column -381 424
+pcb_column -381 425
+noclip
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 60
+setpos 128 -384 -100
+setang 10 0 0
+noclip
+pcb_log A drop
+pcb_track 1200
+wait 270
+pcb_where
+pcb_log walk back (+X) 1 s
++back
+wait 60
+-back
+pcb_where
+wait 30
+pcb_log released 0.5 s
+pcb_where
+pcb_log jump
++jump
+wait 4
+-jump
+wait 20
+pcb_where
+wait 60
+pcb_where
+pcb_log strafe left 1 s
++moveleft
+wait 60
+-moveleft
+wait 30
+pcb_where
+setang 15 180 0
+wait 30
+screenshot pcb_a_on_terrain
+pcb_collide
+quit

@@ -1,0 +1,62 @@
+Portalcraft
+Copyright (c) 2026 Stink-O, MIT License (see LICENSE).
+
+Portalcraft is an independent fan project. It is not affiliated with or endorsed
+by Valve, Mojang, Microsoft or the authors of the projects below. Portal 2 and
+Minecraft are not included; you need your own copies, and Portalcraft only reads
+the files you already own on your own machine.
+
+Third-party code and ideas
+--------------------------
+
+SkyCraft by chasmlol (https://github.com/chasmlol/SkyCraft)
+  MIT License, Copyright (c) 2026 chasmlol.
+  The Minecraft side of Portalcraft (bridge/fabric) is derived from SkyCraft's
+  Fabric mod, and the architecture (a host-game plugin drawing Minecraft's own
+  meshes, fed over shared memory by a hidden Minecraft with a Fabric mod)
+  follows it. The licence text is bridge/fabric/LICENSE-SkyCraft and is
+  shipped inside the mod jar.
+
+SourceAutoRecord by the p2sr contributors (https://github.com/p2sr/SourceAutoRecord)
+  MIT License, Copyright (c) 2021 The SAR authors.
+  bridge/src/sar is a trimmed fork of its plugin framework (interface lookup,
+  signature scanning, hooks, the "Portal 2 10090" offset tables).
+  Licence text: bridge/src/sar/LICENSE-SourceAutoRecord.
+
+LodePNG 20120729 by Lode Vandevenne (as carried in SourceAutoRecord)
+  zlib licence, Copyright (c) 2005-2012 Lode Vandevenne.
+  bridge/src/sar/Utils/lodepng.*; the licence text is in the file headers.
+
+Create by The Creators of Create (https://github.com/Creators-of-Create/Create)
+  MIT License, Copyright (c) The Create Team / The Creators of Create (code
+  only; no assets are used).
+  The collision of moving structures in bridge/fabric/.../world/SkyMovers.java
+  is adapted from Create's ContraptionCollider / ContinuousOBBCollider.
+  Licence text: bridge/fabric/LICENSE-Create, shipped inside the mod jar.
+
+Immersive Portals by qouteall (https://github.com/iPortalTeam/ImmersivePortalsMod)
+  Apache License 2.0. Approach only, no code copied: the idea of which player
+  fields must move with the player through a portal, and the rendering
+  approach for portal views.
+
+Libraries downloaded at build or run time and not redistributed here: Fabric
+Loader, Fabric API and Fabric Loom (Apache-2.0 and the Fabric licences),
+Gradle (Apache-2.0).
+
+
+Barlow by The Barlow Project Authors (https://github.com/jpt/barlow)
+  SIL Open Font License 1.1, Copyright 2017 The Barlow Project Authors.
+  The launcher's typeface (launcher/assets/fonts/Barlow-*.ttf), embedded in the
+  launcher binary. Licence text: launcher/assets/fonts/OFL.txt.
+
+Fonts inside the launcher binary: the egui toolkit's default fonts (Ubuntu-Light, Hack,
+NotoEmoji, emoji-icon-font) are embedded by the eframe/egui crates under their own licences
+(SIL OFL 1.1, Ubuntu Font Licence 1.0, MIT/Apache-2.0); see launcher/THIRD-PARTY-LICENSES.md.
+
+Rust crates linked into the launcher: launcher/THIRD-PARTY-LICENSES.md lists every crate with its licence.
+
+Prism Launcher (https://prismlauncher.org, GPL-3.0) is NOT part of this repository and is not
+redistributed by it. The Portalcraft launcher downloads Prism, at the player's request, on the player's own
+machine, from Prism's own GitHub release (pinned by sha256 in launcher/pins.json), and runs it as a separate
+program. The same goes for Fabric API (Modrinth), Fabric Loader, Minecraft and Java: fetched from their own
+sources on the player's machine, never shipped here.

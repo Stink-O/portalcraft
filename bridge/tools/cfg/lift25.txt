@@ -1,0 +1,73 @@
+# lift25 (bridge #25, the user's report): pc_pit_flings's arm lift (prop_dynamic upthroughfloor_motionplatform, parented to the
+# nodraw func_door lift3_rm5 9 s after start_platform_relay; 510 u of travel at 102 u/s) carries the Minecraft player. The map
+# drives it from the laser catcher: powered -> relay_lift3_up -> lift3_rm5 Close (up, panel top flush with the pit floor at
+# about -768); unpowered -> relay_lift3_down -> Open (down 510 u). The relays are enabled by companion_cube_trigger, the arm
+# comes up through the floor from start_platform_relay (power_relay, which also turns the laser on).
+# The Minecraft player stands on the panel at the top, rides it down (laser off) and back up (laser on).
+# Asserts per ride: Minecraft rode the live platform itself (>= 20 ticks, no fall guard catch), its feet moved 470-540 u.
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+ent_fire relay_lift3_up enable
+ent_fire relay_lift3_down enable
+ent_fire power_relay trigger
+wait 720
+pcb_log L1 the arm is up: stand on its panel
+pcb_find lift3_rm5
+pcb_find upthroughfloor_motionplatform
+pcb_stand_on upthroughfloor_motionplatform
+wait 40
+pcb_where
+bridge_mode mc
+waituntil mcleads 2400
+wait 90
+pcb_where
+pcb_setview 30 90
+wait 2
+pcb_glhud_shot l25_a_top
+pcb_log L2 ride down (laser off)
+pcb_assert_mc_rise reset
+pcb_assert_mc_rode reset
+ent_fire laser turnoff
+wait 120
+pcb_where
+pcb_movers near 300
+pcb_setview 0 90
+wait 2
+pcb_glhud_shot l25_b_down_mid
+wait 300
+pcb_where
+pcb_movers near 300
+pc_mc_fall_guard
+pcb_assert_mc_rode 20 0
+pcb_assert_mc_rise -540 -470
+pcb_setview 60 90
+wait 2
+pcb_glhud_shot l25_c_bottom
+pcb_log L3 ride up (laser on)
+pcb_assert_mc_rise reset
+pcb_assert_mc_rode reset
+ent_fire laser turnon
+wait 150
+pcb_where
+pcb_movers near 300
+pcb_setview 0 90
+wait 2
+pcb_glhud_shot l25_d_up_mid
+pcb_setview 60 90
+wait 2
+pcb_glhud_shot l25_d_up_mid_down
+wait 300
+pcb_where
+pcb_movers near 300
+pc_mc_fall_guard
+pcb_assert_mc_rode 20 0
+pcb_assert_mc_rise 470 540
+pcb_setview 20 90
+wait 2
+pcb_glhud_shot l25_e_top
+pcb_assert_body_clear
+pcb_assert_mc_mode 1
+pcb_run_summary
+quit

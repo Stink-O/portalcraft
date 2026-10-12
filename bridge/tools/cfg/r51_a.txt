@@ -1,0 +1,63 @@
+# r51_a (bridge #51): facing portals in a campaign chamber, Chell: stock vs our features (no dig / dig + toggles)
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+bridge_mode chell
+waituntil chellmode 900
+wait 90
+pcb_noclip_set 1
+crosshair 0
+r_drawviewmodel 0
+pcb_log R51 place facing portals from (-495 -640 1200)
+pcb_portal_wall 0 -495 -640 1200 90
+pcb_portal_wall 1 -495 -640 1200 270
+wait 120
+setpos -495 -640 1150
+setang 0 0 0
+wait 60
+screenshot pcb_r51_a1_alongx
+setang 0 180 0
+wait 20
+screenshot pcb_r51_a2_alongmx
+setang 0 90 0
+wait 20
+screenshot pcb_r51_a3_atp0
+setang 0 270 0
+wait 20
+screenshot pcb_r51_a4_atp1
+pc_vis_clamp
+pc_dig_punch
+pc_dig_peel
+pcb_log R51 phase B: dig the floor 150 u along +x
+setpos -345 -640 1150
+wait 20
+pcb_dig_under 2
+wait 20
+pcb_dig_box -380 -672 1140 -310 -608 1152
+setpos -495 -640 1150
+setang 0 0 0
+wait 60
+screenshot pcb_r51_b1_dig_default
+pc_dig_punch
+pc_dig_peel
+pc_dig_peel 0
+wait 10
+screenshot pcb_r51_b2_peel0
+pc_dig_peel 1
+pc_dig_punch 0
+wait 10
+screenshot pcb_r51_b3_punch0
+pc_dig_punch 1
+pc_vis_clamp 0 0
+wait 10
+screenshot pcb_r51_b4_visclamp0
+pc_vis_clamp 1 1
+setang 0 90 0
+wait 20
+screenshot pcb_r51_b5_atp0
+setang 0 270 0
+wait 20
+screenshot pcb_r51_b6_atp1
+pcb_log R51 done
+quit

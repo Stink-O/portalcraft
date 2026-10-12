@@ -1,0 +1,22 @@
+# unload1 (bridge #14): reproduce the hang at plugin unload after a Minecraft-mode death and reload (mcchamber1).
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_audio_test_mute 1
+pcb_noclip_set 1
+setpos -298 -416 -100
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+wait 60
+kill
+wait 240
+waituntil mcleads 3600
+wait 120
+pcb_run_summary
+quit

@@ -1,0 +1,29 @@
+# lighting calibration: vertex colour = light * K (the shader treats vertex colour as linear)
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 120
+noclip
+pcb_block -40 300 0 0
+pcb_block 0 300 0 1
+pcb_block -20 300 40 2
+pcb_block -100 250 0 0
+setpos -10 170 0
+setang 12 90 0
+wait 40
+pcb_light 2 1 0
+wait 10
+screenshot pcb_k2
+wait 20
+pcb_light 4 1 0
+wait 10
+screenshot pcb_k4
+wait 20
+pcb_light 8 1 0
+wait 10
+screenshot pcb_k8
+wait 20
+pcb_light 16 1 0
+wait 10
+screenshot pcb_k16
+wait 20
+quit

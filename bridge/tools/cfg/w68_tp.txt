@@ -1,0 +1,17 @@
+# w68: a map-style teleport of the body (setpos) as the Minecraft player: how long until Minecraft leads again, and no fall
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 7200
+wait 900
+pcb_log W68 teleport
+setpos 10520 1216 250
+wait 600
+pcb_where
+pcb_log W68 teleport2
+setpos 6976 496 390
+wait 600
+pcb_where
+pcb_run_summary
+quit

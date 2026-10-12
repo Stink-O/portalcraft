@@ -1,0 +1,174 @@
+# mcp6: Portal 2's visible opening measured on a valid pair (corridor in open air): pcb_measure_hole (bridge #7)
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_noclip_set 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd weather clear
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+wait 60
+pcb_log CASE corridor (built)
+waituntil terrain_idle 1200
+pcb_find_surface ground 24 -1
+pcb_build_corridor 12
+wait 30
+waituntil corridor 1200
+pcb_corridor_aim 0
+wait 20
++attack
+wait 6
+-attack
+wait 40
+pcb_corridor_aim 1
+wait 20
++attack2
+wait 6
+-attack2
+wait 90
+pcb_assert_portals
+pcb_assert_portal_face
+pcb_mc_portals_shape 32 56 0 3
+r_drawviewmodel 0
+pcb_view_portal 0 120 0 1
+wait 60
+pcb_measure_hole 0 40 p0_d3
+wait 60
+r_drawparticles 0
+wait 10
+pcb_measure_hole 0 40 p0_d3_noparticles_max max
+wait 60
+r_drawparticles 1
+wait 60
+screenshot pcb_hole_p0_d3
+pcb_view_portal 0 40 0 1
+wait 60
+pcb_measure_hole 0 40 p0_d1
+wait 60
+r_drawparticles 0
+wait 10
+pcb_measure_hole 0 40 p0_d1_noparticles_max max
+wait 60
+r_drawparticles 1
+wait 60
+screenshot pcb_hole_p0_d1
+pcb_view_portal 0 120 45 1
+wait 60
+pcb_measure_hole 0 40 p0_d3a45
+wait 60
+r_drawparticles 0
+wait 10
+pcb_measure_hole 0 40 p0_d3a45_noparticles_max max
+wait 60
+r_drawparticles 1
+wait 60
+screenshot pcb_hole_p0_d3a45
+pcb_view_portal 0 40 45 1
+wait 60
+pcb_measure_hole 0 40 p0_d1a45
+wait 60
+r_drawparticles 0
+wait 10
+pcb_measure_hole 0 40 p0_d1a45_noparticles_max max
+wait 60
+r_drawparticles 1
+wait 60
+screenshot pcb_hole_p0_d1a45
+pcb_view_portal 1 120 0 1
+wait 60
+pcb_measure_hole 1 40 p1_d3
+wait 60
+r_drawparticles 0
+wait 10
+pcb_measure_hole 1 40 p1_d3_noparticles_max max
+wait 60
+r_drawparticles 1
+wait 60
+screenshot pcb_hole_p1_d3
+pcb_view_portal 1 40 0 1
+wait 60
+pcb_measure_hole 1 40 p1_d1
+wait 60
+r_drawparticles 0
+wait 10
+pcb_measure_hole 1 40 p1_d1_noparticles_max max
+wait 60
+r_drawparticles 1
+wait 60
+screenshot pcb_hole_p1_d1
+pcb_view_portal 1 120 45 1
+wait 60
+pcb_measure_hole 1 40 p1_d3a45
+wait 60
+r_drawparticles 0
+wait 10
+pcb_measure_hole 1 40 p1_d3a45_noparticles_max max
+wait 60
+r_drawparticles 1
+wait 60
+screenshot pcb_hole_p1_d3a45
+pcb_view_portal 1 40 45 1
+wait 60
+pcb_measure_hole 1 40 p1_d1a45
+wait 60
+r_drawparticles 0
+wait 10
+pcb_measure_hole 1 40 p1_d1a45_noparticles_max max
+wait 60
+r_drawparticles 1
+wait 60
+screenshot pcb_hole_p1_d1a45
+pcb_mc_portals_shape 32 56 0 0
+r_drawviewmodel 1
+pcb_view_portal 0 120 0 1
+wait 60
+screenshot pcb_rim_p0_d3
+pcb_view_portal 0 40 0 1
+wait 60
+screenshot pcb_rim_p0_d1
+pcb_view_portal 0 120 45 1
+wait 60
+screenshot pcb_rim_p0_d3a45
+pcb_view_portal 1 120 0 1
+wait 60
+screenshot pcb_rim_p1_d3
+pcb_view_portal 1 40 0 1
+wait 60
+screenshot pcb_rim_p1_d1
+pcb_view_portal 1 120 45 1
+wait 60
+screenshot pcb_rim_p1_d3a45
+pcb_log CASE chamber pair (Portal 2's own portals, for comparison)
+setpos 128 -300 -768
+setang 0 -90 0
+wait 30
++attack2
+wait 6
+-attack2
+wait 40
+setpos 128 -384 -500
+setang 89 0 0
+wait 30
++attack
+wait 6
+-attack
+wait 60
+pcb_view_portal 1 120 0 1
+wait 60
+screenshot pcb_chamber_p1_d3
+pcb_view_portal 1 40 0 1
+wait 60
+screenshot pcb_chamber_p1_d1
+pcb_view_portal 1 120 45 1
+wait 60
+screenshot pcb_chamber_p1_d3a45
+pcb_build_corridor remove
+wait 30
+pcb_run_summary
+quit

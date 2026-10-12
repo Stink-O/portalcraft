@@ -1,0 +1,9 @@
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+wait 200
+pcb_mc_cmd gamerule fall_damage
+wait 60
+pcb_mc_cmd gamerule minecraft:fall_damage
+wait 60
+quit

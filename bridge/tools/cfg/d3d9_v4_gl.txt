@@ -1,0 +1,68 @@
+# d3d9_v4_gl: PLAN-vulkan V4 on -vulkan: the D3D9 conventions the Minecraft composite relies on (d3d9v4.cpp: alpha test, half pixel, upload cost, depth of every pixel), then the
+# composite itself in the Minecraft region at several background depths (kFarZ), to see where the background stops showing (= the sky's depth), the same sweep as the GL twin
+# d3d9_v4_gl.txt (shots g4_*). pc_pit_flings, terrain mode.
+# Run: PCB_GAME_ARGS=-vulkan PCB_SO=<abs>/d3d9c-x.so tools/locked_run.sh terrain tools/cfg/d3d9_v4.txt pc_pit_flings 900 d3d9_v4
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pc_pit_redirect 0
+pcb_chell_proxy 0
+pcb_mc_cmd time set noon
+pcb_noclip_set 1
+pcb_log V4 conventions
+wait 20
+wait 20
+wait 30
+pcb_log V4 depth in the chamber
+setpos -298 -416 -60
+setang 0 180 0
+wait 60
+wait 10
+wait 10
+pcb_log V4 region
+setpos -1911 -194 -15100
+pcb_stop
+wait 30
+waituntil near 1800
+waituntil terrain_idle 1200
+setang -30 0 0
+pcb_setview -30 0
+wait 90
+pcb_composite_farz
+pcb_composite_lag
+pcb_glhud_shot g4_region_default
+wait 10
+wait 10
+wait 10
+pcb_composite_lag
+pcb_log V4 background depth sweep
+pcb_composite_farz 0.9990
+wait 40
+pcb_glhud_shot g4_z9990
+wait 10
+pcb_composite_farz 0.9997
+wait 40
+pcb_glhud_shot g4_z9997
+wait 10
+pcb_composite_farz 0.9998
+wait 40
+pcb_glhud_shot g4_z9998
+pcb_composite_farz 0.99985
+wait 40
+pcb_glhud_shot g4_z99985
+pcb_composite_farz 0.9999
+wait 40
+pcb_glhud_shot g4_z9999
+pcb_composite_farz 0.99995
+wait 40
+pcb_glhud_shot g4_z99995
+pcb_composite_farz 0.99999
+wait 40
+pcb_glhud_shot g4_z99999
+wait 10
+pcb_composite_farz 0
+wait 30
+pcb_composite_lag
+quit

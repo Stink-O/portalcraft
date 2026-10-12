@@ -1,0 +1,10 @@
+# reg_probe (Linux regression 2026-10-11): pcb_probe_slots after a map is up, then quit
+pcb_assert_soft 1
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+pcb_probe_slots 4
+wait 60
+pcb_run_summary
+quit

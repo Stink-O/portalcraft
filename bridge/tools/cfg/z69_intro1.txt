@@ -1,0 +1,117 @@
+# z69: sp_a1_intro1 start (viewcontrol + viewproxy, bed, vault) as the Minecraft player
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+pcb_log Z69 intro1 start
+pcb_glhud_shot z69j_00
+pcb_where
+wait 150
+pcb_glhud_shot z69j_01
+pcb_where
+wait 150
+pcb_glhud_shot z69j_02
+pcb_where
+wait 150
+pcb_glhud_shot z69j_03
+pcb_where
+wait 150
+pcb_glhud_shot z69j_04
+pcb_where
+wait 150
+pcb_glhud_shot z69j_05
+pcb_where
+wait 150
+pcb_glhud_shot z69j_06
+pcb_where
+wait 150
+pcb_glhud_shot z69j_07
+pcb_where
+wait 150
+pcb_glhud_shot z69j_08
+pcb_where
+wait 150
+pcb_glhud_shot z69j_09
+pcb_where
+wait 150
+pcb_glhud_shot z69j_10
+pcb_where
+wait 150
+pcb_glhud_shot z69j_11
+pcb_where
+wait 150
+pcb_glhud_shot z69j_12
+pcb_where
+wait 150
+pcb_glhud_shot z69j_13
+pcb_where
+wait 150
+pcb_glhud_shot z69j_14
+pcb_where
+wait 150
+pcb_log Z69 J to chell
+bridge_mode toggle
+pcb_glhud_shot z69j_15
+pcb_where
+wait 150
+pcb_glhud_shot z69j_16
+pcb_where
+wait 150
+pcb_log Z69 J back
+bridge_mode toggle
+pcb_glhud_shot z69j_17
+pcb_where
+wait 150
+pcb_glhud_shot z69j_18
+pcb_where
+wait 150
+pcb_glhud_shot z69j_19
+pcb_where
+wait 150
+pcb_glhud_shot z69j_20
+pcb_where
+wait 150
+pcb_glhud_shot z69j_21
+pcb_where
+wait 150
+pcb_glhud_shot z69j_22
+pcb_where
+wait 150
+pcb_glhud_shot z69j_23
+pcb_where
+wait 150
+pcb_glhud_shot z69j_24
+pcb_where
+wait 150
+pcb_glhud_shot z69j_25
+pcb_where
+wait 150
+pcb_glhud_shot z69j_26
+pcb_where
+wait 150
+pcb_glhud_shot z69j_27
+pcb_where
+wait 150
+pcb_glhud_shot z69j_28
+pcb_where
+wait 150
+pcb_log Z69 walk
+pcb_mckey 26 1
+pcb_glhud_shot z69j_29
+pcb_where
+wait 150
+pcb_glhud_shot z69j_30
+pcb_where
+wait 150
+pcb_glhud_shot z69j_31
+pcb_where
+wait 150
+pcb_mckey 26 0
+pcb_glhud_shot z69j_32
+pcb_where
+wait 150
+pcb_glhud_shot z69j_33
+pcb_where
+wait 150
+pcb_run_summary
+quit

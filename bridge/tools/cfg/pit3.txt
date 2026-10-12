@@ -1,0 +1,12 @@
+# redirect input test: both portals placed first with portal_place, then the floor one triggers the redirect
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 60
+wait 1800
+pcb_portal_wall 1 400 100 0 0
+wait 30
+pcb_portal_check
+pcb_portal_floor 0 224 -64 200
+wait 90
+pcb_portal_check
+quit

@@ -1,0 +1,43 @@
+# startmc26 (bridge #26): start any map as the Minecraft player (PCB_PRE="pc_start_mode mc"), no map-specific numbers. Whatever moves
+# under the spawn (an arrival elevator) is ridden by Minecraft itself: carried ticks, no fall guard catch, feet steady relative to it
+# every frame, body clear; the run then lists the movers.
+#   PCB_PRE="pc_start_mode mc" PCB_SO=<abs .so> tools/locked_run.sh mirror tools/cfg/startmc26.txt <map> 300 <run>
+pcb_assert_soft 1
+pcb_assert_mc_feet_above reset
+pcb_assert_mc_rode reset
+waituntil spawned 600
+waituntil link 9000
+waituntil mcmode 2400
+pcb_ride_track reset
+pcb_assert_mc_mode 1
+pcb_where
+pcb_setview 0 90
+wait 2
+pcb_glhud_shot s26g_d0
+wait 40
+pcb_setview 55 90
+wait 2
+pcb_glhud_shot s26g_d1_down
+pcb_where
+wait 40
+pcb_setview 0 90
+wait 2
+pcb_glhud_shot s26g_d2
+pcb_where
+waituntil mcleads 3600
+wait 400
+pcb_where
+pc_mc_fall_guard
+pcb_assert_mc_rode 10 0
+pcb_ride_track assert 0.5 20
+pcb_assert_mc_feet_above -1e9 0
+pcb_assert_mc_mode 1
+pcb_assert_body_clear
+pcb_assert_mc_flag ground 1
+pcb_setview 10 90
+wait 2
+pcb_glhud_shot s26g_end
+pcb_movers write
+wait 20
+pcb_run_summary
+quit

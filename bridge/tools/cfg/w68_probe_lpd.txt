@@ -1,0 +1,11 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+ent_fire incinerator_entry_portal_1 SetPartner incinerator_entry_portal_2
+ent_fire incinerator_entry_portal_1 Open
+wait 120
+pc_ent_handles
+pcb_dump_fields portal_base2D m_
+quit

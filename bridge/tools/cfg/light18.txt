@@ -1,0 +1,162 @@
+# light18 (bridge #18, Owner A item 1): placed blocks lit by Portal 2 in pc_pit_flings's chamber, side by side with
+#legacy-cliff-shift (bridge #81: the Minecraft coordinates below are the original cliff's; pcb_script moves them to the world.conf cliff, see worldconf.hpp)
+# Minecraft's own view at the same pose (pcb_mc_native -> cache/bridge/mcnative/), and the lighting variants.
+# Builds a small test set by commands (cleared first): a 3x2 planks patch on the floor, a stone + white concrete column,
+# a planks block on the west wall, glowstone on the patch, a torch on the floor; a Portal 2 cube beside them.
+# Run: PCB_SO=<abs .so> tools/locked_run.sh terrain tools/cfg/light18.txt pc_pit_flings 600 a18_light<N>
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_mc_cmd time set noon
+pcb_mc_cmd gamemode creative
+pcb_mc_cmd gamerule doDaylightCycle false
+pcb_mc_cmd weather clear
+pcb_log A build
+pcb_noclip_set 1
+setpos -420 -416 -100
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 90
+bridge_mode mc
+waituntil mcmode 1200
+pcb_mc_cmd fill -342 440 431 -334 445 438 minecraft:air
+wait 30
+pcb_mc_cmd fill -337 440 434 -335 440 435 minecraft:oak_planks
+pcb_mc_cmd setblock -339 440 432 minecraft:stone
+pcb_mc_cmd setblock -339 441 432 minecraft:white_concrete
+pcb_mc_cmd setblock -341 442 434 minecraft:oak_planks
+pcb_mc_cmd setblock -336 441 434 minecraft:glowstone
+pcb_mc_cmd setblock -338 440 436 minecraft:torch
+pcb_mc_cmd setblock -340 440 437 minecraft:lantern
+waituntil solid-336,441,434 300
+wait 60
+pcb_light_cube_mc -337.5 441.5 437
+wait 90
+pcb_band_stats
+pcb_band_light_stats
+pcb_p2light_mc -337.5 441.5 437
+wait 5
+pcb_p2light_mc -336.5 441.5 435
+wait 5
+pcb_p2light_mc -339.5 441.5 433
+wait 5
+pcb_band_skirts 1
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:air
+pcb_log B pose 1
+pcb_aim_mc -337.5 440.5 434.5
+wait 60
+pcb_glhud_shot a18_p1_new
+pcb_mc_native a18_p1
+wait 40
+pc_mc_hud_under_ui 0
+wait 6
+pcb_glhud_shot a18_ui_atswap
+wait 6
+pc_mc_hud_under_ui 1
+wait 6
+pcb_glhud_shot a18_ui_under
+wait 6
+pcb_band_light 1 1
+wait 30
+pcb_glhud_shot a18_p1_old17
+pcb_band_light 2 1 0.15
+wait 30
+pcb_glhud_shot a18_p1_bk015
+pcb_band_light 2 1 0.5
+wait 30
+pcb_glhud_shot a18_p1_bk05
+pcb_band_light 2 1 0.3
+pcb_band_skirts 0
+wait 30
+pcb_glhud_shot a18_p1_noskirt
+pcb_band_skirts 1
+pcb_band_ao 0.5 1.0
+wait 30
+pcb_glhud_shot a18_p1_skirt1
+pcb_band_ao 0.5 0.42
+pcb_band_ao 0 0.42
+wait 30
+pcb_glhud_shot a18_p1_noao
+pcb_band_ao 0.5 0.42
+wait 30
+pcb_log C pose 2 (close, from the side)
+pcb_mc_cmd tp @p -333.5 441 437.5
+wait 60
+pcb_aim_mc -337 440.5 434 72
+wait 60
+pcb_where
+pcb_glhud_shot a18_p2_new
+pcb_mc_native a18_p2
+wait 40
+pcb_band_light 1 1
+wait 30
+pcb_glhud_shot a18_p2_old17
+pcb_band_light 2 1
+wait 30
+pcb_log C2 block lights (item 2): torch and lantern light the walls, the floor and the cube
+r_dlightsenable
+r_dynamic
+r_maxdlights
+pcb_blocklights
+pcb_assert_blocklights 1
+pcb_mc_cmd tp @p -336.5 441 440.5
+wait 60
+pcb_aim_mc -338.5 440.6 436 64
+wait 40
+pcb_glhud_shot a18_bl_on
+pcb_mc_native a18_bl
+wait 30
+pc_mc_blocklights 1 0.25
+wait 20
+pcb_glhud_shot a18_bl_025
+pc_mc_blocklights 1 0.7
+wait 20
+pcb_glhud_shot a18_bl_07
+pc_mc_blocklights 0
+wait 30
+pcb_glhud_shot a18_bl_off
+pcb_p2light_mc -337.5 441.5 437
+wait 5
+pcb_p2light_mc -336.5 441.5 435
+wait 5
+pc_mc_blocklights 1 0.4
+wait 10
+pcb_log D calibration ramp
+pcb_light_ramp 1
+wait 20
+pcb_glhud_shot a18_ramp_auto
+mat_force_tonemap_scale 1
+wait 20
+pcb_glhud_shot a18_ramp_ts1
+mat_force_tonemap_scale 2
+wait 20
+pcb_glhud_shot a18_ramp_ts2
+mat_force_tonemap_scale 0
+pcb_light_ramp 0
+pcb_log E fog
+fog_override 1
+fog_enable 1
+fog_color 255 0 0
+fog_start 0
+fog_end 400
+fog_maxdensity 1
+wait 20
+pcb_glhud_shot a18_p2_fog
+fog_override 0
+wait 10
+pcb_band_light_stats
+pcb_band_stats
+pcb_mc_cmd fill -342 440 431 -334 445 438 minecraft:air
+wait 30
+bridge_mode chell
+waituntil chellmode 300
+wait 30
+pcb_run_summary
+quit

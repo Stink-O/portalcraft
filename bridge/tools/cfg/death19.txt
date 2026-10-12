@@ -1,0 +1,45 @@
+# death19 (bridge #19): the host owns death (the user's decision, SkyCraft parity). The Minecraft player is killed in the
+# chamber: Portal 2's death (fade) and checkpoint reload, no Minecraft death screen; afterwards the Minecraft player is at the
+# reload spot, alive, still the player.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+pcb_noclip_set 1
+setpos -420 -416 -100
+setang 0 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+bridge_mode mc
+waituntil mcmode 1200
+wait 60
+pcb_mc_cmd gamemode survival
+pcb_assert_combat reset
+pcb_glhud_shot dt_a_before
+pcb_log A kill
+pcb_mc_cmd kill @p
+wait 15
+pcb_glhud_shot dt_b_fade1
+wait 30
+pcb_glhud_shot dt_b_fade2
+screenshot pcb_dt_b_fade2
+pcb_assert_combat deaths 1
+wait 60
+pcb_glhud_shot dt_b_fade3
+wait 400
+waituntil spawned 1200
+waituntil mcleads 1800
+wait 120
+pcb_where
+pcb_assert_mc_mode 1
+pcb_assert_mc_living 1
+pcb_glhud_shot dt_c_after
+screenshot pcb_dt_c_after
+pcb_run_summary
+quit

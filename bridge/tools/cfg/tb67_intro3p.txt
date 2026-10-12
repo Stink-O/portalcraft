@@ -1,0 +1,49 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 300
+bridge_mode mc
+waituntil mcmode 2400
+waituntil mcleads 2400
+pcb_noclip_set 0
+wait 120
+pcb_mc_cmd attribute @p minecraft:max_health base set 20
+pcb_mc_reset_player
+wait 60
+pcb_mech_log 200
+pcb_test_block i3_push
+pcb_log TB67 ---- intro3: podium_collapse_push_brush (trigger_push, clients flag, 300 u/s, StartDisabled): enabled while the Minecraft player stands in it -> pushed along Portal 2's own push (inward, -x) ----
+pcb_mc_reset_player
+wait 60
+waituntil mcalive 600
+wait 20
+pcb_mc_place -8 848 977 180 12
+waituntil mcplaced 900
+wait 6
+pcb_assert_placed
+pcb_setview 0 180
+wait 30
+pcb_mcm reset
+pcb_assert_mech reset
+wait 30
+pcb_assert_mech pushes 0 0
+pcb_assert_mcm dist_h 0 3
+pcb_where
+ent_fire podium_collapse_push_brush Enable
+wait 6
+screenshot pcb_f67_i3_push_a
+wait 12
+pcb_where
+screenshot pcb_f67_i3_push_b
+wait 40
+pcb_assert_mech pushes 1
+pcb_assert_mcm dx -120 -8
+pcb_assert_mcm dy -6 6
+pcb_where
+ent_fire podium_collapse_push_brush Disable
+wait 60
+pcb_where
+pcb_mech
+wait 30
+quit

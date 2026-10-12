@@ -1,0 +1,161 @@
+sv_cheats 1
+pcb_assert_soft 1
+waituntil spawned 600
+waituntil link 9000
+wait 200
+noclip
+pcb_probe 0 0 64
+pcb_probe 700 700 64
+pcb_probe -700 -700 200
+pcb_goto tb_spot_portals 64
+wait 150
+pcb_face tb_panel_wall_back
+wait 30
+pcb_glhud_shot tb_probe_portals
+pcb_probe -800 -1280 56
+pcb_goto tb_spot_fling 64
+wait 150
+pcb_face tb_panel_floor_fling
+wait 30
+pcb_glhud_shot tb_probe_fling
+pcb_probe -320 -1280 56
+pcb_goto tb_spot_arrival 64
+wait 150
+pcb_face arrival_elevator-elevator_1
+wait 30
+pcb_glhud_shot tb_probe_arrival
+pcb_probe 0 -1280 56
+pcb_goto tb_spot_mc 64
+wait 150
+pcb_face tb_panel_wall_mc
+wait 30
+pcb_glhud_shot tb_probe_mc
+pcb_probe 320 -1280 56
+pcb_goto tb_spot_dark 64
+wait 150
+pcb_face tb_dark_wall
+wait 30
+pcb_glhud_shot tb_probe_dark
+pcb_probe 640 -1280 56
+pcb_goto tb_spot_bright 64
+wait 150
+pcb_face tb_bright_wall
+wait 30
+pcb_glhud_shot tb_probe_bright
+pcb_probe 960 -1280 56
+pcb_goto tb_spot_lift 64
+wait 150
+pcb_face tb_lift
+wait 30
+pcb_glhud_shot tb_probe_lift
+pcb_probe -960 1280 56
+pcb_goto tb_spot_doorh 64
+wait 150
+pcb_face tb_door_h
+wait 30
+pcb_glhud_shot tb_probe_doorh
+pcb_probe -640 1280 56
+pcb_goto tb_spot_mlinear 64
+wait 150
+pcb_face tb_movelinear
+wait 30
+pcb_glhud_shot tb_probe_mlinear
+pcb_probe -320 1280 56
+pcb_goto tb_spot_departure 64
+wait 150
+pcb_face @exit_door
+wait 30
+pcb_glhud_shot tb_probe_departure
+pcb_probe 0 1280 56
+pcb_goto tb_spot_train 64
+wait 150
+pcb_face tb_train
+wait 30
+pcb_glhud_shot tb_probe_train
+pcb_probe 320 1280 56
+pcb_goto tb_spot_rotate 64
+wait 150
+pcb_face tb_turntable
+wait 30
+pcb_glhud_shot tb_probe_rotate
+pcb_probe 640 1280 56
+pcb_goto tb_spot_tilt 64
+wait 150
+pcb_face tb_tilt
+wait 30
+pcb_glhud_shot tb_probe_tilt
+pcb_probe 960 1280 56
+pcb_goto tb_spot_doorpanel 64
+wait 150
+pcb_face tb_doorpanel_lift
+wait 30
+pcb_glhud_shot tb_probe_doorpanel
+pcb_probe -1280 -960 56
+pcb_goto tb_spot_arm 64
+wait 150
+pcb_face tb_arm-model_arms
+wait 30
+pcb_glhud_shot tb_probe_arm
+pcb_probe -1280 -640 56
+pcb_goto tb_spot_cubes 64
+wait 150
+pcb_face tb_btn_floor
+wait 30
+pcb_glhud_shot tb_probe_cubes
+pcb_probe -1280 -320 56
+pcb_goto tb_spot_laser 64
+wait 150
+pcb_face tb_laser_emitter
+wait 30
+pcb_glhud_shot tb_probe_laser
+pcb_probe -1280 160 56
+pcb_goto tb_spot_bridge 64
+wait 150
+pcb_face tb_bridge
+wait 30
+pcb_glhud_shot tb_probe_bridge
+pcb_probe -1280 640 56
+pcb_goto tb_spot_funnel 64
+wait 150
+pcb_face tb_funnel
+wait 30
+pcb_glhud_shot tb_probe_funnel
+pcb_probe -1280 960 56
+pcb_goto tb_spot_faith 64
+wait 150
+pcb_face tb_faith_arm
+wait 30
+pcb_glhud_shot tb_probe_faith
+pcb_probe 1280 -960 56
+pcb_goto tb_spot_fizzler 64
+wait 150
+pcb_face tb_fizzler_model
+wait 30
+pcb_glhud_shot tb_probe_fizzler
+pcb_probe 1280 -640 56
+pcb_goto tb_spot_turret 64
+wait 150
+pcb_face tb_turret
+wait 30
+pcb_glhud_shot tb_probe_turret
+pcb_probe 1280 -320 56
+pcb_goto tb_spot_goo 64
+wait 150
+pcb_face tb_goo_surface
+wait 30
+pcb_glhud_shot tb_probe_goo
+pcb_probe 1280 0 56
+pcb_goto tb_spot_doors 64
+wait 150
+pcb_face tb_door
+wait 30
+pcb_glhud_shot tb_probe_doors
+pcb_probe 1280 320 56
+pcb_goto tb_spot_gel 64
+wait 150
+pcb_face tb_gel
+wait 30
+pcb_glhud_shot tb_probe_gel
+pcb_probe 1280 640 56
+pcb_run_summary
+quit

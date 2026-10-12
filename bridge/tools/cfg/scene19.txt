@@ -1,0 +1,165 @@
+# scene19 (bridge #19, Owner B item 1): Minecraft entities drawn by Portal 2 in pc_pit_flings's chamber (the chamber band).
+# The Minecraft player (creative, NoAI mobs) faces a chamber wall 300 u away; in front of it, by local (^) coordinates: a pig,
+# a zombie, a sheep, an armor stand, a minecart, a boat, a dropped sword and a dropped grass block, an arrow stuck in placed
+# planks, an item frame and a painting on them, XP orbs. Each pose: Portal 2's own screenshot (`screenshot pcb_sc_*`, no
+# HUD) + Minecraft's own view at the same camera (`pcb_scene_native`, cache/bridge/mcnative/) for the side-by-side sheet.
+# C: Portal 2 portals on the wall: the entities seen through a portal.
+# Run: PCB_SO=<abs .so> tools/locked_run.sh terrain tools/cfg/scene19.txt pc_pit_flings 600 b19_sceneN
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 2
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_chell_proxy 0
+pcb_audio_test_mute 1
+# (the shared world save keeps entities from earlier runs: leftovers removed)
+pcb_mc_cmd kill @e[type=!player]
+pcb_mc_cmd time set noon
+pcb_mc_cmd gamerule doMobSpawning false
+pcb_log A setup
+pcb_noclip_set 1
+setpos -420 -416 -100
+setang 0 0 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_combat_face_open 240
+wait 20
+pcb_where
+bridge_mode mc
+waituntil mcmode 1200
+wait 40
+pcb_mc_cmd gamemode creative
+pcb_mc_cmd item replace entity @p weapon.mainhand with minecraft:air
+wait 20
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon pig ^2.5 ^ ^4 {NoAI:1b}
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon zombie ^0.8 ^ ^4.5 {NoAI:1b}
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon sheep ^-1 ^ ^4 {NoAI:1b,Color:14b}
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon armor_stand ^-2.6 ^ ^4.5 {ShowArms:1b,equipment:{head:{id:"minecraft:golden_helmet",count:1}}}
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon minecart ^1.5 ^ ^2.5
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon oak_boat ^-1.8 ^ ^2.4
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon item ^0.3 ^0.2 ^2 {Item:{id:"minecraft:diamond_sword",count:1},PickupDelay:32767}
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon item ^-0.5 ^0.2 ^2 {Item:{id:"minecraft:grass_block",count:1},PickupDelay:32767}
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run fill ^-4 ^ ^6.5 ^-4 ^2 ^6.5 minecraft:oak_planks
+pcb_scene_hang item_frame 2 1 5
+pcb_scene_hang painting -2 1 5
+wait 90
+pcb_scene_status
+pcb_assert_scene reset
+wait 20
+pcb_log B poses
+pcb_turn 0 15
+wait 40
+pcb_assert_scene 7 1
+pc_mc_hud 0
+wait 10
+screenshot pcb_sc_b_front
+pcb_mc_native sc_b_front
+wait 60
+wait 40
+pc_mc_hud 1
+wait 10
+pcb_glhud_shot sc_b_front_hud
+pcb_turn 0 40
+wait 40
+pc_mc_hud 0
+wait 10
+screenshot pcb_sc_b_down
+pcb_mc_native sc_b_down
+wait 60
+wait 40
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon experience_orb ^0.5 ^1 ^3 {Value:7}
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon experience_orb ^-0.5 ^1.2 ^3.5 {Value:20}
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon arrow ^-4 ^1.5 ^4 {Motion:[0.0,0.0,0.0]}
+wait 6
+screenshot pcb_sc_b_orbs
+pcb_mc_native sc_b_orbs
+wait 60
+wait 60
+pcb_scene_status
+pcb_log B2 particles: crit, sweep, block breaking (planks), smoke, end rod (bursts every 0.1 s around both captures)
+pcb_turn 0 15
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^0.6 ^1.2 ^2.5 run particle minecraft:crit ~ ~ ~ 0.25 0.25 0.25 0.05 60 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^-0.6 ^1.2 ^2.5 run particle minecraft:sweep_attack ~ ~ ~ 0 0 0 0 1 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^0 ^0.6 ^2.2 run particle minecraft:block{block_state:"minecraft:oak_planks"} ~ ~ ~ 0.2 0.2 0.2 0.1 40 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^1.4 ^1 ^3 run particle minecraft:large_smoke ~ ~ ~ 0.2 0.2 0.2 0.01 20 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^-1.4 ^1.4 ^3 run particle minecraft:end_rod ~ ~ ~ 0.3 0.3 0.3 0.01 20 force
+wait 6
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^0.6 ^1.2 ^2.5 run particle minecraft:crit ~ ~ ~ 0.25 0.25 0.25 0.05 60 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^-0.6 ^1.2 ^2.5 run particle minecraft:sweep_attack ~ ~ ~ 0 0 0 0 1 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^0 ^0.6 ^2.2 run particle minecraft:block{block_state:"minecraft:oak_planks"} ~ ~ ~ 0.2 0.2 0.2 0.1 40 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^1.4 ^1 ^3 run particle minecraft:large_smoke ~ ~ ~ 0.2 0.2 0.2 0.01 20 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^-1.4 ^1.4 ^3 run particle minecraft:end_rod ~ ~ ~ 0.3 0.3 0.3 0.01 20 force
+wait 6
+screenshot pcb_sc_b_particles
+pcb_mc_native sc_b_particles
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^0.6 ^1.2 ^2.5 run particle minecraft:crit ~ ~ ~ 0.25 0.25 0.25 0.05 60 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^-0.6 ^1.2 ^2.5 run particle minecraft:sweep_attack ~ ~ ~ 0 0 0 0 1 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^0 ^0.6 ^2.2 run particle minecraft:block{block_state:"minecraft:oak_planks"} ~ ~ ~ 0.2 0.2 0.2 0.1 40 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^1.4 ^1 ^3 run particle minecraft:large_smoke ~ ~ ~ 0.2 0.2 0.2 0.01 20 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^-1.4 ^1.4 ^3 run particle minecraft:end_rod ~ ~ ~ 0.3 0.3 0.3 0.01 20 force
+wait 6
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^0.6 ^1.2 ^2.5 run particle minecraft:crit ~ ~ ~ 0.25 0.25 0.25 0.05 60 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^-0.6 ^1.2 ^2.5 run particle minecraft:sweep_attack ~ ~ ~ 0 0 0 0 1 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^0 ^0.6 ^2.2 run particle minecraft:block{block_state:"minecraft:oak_planks"} ~ ~ ~ 0.2 0.2 0.2 0.1 40 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^1.4 ^1 ^3 run particle minecraft:large_smoke ~ ~ ~ 0.2 0.2 0.2 0.01 20 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^-1.4 ^1.4 ^3 run particle minecraft:end_rod ~ ~ ~ 0.3 0.3 0.3 0.01 20 force
+wait 6
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^0.6 ^1.2 ^2.5 run particle minecraft:crit ~ ~ ~ 0.25 0.25 0.25 0.05 60 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^-0.6 ^1.2 ^2.5 run particle minecraft:sweep_attack ~ ~ ~ 0 0 0 0 1 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^0 ^0.6 ^2.2 run particle minecraft:block{block_state:"minecraft:oak_planks"} ~ ~ ~ 0.2 0.2 0.2 0.1 40 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^1.4 ^1 ^3 run particle minecraft:large_smoke ~ ~ ~ 0.2 0.2 0.2 0.01 20 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^-1.4 ^1.4 ^3 run particle minecraft:end_rod ~ ~ ~ 0.3 0.3 0.3 0.01 20 force
+wait 6
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^0.6 ^1.2 ^2.5 run particle minecraft:crit ~ ~ ~ 0.25 0.25 0.25 0.05 60 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^-0.6 ^1.2 ^2.5 run particle minecraft:sweep_attack ~ ~ ~ 0 0 0 0 1 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^0 ^0.6 ^2.2 run particle minecraft:block{block_state:"minecraft:oak_planks"} ~ ~ ~ 0.2 0.2 0.2 0.1 40 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^1.4 ^1 ^3 run particle minecraft:large_smoke ~ ~ ~ 0.2 0.2 0.2 0.01 20 force
+pcb_mc_cmd execute as @p at @s rotated ~ 0 positioned ^-1.4 ^1.4 ^3 run particle minecraft:end_rod ~ ~ ~ 0.3 0.3 0.3 0.01 20 force
+wait 6
+pcb_scene_status
+wait 30
+pcb_log C through a portal
+pcb_mc_cmd kill @e[type=!player]
+bridge_mode chell
+waituntil chellmode 600
+pcb_noclip_set 1
+setpos -298 -416 -60
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 60
+pcb_av_wall 300 face
+wait 40
+pcb_av_portals 140
+wait 30
+bridge_mode mc
+waituntil mcmode 1200
+wait 30
+pcb_mc_cmd gamemode creative
+# (in front of portal 1, 3.5 blocks right of portal 0 on the wall 7.5 blocks ahead: seen through portal 0)
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon pig ^-2.6 ^ ^5.2 {NoAI:1b}
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon zombie ^-4.2 ^ ^5.6 {NoAI:1b}
+pcb_mc_cmd execute as @p at @s rotated ~ 0 run summon sheep ^-3.5 ^ ^4.4 {NoAI:1b,Color:4b}
+pcb_turn 0 0
+wait 60
+screenshot pcb_sc_c_portal
+pcb_scene_status
+pcb_turn -15 0
+wait 40
+screenshot pcb_sc_c_portal_side
+pcb_scene_status
+pcb_log D Chell mode (J back): the entities stay drawn (the hidden player follows her in the chambers)
+bridge_mode chell
+waituntil chellmode 600
+wait 120
+pcb_scene_status
+screenshot pcb_sc_d_chell
+pcb_mc_cmd kill @e[type=!player]
+wait 40
+pcb_scene_status
+pcb_run_summary
+quit

@@ -1,0 +1,32 @@
+# link test: partner placed first on a chamber wall (gun-like), then the floor portal; redirect; look + fall
+sv_cheats 1
+pc_pit_redirect_mode 2
+wait 60
+wait 1800
+pcb_portal_wall 1 400 100 0 0
+wait 30
+pcb_portal_floor 0 224 -64 200
+wait 90
+pcb_portal_check
+noclip
+setpos 224 -64 -600
+setang 89 90 0
+wait 120
+screenshot pcb_p4_look_down
+wait 60
+noclip
+setpos 224 -64 100
+setang 10 90 0
+pcb_log drop
+wait 45
+pcb_where
+wait 20
+pcb_where
+screenshot pcb_p4_fling_1
+wait 40
+pcb_where
+screenshot pcb_p4_fling_2
+wait 120
+pcb_where
+screenshot pcb_p4_landed
+quit

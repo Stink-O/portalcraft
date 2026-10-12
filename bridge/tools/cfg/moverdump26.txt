@@ -1,0 +1,11 @@
+# moverdump26 (bridge #26, diagnostic): every mover's collision group / solid type / flags at level start, written to the log
+sv_cheats 1
+waituntil spawned 600
+waituntil link 9000
+bridge_mode mc
+waituntil mcleads 2400
+wait 60
+pcb_movers all
+pcb_dyn_probe 380 -340 -481 20
+pcb_dyn_probe 370 -330 -470 24
+quit

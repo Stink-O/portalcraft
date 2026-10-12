@@ -1,0 +1,74 @@
+# perfmc1 (lead): where Minecraft mode spends the frame. Same poses in Chell mode and Minecraft mode,
+# standing and walking, in the chamber and on the terrain; host frame times, composite costs and the
+# direct-GL HUD's upload/draw costs per phase.
+pcb_assert_soft 1
+sv_cheats 1
+pc_pit_redirect_mode 1
+waituntil spawned 600
+waituntil link 9000
+waituntil haveexit 3600
+pcb_audio_test_mute 1
+pcb_noclip_set 1
+setpos -298 -416 -100
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 120
+bridge_mode mc
+waituntil mcmode 1200
+wait 200
+pcb_mckey 26 1
+wait 30
+pcb_log PERF W1 MC chamber walking
+pcb_composite_lag
+wait 300
+pcb_mckey 26 0
+pcb_composite_lag
+pcb_mckey 26 1
+pcb_mckey 224 1
+setang 0 90 0
+wait 30
+pcb_log PERF W2 MC chamber sprint+turn
+pcb_composite_lag
+wait 300
+pcb_mckey 224 0
+pcb_mckey 26 0
+pcb_composite_lag
+bridge_mode chell
+wait 60
+pcb_noclip_set 1
+setpos -400 -40 -13880
+setang 0 180 0
+pcb_stop
+wait 30
+pcb_noclip_set 0
+wait 200
+bridge_mode mc
+waituntil mcmode 1200
+wait 200
+pcb_where
+
+wait 30
+pcb_log PERF W3 MC terrain standing
+pcb_composite_lag
+wait 300
+pcb_composite_lag
+pcb_mckey 26 1
+wait 30
+pcb_log PERF W4 MC terrain walking
+pcb_composite_lag
+wait 300
+pcb_mckey 26 0
+pcb_composite_lag
+bridge_mode chell
+wait 60
++forward
+wait 30
+pcb_log PERF W5 Chell terrain walking
+pcb_composite_lag
+wait 300
+-forward
+pcb_composite_lag
+pcb_run_summary
+quit
